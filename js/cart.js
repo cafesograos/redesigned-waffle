@@ -40,7 +40,7 @@ const Cart = {
 
   render() {
     const count = this.totalItems();
-    document.getElementById('cartCount').textContent = count;
+    document.getElementById('cartCount').textContent = `(${count})`;
 
     const itemsEl = document.getElementById('cartItems');
     itemsEl.innerHTML = '';

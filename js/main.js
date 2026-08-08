@@ -2,17 +2,51 @@
 // Ex: "https://cafesograos-backend.onrender.com"
 const API_BASE = "https://SEU-BACKEND-AQUI.onrender.com";
 
-// Renderiza a vitrine de produtos
+let activeFilter = "todos";
+
+// Tira de categorias no topo (estilo vitrine)
+function renderCategoryStrip() {
+  const strip = document.getElementById('categoryStrip');
+  strip.innerHTML = CATEGORIES.map(c => `
+    <a href="#produtos" data-filter="${c.id}">${c.nome}</a>
+  `).join('');
+}
+
+// Pastilhas de filtro acima da grade de produtos
+function renderFilterPills() {
+  const pills = document.getElementById('filterPills');
+  const all = [{ id: "todos", nome: "Todos" }, ...CATEGORIES];
+  pills.innerHTML = all.map(c => `
+    <button class="pill ${activeFilter === c.id ? 'active' : ''}" data-filter="${c.id}">${c.nome}</button>
+  `).join('');
+}
+
+function priceHtml(p) {
+  if (p.precoOriginal) {
+    return `
+      <span class="produto-preco-original">R$ ${p.precoOriginal.toFixed(2).replace('.', ',')}</span>
+      <span class="produto-preco">R$ ${p.preco.toFixed(2).replace('.', ',')}</span>
+    `;
+  }
+  return `<span class="produto-preco">R$ ${p.preco.toFixed(2).replace('.', ',')}</span>`;
+}
+
+// Renderiza a vitrine de produtos, respeitando o filtro ativo
 function renderProducts() {
   const grid = document.getElementById('produtosGrid');
-  grid.innerHTML = PRODUCTS.map(p => `
+  const items = activeFilter === "todos"
+    ? PRODUCTS
+    : PRODUCTS.filter(p => p.categoria === activeFilter);
+
+  grid.innerHTML = items.map(p => `
     <div class="produto-card">
+      ${p.badge ? `<span class="produto-badge">${p.badge}</span>` : ''}
       <div class="produto-img">${p.img ? `<img src="${p.img}" alt="${p.nome}">` : '☕'}</div>
       <div class="produto-info">
         <h3>${p.nome}</h3>
         <p>${p.descricao}</p>
         <div class="produto-footer">
-          <span class="produto-preco">R$ ${p.preco.toFixed(2).replace('.', ',')}</span>
+          <div class="produto-precos">${priceHtml(p)}</div>
           <button class="btn btn-secondary" data-add="${p.id}">Adicionar</button>
         </div>
       </div>
@@ -25,6 +59,13 @@ document.addEventListener('click', (e) => {
   if (addBtn) {
     Cart.add(addBtn.dataset.add);
     openCart();
+    return;
+  }
+  const filterEl = e.target.closest('[data-filter]');
+  if (filterEl) {
+    activeFilter = filterEl.dataset.filter;
+    renderFilterPills();
+    renderProducts();
   }
 });
 
@@ -62,5 +103,7 @@ document.getElementById('checkoutBtn').addEventListener('click', async () => {
   }
 });
 
+renderCategoryStrip();
+renderFilterPills();
 renderProducts();
 Cart.render();
