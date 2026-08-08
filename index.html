@@ -11,6 +11,8 @@
 </head>
 <body>
 
+<div class="announce-bar">Frete grátis em pedidos acima de R$ 150 · Pagamento seguro via Mercado Pago</div>
+
 <header class="site-header">
   <div class="container header-inner">
     <a href="#" class="logo">Café <span>Só Grãos</span></a>
@@ -20,9 +22,10 @@
       <a href="#contato">Contato</a>
     </nav>
     <button class="cart-toggle" id="cartToggle" aria-label="Abrir carrinho">
-      🛍️ <span id="cartCount">0</span>
+      CARRINHO <span id="cartCount">(0)</span>
     </button>
   </div>
+  <nav class="category-strip" id="categoryStrip" aria-label="Categorias de produtos"></nav>
 </header>
 
 <section class="hero">
@@ -49,16 +52,30 @@
   <div class="container">
     <h2>Nossos cafés</h2>
     <p class="section-sub">Grãos selecionados, torras variadas — do suave ao intenso.</p>
+    <div class="filter-pills" id="filterPills"></div>
     <div class="produtos-grid" id="produtosGrid"></div>
   </div>
 </section>
 
 <section id="sobre" class="sobre">
-  <div class="container sobre-inner">
-    <div class="sobre-text">
-      <h2>Sobre a Café Só Grãos</h2>
-      <p>Começamos com uma ideia simples: café bom não precisa ser complicado. Trabalhamos direto com produtores, torramos em pequenos lotes e cuidamos de cada etapa até a sua xícara — sem intermediário, sem enrolação, sem perder a qualidade pelo caminho.</p>
-      <p>Se você gosta de café com personalidade, mas sem discurso de sommelier, você está no lugar certo.</p>
+  <div class="container">
+    <div class="sobre-bloco">
+      <div class="sobre-texto">
+        <p class="eyebrow">Nossa história</p>
+        <h2>Café bom não precisa ser complicado</h2>
+        <p>Começamos com uma ideia simples: trabalhar direto com produtores, torrar em pequenos lotes e cuidar de cada etapa até a sua xícara — sem intermediário, sem enrolação, sem perder a qualidade pelo caminho.</p>
+        <a href="#contato" class="btn btn-outline">Saiba mais</a>
+      </div>
+      <div class="sobre-imagem" aria-hidden="true">🌱</div>
+    </div>
+    <div class="sobre-bloco reverso">
+      <div class="sobre-texto">
+        <p class="eyebrow">Nossa torra</p>
+        <h2>Lotes pequenos, torrados toda semana</h2>
+        <p>Se você gosta de café com personalidade, mas sem discurso de sommelier, você está no lugar certo. Torramos perto da entrega pra chegar sempre fresco na sua casa.</p>
+        <a href="#produtos" class="btn btn-outline">Ver produtos</a>
+      </div>
+      <div class="sobre-imagem" aria-hidden="true">🔥</div>
     </div>
   </div>
 </section>
@@ -75,8 +92,32 @@
 </section>
 
 <footer class="site-footer">
-  <div class="container">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h4>Menu</h4>
+      <a href="#produtos">Produtos</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <div class="footer-col">
+      <h4>Ajuda</h4>
+      <a href="#contato">Fale conosco</a>
+      <a href="#contato">Trocas e devoluções</a>
+      <a href="#contato">Rastrear pedido</a>
+    </div>
+    <div class="footer-col footer-col-wide">
+      <h4>Café Só Grãos</h4>
+      <p>Selecionamos, torramos e embalamos cada lote com cuidado — do produtor até a sua xícara, em pequenos lotes toda semana.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <a href="mailto:contato@cafesograos.com.br">contato@cafesograos.com.br</a>
+      <a href="https://instagram.com/cafesograos" target="_blank" rel="noopener">@cafesograos</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
     <p>&copy; <span id="year"></span> Café Só Grãos. Todos os direitos reservados.</p>
+    <p class="payment-note">Pagamento processado com segurança pelo Mercado Pago</p>
   </div>
 </footer>
 
