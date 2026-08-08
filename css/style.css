@@ -35,9 +35,17 @@ a { text-decoration: none; color: inherit; }
 .btn-primary { background: var(--terracotta); color: #fff; }
 .btn-primary:hover { background: #a8551f; }
 .btn-primary:disabled { background: #d8ab8f; cursor: not-allowed; }
-.btn-secondary { background: var(--brown-dark); color: #fff; }
+.btn-secondary { background: var(--brown-dark); color: #fff; text-transform: uppercase; font-size: 12px; letter-spacing: .03em; }
 .btn-secondary:hover { background: #291908; }
+.btn-outline { background: none; border: 1px solid var(--brown-dark); color: var(--brown-dark); }
+.btn-outline:hover { background: var(--brown-dark); color: #fff; }
 .btn-block { width: 100%; text-align: center; }
+
+/* Announcement bar */
+.announce-bar {
+  background: var(--brown-dark); color: #f0e6d8; text-align: center;
+  font-size: 13px; padding: 8px 16px; letter-spacing: .01em;
+}
 
 /* Header */
 .site-header {
@@ -54,13 +62,18 @@ a { text-decoration: none; color: inherit; }
 .main-nav { display: flex; gap: 28px; font-weight: 500; }
 .main-nav a:hover { color: var(--terracotta); }
 .cart-toggle {
-  background: none; border: none; font-size: 18px; cursor: pointer;
-  display: flex; align-items: center; gap: 6px;
+  background: none; border: none; font-size: 13px; cursor: pointer;
+  display: flex; align-items: center; gap: 6px; font-weight: 700;
+  letter-spacing: .04em; color: var(--brown-dark);
 }
-#cartCount {
-  background: var(--terracotta); color: #fff; border-radius: 999px;
-  font-size: 12px; padding: 2px 8px; font-weight: 600;
+#cartCount { color: var(--terracotta); }
+
+.category-strip {
+  display: flex; justify-content: center; gap: 32px;
+  padding: 10px 0; border-top: 1px solid #e6dccb;
+  font-size: 12px; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
 }
+.category-strip a:hover { color: var(--terracotta); }
 
 /* Hero */
 .hero { padding: 72px 0; }
@@ -81,11 +94,26 @@ a { text-decoration: none; color: inherit; }
 /* Produtos */
 .produtos { padding: 80px 0; }
 .produtos h2 { font-size: 32px; text-align: center; }
-.section-sub { text-align: center; color: #5a4534; margin: 8px 0 40px; }
+.section-sub { text-align: center; color: #5a4534; margin: 8px 0 24px; }
+
+.filter-pills { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
+.pill {
+  background: #fff; border: 1px solid #ecdfc9; border-radius: 999px;
+  padding: 8px 18px; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--brown-dark);
+}
+.pill.active { background: var(--brown-dark); color: #fff; border-color: var(--brown-dark); }
+.pill:hover:not(.active) { border-color: var(--terracotta); color: var(--terracotta); }
+
 .produtos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .produto-card {
+  position: relative;
   background: #fff; border-radius: var(--radius); overflow: hidden;
   border: 1px solid #ecdfc9; display: flex; flex-direction: column;
+}
+.produto-badge {
+  position: absolute; top: 12px; left: 12px; z-index: 2;
+  background: var(--terracotta); color: #fff; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .03em; padding: 4px 10px; border-radius: 999px;
 }
 .produto-img {
   height: 160px; display: flex; align-items: center; justify-content: center;
@@ -95,20 +123,39 @@ a { text-decoration: none; color: inherit; }
 .produto-info { padding: 18px; flex: 1; display: flex; flex-direction: column; }
 .produto-info h3 { font-size: 18px; margin-bottom: 6px; }
 .produto-info p { font-size: 14px; color: #6b5744; flex: 1; margin-bottom: 16px; }
-.produto-footer { display: flex; align-items: center; justify-content: space-between; }
+.produto-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.produto-precos { display: flex; flex-direction: column; }
 .produto-preco { font-weight: 700; color: var(--brown-dark); }
+.produto-preco-original { font-size: 12px; color: #a08a72; text-decoration: line-through; }
 
-/* Sobre / Contato */
-.sobre, .contato { padding: 72px 0; }
-.sobre { background: #f3e9d8; }
-.sobre-inner { max-width: 640px; margin: 0 auto; text-align: center; }
-.sobre-text p { margin-top: 16px; color: #5a4534; }
+/* Sobre */
+.sobre { padding: 72px 0; background: #f3e9d8; display: flex; flex-direction: column; gap: 56px; }
+.sobre-bloco { display: flex; align-items: center; gap: 48px; }
+.sobre-bloco.reverso { flex-direction: row-reverse; }
+.sobre-texto { flex: 1; }
+.sobre-texto p:not(.eyebrow) { margin: 14px 0 20px; color: #5a4534; }
+.sobre-imagem {
+  flex: 1; text-align: center; font-size: 100px;
+  background: #fff; border-radius: var(--radius); padding: 48px; border: 1px solid #e6dccb;
+}
+
+/* Contato */
+.contato { padding: 72px 0; }
 .contato-inner { text-align: center; }
 .contato p { color: #5a4534; margin: 10px 0 20px; }
 .contato-links { display: flex; gap: 20px; justify-content: center; font-weight: 600; color: var(--terracotta); }
 
 /* Footer */
-.site-footer { background: var(--brown-dark); color: #d8c8b0; padding: 24px 0; text-align: center; font-size: 14px; }
+.site-footer { background: var(--brown-dark); color: #d8c8b0; padding: 56px 0 24px; font-size: 14px; }
+.footer-grid { display: grid; grid-template-columns: 1fr 1fr 1.6fr 1fr; gap: 32px; padding-bottom: 40px; }
+.footer-col h4 { color: #fff; font-size: 14px; text-transform: uppercase; letter-spacing: .03em; margin-bottom: 14px; }
+.footer-col a, .footer-col p { display: block; color: #d8c8b0; margin-bottom: 8px; font-size: 14px; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.1); padding-top: 20px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  font-size: 13px; opacity: .8;
+}
 
 /* Cart drawer */
 .cart-drawer {
@@ -139,5 +186,8 @@ a { text-decoration: none; color: inherit; }
   .hero-inner { flex-direction: column; text-align: center; }
   .hero-art { font-size: 100px; }
   .main-nav { display: none; }
+  .category-strip { flex-wrap: wrap; gap: 16px; }
   .destaques-grid, .produtos-grid { grid-template-columns: 1fr; }
+  .sobre-bloco, .sobre-bloco.reverso { flex-direction: column; text-align: center; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
 }
