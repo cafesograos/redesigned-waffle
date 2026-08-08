@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Café Só Grãos — Café especial, direto da torra</title>
+<meta name="description" content="Café especial em grãos, torrado artesanalmente. Peça online e receba em casa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#" class="logo">Café <span>Só Grãos</span></a>
+    <nav class="main-nav">
+      <a href="#produtos">Produtos</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <button class="cart-toggle" id="cartToggle" aria-label="Abrir carrinho">
+      🛍️ <span id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-text">
+      <p class="eyebrow">Café especial, sem enrolação</p>
+      <h1>Só grão bom. Só café de verdade.</h1>
+      <p class="hero-sub">Selecionamos, torramos e embalamos cada lote com cuidado — do produtor até a sua xícara. Peça online e receba fresquinho em casa.</p>
+      <a href="#produtos" class="btn btn-primary">Ver produtos</a>
+    </div>
+    <div class="hero-art" aria-hidden="true">☕</div>
+  </div>
+</section>
+
+<section class="destaques">
+  <div class="container destaques-grid">
+    <div class="destaque"><strong>Torra recente</strong><span>Torrado em pequenos lotes, toda semana</span></div>
+    <div class="destaque"><strong>Origem rastreada</strong><span>Direto de produtores parceiros</span></div>
+    <div class="destaque"><strong>Entrega para todo o Brasil</strong><span>Pagamento seguro via Mercado Pago</span></div>
+  </div>
+</section>
+
+<section id="produtos" class="produtos">
+  <div class="container">
+    <h2>Nossos cafés</h2>
+    <p class="section-sub">Grãos selecionados, torras variadas — do suave ao intenso.</p>
+    <div class="produtos-grid" id="produtosGrid"></div>
+  </div>
+</section>
+
+<section id="sobre" class="sobre">
+  <div class="container sobre-inner">
+    <div class="sobre-text">
+      <h2>Sobre a Café Só Grãos</h2>
+      <p>Começamos com uma ideia simples: café bom não precisa ser complicado. Trabalhamos direto com produtores, torramos em pequenos lotes e cuidamos de cada etapa até a sua xícara — sem intermediário, sem enrolação, sem perder a qualidade pelo caminho.</p>
+      <p>Se você gosta de café com personalidade, mas sem discurso de sommelier, você está no lugar certo.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contato" class="contato">
+  <div class="container contato-inner">
+    <h2>Fale com a gente</h2>
+    <p>Dúvidas sobre pedidos, atacado ou parcerias? Manda mensagem.</p>
+    <div class="contato-links">
+      <a href="mailto:contato@cafesograos.com.br">contato@cafesograos.com.br</a>
+      <a href="https://instagram.com/cafesograos" target="_blank" rel="noopener">@cafesograos</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; <span id="year"></span> Café Só Grãos. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<!-- Carrinho lateral -->
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>Seu carrinho</h3>
+    <button id="cartClose" aria-label="Fechar carrinho">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>Total</span>
+      <strong id="cartTotal">R$ 0,00</strong>
+    </div>
+    <button class="btn btn-primary btn-block" id="checkoutBtn" disabled>Finalizar compra</button>
+    <p class="checkout-note">Pagamento processado com segurança pelo Mercado Pago.</p>
+  </div>
+</aside>
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
