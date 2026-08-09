@@ -38,7 +38,7 @@ function renderProducts() {
 
   grid.innerHTML = items.map(p => `
     <div class="produto-card">
-      ${p.badge ? `<span class="produto-badge">${p.badge}</span>` : ''}
+      ${p.badge ? `<span class="produto-badge${p.badge.toUpperCase() === 'PROMOÇÃO' ? ' badge-sale' : ''}">${p.badge}</span>` : ''}
       <div class="produto-img">${p.img ? `<img src="${p.img}" alt="${p.nome}">` : '☕'}</div>
       <div class="produto-info">
         <h3>${p.nome}</h3>
