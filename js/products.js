@@ -4,61 +4,92 @@
 const CATEGORIES = [
   { id: "grao", nome: "Café em Grão" },
   { id: "moido", nome: "Café Moído" },
-  { id: "kit", nome: "Kits" }
+  { id: "drip", nome: "Drip Coffee" }
 ];
 
 const PRODUCTS = [
   {
-    id: "bourbon-amarelo-250",
-    nome: "Bourbon Amarelo",
-    descricao: "Torra média, notas de caramelo e frutas amarelas. 250g em grãos.",
-    preco: 39.90,
-    categoria: "grao",
-    badge: "Mais vendido",
-    img: null
-  },
-  {
-    id: "catuai-vermelho-250",
-    nome: "Catuaí Vermelho",
-    descricao: "Torra escura, corpo encorpado e final achocolatado. 250g em grãos.",
-    preco: 34.90,
-    categoria: "grao",
-    img: null
-  },
-  {
-    id: "geisha-especial-250",
-    nome: "Geisha Especial",
-    descricao: "Torra clara, floral e cítrico. Lote limitado. 250g em grãos.",
-    preco: 89.90,
-    categoria: "grao",
-    badge: "Lote limitado",
-    img: null
-  },
-  {
-    id: "blend-classico-500",
-    nome: "Blend Clássico Só Grãos",
-    descricao: "Torra média, equilibrado para o dia a dia. 500g moído.",
-    preco: 49.90,
-    precoOriginal: 54.90,
-    categoria: "moido",
-    badge: "Promoção",
-    img: null
-  },
-  {
-    id: "descafeinado-250",
-    nome: "Descafeinado",
-    descricao: "Torra média, todo o sabor sem cafeína. 250g moído.",
-    preco: 42.90,
+    id: "cafe-tradicional-500-moido",
+    nome: "Café Tradicional 500g",
+    descricao: "Torra tradicional, equilibrada e encorpada. 100% arábica, moído. 500g.",
+    preco: 33.00,
     categoria: "moido",
     img: null
   },
   {
-    id: "kit-degustacao",
-    nome: "Kit Degustação",
-    descricao: "Três origens diferentes, 100g cada, para conhecer a casa.",
-    preco: 69.90,
-    categoria: "kit",
-    badge: "Frete grátis",
+    id: "cafe-gourmet-250-grao",
+    nome: "Café Gourmet 250g — Grãos",
+    descricao: "Torra média, aroma marcante e acidez equilibrada. 100% arábica, em grãos. 250g.",
+    preco: 30.00,
+    categoria: "grao",
+    img: null
+  },
+  {
+    id: "cafe-gourmet-250-moido",
+    nome: "Café Gourmet 250g — Moído",
+    descricao: "Torra média, aroma marcante e acidez equilibrada. 100% arábica, moído. 250g.",
+    preco: 30.00,
+    categoria: "moido",
+    img: null
+  },
+  {
+    id: "cafe-gourmet-500-grao",
+    nome: "Café Gourmet 500g — Grãos",
+    descricao: "Torra média, aroma marcante e acidez equilibrada. 100% arábica, em grãos. 500g.",
+    preco: 55.00,
+    categoria: "grao",
+    img: null
+  },
+  {
+    id: "cafe-gourmet-500-moido",
+    nome: "Café Gourmet 500g — Moído",
+    descricao: "Torra média, aroma marcante e acidez equilibrada. 100% arábica, moído. 500g.",
+    preco: 55.00,
+    categoria: "moido",
+    img: null
+  },
+  {
+    id: "cafe-especial-250-grao",
+    nome: "Café Especial 250g — Grãos",
+    descricao: "Nota 83+ SCA. Torra clara a média, xícara limpa e notas sensoriais complexas. 100% arábica, em grãos. 250g.",
+    preco: 50.00,
+    categoria: "grao",
+    badge: "83+ SCA",
+    img: null
+  },
+  {
+    id: "cafe-especial-250-moido",
+    nome: "Café Especial 250g — Moído",
+    descricao: "Nota 83+ SCA. Torra clara a média, xícara limpa e notas sensoriais complexas. 100% arábica, moído. 250g.",
+    preco: 50.00,
+    categoria: "moido",
+    badge: "83+ SCA",
+    img: null
+  },
+  {
+    id: "cafe-especial-500-grao",
+    nome: "Café Especial 500g — Grãos",
+    descricao: "Nota 83+ SCA. Torra clara a média, xícara limpa e notas sensoriais complexas. 100% arábica, em grãos. 500g.",
+    preco: 70.00,
+    categoria: "grao",
+    badge: "83+ SCA",
+    img: null
+  },
+  {
+    id: "cafe-especial-500-moido",
+    nome: "Café Especial 500g — Moído",
+    descricao: "Nota 83+ SCA. Torra clara a média, xícara limpa e notas sensoriais complexas. 100% arábica, moído. 500g.",
+    preco: 70.00,
+    categoria: "moido",
+    badge: "83+ SCA",
+    img: null
+  },
+  {
+    id: "drip-coffee-caixa-10",
+    nome: "Drip Coffee",
+    descricao: "Café coado individual, praticidade sem perder o sabor. 100% arábica. Caixa com 10 sachês.",
+    preco: 90.00,
+    categoria: "drip",
     img: null
   }
 ];
