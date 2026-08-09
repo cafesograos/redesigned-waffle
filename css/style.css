@@ -57,8 +57,11 @@ a { text-decoration: none; color: inherit; }
   display: flex; align-items: center; justify-content: space-between;
   height: 72px;
 }
-.logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--brown-dark); }
-.logo span { color: var(--terracotta); }
+.logo { display: flex; align-items: center; }
+.logo-img {
+  height: 56px; width: 56px; object-fit: cover; border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(59,36,22,.25);
+}
 .main-nav { display: flex; gap: 28px; font-weight: 500; }
 .main-nav a:hover { color: var(--terracotta); }
 .cart-toggle {
@@ -82,7 +85,27 @@ a { text-decoration: none; color: inherit; }
 .eyebrow { color: var(--terracotta); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; font-size: 13px; margin-bottom: 12px; }
 .hero-text h1 { font-size: 44px; line-height: 1.15; margin-bottom: 18px; }
 .hero-sub { font-size: 17px; max-width: 480px; margin-bottom: 28px; color: #5a4534; }
-.hero-art { font-size: 160px; flex-shrink: 0; }
+.hero-art { flex-shrink: 0; width: 440px; max-width: 100%; }
+.hero-art img {
+  width: 100%; display: block; border-radius: 16px;
+  box-shadow: 0 20px 44px rgba(59,36,22,.28);
+}
+
+/* Origem (galeria) */
+.origem { padding: 64px 0 8px; }
+.origem .eyebrow.center, .origem h2.center { text-align: center; }
+.origem h2 { margin-bottom: 32px; }
+.origem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.origem-grid figure {
+  position: relative; margin: 0; border-radius: var(--radius);
+  overflow: hidden; height: 260px;
+}
+.origem-grid img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.origem-grid figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(transparent, rgba(20,12,6,.75));
+  color: #fff; padding: 32px 16px 14px; font-weight: 600; font-size: 14px;
+}
 
 /* Destaques */
 .destaques { background: var(--brown-dark); padding: 32px 0; }
@@ -135,9 +158,10 @@ a { text-decoration: none; color: inherit; }
 .sobre-texto { flex: 1; }
 .sobre-texto p:not(.eyebrow) { margin: 14px 0 20px; color: #5a4534; }
 .sobre-imagem {
-  flex: 1; text-align: center; font-size: 100px;
-  background: #fff; border-radius: var(--radius); padding: 48px; border: 1px solid #e6dccb;
+  flex: 1; border-radius: var(--radius); overflow: hidden;
+  border: 1px solid #e6dccb; height: 320px;
 }
+.sobre-imagem img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* Contato */
 .contato { padding: 72px 0; }
@@ -148,6 +172,7 @@ a { text-decoration: none; color: inherit; }
 /* Footer */
 .site-footer { background: var(--brown-dark); color: #d8c8b0; padding: 56px 0 24px; font-size: 14px; }
 .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1.6fr 1fr; gap: 32px; padding-bottom: 40px; }
+.footer-logo { width: 52px; height: 52px; border-radius: 50%; margin-bottom: 14px; display: block; }
 .footer-col h4 { color: #fff; font-size: 14px; text-transform: uppercase; letter-spacing: .03em; margin-bottom: 14px; }
 .footer-col a, .footer-col p { display: block; color: #d8c8b0; margin-bottom: 8px; font-size: 14px; }
 .footer-col a:hover { color: #fff; }
@@ -184,10 +209,11 @@ a { text-decoration: none; color: inherit; }
 
 @media (max-width: 800px) {
   .hero-inner { flex-direction: column; text-align: center; }
-  .hero-art { font-size: 100px; }
+  .hero-art { width: 100%; margin-top: 32px; }
   .main-nav { display: none; }
   .category-strip { flex-wrap: wrap; gap: 16px; }
   .destaques-grid, .produtos-grid { grid-template-columns: 1fr; }
+  .origem-grid { grid-template-columns: 1fr; }
   .sobre-bloco, .sobre-bloco.reverso { flex-direction: column; text-align: center; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
