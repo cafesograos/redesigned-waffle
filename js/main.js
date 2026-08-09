@@ -1,6 +1,4 @@
-// ATENÇÃO: troque pela URL do seu backend depois do deploy (veja README.md).
-// Ex: "https://cafesograos-backend.onrender.com"
-const API_BASE = "https://SEU-BACKEND-AQUI.onrender.com";
+const API_BASE = "https://cafesograos-backend.onrender.com";
 
 let activeFilter = "todos";
 
