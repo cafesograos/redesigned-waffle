@@ -151,15 +151,84 @@ document.getElementById('cartToggle').addEventListener('click', openCart);
 document.getElementById('cartClose').addEventListener('click', closeCart);
 document.getElementById('cartOverlay').addEventListener('click', closeCart);
 
+// Busca o CEP no ViaCEP e calcula o frete no nosso backend (Correios).
+document.getElementById('btnCalcularFrete').addEventListener('click', async () => {
+  const cepInput = document.getElementById('inCep');
+  const statusEl = document.getElementById('entregaStatus');
+  const cep = cepInput.value.replace(/\D/g, '');
+
+  if (cep.length !== 8) {
+    statusEl.textContent = 'Digite um CEP válido.';
+    return;
+  }
+
+  statusEl.textContent = 'Calculando frete...';
+  Cart.frete = null;
+
+  try {
+    const viaCepRes = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+    const endereco = await viaCepRes.json();
+    if (endereco.erro) throw new Error('CEP não encontrado.');
+
+    const freteRes = await fetch(`${API_BASE}/api/calcular-frete`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ cep, pesoKg: Cart.totalWeightKg() })
+    });
+    if (!freteRes.ok) throw new Error('Não foi possível calcular o frete.');
+    const frete = await freteRes.json();
+
+    Cart.frete = frete;
+    Cart.entrega = {
+      cep: endereco.cep,
+      endereco: endereco.logradouro,
+      bairro: endereco.bairro,
+      cidade: endereco.localidade,
+      estado: endereco.uf
+    };
+
+    document.getElementById('inEndereco').value = endereco.logradouro || '';
+    document.getElementById('inBairroCidade').value = `${endereco.bairro} — ${endereco.localidade}/${endereco.uf}`;
+    document.getElementById('enderecoFields').hidden = false;
+    statusEl.textContent = `Frete: R$ ${frete.valor.toFixed(2).replace('.', ',')} · entrega em até ${frete.prazoDias} dias úteis`;
+
+    Cart.render();
+  } catch (err) {
+    console.error(err);
+    statusEl.textContent = 'Não foi possível calcular o frete. Confira o CEP e tente de novo.';
+  }
+});
+
 document.getElementById('checkoutBtn').addEventListener('click', async () => {
   const btn = document.getElementById('checkoutBtn');
+
+  const nome = document.getElementById('inNome').value.trim();
+  const email = document.getElementById('inEmail').value.trim();
+  const telefone = document.getElementById('inTelefone').value.trim();
+  const numero = document.getElementById('inNumero').value.trim();
+  const complemento = document.getElementById('inComplemento').value.trim();
+
+  if (!Cart.frete) {
+    alert('Calcule o frete antes de finalizar a compra.');
+    return;
+  }
+  if (!nome || !email || !numero) {
+    alert('Preencha nome, e-mail e número do endereço pra continuar.');
+    return;
+  }
+
   btn.disabled = true;
   btn.textContent = 'Processando...';
   try {
     const res = await fetch(`${API_BASE}/api/create-preference`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ items: Cart.toLineItems() })
+      body: JSON.stringify({
+        items: Cart.toLineItems(),
+        frete: Cart.frete.valor,
+        cliente: { nome, email, telefone },
+        entrega: { ...Cart.entrega, numero, complemento }
+      })
     });
     if (!res.ok) throw new Error('Falha ao criar pagamento');
     const data = await res.json();

@@ -1,6 +1,7 @@
 // Catálogo de produtos — edite/substitua com os produtos reais da Café Só Grãos.
 // "img" pode apontar para fotos reais em /assets quando você tiver.
 // "categoria" alimenta os filtros da vitrine. "badge" e "precoOriginal" são opcionais.
+// "pesoGramas" é usado pra calcular o frete (peso da embalagem já incluso).
 const CATEGORIES = [
   { id: "grao", nome: "Café em Grão" },
   { id: "moido", nome: "Café Moído" },
@@ -14,6 +15,7 @@ const PRODUCTS = [
     descricao: "Torra tradicional, equilibrada e encorpada. 100% arábica, moído. 500g.",
     preco: 33.00,
     categoria: "moido",
+    pesoGramas: 550,
     img: "assets/produto-tradicional-500.png",
     imgs: ["assets/produto-tradicional-500.png", "assets/logo.jpg"]
   },
@@ -23,6 +25,7 @@ const PRODUCTS = [
     descricao: "Torra média, aroma marcante e acidez equilibrada. 100% arábica, em grãos. 250g.",
     preco: 30.00,
     categoria: "grao",
+    pesoGramas: 300,
     img: null
   },
   {
@@ -31,6 +34,7 @@ const PRODUCTS = [
     descricao: "Torra média, aroma marcante e acidez equilibrada. 100% arábica, moído. 250g.",
     preco: 30.00,
     categoria: "moido",
+    pesoGramas: 300,
     img: null
   },
   {
@@ -39,6 +43,7 @@ const PRODUCTS = [
     descricao: "Torra média, aroma marcante e acidez equilibrada. 100% arábica, em grãos. 500g.",
     preco: 55.00,
     categoria: "grao",
+    pesoGramas: 550,
     img: null
   },
   {
@@ -47,6 +52,7 @@ const PRODUCTS = [
     descricao: "Torra média, aroma marcante e acidez equilibrada. 100% arábica, moído. 500g.",
     preco: 55.00,
     categoria: "moido",
+    pesoGramas: 550,
     img: null
   },
   {
@@ -56,6 +62,7 @@ const PRODUCTS = [
     preco: 50.00,
     categoria: "grao",
     badge: "83+ SCA",
+    pesoGramas: 300,
     img: null
   },
   {
@@ -65,6 +72,7 @@ const PRODUCTS = [
     preco: 50.00,
     categoria: "moido",
     badge: "83+ SCA",
+    pesoGramas: 300,
     img: null
   },
   {
@@ -74,6 +82,7 @@ const PRODUCTS = [
     preco: 70.00,
     categoria: "grao",
     badge: "83+ SCA",
+    pesoGramas: 550,
     img: null
   },
   {
@@ -83,6 +92,7 @@ const PRODUCTS = [
     preco: 70.00,
     categoria: "moido",
     badge: "83+ SCA",
+    pesoGramas: 550,
     img: null
   },
   {
@@ -91,6 +101,7 @@ const PRODUCTS = [
     descricao: "Café coado individual, praticidade sem perder o sabor. 100% arábica. Caixa com 10 sachês.",
     preco: 90.00,
     categoria: "drip",
+    pesoGramas: 400,
     img: null
   }
 ];

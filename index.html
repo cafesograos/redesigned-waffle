@@ -157,7 +157,37 @@
     <button id="cartClose" aria-label="Fechar carrinho">✕</button>
   </div>
   <div class="cart-items" id="cartItems"></div>
+
+  <div class="cart-entrega" id="cartEntrega">
+    <h4>Dados de entrega</h4>
+    <div class="entrega-row">
+      <input type="text" id="inCep" placeholder="CEP" maxlength="9" inputmode="numeric">
+      <button class="btn btn-outline" id="btnCalcularFrete" type="button">Calcular frete</button>
+    </div>
+    <p class="entrega-status" id="entregaStatus"></p>
+
+    <div id="enderecoFields" class="entrega-fields" hidden>
+      <input type="text" id="inEndereco" placeholder="Rua" readonly>
+      <div class="entrega-row">
+        <input type="text" id="inNumero" placeholder="Número">
+        <input type="text" id="inComplemento" placeholder="Complemento (opcional)">
+      </div>
+      <input type="text" id="inBairroCidade" readonly>
+      <input type="text" id="inNome" placeholder="Nome completo">
+      <input type="email" id="inEmail" placeholder="E-mail">
+      <input type="tel" id="inTelefone" placeholder="Telefone / WhatsApp">
+    </div>
+  </div>
+
   <div class="cart-footer">
+    <div class="cart-total cart-subtotal">
+      <span>Subtotal</span>
+      <strong id="cartSubtotal">R$ 0,00</strong>
+    </div>
+    <div class="cart-total cart-frete">
+      <span>Frete</span>
+      <strong id="cartFrete">—</strong>
+    </div>
     <div class="cart-total">
       <span>Total</span>
       <strong id="cartTotal">R$ 0,00</strong>

@@ -2,19 +2,37 @@
 // de forma previsível dentro de artifacts/preview e em qualquer navegador).
 const Cart = {
   items: {}, // { productId: qty }
+  frete: null, // { valor, prazoDias }
+  entrega: {}, // cep, endereco, numero, complemento, bairro, cidade, estado
+  cliente: {}, // nome, email, telefone
+
+  totalWeightKg() {
+    const gramas = Object.entries(this.items).reduce((sum, [id, qty]) => {
+      const p = PRODUCTS.find(p => p.id === id);
+      return sum + (p ? (p.pesoGramas || 300) * qty : 0);
+    }, 0);
+    return gramas / 1000;
+  },
+
+  grandTotal() {
+    return this.totalValue() + (this.frete ? this.frete.valor : 0);
+  },
 
   add(id) {
     this.items[id] = (this.items[id] || 0) + 1;
+    this.frete = null;
     this.render();
   },
 
   remove(id) {
     delete this.items[id];
+    this.frete = null;
     this.render();
   },
 
   setQty(id, qty) {
     qty = Math.max(0, parseInt(qty) || 0);
+    this.frete = null;
     if (qty === 0) { this.remove(id); return; }
     this.items[id] = qty;
     this.render();
@@ -68,9 +86,18 @@ const Cart = {
       });
     }
 
-    document.getElementById('cartTotal').textContent =
+    document.getElementById('cartSubtotal').textContent =
       'R$ ' + this.totalValue().toFixed(2).replace('.', ',');
-    document.getElementById('checkoutBtn').disabled = count === 0;
+    document.getElementById('cartFrete').textContent = this.frete
+      ? 'R$ ' + this.frete.valor.toFixed(2).replace('.', ',')
+      : '—';
+    document.getElementById('cartTotal').textContent =
+      'R$ ' + this.grandTotal().toFixed(2).replace('.', ',');
+
+    const entregaEl = document.getElementById('cartEntrega');
+    entregaEl.style.display = count === 0 ? 'none' : 'block';
+
+    document.getElementById('checkoutBtn').disabled = count === 0 || !this.frete;
   }
 };
 
