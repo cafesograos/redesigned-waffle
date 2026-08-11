@@ -1,4 +1,4 @@
-const API_BASE = "https://cafesograos-backend.onrender.com";
+const API_BASE = "https://cafesograos-backend-production.up.railway.app";
 
 let activeFilter = "todos";
 
