@@ -14,7 +14,7 @@ const PRODUCTS = [
     descricao: "Torra tradicional, equilibrada e encorpada. 100% arábica, moído. 500g.",
     preco: 33.00,
     categoria: "moido",
-    img: null
+    img: "assets/produto-tradicional-500.png"
   },
   {
     id: "cafe-gourmet-250-grao",
