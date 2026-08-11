@@ -39,7 +39,7 @@ function renderProducts() {
   grid.innerHTML = items.map(p => `
     <div class="produto-card">
       ${p.badge ? `<span class="produto-badge${p.badge.toUpperCase() === 'PROMOÇÃO' ? ' badge-sale' : ''}">${p.badge}</span>` : ''}
-      <div class="produto-img">${p.img ? `<img src="${p.img}" alt="${p.nome}">` : '☕'}</div>
+      <div class="produto-img"${p.imgs ? ` data-gallery="${p.id}"` : ''}>${p.img ? `<img src="${p.img}" alt="${p.nome}">` : '☕'}</div>
       <div class="produto-info">
         <h3>${p.nome}</h3>
         <p>${p.descricao}</p>
@@ -64,8 +64,79 @@ document.addEventListener('click', (e) => {
     activeFilter = filterEl.dataset.filter;
     renderFilterPills();
     renderProducts();
+    return;
+  }
+  const galleryEl = e.target.closest('[data-gallery]');
+  if (galleryEl) {
+    const product = PRODUCTS.find(p => p.id === galleryEl.dataset.gallery);
+    if (product) Lightbox.open(product.imgs, product.nome);
   }
 });
+
+// Galeria em tela cheia: clique na foto do produto abre, arraste/setas navegam entre as imagens.
+const Lightbox = (() => {
+  const el = document.getElementById('lightbox');
+  const track = document.getElementById('lightboxTrack');
+  const dotsEl = document.getElementById('lightboxDots');
+  let images = [];
+  let index = 0;
+  let startX = 0;
+  let dragging = false;
+
+  function render() {
+    track.style.transform = `translateX(${-index * 100}%)`;
+    [...dotsEl.children].forEach((d, i) => d.classList.toggle('active', i === index));
+  }
+
+  function open(imgs, alt) {
+    images = imgs;
+    index = 0;
+    track.innerHTML = images.map(src => `<div class="lightbox-slide"><img src="${src}" alt="${alt}"></div>`).join('');
+    dotsEl.innerHTML = images.map((_, i) => `<span class="lightbox-dot"></span>`).join('');
+    dotsEl.style.display = images.length > 1 ? 'flex' : 'none';
+    el.classList.add('open');
+    render();
+  }
+
+  function close() { el.classList.remove('open'); }
+  function next() { if (index < images.length - 1) { index++; render(); } }
+  function prev() { if (index > 0) { index--; render(); } }
+
+  document.getElementById('lightboxClose').addEventListener('click', close);
+  document.getElementById('lightboxNext').addEventListener('click', next);
+  document.getElementById('lightboxPrev').addEventListener('click', prev);
+  el.addEventListener('click', (e) => { if (e.target === el) close(); });
+  document.addEventListener('keydown', (e) => {
+    if (!el.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
+  });
+
+  track.addEventListener('pointerdown', (e) => {
+    dragging = true;
+    startX = e.clientX;
+    track.style.transition = 'none';
+  });
+  track.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const delta = e.clientX - startX;
+    track.style.transform = `translateX(calc(${-index * 100}% + ${delta}px))`;
+  });
+  function endDrag(e) {
+    if (!dragging) return;
+    dragging = false;
+    track.style.transition = '';
+    const delta = e.clientX - startX;
+    if (delta < -60) next();
+    else if (delta > 60) prev();
+    else render();
+  }
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointerleave', (e) => { if (dragging) endDrag(e); });
+
+  return { open };
+})();
 
 function openCart() {
   document.getElementById('cartDrawer').classList.add('open');
