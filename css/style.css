@@ -55,11 +55,11 @@ a { text-decoration: none; color: inherit; }
 }
 .header-inner {
   display: flex; align-items: center; justify-content: space-between;
-  height: 88px;
+  height: 100px;
 }
 .logo { display: flex; align-items: center; }
 .logo-img {
-  height: 100px; width: 100px; object-fit: cover; border-radius: 50%;
+  height: 132px; width: 132px; object-fit: cover; border-radius: 50%;
   box-shadow: 0 4px 14px rgba(0,0,0,.45);
   border: 3px solid var(--terracotta);
 }
@@ -263,8 +263,8 @@ a { text-decoration: none; color: inherit; }
   .hero-inner { flex-direction: column; text-align: center; }
   .hero-art { width: 100%; margin-top: 32px; }
   .main-nav { display: none; }
-  .header-inner { height: 76px; }
-  .logo-img { height: 72px; width: 72px; }
+  .header-inner { height: 84px; }
+  .logo-img { height: 92px; width: 92px; }
   .category-strip { flex-wrap: wrap; gap: 16px; }
   .destaques-grid, .produtos-grid { grid-template-columns: 1fr; }
   .origem-grid { grid-template-columns: 1fr; }
