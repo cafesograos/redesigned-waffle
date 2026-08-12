@@ -72,6 +72,7 @@ const Cart = {
         const row = document.createElement('div');
         row.className = 'cart-item';
         row.innerHTML = `
+          <div class="cart-item-thumb">${p.img ? `<img src="${p.img}" alt="${p.nome}">` : '☕'}</div>
           <div class="cart-item-info">
             <strong>${p.nome}</strong>
             <span>R$ ${p.preco.toFixed(2).replace('.', ',')}</span>
