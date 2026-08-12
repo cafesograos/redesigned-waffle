@@ -55,12 +55,13 @@ a { text-decoration: none; color: inherit; }
 }
 .header-inner {
   display: flex; align-items: center; justify-content: space-between;
-  height: 72px;
+  height: 88px;
 }
 .logo { display: flex; align-items: center; }
 .logo-img {
-  height: 56px; width: 56px; object-fit: cover; border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0,0,0,.4);
+  height: 100px; width: 100px; object-fit: cover; border-radius: 50%;
+  box-shadow: 0 4px 14px rgba(0,0,0,.45);
+  border: 3px solid var(--terracotta);
 }
 .main-nav { display: flex; gap: 28px; font-weight: 500; color: #f0e6d8; }
 .main-nav a:hover { color: var(--terracotta); }
@@ -262,6 +263,8 @@ a { text-decoration: none; color: inherit; }
   .hero-inner { flex-direction: column; text-align: center; }
   .hero-art { width: 100%; margin-top: 32px; }
   .main-nav { display: none; }
+  .header-inner { height: 76px; }
+  .logo-img { height: 72px; width: 72px; }
   .category-strip { flex-wrap: wrap; gap: 16px; }
   .destaques-grid, .produtos-grid { grid-template-columns: 1fr; }
   .origem-grid { grid-template-columns: 1fr; }
