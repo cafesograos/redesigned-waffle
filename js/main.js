@@ -151,7 +151,7 @@ document.getElementById('cartToggle').addEventListener('click', openCart);
 document.getElementById('cartClose').addEventListener('click', closeCart);
 document.getElementById('cartOverlay').addEventListener('click', closeCart);
 
-// Busca o CEP no ViaCEP e calcula o frete no nosso backend (Correios).
+// Busca o CEP no ViaCEP e calcula o frete no nosso backend (Melhor Envio).
 document.getElementById('btnCalcularFrete').addEventListener('click', async () => {
   const cepInput = document.getElementById('inCep');
   const statusEl = document.getElementById('entregaStatus');
@@ -241,7 +241,22 @@ document.getElementById('checkoutBtn').addEventListener('click', async () => {
   }
 });
 
-renderCategoryStrip();
-renderFilterPills();
-renderProducts();
-Cart.render();
+// Busca o catálogo real no backend (fonte da verdade); se falhar, segue com
+// o catálogo local de js/products.js pra loja não ficar fora do ar.
+async function carregarCatalogo() {
+  try {
+    const res = await fetch(`${API_BASE}/api/produtos`);
+    if (!res.ok) throw new Error('Falha ao buscar catálogo');
+    const data = await res.json();
+    if (Array.isArray(data.categories) && data.categories.length) CATEGORIES = data.categories;
+    if (Array.isArray(data.products) && data.products.length) PRODUCTS = data.products;
+  } catch (err) {
+    console.error('Não foi possível carregar o catálogo do servidor, usando catálogo local.', err);
+  }
+  renderCategoryStrip();
+  renderFilterPills();
+  renderProducts();
+  Cart.render();
+}
+
+carregarCatalogo();

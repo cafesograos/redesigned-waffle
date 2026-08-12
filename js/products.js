@@ -1,14 +1,14 @@
-// Catálogo de produtos — edite/substitua com os produtos reais da Café Só Grãos.
-// "img" pode apontar para fotos reais em /assets quando você tiver.
+// Catálogo de produtos — usado como fallback offline caso o backend (fonte
+// da verdade, ver GET /api/produtos) esteja indisponível no carregamento da página.
 // "categoria" alimenta os filtros da vitrine. "badge" e "precoOriginal" são opcionais.
 // "pesoGramas" é usado pra calcular o frete (peso da embalagem já incluso).
-const CATEGORIES = [
+let CATEGORIES = [
   { id: "grao", nome: "Café em Grão" },
   { id: "moido", nome: "Café Moído" },
   { id: "drip", nome: "Drip Coffee" }
 ];
 
-const PRODUCTS = [
+let PRODUCTS = [
   {
     id: "cafe-tradicional-500-moido",
     nome: "Café Tradicional 500g",
