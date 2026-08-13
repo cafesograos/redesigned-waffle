@@ -50,10 +50,12 @@ const Cart = {
   },
 
   toLineItems() {
-    return Object.entries(this.items).map(([id, qty]) => {
-      const p = PRODUCTS.find(p => p.id === id);
-      return { id, title: p.nome, quantity: qty, unit_price: p.preco };
-    });
+    return Object.entries(this.items)
+      .map(([id, qty]) => {
+        const p = PRODUCTS.find(p => p.id === id);
+        return p ? { id, title: p.nome, quantity: qty, unit_price: p.preco } : null;
+      })
+      .filter(Boolean);
   },
 
   render() {
