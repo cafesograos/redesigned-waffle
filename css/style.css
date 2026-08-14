@@ -96,7 +96,7 @@ a { text-decoration: none; color: inherit; }
 
 /* Origem (galeria) */
 .origem { padding: 64px 0 8px; }
-.origem .eyebrow.center, .origem h2.center { text-align: center; }
+.eyebrow.center, h2.center { text-align: center; }
 .origem h2 { margin-bottom: 32px; }
 .origem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .origem-grid figure {
@@ -171,6 +171,19 @@ a { text-decoration: none; color: inherit; }
   border: 1px solid #e6dccb; height: 320px;
 }
 .sobre-imagem img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.sobre-historia { max-width: 720px; margin: 0 auto; }
+.sobre-historia h2 { margin-bottom: 28px; font-size: 30px; }
+.sobre-historia > p { color: #5a4534; margin-bottom: 18px; line-height: 1.7; }
+.sobre-historia-imagem {
+  border-radius: var(--radius); overflow: hidden; height: 320px;
+  margin-bottom: 28px; border: 1px solid #e6dccb;
+}
+.sobre-historia-imagem img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sobre-tagline {
+  font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700;
+  color: var(--brown-dark); text-align: center; margin-top: 24px !important;
+}
 
 /* Contato */
 .contato { padding: 72px 0; }
