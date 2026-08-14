@@ -6,6 +6,14 @@
 <title>Pagamento aprovado! — Café Só Grãos</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9JWWL4F6ZP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9JWWL4F6ZP');
+</script>
 </head>
 <body>
 <div style="max-width:520px;margin:120px auto;text-align:center;padding:0 24px;">
@@ -13,5 +21,34 @@
   <p style="color:#5a4534;margin-bottom:32px;">Obrigado pelo pedido. Você vai receber a confirmação por e-mail em instantes.</p>
   <a href="index.html" class="btn btn-primary">Voltar à loja</a>
 </div>
+<script>
+// Registra a compra no Google Analytics com o valor real do pedido (não o que
+// veio na URL). Evita registrar de novo se a pessoa atualizar a página.
+(function () {
+  const preferenceId = new URLSearchParams(window.location.search).get('preference_id');
+  if (!preferenceId) return;
+  const jaRegistrado = sessionStorage.getItem('compra-registrada-' + preferenceId);
+  if (jaRegistrado) return;
+
+  fetch('https://cafesograos-backend-production.up.railway.app/api/pedido/' + encodeURIComponent(preferenceId))
+    .then((r) => (r.ok ? r.json() : null))
+    .then((pedido) => {
+      if (!pedido) return;
+      gtag('event', 'purchase', {
+        transaction_id: preferenceId,
+        currency: 'BRL',
+        value: Number(pedido.total),
+        shipping: Number(pedido.shipping_cost),
+        items: (pedido.items || []).map((i) => ({
+          item_name: i.title,
+          price: Number(i.unit_price),
+          quantity: i.quantity
+        }))
+      });
+      sessionStorage.setItem('compra-registrada-' + preferenceId, '1');
+    })
+    .catch(() => {});
+})();
+</script>
 </body>
 </html>

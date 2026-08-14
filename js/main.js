@@ -193,6 +193,14 @@ document.getElementById('btnCalcularFrete').addEventListener('click', async () =
     statusEl.textContent = `Frete: R$ ${frete.valor.toFixed(2).replace('.', ',')} · entrega em até ${frete.prazoDias} dias úteis`;
 
     Cart.render();
+
+    if (window.gtag) {
+      gtag('event', 'begin_checkout', {
+        currency: 'BRL',
+        value: Cart.grandTotal(),
+        items: Cart.toLineItems().map((i) => ({ item_id: i.id, item_name: i.title, price: i.unit_price, quantity: i.quantity }))
+      });
+    }
   } catch (err) {
     console.error(err);
     statusEl.textContent = 'Não foi possível calcular o frete. Confira o CEP e tente de novo.';

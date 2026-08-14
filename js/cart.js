@@ -22,6 +22,15 @@ const Cart = {
     this.items[id] = (this.items[id] || 0) + 1;
     this.frete = null;
     this.render();
+
+    const p = PRODUCTS.find(p => p.id === id);
+    if (p && window.gtag) {
+      gtag('event', 'add_to_cart', {
+        currency: 'BRL',
+        value: p.preco,
+        items: [{ item_id: id, item_name: p.nome, price: p.preco, quantity: 1 }]
+      });
+    }
   },
 
   remove(id) {
