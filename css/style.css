@@ -168,12 +168,21 @@ a { text-decoration: none; color: inherit; }
 /* Avaliações (estilo Google, com moderação) */
 .avaliacoes { padding: 80px 0; }
 .avaliacoes h2 { margin-bottom: 32px; }
-.avaliacoes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
-.avaliacoes-vazio { grid-column: 1 / -1; text-align: center; color: var(--text-soft); }
+.avaliacoes-grid {
+  display: flex; gap: 20px; margin-bottom: 40px;
+  overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+.avaliacoes-vazio { text-align: center; color: var(--text-soft); width: 100%; }
 .avaliacao-card {
   background: #F3F3F3; border-radius: var(--radius); padding: 24px;
+  flex: 0 0 300px; scroll-snap-align: start;
 }
 .avaliacao-estrelas-view { color: var(--laranja); font-size: 15px; margin-bottom: 8px; letter-spacing: 2px; }
+.avaliacao-produto {
+  display: inline-block; font-size: 12px; font-weight: 700; color: var(--laranja);
+  text-transform: uppercase; letter-spacing: .02em; margin-bottom: 8px;
+}
 .avaliacao-card p { font-size: 14px; color: var(--text-soft); margin-bottom: 12px; }
 .avaliacao-autor { font-size: 13px; font-weight: 700; color: var(--expresso); }
 .avaliacao-data { font-size: 12px; color: #a89a92; margin-left: 6px; }
@@ -185,9 +194,10 @@ a { text-decoration: none; color: inherit; }
 .avaliacao-form-wrap h3 { margin-bottom: 6px; }
 .avaliacao-form-nota { font-size: 13px; color: var(--text-soft); margin-bottom: 18px; }
 .avaliacao-form { display: flex; flex-direction: column; gap: 12px; }
-.avaliacao-form input, .avaliacao-form textarea {
+.avaliacao-form input, .avaliacao-form select, .avaliacao-form textarea {
   width: 100%; padding: 12px 14px; border: 1px solid #ddd; border-radius: 8px;
-  font-size: 15px; font-family: inherit; resize: vertical;
+  font-size: 15px; font-family: inherit; resize: vertical; color: var(--expresso);
+  background: #fff;
 }
 .avaliacao-estrelas { display: flex; justify-content: center; gap: 6px; }
 .avaliacao-estrelas button {
@@ -475,7 +485,8 @@ a { text-decoration: none; color: inherit; }
   .destaque { text-align: center; }
   .origem-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
-  .objecoes-grid, .avaliacoes-grid { grid-template-columns: 1fr; }
+  .objecoes-grid { grid-template-columns: 1fr; }
+  .avaliacao-card { flex-basis: 82vw; }
   .avaliacao-form-wrap { padding: 24px; }
   .torra-full { padding: 72px 0; min-height: 360px; text-align: center; }
   .torra-full-inner { margin: 0 auto; }

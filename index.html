@@ -183,6 +183,13 @@
       <p class="avaliacao-form-nota">Toda avaliação passa por uma revisão rápida antes de aparecer no site.</p>
       <form id="formAvaliacao" class="avaliacao-form">
         <input type="text" id="avNome" placeholder="Seu nome" maxlength="100" required>
+        <select id="avProduto" required>
+          <option value="" disabled selected>Qual linha você comprou?</option>
+          <option value="Tradicional">Tradicional</option>
+          <option value="Gourmet">Gourmet</option>
+          <option value="Especial">Especial</option>
+          <option value="Drip Coffee">Drip Coffee</option>
+        </select>
         <div class="avaliacao-estrelas" id="avEstrelas" role="radiogroup" aria-label="Nota de 1 a 5">
           <button type="button" data-nota="1" aria-label="1 estrela">★</button>
           <button type="button" data-nota="2" aria-label="2 estrelas">★</button>

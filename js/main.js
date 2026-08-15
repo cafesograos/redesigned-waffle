@@ -338,10 +338,11 @@ carregarCatalogo();
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const nome = document.getElementById('avNome').value.trim();
+    const produto = document.getElementById('avProduto').value;
     const comentario = document.getElementById('avComentario').value.trim();
 
-    if (!nome || !comentario || !notaSelecionada) {
-      statusEl.textContent = 'Preencha nome, escolha uma nota e escreva seu comentário.';
+    if (!nome || !produto || !comentario || !notaSelecionada) {
+      statusEl.textContent = 'Preencha nome, qual produto comprou, a nota e o comentário.';
       return;
     }
 
@@ -353,7 +354,7 @@ carregarCatalogo();
       const res = await fetch(`${API_BASE}/api/avaliacoes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nome, nota: notaSelecionada, comentario })
+        body: JSON.stringify({ nome, produto, nota: notaSelecionada, comentario })
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Falha ao enviar avaliação');
@@ -382,6 +383,7 @@ carregarCatalogo();
       grid.innerHTML = avaliacoes.map((a) => `
         <div class="avaliacao-card">
           <div class="avaliacao-estrelas-view">${'★'.repeat(a.rating)}${'☆'.repeat(5 - a.rating)}</div>
+          ${a.product_line ? `<span class="avaliacao-produto">Comprou: ${esc(a.product_line)}</span>` : ''}
           <p>"${esc(a.comment)}"</p>
           <span class="avaliacao-autor">${esc(a.customer_name)}</span><span class="avaliacao-data">${new Date(a.created_at).toLocaleDateString('pt-BR')}</span>
         </div>
