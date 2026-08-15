@@ -29,14 +29,17 @@
       <a href="#sobre">Sobre</a>
       <a href="#contato">Contato</a>
     </nav>
-    <button class="cart-toggle" id="cartToggle" aria-label="Abrir carrinho">
-      <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <circle cx="9" cy="20" r="1.4" fill="currentColor" stroke="none"/>
-        <circle cx="18" cy="20" r="1.4" fill="currentColor" stroke="none"/>
-        <path d="M2.5 3h2l2.2 12.2a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 7H6"/>
-      </svg>
-      CARRINHO <span id="cartCount">(0)</span>
-    </button>
+    <div class="header-actions">
+      <a href="https://wa.me/5516997567559?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20caf%C3%A9." target="_blank" rel="noopener" class="btn-whatsapp-nav">Pedir no WhatsApp</a>
+      <button class="cart-toggle" id="cartToggle" aria-label="Abrir carrinho">
+        <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="20" r="1.4" fill="currentColor" stroke="none"/>
+          <circle cx="18" cy="20" r="1.4" fill="currentColor" stroke="none"/>
+          <path d="M2.5 3h2l2.2 12.2a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 7H6"/>
+        </svg>
+        CARRINHO <span id="cartCount">(0)</span>
+      </button>
+    </div>
   </div>
   <nav class="category-strip" id="categoryStrip" aria-label="Categorias de produtos"></nav>
 </header>
@@ -48,9 +51,6 @@
       <h1>Produzido por brasileiros. Para brasileiros.</h1>
       <p class="hero-sub">Cada lote é selecionado e torrado com cuidado especial, do jeito que café de verdade deve ser. Peça online e receba fresquinho em casa.</p>
       <a href="#produtos" class="btn btn-primary">Ver produtos</a>
-    </div>
-    <div class="hero-art">
-      <img src="assets/plantacao-real-hero.jpg" alt="Plantação de café nas montanhas de Minas Gerais">
     </div>
   </div>
 </section>
@@ -160,42 +160,49 @@
       <p>Também valorizamos conhecer a origem do que oferecemos: buscamos produtores e parceiros comprometidos com relações responsáveis e boas práticas de produção.</p>
       <p>Nossa missão é democratizar o café 100% arábica no Brasil, oferecendo uma linha para cada gosto, ocasião e história.</p>
       <p class="sobre-tagline">Café Só Grãos. Um café para cada momento.</p>
-    </div>
-    <div class="sobre-bloco reverso">
-      <div class="sobre-texto">
-        <p class="eyebrow">Nossa torra</p>
-        <h2>Lotes pequenos, torrados toda semana</h2>
-        <p>Se você gosta de café com personalidade, mas sem discurso de sommelier, você está no lugar certo. Torramos perto da entrega pra chegar sempre fresco na sua casa.</p>
-        <a href="#produtos" class="btn btn-outline">Ver produtos</a>
-      </div>
-      <div class="sobre-imagem"><img src="assets/torra-maquina-graos.jpg" alt="Grãos de café saindo da torradeira"></div>
+      <a href="#produtos" class="btn btn-secondary sobre-cta">Conheça nosso catálogo</a>
     </div>
   </div>
 </section>
 
-<section class="b2b">
-  <div class="b2b-imagem"><img src="assets/graos-selecao-bandeja.jpg" alt="Seleção cuidadosa dos grãos de café"></div>
-  <div class="b2b-texto">
-    <p class="eyebrow">Venda corporativa</p>
-    <h2>Tenha um café especial para seus clientes</h2>
-    <p>Da cafeteria ao escritório, seu café também fala sobre o seu negócio. Fornecemos em volume, com a mesma torra fresca e cuidado de sempre — para quem quer servir bem quem entra pela porta.</p>
-    <a href="https://wa.me/5516997567559?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20parceria%20B2B%20com%20o%20Caf%C3%A9%20S%C3%B3%20Gr%C3%A3os." target="_blank" rel="noopener" class="btn btn-primary">Fale sobre parceria B2B</a>
+<section class="torra-full">
+  <div class="container torra-full-inner">
+    <p class="eyebrow">Nossa torra</p>
+    <h2 class="torra-full-title">Lotes pequenos, torrados toda semana</h2>
+    <p class="torra-full-text">Se você gosta de café com personalidade, mas sem discurso de sommelier, você está no lugar certo. Torramos perto da entrega pra chegar sempre fresco na sua casa.</p>
+    <a href="#produtos" class="btn btn-primary">Ver produtos</a>
+  </div>
+</section>
+
+<section class="b2b bean-pattern">
+  <div class="container b2b-inner">
+    <div class="b2b-headline">
+      <h2>Tenha um café especial para seus clientes</h2>
+    </div>
+    <div class="b2b-texto">
+      <p class="eyebrow">Venda corporativa</p>
+      <p>Da cafeteria ao escritório, seu café também fala sobre o seu negócio. Fornecemos em volume, com a mesma torra fresca e cuidado de sempre — para quem quer servir bem quem entra pela porta.</p>
+      <a href="https://wa.me/5516997567559?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20parceria%20B2B%20com%20o%20Caf%C3%A9%20S%C3%B3%20Gr%C3%A3os." target="_blank" rel="noopener" class="btn btn-primary">Fale sobre parceria B2B</a>
+    </div>
   </div>
 </section>
 
 <section id="contato" class="contato">
-  <div class="container contato-inner">
-    <h2>Fale com a gente</h2>
-    <p>Dúvidas sobre pedidos, atacado ou parcerias? Manda mensagem.</p>
-    <div class="contato-links">
-      <a href="mailto:contato@cafesograos.com.br">contato@cafesograos.com.br</a>
-      <a href="https://wa.me/5516997567559" target="_blank" rel="noopener">(16) 99756-7559</a>
-      <a href="https://instagram.com/cafesograos" target="_blank" rel="noopener">@cafesograos</a>
+  <div class="contato-inner">
+    <div class="contato-texto">
+      <h2>Fale com a gente</h2>
+      <p>Dúvidas sobre pedidos, atacado ou parcerias? Manda mensagem.</p>
+      <div class="contato-links">
+        <a href="mailto:contato@cafesograos.com.br">contato@cafesograos.com.br</a>
+        <a href="https://wa.me/5516997567559" target="_blank" rel="noopener">(16) 99756-7559</a>
+        <a href="https://instagram.com/cafesograos" target="_blank" rel="noopener">@cafesograos</a>
+      </div>
     </div>
+    <div class="contato-imagem"><img src="assets/graos-real-textura.jpg" alt="Grãos de café torrados"></div>
   </div>
 </section>
 
-<footer class="site-footer">
+<footer class="site-footer bean-pattern">
   <div class="container footer-grid">
     <div class="footer-col">
       <h4>Menu</h4>
