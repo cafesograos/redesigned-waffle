@@ -114,6 +114,11 @@ a { text-decoration: none; color: inherit; }
 /* Evita que o cabeçalho fixo esconda o topo da seção ao navegar pelos links do menu */
 #produtos, #sobre, #contato { scroll-margin-top: 130px; }
 .hero-sub { font-size: 17px; max-width: 480px; margin-bottom: 28px; color: rgba(255,255,255,.85); }
+.hero-selos {
+  display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 24px;
+  font-family: 'General Sans', sans-serif; font-size: 13px; font-weight: 600;
+  color: rgba(255,255,255,.85);
+}
 
 /* Origem (galeria) */
 .origem { padding: 64px 0 8px; }
