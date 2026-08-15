@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rastrear pedido — Café Só Grãos</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/icons/favicon-512.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link href="https://api.fontshare.com/v2/css?f[]=tanker@400&f[]=general-sans@400,500,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9JWWL4F6ZP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9JWWL4F6ZP');
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><img src="assets/logo-sograos-branco.png" alt="Café Só Grãos" class="logo-img"></a>
+  </div>
+</header>
+
+<section class="resultado">
+  <div class="container resultado-inner">
+    <p class="eyebrow center">Acompanhamento</p>
+    <h1>Rastrear pedido</h1>
+    <p class="resultado-texto">Cole abaixo o número do pedido que enviamos no seu e-mail de confirmação.</p>
+
+    <form id="formRastreio" class="rastreio-form">
+      <input type="text" id="inNumeroPedido" placeholder="Número do pedido" required>
+      <button type="submit" class="btn btn-primary">Consultar</button>
+    </form>
+    <p class="rastreio-status" id="rastreioStatus"></p>
+
+    <div class="resultado-resumo" id="resumoPedido" hidden>
+      <h3 id="resumoStatusTitulo"></h3>
+      <ul id="resumoItens"></ul>
+      <div class="resultado-total">
+        <span>Total</span>
+        <strong id="resumoTotal"></strong>
+      </div>
+    </div>
+
+    <div class="resultado-acoes">
+      <a href="index.html" class="btn btn-outline">Voltar à loja</a>
+      <a href="https://wa.me/5516997567559?text=Ol%C3%A1!%20N%C3%A3o%20encontrei%20meu%20pedido%20na%20consulta%20de%20rastreio." target="_blank" rel="noopener noreferrer" class="btn btn-outline">Falar no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer bean-pattern resultado-footer">
+  <div class="container">
+    <p>&copy; <span id="year"></span> Café Só Grãos. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>
+const API_BASE = "https://cafesograos-backend-production.up.railway.app";
+
+const statusLabel = {
+  pending: 'Pagamento em processamento',
+  approved: 'Pagamento aprovado',
+  rejected: 'Pagamento não aprovado',
+  in_process: 'Pagamento em análise',
+  cancelled: 'Pedido cancelado',
+  refunded: 'Pedido reembolsado'
+};
+
+document.getElementById('formRastreio').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const numero = document.getElementById('inNumeroPedido').value.trim();
+  const statusEl = document.getElementById('rastreioStatus');
+  const resumoEl = document.getElementById('resumoPedido');
+  resumoEl.hidden = true;
+
+  if (!numero) return;
+  statusEl.textContent = 'Consultando...';
+
+  try {
+    const res = await fetch(`${API_BASE}/api/pedido/${encodeURIComponent(numero)}`);
+    if (!res.ok) throw new Error('não encontrado');
+    const pedido = await res.json();
+
+    statusEl.textContent = '';
+    let titulo = statusLabel[pedido.status] || pedido.status;
+    if (pedido.status === 'approved') {
+      titulo += pedido.tracking_code ? ' — enviado' : ' — preparando envio';
+    }
+    document.getElementById('resumoStatusTitulo').textContent = titulo;
+
+    const itensEl = document.getElementById('resumoItens');
+    itensEl.innerHTML = '';
+    (pedido.items || []).forEach((i) => {
+      const li = document.createElement('li');
+      li.innerHTML = `<span>${i.quantity}x ${i.title}</span><span>R$ ${Number(i.unit_price * i.quantity).toFixed(2).replace('.', ',')}</span>`;
+      itensEl.appendChild(li);
+    });
+    if (pedido.tracking_code) {
+      const li = document.createElement('li');
+      li.innerHTML = `<span><strong>Código de rastreio</strong></span><span>${pedido.tracking_code}</span>`;
+      itensEl.appendChild(li);
+    }
+    document.getElementById('resumoTotal').textContent = 'R$ ' + Number(pedido.total).toFixed(2).replace('.', ',');
+    resumoEl.hidden = false;
+  } catch (err) {
+    statusEl.textContent = 'Não encontramos esse pedido. Confira o número (veja no e-mail de confirmação) e tente de novo.';
+  }
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

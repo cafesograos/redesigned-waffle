@@ -243,6 +243,21 @@ a { text-decoration: none; color: inherit; }
 .resultado-acoes { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 .resultado-footer { padding: 28px 0; text-align: center; font-size: 13px; }
 
+.rastreio-form { display: flex; gap: 10px; margin-bottom: 12px; }
+.rastreio-form input {
+  flex: 1; padding: 12px 14px; border: 1px solid #ddd; border-radius: 8px;
+  font-size: 15px; font-family: inherit;
+}
+.rastreio-status { font-size: 14px; color: var(--text-soft); min-height: 20px; margin-bottom: 20px; }
+
+/* Trocas e devoluções */
+.politica { padding: 90px 0 70px; }
+.politica-inner { max-width: 640px; margin: 0 auto; }
+.politica-inner h2 { font-size: 22px; margin: 28px 0 10px; }
+.politica-inner p { color: var(--text-soft); margin-bottom: 14px; line-height: 1.7; }
+.politica-inner ul { color: var(--text-soft); margin: 0 0 14px 20px; line-height: 1.7; }
+.politica-acoes { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
+
 /* WhatsApp flutuante */
 .whatsapp-float {
   position: fixed; right: 20px; bottom: 20px; z-index: 80;
@@ -444,4 +459,5 @@ a { text-decoration: none; color: inherit; }
   .contato-imagem { min-height: 200px; }
   .whatsapp-float { width: 50px; height: 50px; right: 14px; bottom: 14px; }
   .whatsapp-float svg { width: 26px; height: 26px; }
+  .rastreio-form { flex-direction: column; }
 }
