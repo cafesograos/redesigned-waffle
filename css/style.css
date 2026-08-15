@@ -463,7 +463,7 @@ a { text-decoration: none; color: inherit; }
     transition: max-height .25s ease;
     box-shadow: 0 12px 20px rgba(0,0,0,.2);
   }
-  .main-nav.open { max-height: 320px; }
+  .main-nav.open { max-height: calc(100vh - 88px); overflow-y: auto; }
   .main-nav a { padding: 16px 24px; border-top: 1px solid rgba(255,255,255,.1); }
   .mobile-nav-whatsapp { display: block; color: var(--laranja) !important; font-weight: 700; }
   .header-inner { height: 88px; }

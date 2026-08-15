@@ -138,35 +138,54 @@ const Lightbox = (() => {
   return { open };
 })();
 
-let scrollYAntesDoCarrinho = 0;
+// Trava o scroll do body por trás de painéis sobrepostos (carrinho, menu
+// mobile) — sem isso, no mobile o gesto de rolar dentro do painel rola a
+// página por baixo e o navegador pode confundir toques com scroll.
+let scrollYAntesDoTravamento = 0;
+function travarScrollDoBody() {
+  scrollYAntesDoTravamento = window.scrollY;
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${scrollYAntesDoTravamento}px`;
+  document.body.style.width = '100%';
+}
+function destravarScrollDoBody() {
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
+  window.scrollTo(0, scrollYAntesDoTravamento);
+}
+
 function openCart() {
   document.getElementById('cartDrawer').classList.add('open');
   document.getElementById('cartOverlay').classList.add('open');
-  scrollYAntesDoCarrinho = window.scrollY;
-  document.body.style.position = 'fixed';
-  document.body.style.top = `-${scrollYAntesDoCarrinho}px`;
-  document.body.style.width = '100%';
+  travarScrollDoBody();
 }
 function closeCart() {
   document.getElementById('cartDrawer').classList.remove('open');
   document.getElementById('cartOverlay').classList.remove('open');
-  document.body.style.position = '';
-  document.body.style.top = '';
-  document.body.style.width = '';
-  window.scrollTo(0, scrollYAntesDoCarrinho);
+  destravarScrollDoBody();
 }
 
 // Menu mobile (hambúrguer)
 const menuToggle = document.getElementById('menuToggle');
 const mainNav = document.getElementById('mainNav');
+const siteHeader = document.querySelector('.site-header');
 menuToggle.addEventListener('click', () => {
+  // A barra de aviso no topo pode ter altura variável (quebra linha em
+  // telas estreitas), então a posição do menu é calculada a partir da
+  // altura real do cabeçalho, nunca fixa — senão o menu abre por cima do
+  // logo e dos ícones em vez de logo abaixo deles.
+  mainNav.style.top = `${siteHeader.getBoundingClientRect().bottom}px`;
   const open = mainNav.classList.toggle('open');
   menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  if (open) travarScrollDoBody();
+  else destravarScrollDoBody();
 });
 mainNav.addEventListener('click', (e) => {
   if (e.target.tagName === 'A') {
     mainNav.classList.remove('open');
     menuToggle.setAttribute('aria-expanded', 'false');
+    destravarScrollDoBody();
   }
 });
 
