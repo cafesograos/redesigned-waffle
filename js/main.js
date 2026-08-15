@@ -187,7 +187,7 @@ document.getElementById('btnCalcularFrete').addEventListener('click', async () =
     const freteRes = await fetch(`${API_BASE}/api/calcular-frete`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ cep, pesoKg: Cart.totalWeightKg() })
+      body: JSON.stringify({ cep, pesoKg: Cart.totalWeightKg(), subtotal: Cart.totalValue() })
     });
     if (!freteRes.ok) throw new Error('Não foi possível calcular o frete.');
     const frete = await freteRes.json();
@@ -204,7 +204,8 @@ document.getElementById('btnCalcularFrete').addEventListener('click', async () =
     document.getElementById('inEndereco').value = endereco.logradouro || '';
     document.getElementById('inBairroCidade').value = `${endereco.bairro} — ${endereco.localidade}/${endereco.uf}`;
     document.getElementById('enderecoFields').hidden = false;
-    statusEl.textContent = `Frete: R$ ${frete.valor.toFixed(2).replace('.', ',')} · entrega em até ${frete.prazoDias} dias úteis`;
+    const freteTexto = frete.valor === 0 ? 'Grátis 🎉' : 'R$ ' + frete.valor.toFixed(2).replace('.', ',');
+    statusEl.textContent = `Frete: ${freteTexto} · entrega em até ${frete.prazoDias} dias úteis`;
 
     Cart.render();
 

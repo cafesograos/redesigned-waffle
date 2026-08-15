@@ -124,7 +124,7 @@ const Cart = {
     document.getElementById('cartSubtotal').textContent =
       'R$ ' + this.totalValue().toFixed(2).replace('.', ',');
     document.getElementById('cartFrete').textContent = this.frete
-      ? 'R$ ' + this.frete.valor.toFixed(2).replace('.', ',')
+      ? (this.frete.valor === 0 ? 'Grátis' : 'R$ ' + this.frete.valor.toFixed(2).replace('.', ','))
       : '—';
     document.getElementById('cartTotal').textContent =
       'R$ ' + this.grandTotal().toFixed(2).replace('.', ',');
