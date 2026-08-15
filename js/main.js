@@ -38,7 +38,7 @@ function renderProducts() {
 
   grid.innerHTML = items.map(p => `
     <div class="produto-card">
-      ${p.badge ? `<span class="produto-badge${p.badge.toUpperCase() === 'PROMOÇÃO' ? ' badge-sale' : ''}">${p.badge}</span>` : ''}
+      ${p.badge ? `<span class="produto-badge${p.badge.toUpperCase() === 'PROMOÇÃO' ? ' badge-sale' : ''}"${p.badge.includes('SCA') ? ' title="Avaliado por cooperativa parceira: acima de 83 pontos na escala SCA (Specialty Coffee Association), o padrão internacional de café especial."' : ''}>${p.badge}</span>` : ''}
       <div class="produto-img"${p.imgs ? ` data-gallery="${p.id}"` : ''}>${p.img ? `<img src="${p.img}" alt="${p.nome}">` : '☕'}</div>
       <div class="produto-info">
         <h3>${p.nome}</h3>
@@ -268,3 +268,85 @@ async function carregarCatalogo() {
 }
 
 carregarCatalogo();
+
+// Avaliações de clientes: seleção de estrelas, envio (fica pendente até aprovação) e listagem das aprovadas.
+(function avaliacoesInit() {
+  const estrelasEl = document.getElementById('avEstrelas');
+  const form = document.getElementById('formAvaliacao');
+  const statusEl = document.getElementById('avaliacaoStatus');
+  const grid = document.getElementById('avaliacoesGrid');
+  if (!form) return;
+
+  let notaSelecionada = 0;
+
+  function renderEstrelas() {
+    [...estrelasEl.children].forEach((btn) => {
+      btn.classList.toggle('active', Number(btn.dataset.nota) <= notaSelecionada);
+    });
+  }
+
+  estrelasEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-nota]');
+    if (!btn) return;
+    notaSelecionada = Number(btn.dataset.nota);
+    renderEstrelas();
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const nome = document.getElementById('avNome').value.trim();
+    const comentario = document.getElementById('avComentario').value.trim();
+
+    if (!nome || !comentario || !notaSelecionada) {
+      statusEl.textContent = 'Preencha nome, escolha uma nota e escreva seu comentário.';
+      return;
+    }
+
+    const btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    statusEl.textContent = 'Enviando...';
+
+    try {
+      const res = await fetch(`${API_BASE}/api/avaliacoes`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, nota: notaSelecionada, comentario })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Falha ao enviar avaliação');
+
+      statusEl.textContent = data.message;
+      form.reset();
+      notaSelecionada = 0;
+      renderEstrelas();
+    } catch (err) {
+      console.error(err);
+      statusEl.textContent = 'Não foi possível enviar sua avaliação agora. Tente novamente em instantes.';
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  async function carregarAvaliacoes() {
+    try {
+      const res = await fetch(`${API_BASE}/api/avaliacoes`);
+      if (!res.ok) throw new Error('Falha ao buscar avaliações');
+      const avaliacoes = await res.json();
+      if (!Array.isArray(avaliacoes) || !avaliacoes.length) return;
+
+      const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+      grid.innerHTML = avaliacoes.map((a) => `
+        <div class="avaliacao-card">
+          <div class="avaliacao-estrelas-view">${'★'.repeat(a.rating)}${'☆'.repeat(5 - a.rating)}</div>
+          <p>"${esc(a.comment)}"</p>
+          <span class="avaliacao-autor">${esc(a.customer_name)}</span><span class="avaliacao-data">${new Date(a.created_at).toLocaleDateString('pt-BR')}</span>
+        </div>
+      `).join('');
+    } catch (err) {
+      console.error('Não foi possível carregar as avaliações.', err);
+    }
+  }
+
+  carregarAvaliacoes();
+})();
