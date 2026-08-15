@@ -138,13 +138,22 @@ const Lightbox = (() => {
   return { open };
 })();
 
+let scrollYAntesDoCarrinho = 0;
 function openCart() {
   document.getElementById('cartDrawer').classList.add('open');
   document.getElementById('cartOverlay').classList.add('open');
+  scrollYAntesDoCarrinho = window.scrollY;
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${scrollYAntesDoCarrinho}px`;
+  document.body.style.width = '100%';
 }
 function closeCart() {
   document.getElementById('cartDrawer').classList.remove('open');
   document.getElementById('cartOverlay').classList.remove('open');
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
+  window.scrollTo(0, scrollYAntesDoCarrinho);
 }
 
 // Menu mobile (hambúrguer)
