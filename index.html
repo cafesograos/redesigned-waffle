@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Café Só Grãos — Café especial, direto da torra</title>
 <meta name="description" content="Café especial em grãos, torrado artesanalmente. Peça online e receba em casa.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/icons/favicon-512.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
 <link rel="preconnect" href="https://api.fontshare.com">
 <link href="https://api.fontshare.com/v2/css?f[]=tanker@400&f[]=general-sans@400,500,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
@@ -24,13 +27,17 @@
 <header class="site-header">
   <div class="container header-inner">
     <a href="#" class="logo"><img src="assets/logo-sograos-branco.png" alt="Café Só Grãos" class="logo-img"></a>
-    <nav class="main-nav">
+    <nav class="main-nav" id="mainNav">
       <a href="#produtos">Produtos</a>
       <a href="#sobre">Sobre</a>
       <a href="#contato">Contato</a>
+      <a href="https://wa.me/5516997567559?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20caf%C3%A9." target="_blank" rel="noopener" class="mobile-nav-whatsapp">Pedir no WhatsApp</a>
     </nav>
     <div class="header-actions">
       <a href="https://wa.me/5516997567559?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20caf%C3%A9." target="_blank" rel="noopener" class="btn-whatsapp-nav">Pedir no WhatsApp</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
       <button class="cart-toggle" id="cartToggle" aria-label="Abrir carrinho">
         <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="9" cy="20" r="1.4" fill="currentColor" stroke="none"/>

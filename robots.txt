@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /sucesso.html
+Disallow: /falha.html
+Disallow: /pendente.html
+
+Sitemap: https://www.cafesograos.com.br/sitemap.xml

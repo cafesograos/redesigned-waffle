@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Não foi possível concluir o pagamento — Café Só Grãos</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/icons/favicon-512.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
 <link href="https://api.fontshare.com/v2/css?f[]=tanker@400&f[]=general-sans@400,500,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <!-- Google tag (gtag.js) -->
@@ -16,10 +20,33 @@
 </script>
 </head>
 <body>
-<div style="max-width:520px;margin:120px auto;text-align:center;padding:0 24px;">
-  <h1 style="margin-bottom:16px;">Não foi possível concluir o pagamento</h1>
-  <p style="color:#5a4534;margin-bottom:32px;">Volte ao carrinho e tente novamente, ou fale com a gente.</p>
-  <a href="index.html" class="btn btn-primary">Voltar à loja</a>
-</div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><img src="assets/logo-sograos-branco.png" alt="Café Só Grãos" class="logo-img"></a>
+  </div>
+</header>
+
+<section class="resultado resultado-falha">
+  <div class="container resultado-inner">
+    <div class="resultado-icone">✕</div>
+    <p class="eyebrow center">Pagamento não concluído</p>
+    <h1>Não foi possível concluir o pagamento</h1>
+    <p class="resultado-texto">Não se preocupe, nada foi cobrado. Seu carrinho continua salvo — volte à loja e tente novamente, ou fale com a gente se o problema continuar.</p>
+
+    <div class="resultado-acoes">
+      <a href="index.html" class="btn btn-primary">Voltar à loja</a>
+      <a href="https://wa.me/5516997567559?text=Ol%C3%A1!%20Tive%20um%20problema%20ao%20tentar%20pagar%20meu%20pedido." target="_blank" rel="noopener" class="btn btn-outline">Falar no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer bean-pattern resultado-footer">
+  <div class="container">
+    <p>&copy; <span id="year"></span> Café Só Grãos. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

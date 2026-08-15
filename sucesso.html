@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pagamento aprovado! — Café Só Grãos</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/icons/favicon-512.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
 <link href="https://api.fontshare.com/v2/css?f[]=tanker@400&f[]=general-sans@400,500,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <!-- Google tag (gtag.js) -->
@@ -16,24 +20,66 @@
 </script>
 </head>
 <body>
-<div style="max-width:520px;margin:120px auto;text-align:center;padding:0 24px;">
-  <h1 style="margin-bottom:16px;">Pagamento aprovado!</h1>
-  <p style="color:#5a4534;margin-bottom:32px;">Obrigado pelo pedido. Você vai receber a confirmação por e-mail em instantes.</p>
-  <a href="index.html" class="btn btn-primary">Voltar à loja</a>
-</div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><img src="assets/logo-sograos-branco.png" alt="Café Só Grãos" class="logo-img"></a>
+  </div>
+</header>
+
+<section class="resultado resultado-sucesso">
+  <div class="container resultado-inner">
+    <div class="resultado-icone">✓</div>
+    <p class="eyebrow center">Pedido confirmado</p>
+    <h1>Pagamento aprovado!</h1>
+    <p class="resultado-texto">Obrigado pelo pedido! Você já vai receber um e-mail confirmando os detalhes, e assim que despacharmos seu café, mandamos outro com o código de rastreio.</p>
+
+    <div class="resultado-resumo" id="resumoPedido" hidden>
+      <h3>Resumo do pedido</h3>
+      <ul id="resumoItens"></ul>
+      <div class="resultado-total">
+        <span>Total</span>
+        <strong id="resumoTotal"></strong>
+      </div>
+    </div>
+
+    <div class="resultado-acoes">
+      <a href="index.html" class="btn btn-primary">Voltar à loja</a>
+      <a href="https://wa.me/5516997567559" target="_blank" rel="noopener" class="btn btn-outline">Falar no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer bean-pattern resultado-footer">
+  <div class="container">
+    <p>&copy; <span id="year"></span> Café Só Grãos. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
 <script>
-// Registra a compra no Google Analytics com o valor real do pedido (não o que
-// veio na URL). Evita registrar de novo se a pessoa atualizar a página.
+// Busca os dados reais do pedido (fonte da verdade no backend) pra mostrar o
+// resumo na tela e registrar a compra no Google Analytics com o valor certo.
+// Evita registrar de novo se a pessoa atualizar a página.
 (function () {
   const preferenceId = new URLSearchParams(window.location.search).get('preference_id');
   if (!preferenceId) return;
-  const jaRegistrado = sessionStorage.getItem('compra-registrada-' + preferenceId);
-  if (jaRegistrado) return;
 
   fetch('https://cafesograos-backend-production.up.railway.app/api/pedido/' + encodeURIComponent(preferenceId))
     .then((r) => (r.ok ? r.json() : null))
     .then((pedido) => {
       if (!pedido) return;
+
+      const itensEl = document.getElementById('resumoItens');
+      (pedido.items || []).forEach((i) => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span>${i.quantity}x ${i.title}</span><span>R$ ${Number(i.unit_price * i.quantity).toFixed(2).replace('.', ',')}</span>`;
+        itensEl.appendChild(li);
+      });
+      document.getElementById('resumoTotal').textContent = 'R$ ' + Number(pedido.total).toFixed(2).replace('.', ',');
+      document.getElementById('resumoPedido').hidden = false;
+
+      const jaRegistrado = sessionStorage.getItem('compra-registrada-' + preferenceId);
+      if (jaRegistrado) return;
       gtag('event', 'purchase', {
         transaction_id: preferenceId,
         currency: 'BRL',
@@ -49,6 +95,7 @@
     })
     .catch(() => {});
 })();
+document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>

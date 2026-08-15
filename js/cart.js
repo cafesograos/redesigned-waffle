@@ -1,10 +1,30 @@
-// Lógica do carrinho — guardado em memória (não usa localStorage, para funcionar
-// de forma previsível dentro de artifacts/preview e em qualquer navegador).
+// Lógica do carrinho — os itens ficam salvos no localStorage pra não se perderem
+// se a pessoa atualizar a página ou voltar depois. Frete e dados de entrega não
+// são salvos, pois precisam ser recalculados/conferidos a cada visita.
+const CART_STORAGE_KEY = 'cafesograos-carrinho';
+
 const Cart = {
   items: {}, // { productId: qty }
   frete: null, // { valor, prazoDias }
   entrega: {}, // cep, endereco, numero, complemento, bairro, cidade, estado
   cliente: {}, // nome, email, telefone
+
+  load() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || '{}');
+      if (saved && typeof saved === 'object') this.items = saved;
+    } catch (err) {
+      console.warn('Não foi possível carregar o carrinho salvo.', err);
+    }
+  },
+
+  save() {
+    try {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(this.items));
+    } catch (err) {
+      console.warn('Não foi possível salvar o carrinho.', err);
+    }
+  },
 
   totalWeightKg() {
     const gramas = Object.entries(this.items).reduce((sum, [id, qty]) => {
@@ -21,6 +41,7 @@ const Cart = {
   add(id) {
     this.items[id] = (this.items[id] || 0) + 1;
     this.frete = null;
+    this.save();
     this.render();
 
     const p = PRODUCTS.find(p => p.id === id);
@@ -36,6 +57,7 @@ const Cart = {
   remove(id) {
     delete this.items[id];
     this.frete = null;
+    this.save();
     this.render();
   },
 
@@ -44,6 +66,7 @@ const Cart = {
     this.frete = null;
     if (qty === 0) { this.remove(id); return; }
     this.items[id] = qty;
+    this.save();
     this.render();
   },
 
@@ -112,6 +135,8 @@ const Cart = {
     document.getElementById('checkoutBtn').disabled = count === 0 || !this.frete;
   }
 };
+
+Cart.load();
 
 document.addEventListener('click', (e) => {
   const btn = e.target.closest('.qty-btn');
