@@ -50,6 +50,7 @@ function renderProducts() {
       </div>
     </div>
   `).join('');
+  grid.scrollLeft = 0;
 }
 
 document.addEventListener('click', (e) => {
