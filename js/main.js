@@ -264,7 +264,7 @@ document.getElementById('checkoutBtn').addEventListener('click', async () => {
     return;
   }
   if (!nome || !email || !numero) {
-    alert('Preencha nome, e-mail e número do endereço pra continuar.');
+    alert('Preencha nome, e-mail e número do endereço para continuar.');
     return;
   }
 
