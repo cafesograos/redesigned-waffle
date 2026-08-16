@@ -345,8 +345,13 @@ a { text-decoration: none; color: inherit; }
 .produto-info p { font-size: 14px; color: var(--text-soft); flex: 1; margin-bottom: 16px; }
 .produto-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .produto-precos { display: flex; flex-direction: column; }
-.produto-preco { font-weight: 700; color: var(--expresso); }
+.produto-preco { font-weight: 700; color: var(--expresso); font-size: 17px; }
+.produto-preco-linha { display: flex; align-items: center; gap: 6px; }
 .produto-preco-original { font-size: 12px; color: #a89a92; text-decoration: line-through; }
+.produto-desconto {
+  font-size: 11px; font-weight: 700; color: #fff; background: var(--sale);
+  padding: 1px 6px; border-radius: 4px;
+}
 
 /* Sobre */
 .sobre { padding: 72px 0; background: #fff; }

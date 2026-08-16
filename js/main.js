@@ -21,8 +21,12 @@ function renderFilterPills() {
 
 function priceHtml(p) {
   if (p.precoOriginal) {
+    const desconto = Math.round((1 - p.preco / p.precoOriginal) * 100);
     return `
-      <span class="produto-preco-original">R$ ${p.precoOriginal.toFixed(2).replace('.', ',')}</span>
+      <span class="produto-preco-linha">
+        <span class="produto-preco-original">R$ ${p.precoOriginal.toFixed(2).replace('.', ',')}</span>
+        <span class="produto-desconto">-${desconto}%</span>
+      </span>
       <span class="produto-preco">R$ ${p.preco.toFixed(2).replace('.', ',')}</span>
     `;
   }
