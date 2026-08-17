@@ -112,7 +112,7 @@ a { text-decoration: none; color: inherit; }
 .hero-text h1 { font-size: 44px; line-height: 1.15; margin-bottom: 18px; color: #fff; }
 
 /* Evita que o cabeçalho fixo esconda o topo da seção ao navegar pelos links do menu */
-#produtos, #sobre, #contato { scroll-margin-top: 130px; }
+#produtos, #sobre, #contato { scroll-margin-top: 160px; }
 .hero-sub { font-size: 17px; max-width: 480px; margin-bottom: 28px; color: rgba(255,255,255,.85); }
 .hero-selos {
   display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 24px;
@@ -489,7 +489,7 @@ a { text-decoration: none; color: inherit; }
   .logo-img { height: 68px; }
   .category-strip { flex-wrap: wrap; gap: 16px; }
   .hero-text h1 { font-size: 32px; }
-  #produtos, #sobre, #contato { scroll-margin-top: 134px; }
+  #produtos, #sobre, #contato { scroll-margin-top: 140px; }
   .destaques-grid, .linhas-grid { grid-template-columns: 1fr; }
   .destaque { text-align: center; }
   .origem-grid { grid-template-columns: 1fr; }
