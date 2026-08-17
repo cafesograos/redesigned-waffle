@@ -50,7 +50,7 @@ a { text-decoration: none; color: inherit; }
 /* Announcement bar */
 .announce-bar {
   background: var(--expresso); color: #fff; text-align: center;
-  font-size: 13px; padding: 8px 16px; letter-spacing: .01em;
+  font-size: 15px; font-weight: 700; padding: 10px 16px; letter-spacing: .01em;
 }
 
 /* Header */
@@ -63,7 +63,7 @@ a { text-decoration: none; color: inherit; }
   height: 108px;
 }
 .logo { display: flex; align-items: center; }
-.logo-img { height: 76px; width: auto; }
+.logo-img { height: 92px; width: auto; }
 .main-nav { display: flex; gap: 28px; font-weight: 500; color: #fff; }
 .main-nav a:hover { color: var(--laranja); }
 .header-actions { display: flex; align-items: center; gap: 20px; }
@@ -486,7 +486,7 @@ a { text-decoration: none; color: inherit; }
   .main-nav a { padding: 16px 24px; border-top: 1px solid rgba(255,255,255,.1); }
   .mobile-nav-whatsapp { display: block; color: var(--laranja) !important; font-weight: 700; }
   .header-inner { height: 88px; }
-  .logo-img { height: 58px; }
+  .logo-img { height: 68px; }
   .category-strip { flex-wrap: wrap; gap: 16px; }
   .hero-text h1 { font-size: 32px; }
   #produtos, #sobre, #contato { scroll-margin-top: 134px; }
