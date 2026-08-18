@@ -112,6 +112,7 @@ let PRODUCTS = [
     precoOriginal: 90.00,
     categoria: "drip",
     pesoGramas: 400,
-    img: null
+    img: "assets/produto-drip-coffee.jpg",
+    imgs: ["assets/produto-drip-coffee.jpg"]
   }
 ];
