@@ -29,7 +29,7 @@ let PRODUCTS = [
     categoria: "grao",
     pesoGramas: 550,
     img: "assets/produto-gourmet-oro-brasiliano.jpg",
-    imgs: ["assets/produto-gourmet-oro-brasiliano.jpg"]
+    imgs: ["assets/produto-gourmet-oro-brasiliano.jpg", "assets/produto-gourmet-oro-brasiliano-rotulo.jpg"]
   },
   {
     id: "cafe-gourmet-500-moido",
@@ -40,7 +40,7 @@ let PRODUCTS = [
     categoria: "moido",
     pesoGramas: 550,
     img: "assets/produto-gourmet-oro-brasiliano.jpg",
-    imgs: ["assets/produto-gourmet-oro-brasiliano.jpg"]
+    imgs: ["assets/produto-gourmet-oro-brasiliano.jpg", "assets/produto-gourmet-oro-brasiliano-rotulo.jpg"]
   },
   {
     id: "cafe-especial-500-grao",
@@ -51,7 +51,8 @@ let PRODUCTS = [
     categoria: "grao",
     badge: "83+ SCA",
     pesoGramas: 550,
-    img: null
+    img: "assets/produto-gourmet-oro-brasiliano.jpg",
+    imgs: ["assets/produto-gourmet-oro-brasiliano.jpg", "assets/produto-gourmet-oro-brasiliano-rotulo.jpg"]
   },
   {
     id: "cafe-especial-500-moido",
@@ -62,7 +63,8 @@ let PRODUCTS = [
     categoria: "moido",
     badge: "83+ SCA",
     pesoGramas: 550,
-    img: null
+    img: "assets/produto-gourmet-oro-brasiliano.jpg",
+    imgs: ["assets/produto-gourmet-oro-brasiliano.jpg", "assets/produto-gourmet-oro-brasiliano-rotulo.jpg"]
   },
   {
     id: "drip-coffee-caixa-10",
