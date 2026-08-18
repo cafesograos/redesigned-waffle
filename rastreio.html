@@ -98,12 +98,20 @@ document.getElementById('formRastreio').addEventListener('submit', async (e) => 
     itensEl.innerHTML = '';
     (pedido.items || []).forEach((i) => {
       const li = document.createElement('li');
-      li.innerHTML = `<span>${i.quantity}x ${i.title}</span><span>R$ ${Number(i.unit_price * i.quantity).toFixed(2).replace('.', ',')}</span>`;
+      const spanItem = document.createElement('span');
+      spanItem.textContent = `${i.quantity}x ${i.title}`;
+      const spanValor = document.createElement('span');
+      spanValor.textContent = 'R$ ' + Number(i.unit_price * i.quantity).toFixed(2).replace('.', ',');
+      li.append(spanItem, spanValor);
       itensEl.appendChild(li);
     });
     if (pedido.tracking_code) {
       const li = document.createElement('li');
-      li.innerHTML = `<span><strong>Código de rastreio</strong></span><span>${pedido.tracking_code}</span>`;
+      const spanLabel = document.createElement('span');
+      spanLabel.innerHTML = '<strong>Código de rastreio</strong>';
+      const spanCodigo = document.createElement('span');
+      spanCodigo.textContent = pedido.tracking_code;
+      li.append(spanLabel, spanCodigo);
       itensEl.appendChild(li);
     }
     document.getElementById('resumoTotal').textContent = 'R$ ' + Number(pedido.total).toFixed(2).replace('.', ',');

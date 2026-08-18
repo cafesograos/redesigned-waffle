@@ -72,7 +72,11 @@
       const itensEl = document.getElementById('resumoItens');
       (pedido.items || []).forEach((i) => {
         const li = document.createElement('li');
-        li.innerHTML = `<span>${i.quantity}x ${i.title}</span><span>R$ ${Number(i.unit_price * i.quantity).toFixed(2).replace('.', ',')}</span>`;
+        const spanItem = document.createElement('span');
+        spanItem.textContent = `${i.quantity}x ${i.title}`;
+        const spanValor = document.createElement('span');
+        spanValor.textContent = 'R$ ' + Number(i.unit_price * i.quantity).toFixed(2).replace('.', ',');
+        li.append(spanItem, spanValor);
         itensEl.appendChild(li);
       });
       document.getElementById('resumoTotal').textContent = 'R$ ' + Number(pedido.total).toFixed(2).replace('.', ',');
