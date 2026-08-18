@@ -18,7 +18,7 @@ let PRODUCTS = [
     categoria: "moido",
     pesoGramas: 550,
     img: "assets/produto-tradicional-500.jpg",
-    imgs: ["assets/produto-tradicional-500.jpg"]
+    imgs: ["assets/produto-tradicional-500.jpg", "assets/produto-tradicional-500-2.jpg"]
   },
   {
     id: "cafe-gourmet-250-grao",
