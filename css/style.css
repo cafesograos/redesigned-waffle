@@ -493,6 +493,11 @@ a { text-decoration: none; color: inherit; }
   .hero-sub { margin-left: auto; margin-right: auto; }
   .btn-whatsapp-nav { display: none; }
   .menu-toggle { display: flex; }
+  .header-inner { padding: 0 14px; }
+  .header-actions { gap: 8px; }
+  .lang-switch { gap: 0; }
+  .lang-btn { padding: 4px 4px; font-size: 11px; }
+  .cart-toggle span:not(#cartCount) { display: none; }
   .main-nav {
     display: flex; flex-direction: column;
     position: fixed; top: 88px; left: 0; right: 0; z-index: 60;
