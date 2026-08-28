@@ -380,6 +380,17 @@ a { text-decoration: none; color: inherit; }
 .contato-imagem { min-height: 320px; }
 .contato-imagem img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+/* Novidades (captura de contato) */
+.novidades { padding: 80px 0; }
+.novidades-inner { max-width: 520px; margin: 0 auto; text-align: center; }
+.novidades-texto { color: var(--text-soft); margin: 10px 0 24px; }
+.novidades-form { display: flex; flex-direction: column; gap: 12px; }
+.novidades-form input {
+  width: 100%; padding: 12px 14px; border: 1px solid #ddd; border-radius: 8px;
+  font-size: 15px; font-family: inherit; color: var(--expresso); background: #fff;
+}
+.novidades-status { font-size: 13px; color: var(--text-soft); min-height: 18px; text-align: center; }
+
 /* Footer */
 .site-footer { background-color: var(--expresso); color: rgba(255,255,255,.75); padding: 56px 0 24px; font-size: 14px; }
 .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1.6fr 1fr; gap: 32px; padding-bottom: 40px; }

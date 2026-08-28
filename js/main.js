@@ -400,3 +400,45 @@ carregarCatalogo();
 
   carregarAvaliacoes();
 })();
+
+// Formulário "avise-me": captura contato de quem ainda não comprou, pra
+// reengajar depois com novidade de torra ou promoção.
+(function novidadesInit() {
+  const form = document.getElementById('formNovidades');
+  const statusEl = document.getElementById('novidadesStatus');
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const nome = document.getElementById('ndNome').value.trim();
+    const email = document.getElementById('ndEmail').value.trim();
+    const telefone = document.getElementById('ndWhatsapp').value.trim();
+
+    if (!email) {
+      statusEl.textContent = 'Preencha ao menos o e-mail.';
+      return;
+    }
+
+    const btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    statusEl.textContent = 'Enviando...';
+
+    try {
+      const res = await fetch(`${API_BASE}/api/newsletter`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, email, telefone })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Falha ao salvar contato');
+
+      statusEl.textContent = data.message;
+      form.reset();
+    } catch (err) {
+      console.error(err);
+      statusEl.textContent = 'Não foi possível salvar seu contato agora. Tente novamente em instantes.';
+    } finally {
+      btn.disabled = false;
+    }
+  });
+})();
