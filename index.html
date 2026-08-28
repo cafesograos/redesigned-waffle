@@ -36,30 +36,35 @@
 </head>
 <body>
 
-<div class="announce-bar">🎁 Primeira compra: Drip Coffee de brinde + 5% na próxima · Frete grátis acima de R$ 300</div>
+<div class="announce-bar" data-i18n="announce_bar">🎁 Primeira compra: Drip Coffee de brinde + 5% na próxima · Frete grátis acima de R$ 300</div>
 
 <header class="site-header">
   <div class="container header-inner">
     <a href="#" class="logo"><img src="assets/logo-sograos-branco.png" alt="Café Só Grãos" class="logo-img"></a>
     <nav class="main-nav" id="mainNav">
-      <a href="#produtos">Produtos</a>
-      <a href="#sobre">Sobre</a>
-      <a href="#contato">Contato</a>
-      <a href="rastreio.html">Rastrear pedido</a>
-      <a href="https://wa.me/5516997567559?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20caf%C3%A9." target="_blank" rel="noopener noreferrer" class="mobile-nav-whatsapp">Pedir no WhatsApp</a>
+      <a href="#produtos" data-i18n="nav_produtos">Produtos</a>
+      <a href="#sobre" data-i18n="nav_sobre">Sobre</a>
+      <a href="#contato" data-i18n="nav_contato">Contato</a>
+      <a href="rastreio.html" data-i18n="nav_rastrear">Rastrear pedido</a>
+      <a href="https://wa.me/5516997567559?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20caf%C3%A9." target="_blank" rel="noopener noreferrer" class="mobile-nav-whatsapp" data-i18n="nav_whatsapp">Pedir no WhatsApp</a>
     </nav>
     <div class="header-actions">
-      <a href="https://wa.me/5516997567559?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20caf%C3%A9." target="_blank" rel="noopener noreferrer" class="btn-whatsapp-nav">Pedir no WhatsApp</a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+      <div class="lang-switch" role="group" data-i18n-aria-label="lang_switch_aria" aria-label="Idioma">
+        <button type="button" class="lang-btn" data-lang="pt">PT</button>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+        <button type="button" class="lang-btn" data-lang="es">ES</button>
+      </div>
+      <a href="https://wa.me/5516997567559?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20caf%C3%A9." target="_blank" rel="noopener noreferrer" class="btn-whatsapp-nav" data-i18n="nav_whatsapp">Pedir no WhatsApp</a>
+      <button class="menu-toggle" id="menuToggle" data-i18n-aria-label="menu_toggle_aria" aria-label="Abrir menu" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
-      <button class="cart-toggle" id="cartToggle" aria-label="Abrir carrinho">
+      <button class="cart-toggle" id="cartToggle" data-i18n-aria-label="cart_open_aria" aria-label="Abrir carrinho">
         <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="9" cy="20" r="1.4" fill="currentColor" stroke="none"/>
           <circle cx="18" cy="20" r="1.4" fill="currentColor" stroke="none"/>
           <path d="M2.5 3h2l2.2 12.2a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 7H6"/>
         </svg>
-        CARRINHO <span id="cartCount">(0)</span>
+        <span data-i18n="cart_label">CARRINHO</span> <span id="cartCount">(0)</span>
       </button>
     </div>
   </div>
@@ -69,14 +74,14 @@
 <section class="hero">
   <div class="container hero-inner">
     <div class="hero-text">
-      <p class="eyebrow">Da nossa roça para sua mesa</p>
-      <h1>Café brasileiro de verdade: torrado toda semana, direto do produtor para sua xícara.</h1>
-      <p class="hero-sub">Grãos selecionados com cuidado, em pequenos lotes. Peça online e receba fresquinho em casa.</p>
-      <a href="#produtos" class="btn btn-primary">Ver produtos</a>
+      <p class="eyebrow" data-i18n="hero_eyebrow">Da nossa roça para sua mesa</p>
+      <h1 data-i18n="hero_title">Café brasileiro de verdade: torrado toda semana, direto do produtor para sua xícara.</h1>
+      <p class="hero-sub" data-i18n="hero_subtitle">Grãos selecionados com cuidado, em pequenos lotes. Peça online e receba fresquinho em casa.</p>
+      <a href="#produtos" class="btn btn-primary" data-i18n="hero_cta">Ver produtos</a>
       <div class="hero-selos">
-        <span>🔥 Torra semanal</span>
-        <span>🏆 83+ pontos SCA</span>
-        <span>🚚 Entrega para todo o Brasil</span>
+        <span data-i18n="hero_badge1">🔥 Torra semanal</span>
+        <span data-i18n="hero_badge2">🏆 83+ pontos SCA</span>
+        <span data-i18n="hero_badge3">🚚 Entrega para todo o Brasil</span>
       </div>
     </div>
   </div>
@@ -84,53 +89,53 @@
 
 <section class="origem">
   <div class="container">
-    <p class="eyebrow center">Orgulho do agro brasileiro</p>
-    <h2 class="center">Da plantação até a sua xícara</h2>
+    <p class="eyebrow center" data-i18n="origem_eyebrow">Orgulho do agro brasileiro</p>
+    <h2 class="center" data-i18n="origem_title">Da plantação até a sua xícara</h2>
     <div class="origem-grid">
       <figure>
         <img src="assets/plantacao-real-cerejas.jpg" alt="Cerejas de café maduras na plantação">
-        <figcaption>Plantação própria</figcaption>
+        <figcaption data-i18n="origem_fig1">Plantação própria</figcaption>
       </figure>
       <figure>
         <img src="assets/graos-verdes-selecionados.jpg" alt="Grãos de café verdes selecionados antes da torra">
-        <figcaption>Grãos 100% arábica, selecionados um a um</figcaption>
+        <figcaption data-i18n="origem_fig2">Grãos 100% arábica, selecionados um a um</figcaption>
       </figure>
       <figure>
         <img src="assets/beneficiamento-real-torra.jpg" alt="Café sendo torrado e beneficiado">
-        <figcaption>Beneficiamento cuidadoso, lote a lote</figcaption>
+        <figcaption data-i18n="origem_fig3">Beneficiamento cuidadoso, lote a lote</figcaption>
       </figure>
     </div>
-    <p class="origem-nota">Nossos grãos vêm do Sul de Minas — um dos berços do café especial no Brasil — e são torrados e moídos por nós, aqui em Araraquara/SP.</p>
+    <p class="origem-nota" data-i18n="origem_nota">Nossos grãos vêm do Sul de Minas — um dos berços do café especial no Brasil — e são torrados e moídos por nós, aqui em Araraquara/SP.</p>
   </div>
 </section>
 
 <section class="destaques">
   <div class="container">
-    <p class="destaques-statement">Torra recente, 100% arábica, entrega garantida.</p>
+    <p class="destaques-statement" data-i18n="destaques_statement">Torra recente, 100% arábica, entrega garantida.</p>
   </div>
   <div class="container destaques-grid">
-    <div class="destaque"><strong>Torra recente</strong><span>Torrado em pequenos lotes, toda semana</span></div>
-    <div class="destaque"><strong>Origem rastreada</strong><span>Direto de produtores parceiros</span></div>
-    <div class="destaque"><strong>Entrega para todo o Brasil</strong><span>Pagamento seguro via Mercado Pago</span></div>
-    <div class="destaque" title="Avaliado por cooperativa parceira: acima de 83 pontos na escala SCA (Specialty Coffee Association), o padrão internacional de café especial."><strong>Linha Especial 83+ SCA</strong><span>Nossa torra de maior pontuação, avaliada oficialmente</span></div>
+    <div class="destaque"><strong data-i18n="destaque1_title">Torra recente</strong><span data-i18n="destaque1_desc">Torrado em pequenos lotes, toda semana</span></div>
+    <div class="destaque"><strong data-i18n="destaque2_title">Origem rastreada</strong><span data-i18n="destaque2_desc">Direto de produtores parceiros</span></div>
+    <div class="destaque"><strong data-i18n="destaque3_title">Entrega para todo o Brasil</strong><span data-i18n="destaque3_desc">Pagamento seguro via Mercado Pago</span></div>
+    <div class="destaque" data-i18n-title="sca_tooltip" title="Avaliado por cooperativa parceira: acima de 83 pontos na escala SCA (Specialty Coffee Association), o padrão internacional de café especial."><strong data-i18n="destaque4_title">Linha Especial 83+ SCA</strong><span data-i18n="destaque4_desc">Nossa torra de maior pontuação, avaliada oficialmente</span></div>
   </div>
 </section>
 
 <section class="objecoes">
   <div class="container">
-    <h2 class="center">Por que confiar no Só Grãos</h2>
+    <h2 class="center" data-i18n="objecoes_title">Por que confiar no Só Grãos</h2>
     <div class="objecoes-grid">
       <div class="objecao">
-        <strong>Rastreabilidade real</strong>
-        <span>Direto de produtores parceiros do Sul de Minas, sem intermediário, até a sua xícara.</span>
+        <strong data-i18n="objecao1_title">Rastreabilidade real</strong>
+        <span data-i18n="objecao1_desc">Direto de produtores parceiros do Sul de Minas, sem intermediário, até a sua xícara.</span>
       </div>
       <div class="objecao">
-        <strong>Consistência entre lotes</strong>
-        <span>O resultado que você aprovou hoje é o mesmo que chega no seu próximo pedido.</span>
+        <strong data-i18n="objecao2_title">Consistência entre lotes</strong>
+        <span data-i18n="objecao2_desc">O resultado que você aprovou hoje é o mesmo que chega no seu próximo pedido.</span>
       </div>
       <div class="objecao">
-        <strong>Preço justo, torra a torra</strong>
-        <span>Qualidade de verdade, sem economizar no grão — semana após semana.</span>
+        <strong data-i18n="objecao3_title">Preço justo, torra a torra</strong>
+        <span data-i18n="objecao3_desc">Qualidade de verdade, sem economizar no grão — semana após semana.</span>
       </div>
     </div>
   </div>
@@ -138,38 +143,38 @@
 
 <section class="linhas">
   <div class="container">
-    <p class="eyebrow center">Guia rápido</p>
-    <h2 class="center">Tradicional, Gourmet ou Especial?</h2>
-    <p class="section-sub">Três linhas, cada uma pensada para um momento diferente.</p>
+    <p class="eyebrow center" data-i18n="linhas_eyebrow">Guia rápido</p>
+    <h2 class="center" data-i18n="linhas_title">Tradicional, Gourmet ou Especial?</h2>
+    <p class="section-sub" data-i18n="linhas_subtitle">Três linhas, cada uma pensada para um momento diferente.</p>
     <div class="linhas-grid">
       <div class="linha-card">
-        <span class="linha-badge">Tradicional</span>
-        <h3>Para o dia a dia</h3>
-        <p>Uma mistura equilibrada de grãos com diferentes níveis de maturação. A torra mais forte padroniza o sabor e a cor — o resultado é um café encorpado e constante, 100% arábica.</p>
+        <span class="linha-badge" data-i18n="linha_trad_badge">Tradicional</span>
+        <h3 data-i18n="linha_trad_title">Para o dia a dia</h3>
+        <p data-i18n="linha_trad_desc">Uma mistura equilibrada de grãos com diferentes níveis de maturação. A torra mais forte padroniza o sabor e a cor — o resultado é um café encorpado e constante, 100% arábica.</p>
         <div class="linha-perfil">
-          <span>Suave</span>
+          <span data-i18n="linha_suave">Suave</span>
           <div class="linha-barra"><span style="width:80%"></span></div>
-          <span>Intenso</span>
+          <span data-i18n="linha_intenso">Intenso</span>
         </div>
       </div>
       <div class="linha-card">
-        <span class="linha-badge">Gourmet</span>
-        <h3>Um upgrade de qualidade</h3>
-        <p>Grãos selecionados um a um, com menos imperfeições (quebrados, grandes ou pequenos demais) e maturação bem mais uniforme entre eles. O resultado: sabor mais equilibrado e uma xícara mais limpa.</p>
+        <span class="linha-badge" data-i18n="linha_gourmet_badge">Gourmet</span>
+        <h3 data-i18n="linha_gourmet_title">Um upgrade de qualidade</h3>
+        <p data-i18n="linha_gourmet_desc">Grãos selecionados um a um, com menos imperfeições (quebrados, grandes ou pequenos demais) e maturação bem mais uniforme entre eles. O resultado: sabor mais equilibrado e uma xícara mais limpa.</p>
         <div class="linha-perfil">
-          <span>Suave</span>
+          <span data-i18n="linha_suave">Suave</span>
           <div class="linha-barra"><span style="width:55%"></span></div>
-          <span>Intenso</span>
+          <span data-i18n="linha_intenso">Intenso</span>
         </div>
       </div>
       <div class="linha-card">
-        <span class="linha-badge">Especial <em title="Avaliado por cooperativa parceira: acima de 83 pontos na escala SCA (Specialty Coffee Association), o padrão internacional de café especial.">83+ SCA</em></span>
-        <h3>Para quem quer o topo</h3>
-        <p>Avaliado numa escala internacional de pontuação (SCA), com nota acima de 80 — rastreável até a origem, com notas aromáticas complexas. Nosso café mais sofisticado.</p>
+        <span class="linha-badge"><span data-i18n="linha_especial_badge">Especial</span> <em data-i18n-title="sca_tooltip" title="Avaliado por cooperativa parceira: acima de 83 pontos na escala SCA (Specialty Coffee Association), o padrão internacional de café especial.">83+ SCA</em></span>
+        <h3 data-i18n="linha_especial_title">Para quem quer o topo</h3>
+        <p data-i18n="linha_especial_desc">Avaliado numa escala internacional de pontuação (SCA), com nota acima de 80 — rastreável até a origem, com notas aromáticas complexas. Nosso café mais sofisticado.</p>
         <div class="linha-perfil">
-          <span>Suave</span>
+          <span data-i18n="linha_suave">Suave</span>
           <div class="linha-barra"><span style="width:35%"></span></div>
-          <span>Intenso</span>
+          <span data-i18n="linha_intenso">Intenso</span>
         </div>
       </div>
     </div>
@@ -178,8 +183,8 @@
 
 <section id="produtos" class="produtos">
   <div class="container">
-    <h2>Nossos cafés</h2>
-    <p class="section-sub">Grãos selecionados, torras variadas — do suave ao intenso.</p>
+    <h2 data-i18n="produtos_title">Nossos cafés</h2>
+    <p class="section-sub" data-i18n="produtos_subtitle">Grãos selecionados, torras variadas — do suave ao intenso.</p>
     <div class="filter-pills" id="filterPills"></div>
     <div class="produtos-grid" id="produtosGrid"></div>
   </div>
@@ -187,32 +192,32 @@
 
 <section id="avaliacoes" class="avaliacoes">
   <div class="container">
-    <p class="eyebrow center">Prova real</p>
-    <h2 class="center">O que dizem sobre nós</h2>
+    <p class="eyebrow center" data-i18n="avaliacoes_eyebrow">Prova real</p>
+    <h2 class="center" data-i18n="avaliacoes_title">O que dizem sobre nós</h2>
     <div class="avaliacoes-grid" id="avaliacoesGrid">
-      <p class="avaliacoes-vazio">Ainda não temos avaliações publicadas — seja a primeira pessoa a contar como foi sua experiência!</p>
+      <p class="avaliacoes-vazio" data-i18n="avaliacoes_empty">Ainda não temos avaliações publicadas — seja a primeira pessoa a contar como foi sua experiência!</p>
     </div>
     <div class="avaliacao-form-wrap">
-      <h3>Já comprou conosco? Deixe sua avaliação</h3>
-      <p class="avaliacao-form-nota">Toda avaliação passa por uma revisão rápida antes de aparecer no site.</p>
+      <h3 data-i18n="avaliacoes_form_title">Já comprou conosco? Deixe sua avaliação</h3>
+      <p class="avaliacao-form-nota" data-i18n="avaliacoes_form_note">Toda avaliação passa por uma revisão rápida antes de aparecer no site.</p>
       <form id="formAvaliacao" class="avaliacao-form">
-        <input type="text" id="avNome" placeholder="Seu nome" maxlength="100" required>
+        <input type="text" id="avNome" data-i18n-placeholder="av_ph_nome" placeholder="Seu nome" maxlength="100" required>
         <select id="avProduto" required>
-          <option value="" disabled selected>Qual linha você comprou?</option>
-          <option value="Tradicional">Tradicional</option>
-          <option value="Gourmet">Gourmet</option>
-          <option value="Especial">Especial</option>
-          <option value="Drip Coffee">Drip Coffee</option>
+          <option value="" disabled selected data-i18n="av_select_placeholder">Qual linha você comprou?</option>
+          <option value="Tradicional" data-i18n="av_opt_tradicional">Tradicional</option>
+          <option value="Gourmet" data-i18n="av_opt_gourmet">Gourmet</option>
+          <option value="Especial" data-i18n="av_opt_especial">Especial</option>
+          <option value="Drip Coffee" data-i18n="av_opt_drip">Drip Coffee</option>
         </select>
-        <div class="avaliacao-estrelas" id="avEstrelas" role="radiogroup" aria-label="Nota de 1 a 5">
-          <button type="button" data-nota="1" aria-label="1 estrela">★</button>
-          <button type="button" data-nota="2" aria-label="2 estrelas">★</button>
-          <button type="button" data-nota="3" aria-label="3 estrelas">★</button>
-          <button type="button" data-nota="4" aria-label="4 estrelas">★</button>
-          <button type="button" data-nota="5" aria-label="5 estrelas">★</button>
+        <div class="avaliacao-estrelas" id="avEstrelas" role="radiogroup" data-i18n-aria-label="av_estrelas_aria" aria-label="Nota de 1 a 5">
+          <button type="button" data-nota="1" data-i18n-aria-label="av_estrela1_aria" aria-label="1 estrela">★</button>
+          <button type="button" data-nota="2" data-i18n-aria-label="av_estrela2_aria" aria-label="2 estrelas">★</button>
+          <button type="button" data-nota="3" data-i18n-aria-label="av_estrela3_aria" aria-label="3 estrelas">★</button>
+          <button type="button" data-nota="4" data-i18n-aria-label="av_estrela4_aria" aria-label="4 estrelas">★</button>
+          <button type="button" data-nota="5" data-i18n-aria-label="av_estrela5_aria" aria-label="5 estrelas">★</button>
         </div>
-        <textarea id="avComentario" placeholder="Conte como foi sua experiência com o Café Só Grãos" maxlength="600" required></textarea>
-        <button type="submit" class="btn btn-primary">Enviar avaliação</button>
+        <textarea id="avComentario" data-i18n-placeholder="av_ph_comentario" placeholder="Conte como foi sua experiência com o Café Só Grãos" maxlength="600" required></textarea>
+        <button type="submit" class="btn btn-primary" data-i18n="av_submit">Enviar avaliação</button>
         <p class="avaliacao-status" id="avaliacaoStatus"></p>
       </form>
     </div>
@@ -222,45 +227,45 @@
 <section id="sobre" class="sobre">
   <div class="container">
     <div class="sobre-historia">
-      <p class="eyebrow center">Nossa história</p>
-      <h2 class="center">Uma história movida a café</h2>
+      <p class="eyebrow center" data-i18n="sobre_eyebrow">Nossa história</p>
+      <h2 class="center" data-i18n="sobre_title">Uma história movida a café</h2>
       <div class="sobre-historia-imagem"><img src="assets/colheita-real-maos.jpg" alt="Colhedor segurando cerejas de café recém-colhidas"></div>
-      <p>Para mim, não existe dia sem café. Seja de manhã, à tarde ou à noite, ele está sempre presente. É o café que desperta, traz uma pausa, acompanha o trabalho, deixa a leitura mais agradável e transforma uma conversa simples em um momento especial.</p>
-      <p>Posso dizer, sem exagero: sou movido a café.</p>
-      <p>O Café Só Grãos nasceu dessa paixão e de uma inquietação. Ao observar as opções disponíveis no mercado, percebi que muitos brasileiros ainda precisavam escolher entre preço e qualidade. Eu queria mostrar que era possível oferecer um café 100% arábica, feito com cuidado e transparência, sem transformá-lo em algo reservado apenas para ocasiões especiais.</p>
-      <p>Foi assim que nasceu a proposta das nossas linhas.</p>
-      <p>O Café Só Grãos Tradicional é o parceiro do dia a dia. É o café que eu quis popularizar para fazer parte da rotina: no começo da manhã, na pausa do trabalho ou naquele momento em que tudo o que precisamos é de uma boa xícara de café.</p>
-      <p>As linhas Gourmet e Especial foram criadas para quando a ocasião pede uma experiência diferente: um café da manhã com a família ou os amigos, um momento de lazer, uma conversa importante, a celebração de um negócio ou simplesmente o desejo de apreciar cada detalhe da bebida.</p>
-      <p>Todos os nossos cafés são 100% arábica. Nas linhas Gourmet e Especial, trabalhamos também com grãos selecionados e perfis de torra desenvolvidos para valorizar os aromas, sabores e características de cada lote.</p>
-      <p>Uma parte importante dos nossos cafés vem do Sul de Minas, região reconhecida por suas condições favoráveis ao cultivo. A altitude e o clima contribuem para uma maturação mais uniforme dos frutos e ajudam a encontrar lotes com qualidade consistente. Mas nossa busca não termina ali: também trabalhamos com produtores de outras regiões do Brasil, sempre procurando cafés que estejam de acordo com aquilo em que acreditamos.</p>
-      <p>Guardo com carinho alguns momentos do início dessa história: a decisão de criar a marca, o aroma da primeira torra e a emoção da primeira entrega. Foi quando percebi que aquela ideia poderia se transformar em algo muito maior.</p>
-      <p>Desde então, ver o Café Só Grãos chegar a novos lugares e conquistar espaço na mesa dos brasileiros tem sido uma das partes mais gratificantes dessa jornada.</p>
-      <p>Hoje, continuo à frente dos principais passos da operação, mas nada disso é construído sozinho. Tenho ao meu lado uma equipe que participa da produção, da torra e da distribuição. São pessoas que, todas as semanas, trabalham comigo para que cada café seja preparado e entregue com o cuidado que deu origem à nossa marca.</p>
-      <p>O Café Só Grãos nasceu da minha paixão pelo café, mas cresce todos os dias graças às pessoas que acreditam nessa história — da lavoura à xícara.</p>
-      <p class="sobre-tagline">Café Só Grãos. Um café para cada momento.</p>
-      <a href="#produtos" class="btn btn-secondary sobre-cta">Conheça nosso catálogo</a>
+      <p data-i18n="sobre_p1">Para mim, não existe dia sem café. Seja de manhã, à tarde ou à noite, ele está sempre presente. É o café que desperta, traz uma pausa, acompanha o trabalho, deixa a leitura mais agradável e transforma uma conversa simples em um momento especial.</p>
+      <p data-i18n="sobre_p2">Posso dizer, sem exagero: sou movido a café.</p>
+      <p data-i18n="sobre_p3">O Café Só Grãos nasceu dessa paixão e de uma inquietação. Ao observar as opções disponíveis no mercado, percebi que muitos brasileiros ainda precisavam escolher entre preço e qualidade. Eu queria mostrar que era possível oferecer um café 100% arábica, feito com cuidado e transparência, sem transformá-lo em algo reservado apenas para ocasiões especiais.</p>
+      <p data-i18n="sobre_p4">Foi assim que nasceu a proposta das nossas linhas.</p>
+      <p data-i18n="sobre_p5">O Café Só Grãos Tradicional é o parceiro do dia a dia. É o café que eu quis popularizar para fazer parte da rotina: no começo da manhã, na pausa do trabalho ou naquele momento em que tudo o que precisamos é de uma boa xícara de café.</p>
+      <p data-i18n="sobre_p6">As linhas Gourmet e Especial foram criadas para quando a ocasião pede uma experiência diferente: um café da manhã com a família ou os amigos, um momento de lazer, uma conversa importante, a celebração de um negócio ou simplesmente o desejo de apreciar cada detalhe da bebida.</p>
+      <p data-i18n="sobre_p7">Todos os nossos cafés são 100% arábica. Nas linhas Gourmet e Especial, trabalhamos também com grãos selecionados e perfis de torra desenvolvidos para valorizar os aromas, sabores e características de cada lote.</p>
+      <p data-i18n="sobre_p8">Uma parte importante dos nossos cafés vem do Sul de Minas, região reconhecida por suas condições favoráveis ao cultivo. A altitude e o clima contribuem para uma maturação mais uniforme dos frutos e ajudam a encontrar lotes com qualidade consistente. Mas nossa busca não termina ali: também trabalhamos com produtores de outras regiões do Brasil, sempre procurando cafés que estejam de acordo com aquilo em que acreditamos.</p>
+      <p data-i18n="sobre_p9">Guardo com carinho alguns momentos do início dessa história: a decisão de criar a marca, o aroma da primeira torra e a emoção da primeira entrega. Foi quando percebi que aquela ideia poderia se transformar em algo muito maior.</p>
+      <p data-i18n="sobre_p10">Desde então, ver o Café Só Grãos chegar a novos lugares e conquistar espaço na mesa dos brasileiros tem sido uma das partes mais gratificantes dessa jornada.</p>
+      <p data-i18n="sobre_p11">Hoje, continuo à frente dos principais passos da operação, mas nada disso é construído sozinho. Tenho ao meu lado uma equipe que participa da produção, da torra e da distribuição. São pessoas que, todas as semanas, trabalham comigo para que cada café seja preparado e entregue com o cuidado que deu origem à nossa marca.</p>
+      <p data-i18n="sobre_p12">O Café Só Grãos nasceu da minha paixão pelo café, mas cresce todos os dias graças às pessoas que acreditam nessa história — da lavoura à xícara.</p>
+      <p class="sobre-tagline" data-i18n="sobre_tagline">Café Só Grãos. Um café para cada momento.</p>
+      <a href="#produtos" class="btn btn-secondary sobre-cta" data-i18n="sobre_cta">Conheça nosso catálogo</a>
     </div>
   </div>
 </section>
 
 <section class="torra-full">
   <div class="container torra-full-inner">
-    <p class="eyebrow">Nossa torra</p>
-    <h2 class="torra-full-title">Lotes pequenos, torrados toda semana</h2>
-    <p class="torra-full-text">Se você gosta de café com personalidade, mas sem discurso de sommelier, você está no lugar certo. Torramos perto da entrega para chegar sempre fresco na sua casa.</p>
-    <a href="#produtos" class="btn btn-primary">Ver produtos</a>
+    <p class="eyebrow" data-i18n="torra_eyebrow">Nossa torra</p>
+    <h2 class="torra-full-title" data-i18n="torra_title">Lotes pequenos, torrados toda semana</h2>
+    <p class="torra-full-text" data-i18n="torra_text">Se você gosta de café com personalidade, mas sem discurso de sommelier, você está no lugar certo. Torramos perto da entrega para chegar sempre fresco na sua casa.</p>
+    <a href="#produtos" class="btn btn-primary" data-i18n="hero_cta">Ver produtos</a>
   </div>
 </section>
 
 <section class="b2b bean-pattern">
   <div class="container b2b-inner">
     <div class="b2b-headline">
-      <h2>Tenha um café especial para seus clientes</h2>
+      <h2 data-i18n="b2b_title">Tenha um café especial para seus clientes</h2>
     </div>
     <div class="b2b-texto">
-      <p class="eyebrow">Venda corporativa</p>
-      <p>Da cafeteria ao escritório, seu café também fala sobre o seu negócio. Fornecemos em volume, com a mesma torra fresca e cuidado de sempre — para quem quer servir bem quem entra pela porta.</p>
-      <a href="https://wa.me/5516997567559?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20parceria%20B2B%20com%20o%20Caf%C3%A9%20S%C3%B3%20Gr%C3%A3os." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Fale sobre parceria B2B</a>
+      <p class="eyebrow" data-i18n="b2b_eyebrow">Venda corporativa</p>
+      <p data-i18n="b2b_text">Da cafeteria ao escritório, seu café também fala sobre o seu negócio. Fornecemos em volume, com a mesma torra fresca e cuidado de sempre — para quem quer servir bem quem entra pela porta.</p>
+      <a href="https://wa.me/5516997567559?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20parceria%20B2B%20com%20o%20Caf%C3%A9%20S%C3%B3%20Gr%C3%A3os." target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="b2b_cta">Fale sobre parceria B2B</a>
     </div>
   </div>
 </section>
@@ -268,8 +273,8 @@
 <section id="contato" class="contato">
   <div class="contato-inner">
     <div class="contato-texto">
-      <h2>Fale conosco</h2>
-      <p>Dúvidas sobre pedidos, atacado ou parcerias? Envie uma mensagem.</p>
+      <h2 data-i18n="contato_title">Fale conosco</h2>
+      <p data-i18n="contato_text">Dúvidas sobre pedidos, atacado ou parcerias? Envie uma mensagem.</p>
       <div class="contato-links">
         <a href="mailto:contato@cafesograos.com.br">contato@cafesograos.com.br</a>
         <a href="https://wa.me/5516997567559" target="_blank" rel="noopener noreferrer">(16) 99756-7559</a>
@@ -282,14 +287,14 @@
 
 <section id="novidades" class="novidades">
   <div class="container novidades-inner">
-    <p class="eyebrow center">Ainda não decidiu?</p>
-    <h2 class="center">Fique sabendo da próxima torra</h2>
-    <p class="novidades-texto center">Deixe seu contato e a gente avisa quando sair uma torra nova ou uma promoção — sem spam.</p>
+    <p class="eyebrow center" data-i18n="novidades_eyebrow">Ainda não decidiu?</p>
+    <h2 class="center" data-i18n="novidades_title">Fique sabendo da próxima torra</h2>
+    <p class="novidades-texto center" data-i18n="novidades_text">Deixe seu contato e a gente avisa quando sair uma torra nova ou uma promoção — sem spam.</p>
     <form id="formNovidades" class="novidades-form">
-      <input type="text" id="ndNome" placeholder="Seu nome (opcional)" maxlength="100">
-      <input type="email" id="ndEmail" placeholder="Seu e-mail" maxlength="200" required>
-      <input type="tel" id="ndWhatsapp" placeholder="Seu WhatsApp (opcional)" maxlength="30">
-      <button type="submit" class="btn btn-primary">Quero ficar sabendo</button>
+      <input type="text" id="ndNome" data-i18n-placeholder="nd_ph_nome" placeholder="Seu nome (opcional)" maxlength="100">
+      <input type="email" id="ndEmail" data-i18n-placeholder="nd_ph_email" placeholder="Seu e-mail" maxlength="200" required>
+      <input type="tel" id="ndWhatsapp" data-i18n-placeholder="nd_ph_whatsapp" placeholder="Seu WhatsApp (opcional)" maxlength="30">
+      <button type="submit" class="btn btn-primary" data-i18n="nd_submit">Quero ficar sabendo</button>
       <p class="novidades-status" id="novidadesStatus"></p>
     </form>
   </div>
@@ -298,98 +303,99 @@
 <footer class="site-footer bean-pattern">
   <div class="container footer-grid">
     <div class="footer-col">
-      <h4>Menu</h4>
-      <a href="#produtos">Produtos</a>
-      <a href="#sobre">Sobre</a>
-      <a href="#contato">Contato</a>
+      <h4 data-i18n="footer_menu">Menu</h4>
+      <a href="#produtos" data-i18n="nav_produtos">Produtos</a>
+      <a href="#sobre" data-i18n="nav_sobre">Sobre</a>
+      <a href="#contato" data-i18n="nav_contato">Contato</a>
     </div>
     <div class="footer-col">
-      <h4>Ajuda</h4>
-      <a href="#contato">Fale conosco</a>
-      <a href="trocas.html">Trocas e devoluções</a>
-      <a href="rastreio.html">Rastrear pedido</a>
+      <h4 data-i18n="footer_ajuda">Ajuda</h4>
+      <a href="#contato" data-i18n="footer_falecom">Fale conosco</a>
+      <a href="trocas.html" data-i18n="footer_trocas">Trocas e devoluções</a>
+      <a href="rastreio.html" data-i18n="footer_rastrear">Rastrear pedido</a>
     </div>
     <div class="footer-col footer-col-wide">
       <img src="assets/logo-sograos-branco.png" alt="" class="footer-logo">
-      <h4>Café Só Grãos</h4>
-      <p>Selecionamos, torramos e embalamos cada lote com cuidado — do produtor até a sua xícara, em pequenos lotes toda semana.</p>
+      <h4 data-i18n="footer_brand_title">Café Só Grãos</h4>
+      <p data-i18n="footer_brand_text">Selecionamos, torramos e embalamos cada lote com cuidado — do produtor até a sua xícara, em pequenos lotes toda semana.</p>
     </div>
     <div class="footer-col">
-      <h4>Contato</h4>
+      <h4 data-i18n="footer_contato_title">Contato</h4>
       <a href="mailto:contato@cafesograos.com.br">contato@cafesograos.com.br</a>
       <a href="https://wa.me/5516997567559" target="_blank" rel="noopener noreferrer">(16) 99756-7559</a>
       <a href="https://instagram.com/cafesograos" target="_blank" rel="noopener noreferrer">@cafesograos</a>
     </div>
   </div>
   <div class="container footer-bottom">
-    <p>&copy; <span id="year"></span> Café Só Grãos. Todos os direitos reservados.</p>
-    <p class="payment-note">Pagamento processado com segurança pelo Mercado Pago</p>
+    <p>&copy; <span id="year"></span> Café Só Grãos. <span data-i18n="footer_rights">Todos os direitos reservados.</span></p>
+    <p class="payment-note" data-i18n="footer_payment_note">Pagamento processado com segurança pelo Mercado Pago</p>
   </div>
 </footer>
 
 <!-- Carrinho lateral -->
 <aside class="cart-drawer" id="cartDrawer">
   <div class="cart-header">
-    <h3>Seu carrinho</h3>
-    <button id="cartClose" aria-label="Fechar carrinho">✕</button>
+    <h3 data-i18n="cart_title">Seu carrinho</h3>
+    <button id="cartClose" data-i18n-aria-label="cart_close_aria" aria-label="Fechar carrinho">✕</button>
   </div>
   <div class="cart-body" id="cartBody">
     <div class="cart-items" id="cartItems"></div>
 
     <div class="cart-entrega" id="cartEntrega">
-      <h4>Dados de entrega</h4>
+      <h4 data-i18n="cart_entrega_title">Dados de entrega</h4>
       <div class="entrega-row">
-        <input type="text" id="inCep" placeholder="CEP" maxlength="9" inputmode="numeric">
-        <button class="btn btn-outline" id="btnCalcularFrete" type="button">Calcular frete</button>
+        <input type="text" id="inCep" data-i18n-placeholder="cart_ph_cep" placeholder="CEP" maxlength="9" inputmode="numeric">
+        <button class="btn btn-outline" id="btnCalcularFrete" type="button" data-i18n="cart_btn_calcular_frete">Calcular frete</button>
       </div>
       <p class="entrega-status" id="entregaStatus"></p>
 
       <div id="enderecoFields" class="entrega-fields" hidden>
-        <input type="text" id="inEndereco" placeholder="Rua" readonly>
+        <input type="text" id="inEndereco" data-i18n-placeholder="cart_ph_rua" placeholder="Rua" readonly>
         <div class="entrega-row">
-          <input type="text" id="inNumero" placeholder="Número">
-          <input type="text" id="inComplemento" placeholder="Complemento (opcional)">
+          <input type="text" id="inNumero" data-i18n-placeholder="cart_ph_numero" placeholder="Número">
+          <input type="text" id="inComplemento" data-i18n-placeholder="cart_ph_complemento" placeholder="Complemento (opcional)">
         </div>
         <input type="text" id="inBairroCidade" readonly>
-        <input type="text" id="inNome" placeholder="Nome completo">
-        <input type="email" id="inEmail" placeholder="E-mail">
-        <input type="tel" id="inTelefone" placeholder="Telefone / WhatsApp">
+        <input type="text" id="inNome" data-i18n-placeholder="cart_ph_nome" placeholder="Nome completo">
+        <input type="email" id="inEmail" data-i18n-placeholder="cart_ph_email" placeholder="E-mail">
+        <input type="tel" id="inTelefone" data-i18n-placeholder="cart_ph_telefone" placeholder="Telefone / WhatsApp">
       </div>
     </div>
   </div>
 
   <div class="cart-footer">
     <div class="cart-total cart-subtotal">
-      <span>Subtotal</span>
+      <span data-i18n="cart_subtotal">Subtotal</span>
       <strong id="cartSubtotal">R$ 0,00</strong>
     </div>
     <div class="cart-total cart-frete">
-      <span>Frete</span>
+      <span data-i18n="cart_frete">Frete</span>
       <strong id="cartFrete">—</strong>
     </div>
     <div class="cart-total">
-      <span>Total</span>
+      <span data-i18n="cart_total">Total</span>
       <strong id="cartTotal">R$ 0,00</strong>
     </div>
-    <button class="btn btn-primary btn-block" id="checkoutBtn" disabled>Finalizar compra</button>
-    <p class="checkout-note">Pagamento processado com segurança pelo Mercado Pago.</p>
+    <button class="btn btn-primary btn-block" id="checkoutBtn" disabled data-i18n="cart_checkout_btn">Finalizar compra</button>
+    <p class="checkout-note" data-i18n="cart_checkout_note">Pagamento processado com segurança pelo Mercado Pago.</p>
   </div>
 </aside>
 <div class="cart-overlay" id="cartOverlay"></div>
 
 <!-- Galeria de imagens do produto -->
 <div class="lightbox" id="lightbox">
-  <button class="lightbox-close" id="lightboxClose" aria-label="Fechar">✕</button>
-  <button class="lightbox-arrow lightbox-prev" id="lightboxPrev" aria-label="Imagem anterior">‹</button>
+  <button class="lightbox-close" id="lightboxClose" data-i18n-aria-label="lightbox_close" aria-label="Fechar">✕</button>
+  <button class="lightbox-arrow lightbox-prev" id="lightboxPrev" data-i18n-aria-label="lightbox_prev" aria-label="Imagem anterior">‹</button>
   <div class="lightbox-track" id="lightboxTrack"></div>
-  <button class="lightbox-arrow lightbox-next" id="lightboxNext" aria-label="Próxima imagem">›</button>
+  <button class="lightbox-arrow lightbox-next" id="lightboxNext" data-i18n-aria-label="lightbox_next" aria-label="Próxima imagem">›</button>
   <div class="lightbox-dots" id="lightboxDots"></div>
 </div>
 
-<a href="https://wa.me/5516997567559?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20caf%C3%A9." target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Comprar pelo WhatsApp">
+<a href="https://wa.me/5516997567559?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20caf%C3%A9." target="_blank" rel="noopener noreferrer" class="whatsapp-float" data-i18n-aria-label="whatsapp_float_aria" aria-label="Comprar pelo WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.08L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.6 0-3.1-.45-4.38-1.24l-.31-.19-3 .79.8-2.92-.2-.3A7.94 7.94 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.4-5.6c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.42-1.33-1.66-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.43-.58 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28z"/></svg>
 </a>
 
+<script src="js/i18n.js"></script>
 <script src="js/products.js"></script>
 <script src="js/cart.js"></script>
 <script src="js/main.js"></script>

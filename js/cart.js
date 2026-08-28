@@ -98,17 +98,18 @@ const Cart = {
     itemsEl.innerHTML = '';
 
     if (count === 0) {
-      itemsEl.innerHTML = '<p class="cart-empty">Seu carrinho está vazio.</p>';
+      itemsEl.innerHTML = `<p class="cart-empty">${t('cart_empty')}</p>`;
     } else {
       Object.entries(this.items).forEach(([id, qty]) => {
         const p = PRODUCTS.find(p => p.id === id);
         if (!p) return;
+        const nome = typeof nomeProduto === 'function' ? nomeProduto(p) : p.nome;
         const row = document.createElement('div');
         row.className = 'cart-item';
         row.innerHTML = `
-          <div class="cart-item-thumb">${p.img ? `<img src="${p.img}" alt="${p.nome}">` : '☕'}</div>
+          <div class="cart-item-thumb">${p.img ? `<img src="${p.img}" alt="${nome}">` : '☕'}</div>
           <div class="cart-item-info">
-            <strong>${p.nome}</strong>
+            <strong>${nome}</strong>
             <span>R$ ${p.preco.toFixed(2).replace('.', ',')}</span>
           </div>
           <div class="cart-item-qty">
@@ -124,7 +125,7 @@ const Cart = {
     document.getElementById('cartSubtotal').textContent =
       'R$ ' + this.totalValue().toFixed(2).replace('.', ',');
     document.getElementById('cartFrete').textContent = this.frete
-      ? (this.frete.valor === 0 ? 'Grátis' : 'R$ ' + this.frete.valor.toFixed(2).replace('.', ','))
+      ? (this.frete.valor === 0 ? t('cart_frete_gratis') : 'R$ ' + this.frete.valor.toFixed(2).replace('.', ','))
       : '—';
     document.getElementById('cartTotal').textContent =
       'R$ ' + this.grandTotal().toFixed(2).replace('.', ',');

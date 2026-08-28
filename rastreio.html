@@ -23,18 +23,23 @@
 <header class="site-header">
   <div class="container header-inner">
     <a href="index.html" class="logo"><img src="assets/logo-sograos-branco.png" alt="Café Só Grãos" class="logo-img"></a>
+    <div class="lang-switch" role="group" data-i18n-aria-label="lang_switch_aria" aria-label="Idioma">
+      <button type="button" class="lang-btn" data-lang="pt">PT</button>
+      <button type="button" class="lang-btn" data-lang="en">EN</button>
+      <button type="button" class="lang-btn" data-lang="es">ES</button>
+    </div>
   </div>
 </header>
 
 <section class="resultado">
   <div class="container resultado-inner">
-    <p class="eyebrow center">Acompanhamento</p>
-    <h1>Rastrear pedido</h1>
-    <p class="resultado-texto">Cole abaixo o número do pedido que enviamos no seu e-mail de confirmação.</p>
+    <p class="eyebrow center" data-i18n="rastreio_eyebrow">Acompanhamento</p>
+    <h1 data-i18n="rastreio_title">Rastrear pedido</h1>
+    <p class="resultado-texto" data-i18n="rastreio_texto">Cole abaixo o número do pedido que enviamos no seu e-mail de confirmação.</p>
 
     <form id="formRastreio" class="rastreio-form">
-      <input type="text" id="inNumeroPedido" placeholder="Número do pedido" required>
-      <button type="submit" class="btn btn-primary">Consultar</button>
+      <input type="text" id="inNumeroPedido" data-i18n-placeholder="rastreio_ph_numero" placeholder="Número do pedido" required>
+      <button type="submit" class="btn btn-primary" data-i18n="rastreio_btn_consultar">Consultar</button>
     </form>
     <p class="rastreio-status" id="rastreioStatus"></p>
 
@@ -42,35 +47,27 @@
       <h3 id="resumoStatusTitulo"></h3>
       <ul id="resumoItens"></ul>
       <div class="resultado-total">
-        <span>Total</span>
+        <span data-i18n="resultado_total">Total</span>
         <strong id="resumoTotal"></strong>
       </div>
     </div>
 
     <div class="resultado-acoes">
-      <a href="index.html" class="btn btn-outline">Voltar à loja</a>
-      <a href="https://wa.me/5516997567559?text=Ol%C3%A1!%20N%C3%A3o%20encontrei%20meu%20pedido%20na%20consulta%20de%20rastreio." target="_blank" rel="noopener noreferrer" class="btn btn-outline">Falar no WhatsApp</a>
+      <a href="index.html" class="btn btn-outline" data-i18n="rastreio_btn_loja">Voltar à loja</a>
+      <a href="https://wa.me/5516997567559?text=Ol%C3%A1!%20N%C3%A3o%20encontrei%20meu%20pedido%20na%20consulta%20de%20rastreio." target="_blank" rel="noopener noreferrer" class="btn btn-outline" data-i18n="rastreio_btn_whatsapp">Falar no WhatsApp</a>
     </div>
   </div>
 </section>
 
 <footer class="site-footer bean-pattern resultado-footer">
   <div class="container">
-    <p>&copy; <span id="year"></span> Café Só Grãos. Todos os direitos reservados.</p>
+    <p>&copy; <span id="year"></span> Café Só Grãos. <span data-i18n="footer_rights">Todos os direitos reservados.</span></p>
   </div>
 </footer>
 
+<script src="js/i18n.js"></script>
 <script>
 const API_BASE = "https://cafesograos-backend-production.up.railway.app";
-
-const statusLabel = {
-  pending: 'Pagamento em processamento',
-  approved: 'Pagamento aprovado',
-  rejected: 'Pagamento não aprovado',
-  in_process: 'Pagamento em análise',
-  cancelled: 'Pedido cancelado',
-  refunded: 'Pedido reembolsado'
-};
 
 document.getElementById('formRastreio').addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -80,7 +77,7 @@ document.getElementById('formRastreio').addEventListener('submit', async (e) => 
   resumoEl.hidden = true;
 
   if (!numero) return;
-  statusEl.textContent = 'Consultando...';
+  statusEl.textContent = t('rastreio_msg_consultando');
 
   try {
     const res = await fetch(`${API_BASE}/api/pedido/${encodeURIComponent(numero)}`);
@@ -88,9 +85,9 @@ document.getElementById('formRastreio').addEventListener('submit', async (e) => 
     const pedido = await res.json();
 
     statusEl.textContent = '';
-    let titulo = statusLabel[pedido.status] || pedido.status;
+    let titulo = t('status_' + pedido.status) || pedido.status;
     if (pedido.status === 'approved') {
-      titulo += pedido.tracking_code ? ' — enviado' : ' — preparando envio';
+      titulo += pedido.tracking_code ? ' ' + t('status_enviado') : ' ' + t('status_preparando');
     }
     document.getElementById('resumoStatusTitulo').textContent = titulo;
 
@@ -108,7 +105,9 @@ document.getElementById('formRastreio').addEventListener('submit', async (e) => 
     if (pedido.tracking_code) {
       const li = document.createElement('li');
       const spanLabel = document.createElement('span');
-      spanLabel.innerHTML = '<strong>Código de rastreio</strong>';
+      const strong = document.createElement('strong');
+      strong.textContent = t('rastreio_codigo');
+      spanLabel.appendChild(strong);
       const spanCodigo = document.createElement('span');
       spanCodigo.textContent = pedido.tracking_code;
       li.append(spanLabel, spanCodigo);
@@ -117,7 +116,7 @@ document.getElementById('formRastreio').addEventListener('submit', async (e) => 
     document.getElementById('resumoTotal').textContent = 'R$ ' + Number(pedido.total).toFixed(2).replace('.', ',');
     resumoEl.hidden = false;
   } catch (err) {
-    statusEl.textContent = 'Não encontramos esse pedido. Confira o número (veja no e-mail de confirmação) e tente de novo.';
+    statusEl.textContent = t('rastreio_msg_nao_encontrado');
   }
 });
 

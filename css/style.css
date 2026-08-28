@@ -67,6 +67,14 @@ a { text-decoration: none; color: inherit; }
 .main-nav { display: flex; gap: 28px; font-weight: 500; color: #fff; }
 .main-nav a:hover { color: var(--laranja); }
 .header-actions { display: flex; align-items: center; gap: 20px; }
+.lang-switch { display: flex; align-items: center; gap: 2px; }
+.lang-btn {
+  background: none; border: none; color: rgba(255,255,255,.55); cursor: pointer;
+  font-family: inherit; font-size: 12px; font-weight: 700; letter-spacing: .02em;
+  padding: 5px 7px; border-radius: 6px; line-height: 1;
+}
+.lang-btn:hover { color: #fff; background: rgba(255,255,255,.08); }
+.lang-btn.ativo { color: var(--laranja); background: rgba(255,255,255,.1); }
 .btn-whatsapp-nav {
   background: var(--laranja); color: #fff; font-size: 12px; font-weight: 700;
   text-transform: uppercase; letter-spacing: .03em; padding: 10px 18px; border-radius: 999px;

@@ -2,20 +2,30 @@ const API_BASE = "https://cafesograos-backend-production.up.railway.app";
 
 let activeFilter = "todos";
 
+// Nome/descrição do produto no idioma atual — cai pro português se a
+// tradução específica não existir (ex.: catálogo local desatualizado).
+function idiomaSufixo() {
+  const lang = idiomaAtual();
+  return lang === 'pt' ? '' : `_${lang}`;
+}
+function nomeProduto(p) { return p[`nome${idiomaSufixo()}`] || p.nome; }
+function descricaoProduto(p) { return p[`descricao${idiomaSufixo()}`] || p.descricao; }
+function nomeCategoria(c) { return c[`nome${idiomaSufixo()}`] || c.nome; }
+
 // Tira de categorias no topo (estilo vitrine)
 function renderCategoryStrip() {
   const strip = document.getElementById('categoryStrip');
   strip.innerHTML = CATEGORIES.map(c => `
-    <a href="#produtos" data-filter="${c.id}">${c.nome}</a>
+    <a href="#produtos" data-filter="${c.id}">${nomeCategoria(c)}</a>
   `).join('');
 }
 
 // Pastilhas de filtro acima da grade de produtos
 function renderFilterPills() {
   const pills = document.getElementById('filterPills');
-  const all = [{ id: "todos", nome: "Todos" }, ...CATEGORIES];
+  const all = [{ id: "todos", nome: t('filter_todos') }, ...CATEGORIES];
   pills.innerHTML = all.map(c => `
-    <button class="pill ${activeFilter === c.id ? 'active' : ''}" data-filter="${c.id}">${c.nome}</button>
+    <button class="pill ${activeFilter === c.id ? 'active' : ''}" data-filter="${c.id}">${c.id === 'todos' ? c.nome : nomeCategoria(c)}</button>
   `).join('');
 }
 
@@ -42,14 +52,14 @@ function renderProducts() {
 
   grid.innerHTML = items.map(p => `
     <div class="produto-card">
-      ${p.badge ? `<span class="produto-badge${p.badge.toUpperCase() === 'PROMOÇÃO' ? ' badge-sale' : ''}"${p.badge.includes('SCA') ? ' title="Avaliado por cooperativa parceira: acima de 83 pontos na escala SCA (Specialty Coffee Association), o padrão internacional de café especial."' : ''}>${p.badge}</span>` : ''}
-      <div class="produto-img"${p.imgs ? ` data-gallery="${p.id}"` : ''}>${p.img ? `<img src="${p.img}" alt="${p.nome}">` : '☕'}</div>
+      ${p.badge ? `<span class="produto-badge${p.badge.toUpperCase() === 'PROMOÇÃO' ? ' badge-sale' : ''}"${p.badge.includes('SCA') ? ` title="${t('sca_tooltip')}"` : ''}>${p.badge}</span>` : ''}
+      <div class="produto-img"${p.imgs ? ` data-gallery="${p.id}"` : ''}>${p.img ? `<img src="${p.img}" alt="${nomeProduto(p)}">` : '☕'}</div>
       <div class="produto-info">
-        <h3>${p.nome}</h3>
-        <p>${p.descricao}</p>
+        <h3>${nomeProduto(p)}</h3>
+        <p>${descricaoProduto(p)}</p>
         <div class="produto-footer">
           <div class="produto-precos">${priceHtml(p)}</div>
-          <button class="btn btn-secondary" data-add="${p.id}">Adicionar</button>
+          <button class="btn btn-secondary" data-add="${p.id}">${t('add_button')}</button>
         </div>
       </div>
     </div>
@@ -74,7 +84,7 @@ document.addEventListener('click', (e) => {
   const galleryEl = e.target.closest('[data-gallery]');
   if (galleryEl) {
     const product = PRODUCTS.find(p => p.id === galleryEl.dataset.gallery);
-    if (product) Lightbox.open(product.imgs, product.nome);
+    if (product) Lightbox.open(product.imgs, nomeProduto(product));
   }
 });
 
@@ -205,11 +215,11 @@ document.getElementById('btnCalcularFrete').addEventListener('click', async () =
   const cep = cepInput.value.replace(/\D/g, '');
 
   if (cep.length !== 8) {
-    statusEl.textContent = 'Digite um CEP válido.';
+    statusEl.textContent = t('msg_cep_invalido');
     return;
   }
 
-  statusEl.textContent = 'Calculando frete...';
+  statusEl.textContent = t('msg_calculando_frete');
   Cart.frete = null;
 
   try {
@@ -237,8 +247,8 @@ document.getElementById('btnCalcularFrete').addEventListener('click', async () =
     document.getElementById('inEndereco').value = endereco.logradouro || '';
     document.getElementById('inBairroCidade').value = `${endereco.bairro} — ${endereco.localidade}/${endereco.uf}`;
     document.getElementById('enderecoFields').hidden = false;
-    const freteTexto = frete.valor === 0 ? 'Grátis 🎉' : 'R$ ' + frete.valor.toFixed(2).replace('.', ',');
-    statusEl.textContent = `Frete: ${freteTexto} · entrega em até ${frete.prazoDias} dias úteis`;
+    const freteTexto = frete.valor === 0 ? t('msg_frete_gratis') : 'R$ ' + frete.valor.toFixed(2).replace('.', ',');
+    statusEl.textContent = t('msg_frete_resultado', { frete: freteTexto, prazo: frete.prazoDias });
 
     Cart.render();
 
@@ -251,7 +261,7 @@ document.getElementById('btnCalcularFrete').addEventListener('click', async () =
     }
   } catch (err) {
     console.error(err);
-    statusEl.textContent = 'Não foi possível calcular o frete. Confira o CEP e tente de novo.';
+    statusEl.textContent = t('msg_frete_erro');
   }
 });
 
@@ -265,16 +275,16 @@ document.getElementById('checkoutBtn').addEventListener('click', async () => {
   const complemento = document.getElementById('inComplemento').value.trim();
 
   if (!Cart.frete) {
-    alert('Calcule o frete antes de finalizar a compra.');
+    alert(t('msg_calcule_frete_antes'));
     return;
   }
   if (!nome || !email || !numero) {
-    alert('Preencha nome, e-mail e número do endereço para continuar.');
+    alert(t('msg_preencha_dados'));
     return;
   }
 
   btn.disabled = true;
-  btn.textContent = 'Processando...';
+  btn.textContent = t('msg_processando');
   try {
     const res = await fetch(`${API_BASE}/api/create-preference`, {
       method: 'POST',
@@ -290,10 +300,10 @@ document.getElementById('checkoutBtn').addEventListener('click', async () => {
     const data = await res.json();
     window.location.href = data.init_point; // redireciona pro checkout do Mercado Pago
   } catch (err) {
-    alert('Não foi possível iniciar o pagamento. Tente novamente em instantes.');
+    alert(t('msg_pagamento_erro'));
     console.error(err);
     btn.disabled = false;
-    btn.textContent = 'Finalizar compra';
+    btn.textContent = t('cart_checkout_btn');
   }
 });
 
@@ -326,6 +336,7 @@ carregarCatalogo();
   if (!form) return;
 
   let notaSelecionada = 0;
+  let ultimasAvaliacoes = [];
 
   function renderEstrelas() {
     [...estrelasEl.children].forEach((btn) => {
@@ -347,13 +358,13 @@ carregarCatalogo();
     const comentario = document.getElementById('avComentario').value.trim();
 
     if (!nome || !produto || !comentario || !notaSelecionada) {
-      statusEl.textContent = 'Preencha nome, qual produto comprou, a nota e o comentário.';
+      statusEl.textContent = t('av_msg_preencha');
       return;
     }
 
     const btn = form.querySelector('button[type="submit"]');
     btn.disabled = true;
-    statusEl.textContent = 'Enviando...';
+    statusEl.textContent = t('av_msg_enviando');
 
     try {
       const res = await fetch(`${API_BASE}/api/avaliacoes`, {
@@ -364,17 +375,35 @@ carregarCatalogo();
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Falha ao enviar avaliação');
 
-      statusEl.textContent = data.message;
+      statusEl.textContent = t('av_msg_sucesso');
       form.reset();
       notaSelecionada = 0;
       renderEstrelas();
     } catch (err) {
       console.error(err);
-      statusEl.textContent = 'Não foi possível enviar sua avaliação agora. Tente novamente em instantes.';
+      statusEl.textContent = t('av_msg_erro');
     } finally {
       btn.disabled = false;
     }
   });
+
+  // "Comprou: Tradicional" etc. — o valor vem gravado em português (é o
+  // mesmo texto validado no backend), só a legenda exibida é traduzida.
+  const CHAVE_LINHA = { Tradicional: 'av_opt_tradicional', Gourmet: 'av_opt_gourmet', Especial: 'av_opt_especial', 'Drip Coffee': 'av_opt_drip' };
+
+  function renderAvaliacoes() {
+    if (!ultimasAvaliacoes.length) return;
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+    grid.innerHTML = ultimasAvaliacoes.map((a) => `
+      <div class="avaliacao-card">
+        <div class="avaliacao-estrelas-view">${'★'.repeat(a.rating)}${'☆'.repeat(5 - a.rating)}</div>
+        ${a.product_line ? `<span class="avaliacao-produto">${t('av_comprou')}: ${esc(CHAVE_LINHA[a.product_line] ? t(CHAVE_LINHA[a.product_line]) : a.product_line)}</span>` : ''}
+        <p>"${esc(a.comment)}"</p>
+        <span class="avaliacao-autor">${esc(a.customer_name)}</span><span class="avaliacao-data">${new Date(a.created_at).toLocaleDateString('pt-BR')}</span>
+      </div>
+    `).join('');
+  }
 
   async function carregarAvaliacoes() {
     try {
@@ -382,23 +411,15 @@ carregarCatalogo();
       if (!res.ok) throw new Error('Falha ao buscar avaliações');
       const avaliacoes = await res.json();
       if (!Array.isArray(avaliacoes) || !avaliacoes.length) return;
-
-      const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-
-      grid.innerHTML = avaliacoes.map((a) => `
-        <div class="avaliacao-card">
-          <div class="avaliacao-estrelas-view">${'★'.repeat(a.rating)}${'☆'.repeat(5 - a.rating)}</div>
-          ${a.product_line ? `<span class="avaliacao-produto">Comprou: ${esc(a.product_line)}</span>` : ''}
-          <p>"${esc(a.comment)}"</p>
-          <span class="avaliacao-autor">${esc(a.customer_name)}</span><span class="avaliacao-data">${new Date(a.created_at).toLocaleDateString('pt-BR')}</span>
-        </div>
-      `).join('');
+      ultimasAvaliacoes = avaliacoes;
+      renderAvaliacoes();
     } catch (err) {
       console.error('Não foi possível carregar as avaliações.', err);
     }
   }
 
   carregarAvaliacoes();
+  window.renderAvaliacoesNoIdioma = renderAvaliacoes;
 })();
 
 // Formulário "avise-me": captura contato de quem ainda não comprou, pra
@@ -415,13 +436,13 @@ carregarCatalogo();
     const telefone = document.getElementById('ndWhatsapp').value.trim();
 
     if (!email) {
-      statusEl.textContent = 'Preencha ao menos o e-mail.';
+      statusEl.textContent = t('nd_msg_preencha_email');
       return;
     }
 
     const btn = form.querySelector('button[type="submit"]');
     btn.disabled = true;
-    statusEl.textContent = 'Enviando...';
+    statusEl.textContent = t('nd_msg_enviando');
 
     try {
       const res = await fetch(`${API_BASE}/api/newsletter`, {
@@ -432,13 +453,23 @@ carregarCatalogo();
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Falha ao salvar contato');
 
-      statusEl.textContent = data.message;
+      statusEl.textContent = t('nd_msg_sucesso');
       form.reset();
     } catch (err) {
       console.error(err);
-      statusEl.textContent = 'Não foi possível salvar seu contato agora. Tente novamente em instantes.';
+      statusEl.textContent = t('nd_msg_erro');
     } finally {
       btn.disabled = false;
     }
   });
 })();
+
+// Quando o idioma muda, redesenha tudo que foi montado dinamicamente em JS
+// (o data-i18n cuida sozinho do texto estático do HTML).
+window.onLanguageChange = function () {
+  renderCategoryStrip();
+  renderFilterPills();
+  renderProducts();
+  Cart.render();
+  if (typeof window.renderAvaliacoesNoIdioma === 'function') window.renderAvaliacoesNoIdioma();
+};
