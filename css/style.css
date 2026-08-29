@@ -398,6 +398,7 @@ a { text-decoration: none; color: inherit; }
   font-size: 15px; font-family: inherit; color: var(--expresso); background: #fff;
 }
 .novidades-status { font-size: 13px; color: var(--text-soft); min-height: 18px; text-align: center; }
+.novidades-consentimento { font-size: 12px; color: #999; text-align: center; margin-top: -4px; }
 
 /* Footer */
 .site-footer { background-color: var(--expresso); color: rgba(255,255,255,.75); padding: 56px 0 24px; font-size: 14px; }
