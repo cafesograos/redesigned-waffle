@@ -265,12 +265,30 @@ document.getElementById('btnCalcularFrete').addEventListener('click', async () =
   }
 });
 
+// Validação padrão de CPF (dígitos verificadores) — recusa também sequências
+// óbvias tipo "00000000000" que passariam na conta mas nunca são um CPF real.
+function cpfValido(cpf) {
+  cpf = String(cpf || '').replace(/\D/g, '');
+  if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
+  let soma = 0;
+  for (let i = 0; i < 9; i++) soma += parseInt(cpf[i], 10) * (10 - i);
+  let resto = (soma * 10) % 11;
+  if (resto === 10 || resto === 11) resto = 0;
+  if (resto !== parseInt(cpf[9], 10)) return false;
+  soma = 0;
+  for (let i = 0; i < 10; i++) soma += parseInt(cpf[i], 10) * (11 - i);
+  resto = (soma * 10) % 11;
+  if (resto === 10 || resto === 11) resto = 0;
+  return resto === parseInt(cpf[10], 10);
+}
+
 document.getElementById('checkoutBtn').addEventListener('click', async () => {
   const btn = document.getElementById('checkoutBtn');
 
   const nome = document.getElementById('inNome').value.trim();
   const email = document.getElementById('inEmail').value.trim();
   const telefone = document.getElementById('inTelefone').value.trim();
+  const cpf = document.getElementById('inCpf').value.replace(/\D/g, '');
   const numero = document.getElementById('inNumero').value.trim();
   const complemento = document.getElementById('inComplemento').value.trim();
 
@@ -278,8 +296,12 @@ document.getElementById('checkoutBtn').addEventListener('click', async () => {
     alert(t('msg_calcule_frete_antes'));
     return;
   }
-  if (!nome || !email || !numero) {
+  if (!nome || !email || !cpf || !numero) {
     alert(t('msg_preencha_dados'));
+    return;
+  }
+  if (!cpfValido(cpf)) {
+    alert(t('msg_cpf_invalido'));
     return;
   }
 
@@ -292,7 +314,7 @@ document.getElementById('checkoutBtn').addEventListener('click', async () => {
       body: JSON.stringify({
         items: Cart.toLineItems(),
         frete: Cart.frete.valor,
-        cliente: { nome, email, telefone },
+        cliente: { nome, email, telefone, cpf },
         entrega: { ...Cart.entrega, numero, complemento }
       })
     });
