@@ -53,7 +53,7 @@ function renderProducts() {
   grid.innerHTML = items.map(p => `
     <div class="produto-card">
       ${p.badge ? `<span class="produto-badge${p.badge.toUpperCase() === 'PROMOÇÃO' ? ' badge-sale' : ''}"${p.badge.includes('SCA') ? ` title="${t('sca_tooltip')}"` : ''}>${p.badge}</span>` : ''}
-      <div class="produto-img"${p.imgs ? ` data-gallery="${p.id}"` : ''}>${p.img ? `<img src="${p.img}" alt="${nomeProduto(p)}">` : '☕'}</div>
+      <div class="produto-img"${p.imgs ? ` data-gallery="${p.id}"` : ''}>${p.img ? `<img src="${p.img}" alt="${nomeProduto(p)}" loading="lazy">` : '☕'}</div>
       <div class="produto-info">
         <h3>${nomeProduto(p)}</h3>
         <p>${descricaoProduto(p)}</p>
