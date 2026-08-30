@@ -84,7 +84,16 @@ document.addEventListener('click', (e) => {
   const galleryEl = e.target.closest('[data-gallery]');
   if (galleryEl) {
     const product = PRODUCTS.find(p => p.id === galleryEl.dataset.gallery);
-    if (product) Lightbox.open(product.imgs, nomeProduto(product));
+    if (product) {
+      Lightbox.open(product.imgs, nomeProduto(product));
+      if (window.gtag) {
+        gtag('event', 'view_item', {
+          currency: 'BRL',
+          value: product.preco,
+          items: [{ item_id: product.id, item_name: product.nome, price: product.preco }]
+        });
+      }
+    }
   }
 });
 
@@ -251,14 +260,6 @@ document.getElementById('btnCalcularFrete').addEventListener('click', async () =
     statusEl.textContent = t('msg_frete_resultado', { frete: freteTexto, prazo: frete.prazoDias });
 
     Cart.render();
-
-    if (window.gtag) {
-      gtag('event', 'begin_checkout', {
-        currency: 'BRL',
-        value: Cart.grandTotal(),
-        items: Cart.toLineItems().map((i) => ({ item_id: i.id, item_name: i.title, price: i.unit_price, quantity: i.quantity }))
-      });
-    }
   } catch (err) {
     console.error(err);
     statusEl.textContent = t('msg_frete_erro');
@@ -303,6 +304,14 @@ document.getElementById('checkoutBtn').addEventListener('click', async () => {
   if (!cpfValido(cpf)) {
     alert(t('msg_cpf_invalido'));
     return;
+  }
+
+  if (window.gtag) {
+    gtag('event', 'begin_checkout', {
+      currency: 'BRL',
+      value: Cart.grandTotal(),
+      items: Cart.toLineItems().map((i) => ({ item_id: i.id, item_name: i.title, price: i.unit_price, quantity: i.quantity }))
+    });
   }
 
   btn.disabled = true;
