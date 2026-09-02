@@ -116,6 +116,7 @@ const TRANSLATIONS = {
     msg_calcule_frete_antes: 'Calcule o frete antes de finalizar a compra.',
     msg_preencha_dados: 'Preencha nome, e-mail, CPF e número do endereço para continuar.',
     msg_cpf_invalido: 'Digite um CPF válido.',
+    msg_email_invalido: 'Digite um e-mail válido (ex.: nome@exemplo.com).',
     msg_processando: 'Processando...',
     msg_pagamento_erro: 'Não foi possível iniciar o pagamento. Tente novamente em instantes.',
 
@@ -297,6 +298,7 @@ const TRANSLATIONS = {
     msg_calcule_frete_antes: 'Calculate shipping before checking out.',
     msg_preencha_dados: 'Please fill in name, email, CPF and address number to continue.',
     msg_cpf_invalido: 'Enter a valid CPF.',
+    msg_email_invalido: 'Enter a valid email (e.g., name@example.com).',
     msg_processando: 'Processing...',
     msg_pagamento_erro: 'We could not start the payment. Please try again shortly.',
 
@@ -478,6 +480,7 @@ const TRANSLATIONS = {
     msg_calcule_frete_antes: 'Calcula el envío antes de finalizar la compra.',
     msg_preencha_dados: 'Completa nombre, correo electrónico, CPF y número de dirección para continuar.',
     msg_cpf_invalido: 'Ingresa un CPF válido.',
+    msg_email_invalido: 'Ingresa un correo válido (ej.: nombre@ejemplo.com).',
     msg_processando: 'Procesando...',
     msg_pagamento_erro: 'No pudimos iniciar el pago. Intenta de nuevo en unos instantes.',
 

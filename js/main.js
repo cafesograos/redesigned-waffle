@@ -301,6 +301,14 @@ document.getElementById('checkoutBtn').addEventListener('click', async () => {
     alert(t('msg_preencha_dados'));
     return;
   }
+  // O type="email" do navegador aceita endereço sem ponto no domínio (ex.:
+  // "nome@hotmailcom") — já vazou pedido aprovado com e-mail assim, cujo
+  // envio (confirmação + rastreio) falhou silenciosamente pro cliente nunca
+  // saber. Essa checagem extra exige pelo menos um ponto depois do @.
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    alert(t('msg_email_invalido'));
+    return;
+  }
   if (!cpfValido(cpf)) {
     alert(t('msg_cpf_invalido'));
     return;
