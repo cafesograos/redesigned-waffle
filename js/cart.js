@@ -52,6 +52,15 @@ const Cart = {
         items: [{ item_id: id, item_name: p.nome, price: p.preco, quantity: 1 }]
       });
     }
+    if (p && window.fbq) {
+      fbq('track', 'AddToCart', {
+        content_ids: [id],
+        content_name: p.nome,
+        content_type: 'product',
+        currency: 'BRL',
+        value: p.preco
+      });
+    }
   },
 
   remove(id) {

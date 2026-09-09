@@ -93,6 +93,15 @@ document.addEventListener('click', (e) => {
           items: [{ item_id: product.id, item_name: product.nome, price: product.preco }]
         });
       }
+      if (window.fbq) {
+        fbq('track', 'ViewContent', {
+          content_ids: [product.id],
+          content_name: product.nome,
+          content_type: 'product',
+          currency: 'BRL',
+          value: product.preco
+        });
+      }
     }
   }
 });
@@ -319,6 +328,16 @@ document.getElementById('checkoutBtn').addEventListener('click', async () => {
       currency: 'BRL',
       value: Cart.grandTotal(),
       items: Cart.toLineItems().map((i) => ({ item_id: i.id, item_name: i.title, price: i.unit_price, quantity: i.quantity }))
+    });
+  }
+  if (window.fbq) {
+    const lineItems = Cart.toLineItems();
+    fbq('track', 'InitiateCheckout', {
+      content_ids: lineItems.map((i) => i.id),
+      contents: lineItems.map((i) => ({ id: i.id, quantity: i.quantity })),
+      currency: 'BRL',
+      value: Cart.grandTotal(),
+      num_items: lineItems.reduce((sum, i) => sum + i.quantity, 0)
     });
   }
 
