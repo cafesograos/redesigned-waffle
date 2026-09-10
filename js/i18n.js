@@ -175,7 +175,7 @@ const TRANSLATIONS = {
     status_enviado: '— enviado', status_preparando: '— preparando envio',
 
     resultado_sucesso_eyebrow: 'Pedido confirmado', resultado_sucesso_title: 'Pagamento aprovado!',
-    resultado_sucesso_texto: 'Obrigado pelo pedido! Você já vai receber um e-mail confirmando os detalhes, e assim que despacharmos seu café, mandamos outro com o código de rastreio.',
+    resultado_sucesso_texto: 'Obrigado pelo pedido! Pode ficar tranquilo(a): seu pedido é de verdade e seu café será despachado em até 1 dia útil. Você já vai receber um e-mail confirmando os detalhes, e assim que despacharmos, mandamos outro com o código de rastreio.',
     resultado_resumo_title: 'Resumo do pedido', resultado_total: 'Total',
     resultado_btn_loja: 'Voltar à loja', resultado_btn_whatsapp: 'Falar no WhatsApp',
 
@@ -357,7 +357,7 @@ const TRANSLATIONS = {
     status_enviado: '— shipped', status_preparando: '— preparing shipment',
 
     resultado_sucesso_eyebrow: 'Order confirmed', resultado_sucesso_title: 'Payment approved!',
-    resultado_sucesso_texto: 'Thanks for your order! You will receive an email confirming the details shortly, and as soon as we ship your coffee, we will send another one with the tracking code.',
+    resultado_sucesso_texto: 'Thanks for your order! You can rest assured: your order is real and your coffee will be dispatched within 1 business day. You will receive an email confirming the details shortly, and as soon as we ship it, we will send another one with the tracking code.',
     resultado_resumo_title: 'Order summary', resultado_total: 'Total',
     resultado_btn_loja: 'Back to store', resultado_btn_whatsapp: 'Chat on WhatsApp',
 
@@ -539,7 +539,7 @@ const TRANSLATIONS = {
     status_enviado: '— enviado', status_preparando: '— preparando envío',
 
     resultado_sucesso_eyebrow: 'Pedido confirmado', resultado_sucesso_title: '¡Pago aprobado!',
-    resultado_sucesso_texto: '¡Gracias por tu pedido! En breve recibirás un correo confirmando los detalles, y en cuanto despachemos tu café, te enviaremos otro con el código de rastreo.',
+    resultado_sucesso_texto: '¡Gracias por tu pedido! Puedes quedarte tranquilo(a): tu pedido es real y tu café será despachado en hasta 1 día hábil. En breve recibirás un correo confirmando los detalles, y en cuanto lo despachemos, te enviaremos otro con el código de rastreo.',
     resultado_resumo_title: 'Resumen del pedido', resultado_total: 'Total',
     resultado_btn_loja: 'Volver a la tienda', resultado_btn_whatsapp: 'Hablar por WhatsApp',
 
