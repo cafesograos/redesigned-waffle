@@ -125,7 +125,7 @@ const TRANSLATIONS = {
     av_msg_erro: 'Não foi possível enviar sua avaliação agora. Tente novamente em instantes.',
 
     politica_eyebrow: 'Institucional', politica_title: 'Trocas e devoluções',
-    politica_h1: 'Arrependeu da compra? Sem problema.',
+    politica_h1: 'Se arrependeu da compra? Sem problema.',
     politica_p1: 'Você tem até 7 dias corridos a partir do recebimento do produto para desistir da compra, sem precisar dar nenhum motivo — é um direito garantido pelo Código de Defesa do Consumidor (art. 49) para compras feitas fora de loja física.',
     politica_p2: 'Nesse caso, devolvemos 100% do valor pago, incluindo o frete, e o custo do envio de volta é por nossa conta.',
     politica_h2: 'Produto com defeito, errado ou danificado',
