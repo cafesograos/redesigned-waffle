@@ -125,7 +125,7 @@ const TRANSLATIONS = {
     av_msg_erro: 'Não foi possível enviar sua avaliação agora. Tente novamente em instantes.',
 
     politica_eyebrow: 'Institucional', politica_title: 'Trocas e devoluções',
-    politica_h1: 'Se arrependeu da compra? Sem problema.',
+    politica_h1: 'Precisa trocar ou devolver seu pedido? Fale com a gente pelo WhatsApp.',
     politica_p1: 'Você tem até 7 dias corridos a partir do recebimento do produto para desistir da compra, sem precisar dar nenhum motivo — é um direito garantido pelo Código de Defesa do Consumidor (art. 49) para compras feitas fora de loja física.',
     politica_p2: 'Nesse caso, devolvemos 100% do valor pago, incluindo o frete, e o custo do envio de volta é por nossa conta.',
     politica_h2: 'Produto com defeito, errado ou danificado',
@@ -307,7 +307,7 @@ const TRANSLATIONS = {
     av_msg_erro: 'We could not send your review right now. Please try again shortly.',
 
     politica_eyebrow: 'Company info', politica_title: 'Exchanges & returns',
-    politica_h1: 'Changed your mind? No problem.',
+    politica_h1: 'Need to exchange or return your order? Contact us on WhatsApp.',
     politica_p1: 'You have up to 7 calendar days from receiving the product to cancel the purchase, with no need to give a reason — it is a right guaranteed by Brazilian consumer protection law (CDC, art. 49) for purchases made outside a physical store.',
     politica_p2: 'In that case, we refund 100% of the amount paid, including shipping, and we cover the cost of sending it back.',
     politica_h2: 'Wrong, defective or damaged product',
@@ -489,7 +489,7 @@ const TRANSLATIONS = {
     av_msg_erro: 'No pudimos enviar tu reseña ahora. Intenta de nuevo en unos instantes.',
 
     politica_eyebrow: 'Institucional', politica_title: 'Cambios y devoluciones',
-    politica_h1: '¿Te arrepentiste de la compra? No hay problema.',
+    politica_h1: '¿Necesitas cambiar o devolver tu pedido? Contáctanos por WhatsApp.',
     politica_p1: 'Tienes hasta 7 días corridos desde que recibes el producto para desistir de la compra, sin necesidad de dar ningún motivo — es un derecho garantizado por el Código de Defensa del Consumidor de Brasil (art. 49) para compras hechas fuera de una tienda física.',
     politica_p2: 'En ese caso, devolvemos el 100% del valor pagado, incluido el envío, y el costo de la devolución corre por nuestra cuenta.',
     politica_h2: 'Producto con defecto, equivocado o dañado',
