@@ -351,15 +351,12 @@ document.getElementById('checkoutBtn').addEventListener('click', async () => {
         items: Cart.toLineItems(),
         frete: Cart.frete.valor,
         cliente: { nome, email, telefone, cpf },
-        entrega: { ...Cart.entrega, numero, complemento },
-        // Gerado pelo script de segurança do Mercado Pago (js/security.js no
-        // <head>) — ajuda o antifraude deles a não recusar cartão à toa.
-        deviceId: window.MP_DEVICE_SESSION_ID || null
+        entrega: { ...Cart.entrega, numero, complemento }
       })
     });
     if (!res.ok) throw new Error('Falha ao criar pagamento');
     const data = await res.json();
-    window.location.href = data.init_point; // redireciona pro checkout do Mercado Pago
+    window.location.href = data.init_point; // redireciona pro checkout da InfinitePay
   } catch (err) {
     alert(t('msg_pagamento_erro'));
     console.error(err);
