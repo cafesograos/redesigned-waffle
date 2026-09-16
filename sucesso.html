@@ -86,7 +86,11 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
 // resumo na tela e registrar a compra no Google Analytics com o valor certo.
 // Evita registrar de novo se a pessoa atualizar a página.
 (function () {
-  const preferenceId = new URLSearchParams(window.location.search).get('preference_id');
+  // A InfinitePay volta com "order_nsu" na URL (não "preference_id", que era
+  // como o Mercado Pago fazia) — sem isso a página parava de mostrar o resumo
+  // e de registrar a compra no Analytics/Pixel depois de todo pagamento aprovado.
+  const params = new URLSearchParams(window.location.search);
+  const preferenceId = params.get('order_nsu') || params.get('preference_id');
   if (!preferenceId) return;
 
   fetch('https://cafesograos-backend-production.up.railway.app/api/pedido/' + encodeURIComponent(preferenceId))
