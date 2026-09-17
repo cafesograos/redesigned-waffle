@@ -98,6 +98,23 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
     .then((pedido) => {
       if (!pedido) return;
 
+      // A InfinitePay só nos dá uma única redirect_url (diferente do Mercado
+      // Pago, que tinha back_urls separadas pra success/pending/failure) —
+      // ou seja, o cliente pode cair aqui mesmo com o pagamento ainda em
+      // análise ou recusado. Nunca confiar que chegar nessa página significa
+      // pagamento aprovado: o status real do pedido (confirmado pelo backend
+      // via webhook + payment_check) é que manda, senão a gente mostra
+      // "aprovado" e dispara conversão de compra pra pagamento que não foi
+      // aprovado de verdade.
+      if (pedido.status === 'rejected') {
+        window.location.replace('falha.html');
+        return;
+      }
+      if (pedido.status !== 'approved') {
+        window.location.replace('pendente.html');
+        return;
+      }
+
       const itensEl = document.getElementById('resumoItens');
       (pedido.items || []).forEach((i) => {
         const li = document.createElement('li');

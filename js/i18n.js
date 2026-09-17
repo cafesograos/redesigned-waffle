@@ -180,7 +180,7 @@ const TRANSLATIONS = {
     resultado_btn_loja: 'Voltar à loja', resultado_btn_whatsapp: 'Falar no WhatsApp',
 
     resultado_pendente_eyebrow: 'Pagamento em análise', resultado_pendente_title: 'Seu pagamento está em análise',
-    resultado_pendente_texto: 'Isso pode acontecer com algumas formas de pagamento (como boleto ou análise antifraude). Assim que for aprovado, avisamos por e-mail com todos os detalhes do pedido.',
+    resultado_pendente_texto: 'Isso pode acontecer quando o pagamento passa por uma análise antifraude. Assim que for aprovado, avisamos por e-mail com todos os detalhes do pedido.',
 
     resultado_falha_eyebrow: 'Pagamento não concluído', resultado_falha_title: 'Não foi possível concluir o pagamento',
     resultado_falha_texto: 'Não se preocupe, nada foi cobrado. Seu carrinho continua salvo — volte à loja e tente novamente, ou fale conosco se o problema continuar.'
@@ -362,7 +362,7 @@ const TRANSLATIONS = {
     resultado_btn_loja: 'Back to store', resultado_btn_whatsapp: 'Chat on WhatsApp',
 
     resultado_pendente_eyebrow: 'Payment under review', resultado_pendente_title: 'Your payment is under review',
-    resultado_pendente_texto: 'This can happen with some payment methods (like a boleto or anti-fraud checks). As soon as it is approved, we will email you with all the order details.',
+    resultado_pendente_texto: 'This can happen when the payment goes through an anti-fraud review. As soon as it is approved, we will email you with all the order details.',
 
     resultado_falha_eyebrow: 'Payment not completed', resultado_falha_title: 'We could not complete the payment',
     resultado_falha_texto: 'Don’t worry, nothing was charged. Your cart is still saved — go back to the store and try again, or get in touch if the problem continues.'
@@ -544,7 +544,7 @@ const TRANSLATIONS = {
     resultado_btn_loja: 'Volver a la tienda', resultado_btn_whatsapp: 'Hablar por WhatsApp',
 
     resultado_pendente_eyebrow: 'Pago en análisis', resultado_pendente_title: 'Tu pago está en análisis',
-    resultado_pendente_texto: 'Esto puede ocurrir con algunas formas de pago (como boleto o análisis antifraude). En cuanto sea aprobado, te avisamos por correo con todos los detalles del pedido.',
+    resultado_pendente_texto: 'Esto puede ocurrir cuando el pago pasa por un análisis antifraude. En cuanto sea aprobado, te avisamos por correo con todos los detalles del pedido.',
 
     resultado_falha_eyebrow: 'Pago no completado', resultado_falha_title: 'No pudimos completar el pago',
     resultado_falha_texto: 'No te preocupes, no se realizó ningún cobro. Tu carrito sigue guardado — vuelve a la tienda e intenta de nuevo, o contáctanos si el problema continúa.'
@@ -726,7 +726,7 @@ const TRANSLATIONS = {
     resultado_btn_loja: 'Retour à la boutique', resultado_btn_whatsapp: 'Discuter sur WhatsApp',
 
     resultado_pendente_eyebrow: 'Paiement en analyse', resultado_pendente_title: 'Votre paiement est en cours d’analyse',
-    resultado_pendente_texto: 'Cela peut arriver avec certains modes de paiement (comme le boleto ou l’analyse antifraude). Dès qu’il sera approuvé, nous vous informerons par e-mail avec tous les détails de la commande.',
+    resultado_pendente_texto: 'Cela peut arriver lorsque le paiement passe par une analyse antifraude. Dès qu’il sera approuvé, nous vous informerons par e-mail avec tous les détails de la commande.',
 
     resultado_falha_eyebrow: 'Paiement non finalisé', resultado_falha_title: 'Impossible de finaliser le paiement',
     resultado_falha_texto: 'Ne vous inquiétez pas, rien n’a été débité. Votre panier reste enregistré — retournez à la boutique et réessayez, ou contactez-nous si le problème persiste.'
