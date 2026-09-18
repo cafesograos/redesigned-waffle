@@ -183,7 +183,10 @@ const TRANSLATIONS = {
     resultado_pendente_texto: 'Isso pode acontecer quando o pagamento passa por uma análise antifraude. Assim que for aprovado, avisamos por e-mail com todos os detalhes do pedido.',
 
     resultado_falha_eyebrow: 'Pagamento não concluído', resultado_falha_title: 'Não foi possível concluir o pagamento',
-    resultado_falha_texto: 'Não se preocupe, nada foi cobrado. Seu carrinho continua salvo — volte à loja e tente novamente, ou fale conosco se o problema continuar.'
+    resultado_falha_texto: 'Não se preocupe, nada foi cobrado. Seu carrinho continua salvo — volte à loja e tente novamente, ou fale conosco se o problema continuar.',
+
+    pagina_404_eyebrow: 'Ops', pagina_404_title: 'Essa página não existe',
+    pagina_404_texto: 'O link pode estar quebrado ou a página foi movida. Que tal voltar pra loja e continuar por lá?'
   },
 
   en: {
@@ -365,7 +368,10 @@ const TRANSLATIONS = {
     resultado_pendente_texto: 'This can happen when the payment goes through an anti-fraud review. As soon as it is approved, we will email you with all the order details.',
 
     resultado_falha_eyebrow: 'Payment not completed', resultado_falha_title: 'We could not complete the payment',
-    resultado_falha_texto: 'Don’t worry, nothing was charged. Your cart is still saved — go back to the store and try again, or get in touch if the problem continues.'
+    resultado_falha_texto: 'Don’t worry, nothing was charged. Your cart is still saved — go back to the store and try again, or get in touch if the problem continues.',
+
+    pagina_404_eyebrow: 'Oops', pagina_404_title: 'This page doesn’t exist',
+    pagina_404_texto: 'The link may be broken or the page has moved. How about heading back to the store?'
   },
 
   es: {
@@ -547,7 +553,10 @@ const TRANSLATIONS = {
     resultado_pendente_texto: 'Esto puede ocurrir cuando el pago pasa por un análisis antifraude. En cuanto sea aprobado, te avisamos por correo con todos los detalles del pedido.',
 
     resultado_falha_eyebrow: 'Pago no completado', resultado_falha_title: 'No pudimos completar el pago',
-    resultado_falha_texto: 'No te preocupes, no se realizó ningún cobro. Tu carrito sigue guardado — vuelve a la tienda e intenta de nuevo, o contáctanos si el problema continúa.'
+    resultado_falha_texto: 'No te preocupes, no se realizó ningún cobro. Tu carrito sigue guardado — vuelve a la tienda e intenta de nuevo, o contáctanos si el problema continúa.',
+
+    pagina_404_eyebrow: 'Ups', pagina_404_title: 'Esta página no existe',
+    pagina_404_texto: 'El enlace puede estar roto o la página fue movida. ¿Qué tal volver a la tienda?'
   },
 
   fr: {
@@ -729,7 +738,10 @@ const TRANSLATIONS = {
     resultado_pendente_texto: 'Cela peut arriver lorsque le paiement passe par une analyse antifraude. Dès qu’il sera approuvé, nous vous informerons par e-mail avec tous les détails de la commande.',
 
     resultado_falha_eyebrow: 'Paiement non finalisé', resultado_falha_title: 'Impossible de finaliser le paiement',
-    resultado_falha_texto: 'Ne vous inquiétez pas, rien n’a été débité. Votre panier reste enregistré — retournez à la boutique et réessayez, ou contactez-nous si le problème persiste.'
+    resultado_falha_texto: 'Ne vous inquiétez pas, rien n’a été débité. Votre panier reste enregistré — retournez à la boutique et réessayez, ou contactez-nous si le problème persiste.',
+
+    pagina_404_eyebrow: 'Oups', pagina_404_title: 'Cette page n’existe pas',
+    pagina_404_texto: 'Le lien est peut-être cassé ou la page a été déplacée. Et si vous reveniez à la boutique ?'
   }
 };
 

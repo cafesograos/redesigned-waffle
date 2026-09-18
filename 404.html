@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Página não encontrada — Café Só Grãos</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/icons/favicon-512.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link href="https://api.fontshare.com/v2/css?f[]=tanker@400&f[]=general-sans@400,500,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9JWWL4F6ZP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9JWWL4F6ZP');
+</script>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1812177366630929');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><img src="assets/logo-sograos-branco.png" alt="Café Só Grãos" class="logo-img"></a>
+    <div class="lang-switch" role="group" data-i18n-aria-label="lang_switch_aria" aria-label="Idioma">
+      <button type="button" class="lang-btn" data-lang="pt">PT</button>
+      <button type="button" class="lang-btn" data-lang="en">EN</button>
+      <button type="button" class="lang-btn" data-lang="es">ES</button>
+      <button type="button" class="lang-btn" data-lang="fr">FR</button>
+    </div>
+  </div>
+</header>
+
+<section class="resultado resultado-falha">
+  <div class="container resultado-inner">
+    <div class="resultado-icone">☕</div>
+    <p class="eyebrow center" data-i18n="pagina_404_eyebrow">Ops</p>
+    <h1 data-i18n="pagina_404_title">Essa página não existe</h1>
+    <p class="resultado-texto" data-i18n="pagina_404_texto">O link pode estar quebrado ou a página foi movida. Que tal voltar pra loja e continuar por lá?</p>
+
+    <div class="resultado-acoes">
+      <a href="index.html" class="btn btn-primary" data-i18n="resultado_btn_loja">Voltar à loja</a>
+      <a href="https://wa.me/5516997616459" target="_blank" rel="noopener noreferrer" class="btn btn-outline" data-i18n="resultado_btn_whatsapp">Falar no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer bean-pattern resultado-footer">
+  <div class="container">
+    <p>&copy; <span id="year"></span> Café Só Grãos. <span data-i18n="footer_rights">Todos os direitos reservados.</span></p>
+    <p><a href="privacidade.html" data-i18n="footer_privacidade">Política de Privacidade</a></p>
+  </div>
+</footer>
+
+<script src="js/i18n.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
