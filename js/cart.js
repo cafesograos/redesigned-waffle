@@ -143,6 +143,11 @@ const Cart = {
     entregaEl.style.display = count === 0 ? 'none' : 'block';
 
     document.getElementById('checkoutBtn').disabled = count === 0 || !this.frete;
+    // Sem isso, depois de remover/alterar a quantidade de um item o frete
+    // zerava (precisa recalcular pro peso novo) mas nada na tela avisava —
+    // o botão só ficava com uma cor um pouco mais clara, fácil de não notar
+    // que estava bloqueado.
+    document.getElementById('cartAvisoFrete').hidden = count === 0 || !!this.frete;
   }
 };
 
