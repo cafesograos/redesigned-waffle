@@ -137,7 +137,7 @@ const TRANSLATIONS = {
     politica_btn_pedido: 'Consultar meu pedido', politica_btn_loja: 'Voltar à loja',
 
     privacidade_eyebrow: 'Institucional', privacidade_title: 'Política de Privacidade',
-    privacidade_atualizado: 'Última atualização: agosto de 2026.',
+    privacidade_atualizado: 'Última atualização: setembro de 2026.',
     privacidade_h1: 'Quais dados coletamos',
     privacidade_p1: 'Quando você compra no nosso site, coletamos: nome, e-mail, telefone, CPF e endereço de entrega. O CPF é usado pra validar o formulário e fica registrado no pedido só pra emissão da etiqueta de envio (exigência das transportadoras) — não é compartilhado com o processador de pagamento.',
     privacidade_p2: 'Se você deixa seu contato no formulário "Fique sabendo da próxima torra", coletamos nome (opcional), e-mail e telefone (opcional). Se você envia uma avaliação de produto, coletamos seu nome, a nota e o comentário — que ficam visíveis publicamente na página do produto.',
@@ -319,7 +319,7 @@ const TRANSLATIONS = {
     politica_btn_pedido: 'Check my order', politica_btn_loja: 'Back to store',
 
     privacidade_eyebrow: 'About us', privacidade_title: 'Privacy Policy',
-    privacidade_atualizado: 'Last updated: August 2026.',
+    privacidade_atualizado: 'Last updated: September 2026.',
     privacidade_h1: 'What data we collect',
     privacidade_p1: 'When you buy on our site, we collect: name, email, phone, CPF (Brazilian tax ID) and delivery address. CPF is used to validate the form and is kept with the order only for generating the shipping label (a carrier requirement) — it is not shared with the payment processor.',
     privacidade_p2: 'If you leave your contact in the "Find out about the next roast" form, we collect name (optional), email and phone (optional). If you submit a product review, we collect your name, rating and comment — which are shown publicly on the product page.',
@@ -501,7 +501,7 @@ const TRANSLATIONS = {
     politica_btn_pedido: 'Consultar mi pedido', politica_btn_loja: 'Volver a la tienda',
 
     privacidade_eyebrow: 'Institucional', privacidade_title: 'Política de Privacidad',
-    privacidade_atualizado: 'Última actualización: agosto de 2026.',
+    privacidade_atualizado: 'Última actualización: septiembre de 2026.',
     privacidade_h1: 'Qué datos recopilamos',
     privacidade_p1: 'Cuando compras en nuestro sitio, recopilamos: nombre, correo electrónico, teléfono, CPF y dirección de entrega. El CPF se usa para validar el formulario y queda registrado en el pedido solo para la emisión de la etiqueta de envío (exigencia de las transportadoras) — no se comparte con el procesador de pago.',
     privacidade_p2: 'Si dejas tu contacto en el formulario "Entérate del próximo tueste", recopilamos nombre (opcional), correo electrónico y teléfono (opcional). Si envías una reseña de producto, recopilamos tu nombre, la calificación y el comentario — que quedan visibles públicamente en la página del producto.',
@@ -683,7 +683,7 @@ const TRANSLATIONS = {
     politica_btn_pedido: 'Consulter ma commande', politica_btn_loja: 'Retour à la boutique',
 
     privacidade_eyebrow: 'Institutionnel', privacidade_title: 'Politique de confidentialité',
-    privacidade_atualizado: 'Dernière mise à jour : août 2026.',
+    privacidade_atualizado: 'Dernière mise à jour : septembre 2026.',
     privacidade_h1: 'Quelles données nous collectons',
     privacidade_p1: 'Lorsque vous achetez sur notre site, nous collectons : nom, e-mail, téléphone, CPF et adresse de livraison. Le CPF sert à valider le formulaire et reste enregistré avec la commande uniquement pour la génération de l’étiquette d’expédition (exigence des transporteurs) — il n’est pas partagé avec le processeur de paiement.',
     privacidade_p2: 'Si vous laissez votre contact dans le formulaire « Soyez informé de la prochaine torréfaction », nous collectons le nom (facultatif), l’e-mail et le téléphone (facultatif). Si vous soumettez un avis sur un produit, nous collectons votre nom, la note et le commentaire — qui restent visibles publiquement sur la page du produit.',
