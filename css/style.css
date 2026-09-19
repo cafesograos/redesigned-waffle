@@ -368,7 +368,7 @@ a { text-decoration: none; color: inherit; }
 .sobre-historia h2 { margin-bottom: 28px; font-size: 30px; }
 .sobre-historia > p { color: var(--text-soft); margin-bottom: 18px; line-height: 1.7; }
 .sobre-historia-imagem {
-  border-radius: var(--radius); overflow: hidden; height: 320px;
+  border-radius: var(--radius); overflow: hidden; height: 480px;
   margin-bottom: 28px; border: 1px solid #eee;
 }
 .sobre-historia-imagem img { width: 100%; height: 100%; object-fit: cover; display: block; }
