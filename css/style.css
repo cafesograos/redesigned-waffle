@@ -490,7 +490,7 @@ a { text-decoration: none; color: inherit; }
 .lightbox-dot.active { background: var(--laranja); }
 
 @media (max-width: 800px) {
-  .hero { padding: 90px 0; min-height: 460px; background-image: linear-gradient(rgba(33,23,20,.85), rgba(33,23,20,.85)), url('../assets/plantacao-real-hero.jpg'); }
+  .hero { padding: 90px 0; min-height: 460px; background-image: linear-gradient(rgba(33,23,20,.85), rgba(33,23,20,.85)), url('../assets/plantacao-real-hero-mobile.jpg'); }
   .hero-text { text-align: center; margin: 0 auto; }
   .hero-sub { margin-left: auto; margin-right: auto; }
   .btn-whatsapp-nav { display: none; }
