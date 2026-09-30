@@ -516,6 +516,17 @@ a { text-decoration: none; color: inherit; }
   .header-inner { height: 88px; }
   .logo-img { height: 68px; }
   .category-strip { flex-wrap: wrap; gap: 16px; }
+  /* Sem wrap: no mobile a pastilha da direita (ex. "Café Moído") podia cair
+     bem embaixo do botão flutuante do WhatsApp (fixo no canto), ficando
+     parcialmente encoberta. Rolagem horizontal evita esse ponto de colisão
+     e é o mesmo padrão já usado nas avaliações/produtos logo abaixo. */
+  .filter-pills {
+    flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto;
+    scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
+    padding: 0 14px 10px; margin: 0 -14px 24px; scrollbar-width: none;
+  }
+  .filter-pills::-webkit-scrollbar { display: none; }
+  .pill { flex: 0 0 auto; scroll-snap-align: start; }
   .hero-text h1 { font-size: 32px; }
   #produtos, #sobre, #contato { scroll-margin-top: 140px; }
   .destaques-grid, .linhas-grid { grid-template-columns: 1fr; }
