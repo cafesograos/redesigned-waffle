@@ -3,9 +3,13 @@ const API_BASE = "https://cafesograos-backend-production.up.railway.app";
 let activeFilter = "todos";
 
 // Nome/descrição do produto no idioma atual — cai pro português se a
-// tradução específica não existir (ex.: catálogo local desatualizado).
+// tradução específica não existir (ex.: catálogo local desatualizado) ou se
+// i18n.js não tiver terminado de carregar a tempo (visto em produção: uma
+// falha de rede no carregamento do script derrubava a vitrine inteira, já
+// que esse ReferenceError não tratado interrompia carregarCatalogo() antes
+// de renderProducts() rodar).
 function idiomaSufixo() {
-  const lang = idiomaAtual();
+  const lang = typeof idiomaAtual === 'function' ? idiomaAtual() : 'pt';
   return lang === 'pt' ? '' : `_${lang}`;
 }
 function nomeProduto(p) { return p[`nome${idiomaSufixo()}`] || p.nome; }
