@@ -385,6 +385,40 @@ async function carregarCatalogo() {
   renderFilterPills();
   renderProducts();
   Cart.render();
+  injetarSchemaProdutos();
+}
+
+// Dados estruturados (Schema.org) pros produtos, pra buscadores poderem
+// mostrar preço/disponibilidade no resultado de busca. Gerado a partir do
+// catálogo que acabou de carregar (nunca hardcoded) pra nunca ficar
+// desatualizado quando preço/produto mudar. Sem página própria por produto
+// o Google não cria um rich result separado pra cada um, mas os dados ficam
+// corretos e disponíveis mesmo assim.
+function injetarSchemaProdutos() {
+  const anterior = document.getElementById('schema-produtos');
+  if (anterior) anterior.remove();
+
+  const graph = PRODUCTS.map((p) => ({
+    '@type': 'Product',
+    name: p.nome,
+    description: p.descricao,
+    image: `${location.origin}/${p.img}`,
+    sku: p.id,
+    brand: { '@type': 'Brand', name: 'Café Só Grãos' },
+    offers: {
+      '@type': 'Offer',
+      url: `${location.origin}/#produtos`,
+      priceCurrency: 'BRL',
+      price: Number(p.preco).toFixed(2),
+      availability: 'https://schema.org/InStock'
+    }
+  }));
+
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.id = 'schema-produtos';
+  script.textContent = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
+  document.head.appendChild(script);
 }
 
 carregarCatalogo();
