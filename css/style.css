@@ -533,6 +533,9 @@ a { text-decoration: none; color: inherit; }
   .destaque { text-align: center; }
   .origem-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
+  /* A última linha do rodapé ("Pagamento processado...") ficava atrás do
+     botão flutuante do WhatsApp no fim da página, no mobile. */
+  .footer-bottom { padding-bottom: 70px; }
   .objecoes-grid { grid-template-columns: 1fr; }
   .produto-card, .avaliacao-card { flex-basis: 82vw; }
   .avaliacao-form-wrap { padding: 24px; }
