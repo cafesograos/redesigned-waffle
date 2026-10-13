@@ -31,7 +31,15 @@ const Cart = {
       const p = PRODUCTS.find(p => p.id === id);
       return sum + (p ? (p.pesoGramas || 300) * qty : 0);
     }, 0);
-    return gramas / 1000;
+    // Soma o peso do brinde de boas-vindas (Drip Coffee) mesmo sem saber ainda
+    // se esse cliente é novo — nesse ponto do checkout (CEP calculado antes
+    // do e-mail) não dá pra saber se ele tem direito ao brinde. Estimar o
+    // frete já contando esse peso evita que o valor mostrado aqui fique mais
+    // barato do que o frete realmente cobrado depois em /api/create-preference
+    // (que soma esse peso de verdade pra cliente novo).
+    const brinde = PRODUCTS.find(p => p.id === 'drip-coffee-caixa-10');
+    const gramasComBrinde = gramas + (brinde ? brinde.pesoGramas || 400 : 400);
+    return gramasComBrinde / 1000;
   },
 
   grandTotal() {
