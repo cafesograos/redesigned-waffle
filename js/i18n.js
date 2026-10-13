@@ -23,7 +23,7 @@ const TRANSLATIONS = {
     destaques_statement: 'Torra recente, 100% arábica, entrega garantida.',
     destaque1_title: 'Torra recente', destaque1_desc: 'Torrado em pequenos lotes, toda semana',
     destaque2_title: 'Origem rastreada', destaque2_desc: 'Direto de produtores parceiros',
-    destaque3_title: 'Entrega para todo o Brasil', destaque3_desc: 'Pagamento seguro via InfinitePay',
+    destaque3_title: 'Entrega para todo o Brasil', destaque3_desc: 'Peça sem sair de casa',
     destaque4_title: 'Linha Especial 83+ SCA', destaque4_desc: 'Nossa torra de maior pontuação, avaliada oficialmente',
     sca_tooltip: 'Avaliado por cooperativa parceira: acima de 83 pontos na escala SCA (Specialty Coffee Association), o padrão internacional de café especial.',
 
@@ -208,7 +208,7 @@ const TRANSLATIONS = {
     destaques_statement: 'Fresh roast, 100% arabica, guaranteed delivery.',
     destaque1_title: 'Fresh roast', destaque1_desc: 'Roasted in small batches, every week',
     destaque2_title: 'Traceable origin', destaque2_desc: 'Straight from partner producers',
-    destaque3_title: 'Shipping all over Brazil', destaque3_desc: 'Secure payment via InfinitePay',
+    destaque3_title: 'Shipping all over Brazil', destaque3_desc: 'Order without leaving home',
     destaque4_title: 'Specialty line 83+ SCA', destaque4_desc: 'Our highest-rated roast, officially evaluated',
     sca_tooltip: 'Rated by a partner cooperative: above 83 points on the SCA scale (Specialty Coffee Association), the international standard for specialty coffee.',
 
@@ -393,7 +393,7 @@ const TRANSLATIONS = {
     destaques_statement: 'Tueste reciente, 100% arábica, entrega garantizada.',
     destaque1_title: 'Tueste reciente', destaque1_desc: 'Tostado en lotes pequeños, cada semana',
     destaque2_title: 'Origen rastreable', destaque2_desc: 'Directo de productores asociados',
-    destaque3_title: 'Envíos a todo Brasil', destaque3_desc: 'Pago seguro vía InfinitePay',
+    destaque3_title: 'Envíos a todo Brasil', destaque3_desc: 'Pide sin salir de casa',
     destaque4_title: 'Línea Especial 83+ SCA', destaque4_desc: 'Nuestro tueste de mayor puntuación, evaluado oficialmente',
     sca_tooltip: 'Evaluado por cooperativa asociada: más de 83 puntos en la escala SCA (Specialty Coffee Association), el estándar internacional de café especial.',
 
@@ -578,7 +578,7 @@ const TRANSLATIONS = {
     destaques_statement: 'Torréfaction récente, 100% arabica, livraison garantie.',
     destaque1_title: 'Torréfaction récente', destaque1_desc: 'Torréfié en petits lots, chaque semaine',
     destaque2_title: 'Origine traçable', destaque2_desc: 'Directement des producteurs partenaires',
-    destaque3_title: 'Livraison dans tout le Brésil', destaque3_desc: 'Paiement sécurisé via InfinitePay',
+    destaque3_title: 'Livraison dans tout le Brésil', destaque3_desc: 'Commandez sans sortir de chez vous',
     destaque4_title: 'Ligne Spéciale 83+ SCA', destaque4_desc: 'Notre torréfaction la mieux notée, évaluée officiellement',
     sca_tooltip: 'Évalué par une coopérative partenaire : plus de 83 points sur l’échelle SCA (Specialty Coffee Association), la norme internationale du café spécial.',
 
