@@ -95,65 +95,79 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
   const preferenceId = params.get('order_nsu') || params.get('preference_id');
   if (!preferenceId) return;
 
-  fetch('https://cafesograos-backend-production.up.railway.app/api/pedido/' + encodeURIComponent(preferenceId))
-    .then((r) => (r.ok ? r.json() : null))
-    .then((pedido) => {
-      if (!pedido) return;
+  // A InfinitePay só nos dá uma única redirect_url (diferente do Mercado
+  // Pago, que tinha back_urls separadas pra success/pending/failure) —
+  // ou seja, o cliente pode cair aqui mesmo com o pagamento ainda em
+  // análise ou recusado. Nunca confiar que chegar nessa página significa
+  // pagamento aprovado: o status real do pedido (confirmado pelo backend
+  // via webhook + payment_check) é que manda, senão a gente mostra
+  // "aprovado" e dispara conversão de compra pra pagamento que não foi
+  // aprovado de verdade.
+  // O navegador redireciona pra cá assim que o pagamento termina, mas o
+  // webhook que confirma "approved" no banco chega de forma assíncrona e pode
+  // demorar um pouco mais — sem tentar de novo, um cliente que pagou de
+  // verdade podia cair aqui um instante antes do webhook processar e ser
+  // mandado pra pendente.html por engano, achando que o pagamento falhou.
+  // Tenta de novo por alguns segundos (mesma ideia já usada em server.js pra
+  // esperar o código de rastreio chegar) antes de desistir.
+  function checarPedido(tentativa) {
+    fetch('https://cafesograos-backend-production.up.railway.app/api/pedido/' + encodeURIComponent(preferenceId))
+      .then((r) => (r.ok ? r.json() : null))
+      .then((pedido) => {
+        if (!pedido) return;
 
-      // A InfinitePay só nos dá uma única redirect_url (diferente do Mercado
-      // Pago, que tinha back_urls separadas pra success/pending/failure) —
-      // ou seja, o cliente pode cair aqui mesmo com o pagamento ainda em
-      // análise ou recusado. Nunca confiar que chegar nessa página significa
-      // pagamento aprovado: o status real do pedido (confirmado pelo backend
-      // via webhook + payment_check) é que manda, senão a gente mostra
-      // "aprovado" e dispara conversão de compra pra pagamento que não foi
-      // aprovado de verdade.
-      if (pedido.status === 'rejected') {
-        window.location.replace('falha.html');
-        return;
-      }
-      if (pedido.status !== 'approved') {
-        window.location.replace('pendente.html');
-        return;
-      }
+        if (pedido.status === 'rejected') {
+          window.location.replace('falha.html');
+          return;
+        }
+        if (pedido.status !== 'approved') {
+          if (tentativa < 5) {
+            setTimeout(() => checarPedido(tentativa + 1), 2000);
+          } else {
+            window.location.replace('pendente.html');
+          }
+          return;
+        }
 
-      const itensEl = document.getElementById('resumoItens');
-      (pedido.items || []).forEach((i) => {
-        const li = document.createElement('li');
-        const spanItem = document.createElement('span');
-        spanItem.textContent = `${i.quantity}x ${i.title}`;
-        const spanValor = document.createElement('span');
-        spanValor.textContent = 'R$ ' + Number(i.unit_price * i.quantity).toFixed(2).replace('.', ',');
-        li.append(spanItem, spanValor);
-        itensEl.appendChild(li);
-      });
-      document.getElementById('resumoTotal').textContent = 'R$ ' + Number(pedido.total).toFixed(2).replace('.', ',');
-      document.getElementById('resumoPedido').hidden = false;
+        const itensEl = document.getElementById('resumoItens');
+        (pedido.items || []).forEach((i) => {
+          const li = document.createElement('li');
+          const spanItem = document.createElement('span');
+          spanItem.textContent = `${i.quantity}x ${i.title}`;
+          const spanValor = document.createElement('span');
+          spanValor.textContent = 'R$ ' + Number(i.unit_price * i.quantity).toFixed(2).replace('.', ',');
+          li.append(spanItem, spanValor);
+          itensEl.appendChild(li);
+        });
+        document.getElementById('resumoTotal').textContent = 'R$ ' + Number(pedido.total).toFixed(2).replace('.', ',');
+        document.getElementById('resumoPedido').hidden = false;
 
-      const jaRegistrado = sessionStorage.getItem('compra-registrada-' + preferenceId);
-      if (jaRegistrado) return;
-      gtag('event', 'purchase', {
-        transaction_id: preferenceId,
-        currency: 'BRL',
-        value: Number(pedido.total),
-        shipping: Number(pedido.shipping_cost),
-        items: (pedido.items || []).map((i) => ({
-          item_name: i.title,
-          price: Number(i.unit_price),
-          quantity: i.quantity
-        }))
-      });
-      if (window.fbq) {
-        fbq('track', 'Purchase', {
+        const jaRegistrado = sessionStorage.getItem('compra-registrada-' + preferenceId);
+        if (jaRegistrado) return;
+        gtag('event', 'purchase', {
+          transaction_id: preferenceId,
           currency: 'BRL',
           value: Number(pedido.total),
-          num_items: (pedido.items || []).reduce((sum, i) => sum + i.quantity, 0),
-          content_type: 'product'
+          shipping: Number(pedido.shipping_cost),
+          items: (pedido.items || []).map((i) => ({
+            item_name: i.title,
+            price: Number(i.unit_price),
+            quantity: i.quantity
+          }))
         });
-      }
-      sessionStorage.setItem('compra-registrada-' + preferenceId, '1');
-    })
-    .catch(() => {});
+        if (window.fbq) {
+          fbq('track', 'Purchase', {
+            currency: 'BRL',
+            value: Number(pedido.total),
+            num_items: (pedido.items || []).reduce((sum, i) => sum + i.quantity, 0),
+            content_type: 'product'
+          });
+        }
+        sessionStorage.setItem('compra-registrada-' + preferenceId, '1');
+      })
+      .catch(() => {});
+  }
+  checarPedido(0);
 })();
 document.getElementById('year').textContent = new Date().getFullYear();
 </script>
