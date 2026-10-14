@@ -451,6 +451,11 @@ a { text-decoration: none; color: inherit; }
 .cart-entrega h4 { font-size: 14px; margin-bottom: 10px; color: var(--expresso); }
 .entrega-row { display: flex; gap: 8px; margin-bottom: 8px; }
 .entrega-row input { flex: 1; min-width: 0; }
+/* "Número" é sempre curto (poucos dígitos) — dar mais espaço de propósito
+   pro "Complemento" evita que o placeholder/texto digitado corte no mobile,
+   onde é a maioria do nosso público. */
+.entrega-row-numero input:first-child { flex: 0.7; }
+.entrega-row-numero input:last-child { flex: 1.6; }
 .cart-entrega input {
   width: 100%; padding: 10px 12px; margin-bottom: 8px;
   border: 1px solid #ddd; border-radius: 8px; font-size: 16px; font-family: inherit;
