@@ -419,6 +419,23 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
 </aside>
 <div class="cart-overlay" id="cartOverlay"></div>
 
+<!-- Popup de cadastro na entrada: quem deixa nome+telefone aqui ganha 2 Drip
+     Coffee de brinde (em vez de 1) na primeira compra. -->
+<div class="popup-cadastro-overlay" id="popupCadastroOverlay">
+  <div class="popup-cadastro" role="dialog" aria-modal="true" aria-labelledby="popupCadastroTitulo">
+    <button class="popup-cadastro-close" id="popupCadastroClose" data-i18n-aria-label="popup_cadastro_fechar_aria" aria-label="Fechar">✕</button>
+    <p class="popup-cadastro-emoji" aria-hidden="true">🎁</p>
+    <h3 id="popupCadastroTitulo" data-i18n="popup_cadastro_titulo">Ganhe 2 Drip Coffee de brinde!</h3>
+    <p data-i18n="popup_cadastro_texto">Cadastre seu nome e telefone e, na sua primeira compra, você ganha 2 Drip Coffee de brinde — em dobro.</p>
+    <form id="formPopupCadastro">
+      <input type="text" id="popupNome" data-i18n-placeholder="popup_ph_nome" placeholder="Seu nome" required>
+      <input type="tel" id="popupTelefone" data-i18n-placeholder="popup_ph_telefone" placeholder="Telefone / WhatsApp" required>
+      <button type="submit" class="btn btn-primary btn-block" data-i18n="popup_cadastro_btn">Quero meu brinde em dobro</button>
+    </form>
+    <p class="popup-cadastro-status" id="popupCadastroStatus"></p>
+  </div>
+</div>
+
 <!-- Galeria de imagens do produto -->
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lightboxClose" data-i18n-aria-label="lightbox_close" aria-label="Fechar">✕</button>

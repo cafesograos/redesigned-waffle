@@ -560,6 +560,65 @@ carregarCatalogo();
   });
 })();
 
+// Popup de cadastro (nome + telefone) na entrada do site: quem se cadastra
+// aqui ganha 2 Drip Coffee de brinde (em vez de 1) na primeira compra. Só
+// marca como "já cadastrado" (nunca mais aparece) depois de um cadastro com
+// sucesso — fechar com o X só dispensa pra essa visita, reaparece na próxima.
+(function popupCadastroInit() {
+  const overlay = document.getElementById('popupCadastroOverlay');
+  const closeBtn = document.getElementById('popupCadastroClose');
+  const form = document.getElementById('formPopupCadastro');
+  const statusEl = document.getElementById('popupCadastroStatus');
+  if (!overlay || !form) return;
+
+  const CADASTRADO_KEY = 'cafesograos-cadastro-popup';
+
+  function fechar() {
+    overlay.classList.remove('open');
+  }
+
+  closeBtn.addEventListener('click', fechar);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) fechar(); });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const nome = document.getElementById('popupNome').value.trim();
+    const telefone = document.getElementById('popupTelefone').value.trim();
+
+    if (!nome || telefone.replace(/\D/g, '').length < 10) {
+      statusEl.textContent = t('popup_cadastro_msg_preencha');
+      return;
+    }
+
+    const btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    statusEl.textContent = t('popup_cadastro_msg_enviando');
+
+    try {
+      const res = await fetch(`${API_BASE}/api/cadastro-popup`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, telefone })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Falha ao cadastrar');
+
+      localStorage.setItem(CADASTRADO_KEY, '1');
+      statusEl.textContent = t('popup_cadastro_msg_sucesso');
+      setTimeout(fechar, 2000);
+    } catch (err) {
+      console.error(err);
+      statusEl.textContent = t('popup_cadastro_msg_erro');
+      btn.disabled = false;
+    }
+  });
+
+  // Pequeno atraso pra não competir com o carregamento inicial da página.
+  if (!localStorage.getItem(CADASTRADO_KEY)) {
+    setTimeout(() => overlay.classList.add('open'), 1200);
+  }
+})();
+
 // Quando o idioma muda, redesenha tudo que foi montado dinamicamente em JS
 // (o data-i18n cuida sozinho do texto estático do HTML).
 window.onLanguageChange = function () {
