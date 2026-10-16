@@ -485,7 +485,10 @@ carregarCatalogo();
 
   // "Comprou: Tradicional" etc. — o valor vem gravado em português (é o
   // mesmo texto validado no backend), só a legenda exibida é traduzida.
-  const CHAVE_LINHA = { Tradicional: 'av_opt_tradicional', Gourmet: 'av_opt_gourmet', Especial: 'av_opt_especial', 'Drip Coffee': 'av_opt_drip' };
+  // "Gourmet" não tem mais chave de tradução (linha descontinuada) — quem já
+  // tinha avaliação marcada com ela continua mostrando o texto "Gourmet" (o
+  // valor cru salvo no banco), só não traduz pros outros idiomas.
+  const CHAVE_LINHA = { Tradicional: 'av_opt_tradicional', Especial: 'av_opt_especial', 'Drip Coffee': 'av_opt_drip' };
 
   function renderAvaliacoes() {
     if (!ultimasAvaliacoes.length) return;

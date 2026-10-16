@@ -295,7 +295,7 @@ a { text-decoration: none; color: inherit; }
 .linhas { padding: 64px 0; background: #fff; }
 .linhas h2 { margin-bottom: 8px; }
 .linhas .section-sub { margin-bottom: 32px; }
-.linhas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.linhas-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
 .linha-card {
   background: #F7F5F4; border-radius: var(--radius); padding: 24px;
   border: 1px solid #ecdfc9;
