@@ -527,9 +527,9 @@ a { text-decoration: none; color: inherit; }
   .header-inner { padding: 0 14px; }
   .header-actions { gap: 8px; }
   .lang-switch { gap: 0; }
-  /* Largura é curta demais pra 4 idiomas lado a lado (~26px cada no máximo);
+  /* Largura é curta demais pra 5 idiomas lado a lado (~26px cada no máximo);
      compensa a altura via padding pra chegar perto do alvo de toque de 44px. */
-  .lang-btn { padding: 12px 6px; font-size: 11px; }
+  .lang-btn { padding: 12px 4px; font-size: 11px; }
   .cart-toggle span:not(#cartCount) { display: none; }
   .main-nav {
     display: flex; flex-direction: column;
