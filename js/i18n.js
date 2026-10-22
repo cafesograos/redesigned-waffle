@@ -52,7 +52,7 @@ const TRANSLATIONS = {
     av_estrelas_aria: 'Nota de 1 a 5',
     av_estrela1_aria: '1 estrela', av_estrela2_aria: '2 estrelas', av_estrela3_aria: '3 estrelas',
     av_estrela4_aria: '4 estrelas', av_estrela5_aria: '5 estrelas',
-    av_ph_comentario: 'Conte como foi sua experiência com o Café Só Grãos', av_submit: 'Enviar avaliação',
+    av_ph_comentario: 'Conte como foi sua experiência com o Café Só Grãos (opcional)', av_submit: 'Enviar avaliação',
     av_comprou: 'Comprou',
 
     sobre_eyebrow: 'Nossa história', sobre_title: 'Uma história movida a café',
@@ -245,7 +245,7 @@ const TRANSLATIONS = {
     av_estrelas_aria: 'Rating from 1 to 5',
     av_estrela1_aria: '1 star', av_estrela2_aria: '2 stars', av_estrela3_aria: '3 stars',
     av_estrela4_aria: '4 stars', av_estrela5_aria: '5 stars',
-    av_ph_comentario: 'Tell us about your experience with Café Só Grãos', av_submit: 'Submit review',
+    av_ph_comentario: 'Tell us about your experience with Café Só Grãos (optional)', av_submit: 'Submit review',
     av_comprou: 'Bought',
 
     sobre_eyebrow: 'Our story', sobre_title: 'A story fueled by coffee',
@@ -438,7 +438,7 @@ const TRANSLATIONS = {
     av_estrelas_aria: 'Calificación de 1 a 5',
     av_estrela1_aria: '1 estrella', av_estrela2_aria: '2 estrellas', av_estrela3_aria: '3 estrellas',
     av_estrela4_aria: '4 estrellas', av_estrela5_aria: '5 estrellas',
-    av_ph_comentario: 'Cuéntanos cómo fue tu experiencia con Café Só Grãos', av_submit: 'Enviar reseña',
+    av_ph_comentario: 'Cuéntanos cómo fue tu experiencia con Café Só Grãos (opcional)', av_submit: 'Enviar reseña',
     av_comprou: 'Compró',
 
     sobre_eyebrow: 'Nuestra historia', sobre_title: 'Una historia movida a café',
@@ -631,7 +631,7 @@ const TRANSLATIONS = {
     av_estrelas_aria: 'Note de 1 à 5',
     av_estrela1_aria: '1 étoile', av_estrela2_aria: '2 étoiles', av_estrela3_aria: '3 étoiles',
     av_estrela4_aria: '4 étoiles', av_estrela5_aria: '5 étoiles',
-    av_ph_comentario: 'Racontez votre expérience avec Café Só Grãos', av_submit: 'Envoyer l’avis',
+    av_ph_comentario: 'Racontez votre expérience avec Café Só Grãos (facultatif)', av_submit: 'Envoyer l’avis',
     av_comprou: 'A acheté',
 
     sobre_eyebrow: 'Notre histoire', sobre_title: 'Une histoire portée par le café',
@@ -824,7 +824,7 @@ const TRANSLATIONS = {
     av_estrelas_aria: '1至5星评分',
     av_estrela1_aria: '1星', av_estrela2_aria: '2星', av_estrela3_aria: '3星',
     av_estrela4_aria: '4星', av_estrela5_aria: '5星',
-    av_ph_comentario: '说说您在 Café Só Grãos 的体验吧', av_submit: '提交评价',
+    av_ph_comentario: '说说您在 Café Só Grãos 的体验吧（选填）', av_submit: '提交评价',
     av_comprou: '购买了',
 
     sobre_eyebrow: '我们的故事', sobre_title: '一个因咖啡而生的故事',

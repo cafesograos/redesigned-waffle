@@ -453,7 +453,7 @@ carregarCatalogo();
     const produto = document.getElementById('avProduto').value;
     const comentario = document.getElementById('avComentario').value.trim();
 
-    if (!nome || !produto || !comentario || !notaSelecionada) {
+    if (!nome || !produto || !notaSelecionada) {
       statusEl.textContent = t('av_msg_preencha');
       return;
     }
@@ -498,8 +498,8 @@ carregarCatalogo();
       <div class="avaliacao-card">
         <div class="avaliacao-estrelas-view">${'★'.repeat(a.rating)}${'☆'.repeat(5 - a.rating)}</div>
         ${a.product_line ? `<span class="avaliacao-produto">${t('av_comprou')}: ${esc(CHAVE_LINHA[a.product_line] ? t(CHAVE_LINHA[a.product_line]) : a.product_line)}</span>` : ''}
-        <p>"${esc(a.comment)}"</p>
-        <span class="avaliacao-autor">${esc(a.customer_name)}</span><span class="avaliacao-data">${new Date(a.created_at).toLocaleDateString('pt-BR')}</span>
+        ${a.comment ? `<p>"${esc(a.comment)}"</p>` : ''}
+        <span class="avaliacao-autor">${esc(a.customer_name)}</span>
       </div>
     `).join('');
   }
