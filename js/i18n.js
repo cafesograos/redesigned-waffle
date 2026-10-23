@@ -7,7 +7,7 @@ const TRANSLATIONS = {
   pt: {
     nav_produtos: 'Produtos', nav_sobre: 'Sobre', nav_contato: 'Contato',
     nav_rastrear: 'Rastrear pedido', nav_whatsapp: 'Pedir no WhatsApp', cart_label: 'CARRINHO',
-    announce_bar: '🎁 Primeira compra: Drip Coffee de brinde + 5% na próxima · Frete grátis acima de R$ 300 para SP',
+    announce_bar: '🎁 Primeira compra: Drip Coffee de brinde & 5% de cashback na próxima compra · Frete grátis acima de R$ 300 para SP',
 
     hero_eyebrow: 'Da nossa roça para sua mesa',
     hero_title: 'Café brasileiro de verdade: torrado toda semana, direto do produtor para sua xícara.',
@@ -200,7 +200,7 @@ const TRANSLATIONS = {
   en: {
     nav_produtos: 'Products', nav_sobre: 'About', nav_contato: 'Contact',
     nav_rastrear: 'Track order', nav_whatsapp: 'Order on WhatsApp', cart_label: 'CART',
-    announce_bar: '🎁 First purchase: free Drip Coffee + 5% off next order · Free shipping over R$ 300 for São Paulo state',
+    announce_bar: '🎁 First purchase: free Drip Coffee & 5% cashback on your next order · Free shipping over R$ 300 for São Paulo state',
 
     hero_eyebrow: 'From our farm to your table',
     hero_title: 'Real Brazilian coffee: roasted every week, straight from the producer to your cup.',
@@ -393,7 +393,7 @@ const TRANSLATIONS = {
   es: {
     nav_produtos: 'Productos', nav_sobre: 'Nosotros', nav_contato: 'Contacto',
     nav_rastrear: 'Rastrear pedido', nav_whatsapp: 'Pedir por WhatsApp', cart_label: 'CARRITO',
-    announce_bar: '🎁 Primera compra: Drip Coffee de regalo + 5% en la próxima · Envío gratis a partir de R$ 300 para SP',
+    announce_bar: '🎁 Primera compra: Drip Coffee de regalo & 5% de cashback en la próxima compra · Envío gratis a partir de R$ 300 para SP',
 
     hero_eyebrow: 'De nuestra finca a tu mesa',
     hero_title: 'Café brasileño de verdad: tostado cada semana, directo del productor a tu taza.',
@@ -586,7 +586,7 @@ const TRANSLATIONS = {
   fr: {
     nav_produtos: 'Produits', nav_sobre: 'À propos', nav_contato: 'Contact',
     nav_rastrear: 'Suivre ma commande', nav_whatsapp: 'Commander sur WhatsApp', cart_label: 'PANIER',
-    announce_bar: '🎁 Premier achat : Drip Coffee offert + 5% sur la prochaine commande · Livraison gratuite dès R$ 300 pour l’État de São Paulo',
+    announce_bar: '🎁 Premier achat : Drip Coffee offert & 5% de cashback sur la prochaine commande · Livraison gratuite dès R$ 300 pour l’État de São Paulo',
 
     hero_eyebrow: 'De notre plantation à votre table',
     hero_title: 'Du vrai café brésilien : torréfié chaque semaine, directement du producteur à votre tasse.',
@@ -779,7 +779,7 @@ const TRANSLATIONS = {
   zh: {
     nav_produtos: '产品', nav_sobre: '关于我们', nav_contato: '联系方式',
     nav_rastrear: '查询订单', nav_whatsapp: '通过WhatsApp下单', cart_label: '购物车',
-    announce_bar: '🎁 首次购买：赠送Drip Coffee + 下次购买享5%折扣 · 圣保罗州满300雷亚尔包邮',
+    announce_bar: '🎁 首次购买：赠送Drip Coffee & 下次购买返现5% · 圣保罗州满300雷亚尔包邮',
 
     hero_eyebrow: '从我们的农场到您的餐桌',
     hero_title: '真正的巴西咖啡：每周新鲜烘焙，直接从生产者送到您的杯中。',
