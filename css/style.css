@@ -331,10 +331,15 @@ a { text-decoration: none; color: inherit; }
    afastam do centro. O giro/escala em si é calculado e aplicado via JS (ver
    atualizarCoverflow em main.js), a perspective aqui é o que dá profundidade
    pros transforms 3D funcionarem visualmente. */
-.produtos-carrossel { position: relative; display: flex; align-items: center; gap: 8px; }
+/* As setas ficam por cima (position: absolute), não dividindo o espaço com
+   o carrossel — colocadas dentro de uma linha flex normal, num mobile
+   estreito elas tomavam espaço de layout e sobrava menos largura que o
+   próprio card (260px/76vw), cortando o card na borda. */
+.produtos-carrossel { position: relative; }
 .produtos-grid {
-  display: flex; gap: 20px; margin-bottom: 4px; flex: 1; min-width: 0;
-  overflow-x: auto; overflow-y: visible; scroll-snap-type: x mandatory; padding: 40px 0;
+  display: flex; gap: 20px; margin-bottom: 4px;
+  overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory;
+  padding: 40px calc(50% - 130px);
   -webkit-overflow-scrolling: touch; scrollbar-width: none;
   perspective: 1400px;
 }
@@ -347,11 +352,14 @@ a { text-decoration: none; color: inherit; }
   will-change: transform;
 }
 .carrossel-seta {
-  flex: 0 0 auto; width: 44px; height: 44px; border-radius: 50%; border: none;
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 20;
+  width: 44px; height: 44px; border-radius: 50%; border: none;
   background: #fff; color: var(--expresso); font-size: 24px; line-height: 1;
   cursor: pointer; box-shadow: 0 2px 8px rgba(33,23,20,.18);
   display: flex; align-items: center; justify-content: center;
 }
+.carrossel-seta-prev { left: -4px; }
+.carrossel-seta-next { right: -4px; }
 .carrossel-seta:hover { background: var(--expresso); color: #fff; }
 .produto-badge {
   position: absolute; top: 12px; left: 12px; z-index: 2;
@@ -585,7 +593,10 @@ a { text-decoration: none; color: inherit; }
   .objecoes-grid { grid-template-columns: 1fr; }
   .avaliacao-card { flex-basis: 82vw; }
   .produto-card { flex-basis: 76vw; }
+  .produtos-grid { padding-left: calc(50% - 38vw); padding-right: calc(50% - 38vw); }
   .carrossel-seta { width: 36px; height: 36px; font-size: 20px; }
+  .carrossel-seta-prev { left: 0; }
+  .carrossel-seta-next { right: 0; }
   .avaliacao-form-wrap { padding: 24px; }
   .torra-full { padding: 72px 0; min-height: 360px; text-align: center; }
   .torra-full-inner { margin: 0 auto; }
