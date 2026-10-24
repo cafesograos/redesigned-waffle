@@ -631,3 +631,37 @@ window.onLanguageChange = function () {
   Cart.render();
   if (typeof window.renderAvaliacoesNoIdioma === 'function') window.renderAvaliacoesNoIdioma();
 };
+
+// Degradê de fundo: a vitrine de produtos (.produtos) já nasce 100% laranja
+// logo após o hero — sem espaço antes dela pra fazer o laranja "crescer".
+// Em vez disso, o degradê acontece DEPOIS: a cor vai esmaecendo do laranja
+// cheio (encostando no fim da vitrine) de volta pro branco, conforme a
+// página desce pelas seções seguintes (origem, destaques, objeções, linhas)
+// — suaviza o corte seco laranja→branco em vez de um salto abrupto.
+// Pinta o background-color direto nas seções via inline style (prioridade
+// maior que o CSS, então não precisa remover o background padrão de cada
+// uma — se o JS falhar, cada seção some pro fundo estático de sempre).
+(function () {
+  const secoesDegrade = document.querySelectorAll('.origem, .destaques, .objecoes, .linhas');
+  const produtosEl = document.querySelector('.produtos');
+  const ultimaSecao = secoesDegrade[secoesDegrade.length - 1];
+  if (!secoesDegrade.length || !produtosEl || !ultimaSecao) return;
+
+  const BRANCO = [255, 255, 255];
+  const LARANJA = [214, 107, 62]; // --laranja (#D66B3E)
+
+  function atualizarDegrade() {
+    const inicio = produtosEl.offsetTop + produtosEl.offsetHeight;
+    const fim = ultimaSecao.offsetTop + ultimaSecao.offsetHeight;
+    const progresso = fim > inicio
+      ? Math.min(1, Math.max(0, (window.scrollY - inicio) / (fim - inicio)))
+      : 0;
+    const [r, g, b] = LARANJA.map((c, i) => Math.round(c + (BRANCO[i] - c) * progresso));
+    const cor = `rgb(${r}, ${g}, ${b})`;
+    secoesDegrade.forEach((el) => { el.style.backgroundColor = cor; });
+  }
+
+  window.addEventListener('scroll', atualizarDegrade, { passive: true });
+  window.addEventListener('resize', atualizarDegrade);
+  atualizarDegrade();
+})();
