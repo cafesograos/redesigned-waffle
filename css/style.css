@@ -118,10 +118,15 @@ a { text-decoration: none; color: inherit; }
 /* Em vez do corte seco entre a foto e a vitrine de produtos (100% laranja
    logo abaixo), a foto vai desbotando num véu laranja crescente nos
    últimos pixels — a transição fica suave em vez de uma linha reta. */
+/* O véu laranja cobre o hero inteiro, mas começa com opacidade 0 — é o JS
+   (ver "degradê do hero" em main.js) que vai aumentando a opacidade
+   conforme a página rola, criando a transição ao vivo em vez de um
+   degradê já pronto parado num pedaço fixo da imagem. */
 .hero::after {
   content: '';
-  position: absolute; left: 0; right: 0; bottom: 0; height: 60px;
-  background: linear-gradient(to bottom, rgba(214,107,62,0) 0%, rgba(214,107,62,.4) 65%, var(--laranja) 100%);
+  position: absolute; inset: 0;
+  background: var(--laranja);
+  opacity: var(--veu-opacity, 0);
   pointer-events: none;
 }
 .hero-inner { width: 100%; position: relative; z-index: 1; }
@@ -555,7 +560,6 @@ a { text-decoration: none; color: inherit; }
 
 @media (max-width: 800px) {
   .hero { padding: 56px 0; min-height: 320px; background-image: linear-gradient(rgba(33,23,20,.85), rgba(33,23,20,.85)), url('../assets/plantacao-real-hero-mobile.jpg'); }
-  .hero::after { height: 40px; }
   .hero-text { text-align: center; margin: 0 auto; }
   .hero-sub { margin-left: auto; margin-right: auto; }
   .btn-whatsapp-nav { display: none; }

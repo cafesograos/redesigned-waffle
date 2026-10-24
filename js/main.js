@@ -678,6 +678,26 @@ window.onLanguageChange = function () {
   if (typeof window.renderAvaliacoesNoIdioma === 'function') window.renderAvaliacoesNoIdioma();
 };
 
+// Degradê do hero: em vez de um degradê já pronto parado num pedaço fixo da
+// foto, o véu laranja (.hero::after, que nasce com opacity 0 no CSS) vai
+// ficando mais opaco ao vivo conforme a pessoa rola a página — a foto some
+// aos poucos e o laranja entra, terminando 100% opaco bem na hora em que o
+// hero sai de cena e a vitrine de produtos (que já é laranja sólido) assume.
+(function () {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+
+  function atualizarVeuHero() {
+    const alturaHero = hero.offsetHeight || 1;
+    const progresso = Math.min(1, Math.max(0, window.scrollY / alturaHero));
+    hero.style.setProperty('--veu-opacity', progresso);
+  }
+
+  window.addEventListener('scroll', atualizarVeuHero, { passive: true });
+  window.addEventListener('resize', atualizarVeuHero);
+  atualizarVeuHero();
+})();
+
 // Degradê de fundo: a vitrine de produtos (.produtos) já nasce 100% laranja
 // logo após o hero — sem espaço antes dela pra fazer o laranja "crescer".
 // Em vez disso, o degradê acontece DEPOIS: a cor vai esmaecendo do laranja
