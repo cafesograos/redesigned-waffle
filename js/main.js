@@ -69,7 +69,53 @@ function renderProducts() {
     </div>
   `).join('');
   grid.scrollLeft = 0;
+  atualizarCoverflow();
 }
+
+// Efeito "coverflow": o card mais perto do centro do carrossel fica de
+// frente e em tamanho cheio; os vizinhos giram no eixo Y, encolhem e vão
+// pra trás (translateZ negativo) conforme se afastam do centro — dá a
+// sensação de profundidade 3D. Roda a cada scroll do carrossel (inclusive
+// durante o scroll suave dos botões de seta) e no resize da janela.
+function atualizarCoverflow() {
+  const grid = document.getElementById('produtosGrid');
+  if (!grid) return;
+  const cards = grid.querySelectorAll('.produto-card');
+  if (!cards.length) return;
+  const containerRect = grid.getBoundingClientRect();
+  const centro = containerRect.left + containerRect.width / 2;
+  cards.forEach((card) => {
+    const r = card.getBoundingClientRect();
+    const cardCentro = r.left + r.width / 2;
+    const dist = containerRect.width ? (cardCentro - centro) / (containerRect.width / 2) : 0;
+    const distAbs = Math.min(Math.abs(dist), 1.4);
+    const rotacao = dist * -32;
+    const escala = 1 - distAbs * 0.22;
+    const profundidade = -distAbs * 90;
+    const opacidade = Math.max(0.35, 1 - distAbs * 0.35);
+    card.style.transform = `translateZ(${profundidade}px) rotateY(${rotacao}deg) scale(${escala})`;
+    card.style.opacity = String(opacidade);
+    card.style.zIndex = String(Math.round((1 - distAbs) * 100));
+  });
+}
+
+(function () {
+  const grid = document.getElementById('produtosGrid');
+  const btnPrev = document.getElementById('produtosPrev');
+  const btnNext = document.getElementById('produtosNext');
+  if (!grid) return;
+
+  grid.addEventListener('scroll', atualizarCoverflow, { passive: true });
+  window.addEventListener('resize', atualizarCoverflow);
+
+  function mover(direcao) {
+    const card = grid.querySelector('.produto-card');
+    const largura = card ? card.getBoundingClientRect().width + 20 : 280; // card + gap
+    grid.scrollBy({ left: direcao * largura, behavior: 'smooth' });
+  }
+  btnPrev?.addEventListener('click', () => mover(-1));
+  btnNext?.addEventListener('click', () => mover(1));
+})();
 
 document.addEventListener('click', (e) => {
   const addBtn = e.target.closest('[data-add]');
