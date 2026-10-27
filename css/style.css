@@ -65,9 +65,13 @@ a { text-decoration: none; color: inherit; }
 .logo { display: flex; align-items: center; }
 .logo-img { height: 92px; width: auto; }
 .main-nav { display: flex; gap: 36px; font-weight: 500; color: #fff; }
+.main-nav a { white-space: nowrap; }
 .main-nav a:hover { color: var(--laranja); }
 .header-actions { display: flex; align-items: center; gap: 26px; }
-.lang-switch { display: flex; align-items: center; gap: 2px; }
+.lang-switch {
+  display: flex; align-items: center; gap: 2px;
+  background: rgba(255,255,255,.06); border-radius: 999px; padding: 4px;
+}
 .lang-btn {
   background: none; border: none; color: rgba(255,255,255,.55); cursor: pointer;
   font-family: inherit; font-size: 12px; font-weight: 700; letter-spacing: .02em;
@@ -580,7 +584,7 @@ a { text-decoration: none; color: inherit; }
     box-shadow: 0 12px 20px rgba(0,0,0,.2);
   }
   .main-nav.open { max-height: calc(100vh - 88px); max-height: calc(100dvh - 88px); overflow-y: auto; }
-  .main-nav a { padding: 16px 24px; border-top: 1px solid rgba(255,255,255,.1); }
+  .main-nav a { padding: 22px 24px; font-size: 17px; border-top: 1px solid rgba(255,255,255,.1); }
   .mobile-nav-whatsapp { display: block; color: var(--laranja) !important; font-weight: 700; }
   .header-inner { height: 88px; }
   .logo-img { height: 68px; }
