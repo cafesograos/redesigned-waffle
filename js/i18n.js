@@ -7,13 +7,13 @@ const TRANSLATIONS = {
   pt: {
     nav_produtos: 'Produtos', nav_sobre: 'Sobre', nav_contato: 'Contato',
     nav_rastrear: 'Rastrear pedido', nav_whatsapp: 'Pedir no WhatsApp', cart_label: 'CARRINHO',
-    announce_bar: '🎁 Primeira compra: Drip Coffee de brinde & 5% de cashback na próxima compra · Frete grátis acima de R$ 300 para SP',
+    announce_bar: 'Primeira compra: Drip Coffee de brinde & 5% de cashback na próxima compra · Frete grátis acima de R$ 300 para SP',
 
     hero_eyebrow: 'Da nossa roça para sua mesa',
     hero_title: 'Café brasileiro de verdade: torrado toda semana, direto do produtor para sua xícara.',
     hero_subtitle: 'Grãos selecionados com cuidado, em pequenos lotes. Peça online e receba fresquinho em casa.',
     hero_cta: 'Ver produtos',
-    hero_badge1: '🔥 Torra semanal', hero_badge2: '🏆 83+ pontos SCA', hero_badge3: '🚚 Entrega para todo o Brasil',
+    hero_badge1: 'Torra semanal', hero_badge2: '83+ pontos SCA', hero_badge3: 'Entrega para todo o Brasil',
 
     origem_eyebrow: 'Orgulho do agro brasileiro', origem_title: 'Da plantação até a sua xícara',
     origem_fig1: 'Plantação própria', origem_fig2: 'Grãos 100% arábica, selecionados um a um',
@@ -119,7 +119,7 @@ const TRANSLATIONS = {
     menu_toggle_aria: 'Abrir menu', lang_switch_aria: 'Idioma',
 
     msg_cep_invalido: 'Digite um CEP válido.', msg_calculando_frete: 'Calculando frete...',
-    msg_frete_gratis: 'Grátis 🎉', msg_frete_resultado: 'Frete: {frete} · entrega em até {prazo} dias úteis',
+    msg_frete_gratis: 'Grátis', msg_frete_resultado: 'Frete: {frete} · entrega em até {prazo} dias úteis',
     msg_frete_erro: 'Não foi possível calcular o frete. Confira o CEP e tente de novo.',
     msg_calcule_frete_antes: 'Calcule o frete antes de finalizar a compra.',
     msg_preencha_dados: 'Preencha nome, e-mail, CPF e número do endereço para continuar.',
@@ -200,13 +200,13 @@ const TRANSLATIONS = {
   en: {
     nav_produtos: 'Products', nav_sobre: 'About', nav_contato: 'Contact',
     nav_rastrear: 'Track order', nav_whatsapp: 'Order on WhatsApp', cart_label: 'CART',
-    announce_bar: '🎁 First purchase: free Drip Coffee & 5% cashback on your next order · Free shipping over R$ 300 for São Paulo state',
+    announce_bar: 'First purchase: free Drip Coffee & 5% cashback on your next order · Free shipping over R$ 300 for São Paulo state',
 
     hero_eyebrow: 'From our farm to your table',
     hero_title: 'Real Brazilian coffee: roasted every week, straight from the producer to your cup.',
     hero_subtitle: 'Carefully selected beans, in small batches. Order online and get it fresh at home.',
     hero_cta: 'View products',
-    hero_badge1: '🔥 Weekly roast', hero_badge2: '🏆 83+ SCA points', hero_badge3: '🚚 Shipping all over Brazil',
+    hero_badge1: 'Weekly roast', hero_badge2: '83+ SCA points', hero_badge3: 'Shipping all over Brazil',
 
     origem_eyebrow: 'Proud of Brazilian agriculture', origem_title: 'From the plantation to your cup',
     origem_fig1: 'Our own farm', origem_fig2: '100% arabica beans, hand-picked one by one',
@@ -312,7 +312,7 @@ const TRANSLATIONS = {
     menu_toggle_aria: 'Open menu', lang_switch_aria: 'Language',
 
     msg_cep_invalido: 'Enter a valid ZIP code.', msg_calculando_frete: 'Calculating shipping...',
-    msg_frete_gratis: 'Free 🎉', msg_frete_resultado: 'Shipping: {frete} · delivery within {prazo} business days',
+    msg_frete_gratis: 'Free', msg_frete_resultado: 'Shipping: {frete} · delivery within {prazo} business days',
     msg_frete_erro: 'We could not calculate shipping. Please check the ZIP code.',
     msg_calcule_frete_antes: 'Calculate shipping before checking out.',
     msg_preencha_dados: 'Please fill in name, email, CPF and address number to continue.',
@@ -393,13 +393,13 @@ const TRANSLATIONS = {
   es: {
     nav_produtos: 'Productos', nav_sobre: 'Nosotros', nav_contato: 'Contacto',
     nav_rastrear: 'Rastrear pedido', nav_whatsapp: 'Pedir por WhatsApp', cart_label: 'CARRITO',
-    announce_bar: '🎁 Primera compra: Drip Coffee de regalo & 5% de cashback en la próxima compra · Envío gratis a partir de R$ 300 para SP',
+    announce_bar: 'Primera compra: Drip Coffee de regalo & 5% de cashback en la próxima compra · Envío gratis a partir de R$ 300 para SP',
 
     hero_eyebrow: 'De nuestra finca a tu mesa',
     hero_title: 'Café brasileño de verdad: tostado cada semana, directo del productor a tu taza.',
     hero_subtitle: 'Granos seleccionados con cuidado, en lotes pequeños. Pide online y recíbelo recién hecho en casa.',
     hero_cta: 'Ver productos',
-    hero_badge1: '🔥 Tueste semanal', hero_badge2: '🏆 83+ puntos SCA', hero_badge3: '🚚 Envíos a todo Brasil',
+    hero_badge1: 'Tueste semanal', hero_badge2: '83+ puntos SCA', hero_badge3: 'Envíos a todo Brasil',
 
     origem_eyebrow: 'Orgullo del agro brasileño', origem_title: 'De la plantación a tu taza',
     origem_fig1: 'Plantación propia', origem_fig2: 'Granos 100% arábica, seleccionados uno a uno',
@@ -505,7 +505,7 @@ const TRANSLATIONS = {
     menu_toggle_aria: 'Abrir menú', lang_switch_aria: 'Idioma',
 
     msg_cep_invalido: 'Ingresa un código postal válido.', msg_calculando_frete: 'Calculando envío...',
-    msg_frete_gratis: 'Gratis 🎉', msg_frete_resultado: 'Envío: {frete} · entrega en hasta {prazo} días hábiles',
+    msg_frete_gratis: 'Gratis', msg_frete_resultado: 'Envío: {frete} · entrega en hasta {prazo} días hábiles',
     msg_frete_erro: 'No pudimos calcular el envío. Revisa el código postal.',
     msg_calcule_frete_antes: 'Calcula el envío antes de finalizar la compra.',
     msg_preencha_dados: 'Completa nombre, correo electrónico, CPF y número de dirección para continuar.',
@@ -586,13 +586,13 @@ const TRANSLATIONS = {
   fr: {
     nav_produtos: 'Produits', nav_sobre: 'À propos', nav_contato: 'Contact',
     nav_rastrear: 'Suivre ma commande', nav_whatsapp: 'Commander sur WhatsApp', cart_label: 'PANIER',
-    announce_bar: '🎁 Premier achat : Drip Coffee offert & 5% de cashback sur la prochaine commande · Livraison gratuite dès R$ 300 pour l’État de São Paulo',
+    announce_bar: 'Premier achat : Drip Coffee offert & 5% de cashback sur la prochaine commande · Livraison gratuite dès R$ 300 pour l’État de São Paulo',
 
     hero_eyebrow: 'De notre plantation à votre table',
     hero_title: 'Du vrai café brésilien : torréfié chaque semaine, directement du producteur à votre tasse.',
     hero_subtitle: 'Grains sélectionnés avec soin, en petits lots. Commandez en ligne et recevez-le tout frais chez vous.',
     hero_cta: 'Voir les produits',
-    hero_badge1: '🔥 Torréfaction hebdomadaire', hero_badge2: '🏆 83+ points SCA', hero_badge3: '🚚 Livraison dans tout le Brésil',
+    hero_badge1: 'Torréfaction hebdomadaire', hero_badge2: '83+ points SCA', hero_badge3: 'Livraison dans tout le Brésil',
 
     origem_eyebrow: 'Fierté de l’agriculture brésilienne', origem_title: 'De la plantation à votre tasse',
     origem_fig1: 'Plantation propre', origem_fig2: 'Grains 100% arabica, sélectionnés un par un',
@@ -698,7 +698,7 @@ const TRANSLATIONS = {
     menu_toggle_aria: 'Ouvrir le menu', lang_switch_aria: 'Langue',
 
     msg_cep_invalido: 'Entrez un code postal valide.', msg_calculando_frete: 'Calcul de la livraison...',
-    msg_frete_gratis: 'Gratuit 🎉', msg_frete_resultado: 'Livraison : {frete} · livraison en {prazo} jours ouvrables',
+    msg_frete_gratis: 'Gratuit', msg_frete_resultado: 'Livraison : {frete} · livraison en {prazo} jours ouvrables',
     msg_frete_erro: 'Impossible de calculer la livraison. Vérifiez le code postal et réessayez.',
     msg_calcule_frete_antes: 'Calculez la livraison avant de finaliser la commande.',
     msg_preencha_dados: 'Renseignez le nom, l’e-mail, le CPF et le numéro de l’adresse pour continuer.',
@@ -779,13 +779,13 @@ const TRANSLATIONS = {
   zh: {
     nav_produtos: '产品', nav_sobre: '关于我们', nav_contato: '联系方式',
     nav_rastrear: '查询订单', nav_whatsapp: '通过WhatsApp下单', cart_label: '购物车',
-    announce_bar: '🎁 首次购买：赠送Drip Coffee & 下次购买返现5% · 圣保罗州满300雷亚尔包邮',
+    announce_bar: '首次购买：赠送Drip Coffee & 下次购买返现5% · 圣保罗州满300雷亚尔包邮',
 
     hero_eyebrow: '从我们的农场到您的餐桌',
     hero_title: '真正的巴西咖啡：每周新鲜烘焙，直接从生产者送到您的杯中。',
     hero_subtitle: '精心挑选的咖啡豆，小批量烘焙。在线下单，新鲜直达您家。',
     hero_cta: '查看产品',
-    hero_badge1: '🔥 每周烘焙', hero_badge2: '🏆 83+ SCA 评分', hero_badge3: '🚚 全巴西配送',
+    hero_badge1: '每周烘焙', hero_badge2: '83+ SCA 评分', hero_badge3: '全巴西配送',
 
     origem_eyebrow: '巴西农业的骄傲', origem_title: '从种植园到您的杯中',
     origem_fig1: '自有种植园', origem_fig2: '100%阿拉比卡豆，逐粒精选',
@@ -891,7 +891,7 @@ const TRANSLATIONS = {
     menu_toggle_aria: '打开菜单', lang_switch_aria: '语言',
 
     msg_cep_invalido: '请输入有效的邮编（CEP）。', msg_calculando_frete: '正在计算运费...',
-    msg_frete_gratis: '免运费 🎉', msg_frete_resultado: '运费：{frete} · 预计{prazo}个工作日内送达',
+    msg_frete_gratis: '免运费', msg_frete_resultado: '运费：{frete} · 预计{prazo}个工作日内送达',
     msg_frete_erro: '无法计算运费，请检查邮编后重试。',
     msg_calcule_frete_antes: '请先计算运费，再完成购买。',
     msg_preencha_dados: '请填写姓名、邮箱、CPF和门牌号以继续。',
