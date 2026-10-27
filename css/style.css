@@ -60,13 +60,13 @@ a { text-decoration: none; color: inherit; }
 }
 .header-inner {
   display: flex; align-items: center; justify-content: space-between;
-  height: 108px;
+  height: 128px; gap: 32px;
 }
 .logo { display: flex; align-items: center; }
 .logo-img { height: 92px; width: auto; }
-.main-nav { display: flex; gap: 28px; font-weight: 500; color: #fff; }
+.main-nav { display: flex; gap: 36px; font-weight: 500; color: #fff; }
 .main-nav a:hover { color: var(--laranja); }
-.header-actions { display: flex; align-items: center; gap: 20px; }
+.header-actions { display: flex; align-items: center; gap: 26px; }
 .lang-switch { display: flex; align-items: center; gap: 2px; }
 .lang-btn {
   background: none; border: none; color: rgba(255,255,255,.55); cursor: pointer;
