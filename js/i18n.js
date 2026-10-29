@@ -142,6 +142,7 @@ const TRANSLATIONS = {
 
     msg_cep_invalido: 'Digite um CEP válido.', msg_calculando_frete: 'Calculando frete...',
     msg_frete_gratis: 'Grátis', msg_frete_resultado: 'Frete: {frete} · entrega em até {prazo} dias úteis',
+    cart_frete_faltam: 'Faltam {valor} para o frete grátis', cart_frete_liberado: '🎉 Frete grátis conquistado!',
     msg_frete_erro: 'Não foi possível calcular o frete. Confira o CEP e tente de novo.',
     msg_calcule_frete_antes: 'Calcule o frete antes de finalizar a compra.',
     msg_preencha_dados: 'Preencha nome, e-mail, CPF e número do endereço para continuar.',
@@ -357,6 +358,7 @@ const TRANSLATIONS = {
 
     msg_cep_invalido: 'Enter a valid ZIP code.', msg_calculando_frete: 'Calculating shipping...',
     msg_frete_gratis: 'Free', msg_frete_resultado: 'Shipping: {frete} · delivery within {prazo} business days',
+    cart_frete_faltam: '{valor} left for free shipping', cart_frete_liberado: '🎉 Free shipping unlocked!',
     msg_frete_erro: 'We could not calculate shipping. Please check the ZIP code.',
     msg_calcule_frete_antes: 'Calculate shipping before checking out.',
     msg_preencha_dados: 'Please fill in name, email, CPF and address number to continue.',
@@ -572,6 +574,7 @@ const TRANSLATIONS = {
 
     msg_cep_invalido: 'Ingresa un código postal válido.', msg_calculando_frete: 'Calculando envío...',
     msg_frete_gratis: 'Gratis', msg_frete_resultado: 'Envío: {frete} · entrega en hasta {prazo} días hábiles',
+    cart_frete_faltam: 'Faltan {valor} para el envío gratis', cart_frete_liberado: '🎉 ¡Envío gratis desbloqueado!',
     msg_frete_erro: 'No pudimos calcular el envío. Revisa el código postal.',
     msg_calcule_frete_antes: 'Calcula el envío antes de finalizar la compra.',
     msg_preencha_dados: 'Completa nombre, correo electrónico, CPF y número de dirección para continuar.',
@@ -787,6 +790,7 @@ const TRANSLATIONS = {
 
     msg_cep_invalido: 'Entrez un code postal valide.', msg_calculando_frete: 'Calcul de la livraison...',
     msg_frete_gratis: 'Gratuit', msg_frete_resultado: 'Livraison : {frete} · livraison en {prazo} jours ouvrables',
+    cart_frete_faltam: 'Plus que {valor} pour la livraison gratuite', cart_frete_liberado: '🎉 Livraison gratuite débloquée !',
     msg_frete_erro: 'Impossible de calculer la livraison. Vérifiez le code postal et réessayez.',
     msg_calcule_frete_antes: 'Calculez la livraison avant de finaliser la commande.',
     msg_preencha_dados: 'Renseignez le nom, l’e-mail, le CPF et le numéro de l’adresse pour continuer.',
@@ -1002,6 +1006,7 @@ const TRANSLATIONS = {
 
     msg_cep_invalido: '请输入有效的邮编（CEP）。', msg_calculando_frete: '正在计算运费...',
     msg_frete_gratis: '免运费', msg_frete_resultado: '运费：{frete} · 预计{prazo}个工作日内送达',
+    cart_frete_faltam: '还差{valor}即可享受包邮', cart_frete_liberado: '🎉 已达成包邮！',
     msg_frete_erro: '无法计算运费，请检查邮编后重试。',
     msg_calcule_frete_antes: '请先计算运费，再完成购买。',
     msg_preencha_dados: '请填写姓名、邮箱、CPF和门牌号以继续。',

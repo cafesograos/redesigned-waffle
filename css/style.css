@@ -563,6 +563,18 @@ a { text-decoration: none; color: inherit; }
 .checkout-note { font-size: 12px; color: #999; text-align: center; margin-top: 10px; }
 .checkout-aviso-frete { color: #B7791F; font-weight: 700; background: #FDF0DD; padding: 8px 10px; border-radius: 8px; margin: 0 0 10px; }
 
+/* Barra "conquiste o frete grátis" — aparece depois do primeiro cálculo de
+   frete (quando já sabemos a faixa do CEP) e segue atualizando sozinha
+   conforme o carrinho muda, sem precisar recalcular o frete de novo. */
+.cart-frete-progresso { padding: 14px 20px; border-bottom: 1px solid #eee; }
+.cart-frete-progresso-texto { font-size: 13px; font-weight: 700; color: var(--expresso); margin-bottom: 8px; }
+.cart-frete-progresso.liberado .cart-frete-progresso-texto { color: var(--laranja-dark); }
+.cart-frete-progresso-barra { height: 8px; border-radius: 999px; background: #F0E9E2; overflow: hidden; }
+.cart-frete-progresso-barra span {
+  display: block; height: 100%; background: var(--laranja); border-radius: 999px;
+  transition: width .3s ease;
+}
+
 /* Entrega (frete + endereço) no carrinho */
 .cart-entrega { display: none; padding: 0 20px 16px; border-bottom: 1px solid #eee; }
 .cart-entrega h4 { font-size: 14px; margin-bottom: 10px; color: var(--expresso); }

@@ -6,6 +6,12 @@ const CART_STORAGE_KEY = 'cafesograos-carrinho';
 const Cart = {
   items: {}, // { productId: qty }
   frete: null, // { valor, prazoDias }
+  // Valor mínimo de compra pra frete grátis nesse CEP (R$100/300/500,
+  // conforme a localidade) — fica fora de "frete" de propósito, porque não
+  // depende do peso e precisa sobreviver a add/remove de item (que zera
+  // "frete" pra forçar recálculo do peso), senão a barra de progresso some
+  // toda vez que a pessoa mexe no carrinho.
+  limiteFreteGratis: null,
   entrega: {}, // cep, endereco, numero, complemento, bairro, cidade, estado
   cliente: {}, // nome, email, telefone
 
@@ -98,6 +104,19 @@ const Cart = {
     }, 0);
   },
 
+  // null enquanto o CEP ainda não foi calculado nenhuma vez (não dá pra
+  // saber a faixa de frete grátis sem CEP); depois disso sempre retorna um
+  // número, porque a faixa "Brasil inteiro" (R$500) cobre todo mundo.
+  faltaParaFreteGratis() {
+    if (this.limiteFreteGratis == null) return null;
+    return Math.max(0, this.limiteFreteGratis - this.totalValue());
+  },
+
+  progressoFreteGratis() {
+    if (this.limiteFreteGratis == null || this.limiteFreteGratis <= 0) return 0;
+    return Math.min(100, (this.totalValue() / this.limiteFreteGratis) * 100);
+  },
+
   toLineItems() {
     return Object.entries(this.items)
       .map(([id, qty]) => {
@@ -137,6 +156,22 @@ const Cart = {
         `;
         itemsEl.appendChild(row);
       });
+    }
+
+    const progressoEl = document.getElementById('cartFreteProgresso');
+    if (progressoEl) {
+      const falta = this.faltaParaFreteGratis();
+      if (count === 0 || falta === null) {
+        progressoEl.hidden = true;
+      } else {
+        progressoEl.hidden = false;
+        const liberado = falta <= 0;
+        document.getElementById('cartFreteProgressoTexto').textContent = liberado
+          ? t('cart_frete_liberado')
+          : t('cart_frete_faltam', { valor: 'R$ ' + falta.toFixed(2).replace('.', ',') });
+        document.getElementById('cartFreteProgressoFill').style.width = this.progressoFreteGratis() + '%';
+        progressoEl.classList.toggle('liberado', liberado);
+      }
     }
 
     document.getElementById('cartSubtotal').textContent =

@@ -304,6 +304,11 @@ document.getElementById('btnCalcularFrete').addEventListener('click', async () =
     const frete = await freteRes.json();
 
     Cart.frete = frete;
+    // Guardado à parte de Cart.frete (que vira null a cada item adicionado/
+    // removido, pois o peso muda) — o limite de frete grátis só depende do
+    // CEP, não do peso, então continua valendo pra barra de progresso
+    // mesmo depois do carrinho mudar, sem precisar recalcular frete de novo.
+    Cart.limiteFreteGratis = frete.limiteFreteGratis;
     Cart.entrega = {
       cep: endereco.cep,
       endereco: endereco.logradouro,
