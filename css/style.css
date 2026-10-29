@@ -212,6 +212,7 @@ a { text-decoration: none; color: inherit; }
   text-transform: uppercase; font-size: 30px; margin-bottom: 40px; font-weight: 400;
 }
 .destaques-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+.destaques-grid-3 { grid-template-columns: repeat(3, 1fr); }
 .destaque { color: var(--expresso); text-align: left; }
 .destaque[title] { cursor: help; }
 .destaque strong {

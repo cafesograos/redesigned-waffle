@@ -19,6 +19,7 @@ function nomeCategoria(c) { return c[`nome${idiomaSufixo()}`] || c.nome; }
 // Tira de categorias no topo (estilo vitrine)
 function renderCategoryStrip() {
   const strip = document.getElementById('categoryStrip');
+  if (!strip) return;
   strip.innerHTML = CATEGORIES.map(c => `
     <a href="#produtos" data-filter="${c.id}">${nomeCategoria(c)}</a>
   `).join('');
@@ -27,6 +28,7 @@ function renderCategoryStrip() {
 // Pastilhas de filtro acima da grade de produtos
 function renderFilterPills() {
   const pills = document.getElementById('filterPills');
+  if (!pills) return;
   const all = [{ id: "todos", nome: t('filter_todos') }, ...CATEGORIES];
   pills.innerHTML = all.map(c => `
     <button class="pill ${activeFilter === c.id ? 'active' : ''}" data-filter="${c.id}">${c.id === 'todos' ? c.nome : nomeCategoria(c)}</button>
@@ -50,6 +52,7 @@ function priceHtml(p) {
 // Renderiza a vitrine de produtos, respeitando o filtro ativo
 function renderProducts() {
   const grid = document.getElementById('produtosGrid');
+  if (!grid) return;
   const items = activeFilter === "todos"
     ? PRODUCTS
     : PRODUCTS.filter(p => p.categoria === activeFilter);
