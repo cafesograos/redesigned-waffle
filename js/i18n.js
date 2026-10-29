@@ -5,8 +5,10 @@
 // página novamente carregada já abre no idioma escolhido antes.
 const TRANSLATIONS = {
   pt: {
-    nav_produtos: 'Produtos', nav_sobre: 'Sobre', nav_contato: 'Contato',
+    nav_produtos: 'Cafés', nav_sobre: 'Sobre', nav_contato: 'Contato',
     nav_rastrear: 'Rastrear pedido', nav_whatsapp: 'Pedir no WhatsApp', cart_label: 'CARRINHO',
+    nav_qual_cafe: 'Qual café escolher', nav_nossa_origem: 'Nossa origem', nav_araraquara: 'Araraquara',
+    nav_perguntas: 'Perguntas', nav_natal: 'Natal', nav_sobre_cafe: 'Sobre o café',
     announce_bar: 'Primeira compra: Drip Coffee de brinde & 5% de cashback na próxima compra · Frete grátis acima de R$ 300 para SP',
 
     hero_eyebrow: 'Da nossa roça para sua mesa',
@@ -99,6 +101,7 @@ const TRANSLATIONS = {
     popup_cadastro_msg_erro: 'Não foi possível salvar seu cadastro agora. Tente novamente em instantes.',
 
     footer_menu: 'Menu', footer_ajuda: 'Ajuda', footer_falecom: 'Fale conosco',
+    footer_loja: 'Loja', footer_saiba_mais: 'Saiba mais',
     footer_trocas: 'Trocas e devoluções', footer_rastrear: 'Rastrear pedido',
     footer_brand_title: 'Café Só Grãos',
     footer_brand_text: 'Selecionamos, torramos e embalamos cada lote com cuidado — do produtor até a sua xícara, em pequenos lotes toda semana.',
@@ -198,7 +201,9 @@ const TRANSLATIONS = {
   },
 
   en: {
-    nav_produtos: 'Products', nav_sobre: 'About', nav_contato: 'Contact',
+    nav_produtos: 'Coffees', nav_sobre: 'About', nav_contato: 'Contact',
+    nav_qual_cafe: 'Which coffee to choose', nav_nossa_origem: 'Our origin', nav_araraquara: 'Araraquara',
+    nav_perguntas: 'FAQ', nav_natal: 'Christmas', nav_sobre_cafe: 'About coffee',
     nav_rastrear: 'Track order', nav_whatsapp: 'Order on WhatsApp', cart_label: 'CART',
     announce_bar: 'First purchase: free Drip Coffee & 5% cashback on your next order · Free shipping over R$ 300 for São Paulo state',
 
@@ -292,6 +297,7 @@ const TRANSLATIONS = {
     popup_cadastro_msg_erro: 'We could not save your sign-up right now. Please try again shortly.',
 
     footer_menu: 'Menu', footer_ajuda: 'Help', footer_falecom: 'Get in touch',
+    footer_loja: 'Shop', footer_saiba_mais: 'Learn more',
     footer_trocas: 'Exchanges & returns', footer_rastrear: 'Track order',
     footer_brand_title: 'Café Só Grãos',
     footer_brand_text: 'We select, roast and pack every batch with care — from the producer to your cup, in small weekly batches.',
@@ -391,7 +397,9 @@ const TRANSLATIONS = {
   },
 
   es: {
-    nav_produtos: 'Productos', nav_sobre: 'Nosotros', nav_contato: 'Contacto',
+    nav_produtos: 'Cafés', nav_sobre: 'Nosotros', nav_contato: 'Contacto',
+    nav_qual_cafe: 'Qué café elegir', nav_nossa_origem: 'Nuestro origen', nav_araraquara: 'Araraquara',
+    nav_perguntas: 'Preguntas', nav_natal: 'Navidad', nav_sobre_cafe: 'Sobre el café',
     nav_rastrear: 'Rastrear pedido', nav_whatsapp: 'Pedir por WhatsApp', cart_label: 'CARRITO',
     announce_bar: 'Primera compra: Drip Coffee de regalo & 5% de cashback en la próxima compra · Envío gratis a partir de R$ 300 para SP',
 
@@ -485,6 +493,7 @@ const TRANSLATIONS = {
     popup_cadastro_msg_erro: 'No pudimos guardar tu registro ahora. Intenta de nuevo en unos instantes.',
 
     footer_menu: 'Menú', footer_ajuda: 'Ayuda', footer_falecom: 'Hablemos',
+    footer_loja: 'Tienda', footer_saiba_mais: 'Saber más',
     footer_trocas: 'Cambios y devoluciones', footer_rastrear: 'Rastrear pedido',
     footer_brand_title: 'Café Só Grãos',
     footer_brand_text: 'Seleccionamos, tostamos y empacamos cada lote con cuidado — del productor a tu taza, en lotes pequeños cada semana.',
@@ -584,7 +593,9 @@ const TRANSLATIONS = {
   },
 
   fr: {
-    nav_produtos: 'Produits', nav_sobre: 'À propos', nav_contato: 'Contact',
+    nav_produtos: 'Cafés', nav_sobre: 'À propos', nav_contato: 'Contact',
+    nav_qual_cafe: 'Quel café choisir', nav_nossa_origem: 'Notre origine', nav_araraquara: 'Araraquara',
+    nav_perguntas: 'Questions', nav_natal: 'Noël', nav_sobre_cafe: 'À propos du café',
     nav_rastrear: 'Suivre ma commande', nav_whatsapp: 'Commander sur WhatsApp', cart_label: 'PANIER',
     announce_bar: 'Premier achat : Drip Coffee offert & 5% de cashback sur la prochaine commande · Livraison gratuite dès R$ 300 pour l’État de São Paulo',
 
@@ -678,6 +689,7 @@ const TRANSLATIONS = {
     popup_cadastro_msg_erro: 'Impossible d’enregistrer votre inscription pour le moment. Réessayez dans un instant.',
 
     footer_menu: 'Menu', footer_ajuda: 'Aide', footer_falecom: 'Contactez-nous',
+    footer_loja: 'Boutique', footer_saiba_mais: 'En savoir plus',
     footer_trocas: 'Échanges et retours', footer_rastrear: 'Suivre ma commande',
     footer_brand_title: 'Café Só Grãos',
     footer_brand_text: 'Nous sélectionnons, torréfions et emballons chaque lot avec soin — du producteur à votre tasse, en petits lots chaque semaine.',
@@ -777,7 +789,9 @@ const TRANSLATIONS = {
   },
 
   zh: {
-    nav_produtos: '产品', nav_sobre: '关于我们', nav_contato: '联系方式',
+    nav_produtos: '咖啡', nav_sobre: '关于我们', nav_contato: '联系方式',
+    nav_qual_cafe: '如何选择咖啡', nav_nossa_origem: '我们的产地', nav_araraquara: 'Araraquara',
+    nav_perguntas: '常见问题', nav_natal: '圣诞节', nav_sobre_cafe: '咖啡知识',
     nav_rastrear: '查询订单', nav_whatsapp: '通过WhatsApp下单', cart_label: '购物车',
     announce_bar: '首次购买：赠送Drip Coffee & 下次购买返现5% · 圣保罗州满300雷亚尔包邮',
 
@@ -871,6 +885,7 @@ const TRANSLATIONS = {
     popup_cadastro_msg_erro: '暂时无法保存您的登记信息，请稍后再试。',
 
     footer_menu: '菜单', footer_ajuda: '帮助', footer_falecom: '联系我们',
+    footer_loja: '商店', footer_saiba_mais: '了解更多',
     footer_trocas: '换货与退货', footer_rastrear: '查询订单',
     footer_brand_title: 'Café Só Grãos',
     footer_brand_text: '我们用心挑选、烘焙并包装每一批咖啡——从生产者到您的杯中，每周小批量用心制作。',
@@ -1014,6 +1029,11 @@ function aplicarTraducoes(lang) {
   document.querySelectorAll('.lang-btn').forEach((btn) => {
     btn.classList.toggle('ativo', btn.dataset.lang === lang);
   });
+  // Seletor suspenso único (substituiu os 5 botões soltos no cabeçalho) —
+  // mantém os dois jeitos funcionando, páginas que ainda não migraram pro
+  // <select> continuam com os botões.
+  const select = document.getElementById('langSelect');
+  if (select && select.value !== lang) select.value = lang;
 }
 
 function setLanguage(lang) {
@@ -1025,6 +1045,10 @@ function setLanguage(lang) {
   // próprio hook opcional, só chama se existir.
   if (typeof window.onLanguageChange === 'function') window.onLanguageChange(lang);
 }
+
+document.addEventListener('change', (e) => {
+  if (e.target && e.target.id === 'langSelect') setLanguage(e.target.value);
+});
 
 document.addEventListener('click', (e) => {
   const btn = e.target.closest('.lang-btn');

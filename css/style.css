@@ -67,6 +67,7 @@ a { text-decoration: none; color: inherit; }
 .main-nav { display: flex; gap: 36px; font-weight: 500; color: #fff; }
 .main-nav a { white-space: nowrap; }
 .main-nav a:hover { color: var(--laranja); }
+.main-nav a.nav-rastrear { margin-left: 16px; padding-left: 20px; border-left: 1px solid rgba(255,255,255,.18); }
 .header-actions { display: flex; align-items: center; gap: 26px; }
 .lang-switch {
   display: flex; align-items: center; gap: 2px;
@@ -79,6 +80,16 @@ a { text-decoration: none; color: inherit; }
 }
 .lang-btn:hover { color: #fff; background: rgba(255,255,255,.08); }
 .lang-btn.ativo { color: var(--laranja); background: rgba(255,255,255,.1); }
+#langSelect {
+  background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23ffffff' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 7px center;
+  background-size: 9px 6px;
+  border: none; color: rgba(255,255,255,.85); cursor: pointer;
+  font-family: inherit; font-size: 12px; font-weight: 700; letter-spacing: .02em;
+  padding: 5px 20px 5px 9px; border-radius: 6px; line-height: 1;
+  appearance: none; -webkit-appearance: none; -moz-appearance: none;
+}
+#langSelect:hover, #langSelect:focus { color: #fff; background-color: rgba(255,255,255,.08); }
+#langSelect option { color: var(--expresso); }
 .btn-whatsapp-nav {
   background: var(--laranja); color: #fff; font-size: 12px; font-weight: 700;
   text-transform: uppercase; letter-spacing: .03em; padding: 10px 18px; border-radius: 999px;
@@ -574,6 +585,7 @@ a { text-decoration: none; color: inherit; }
   /* Largura é curta demais pra 5 idiomas lado a lado (~26px cada no máximo);
      compensa a altura via padding pra chegar perto do alvo de toque de 44px. */
   .lang-btn { padding: 12px 4px; font-size: 11px; }
+  #langSelect { padding: 12px 18px 12px 6px; font-size: 11px; }
   .cart-toggle span:not(#cartCount) { display: none; }
   .main-nav {
     display: flex; flex-direction: column;
@@ -585,6 +597,7 @@ a { text-decoration: none; color: inherit; }
   }
   .main-nav.open { max-height: calc(100vh - 88px); max-height: calc(100dvh - 88px); overflow-y: auto; }
   .main-nav a { padding: 22px 24px; font-size: 17px; border-top: 1px solid rgba(255,255,255,.1); }
+  .main-nav a.nav-rastrear { margin-left: 0; padding-left: 24px; border-left: none; }
   .mobile-nav-whatsapp { display: block; color: var(--laranja) !important; font-weight: 700; }
   .header-inner { height: 88px; }
   .logo-img { height: 68px; }

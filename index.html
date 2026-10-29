@@ -71,19 +71,24 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
   <div class="container header-inner">
     <a href="#" class="logo"><img src="assets/logo-sograos-branco.png" alt="Café Só Grãos" class="logo-img"></a>
     <nav class="main-nav" id="mainNav">
-      <a href="#produtos" data-i18n="nav_produtos">Produtos</a>
-      <a href="#sobre" data-i18n="nav_sobre">Sobre</a>
-      <a href="#contato" data-i18n="nav_contato">Contato</a>
-      <a href="rastreio.html" data-i18n="nav_rastrear">Rastrear pedido</a>
+      <a href="#produtos" data-i18n="nav_produtos">Cafés</a>
+      <a href="qual-cafe-escolher.html" data-i18n="nav_qual_cafe">Qual café escolher</a>
+      <a href="nossa-origem.html" data-i18n="nav_nossa_origem">Nossa origem</a>
+      <a href="cafe-araraquara.html" data-i18n="nav_araraquara">Araraquara</a>
+      <a href="perguntas-frequentes.html" data-i18n="nav_perguntas">Perguntas</a>
+      <a href="natal.html" data-i18n="nav_natal">Natal</a>
+      <a href="rastreio.html" class="nav-rastrear" data-i18n="nav_rastrear">Rastrear pedido</a>
       <a href="https://wa.me/5516997616459?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20caf%C3%A9." target="_blank" rel="noopener noreferrer" class="mobile-nav-whatsapp" data-i18n="nav_whatsapp">Pedir no WhatsApp</a>
     </nav>
     <div class="header-actions">
-      <div class="lang-switch" role="group" data-i18n-aria-label="lang_switch_aria" aria-label="Idioma">
-        <button type="button" class="lang-btn" data-lang="pt">PT</button>
-        <button type="button" class="lang-btn" data-lang="en">EN</button>
-        <button type="button" class="lang-btn" data-lang="es">ES</button>
-        <button type="button" class="lang-btn" data-lang="fr">FR</button>
-        <button type="button" class="lang-btn" data-lang="zh">中文</button>
+      <div class="lang-switch">
+        <select id="langSelect" data-i18n-aria-label="lang_switch_aria" aria-label="Idioma">
+          <option value="pt">PT</option>
+          <option value="en">EN</option>
+          <option value="es">ES</option>
+          <option value="fr">FR</option>
+          <option value="zh">中文</option>
+        </select>
       </div>
       <a href="https://wa.me/5516997616459?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20caf%C3%A9." target="_blank" rel="noopener noreferrer" class="btn-whatsapp-nav" data-i18n="nav_whatsapp">Pedir no WhatsApp</a>
       <button class="menu-toggle" id="menuToggle" data-i18n-aria-label="menu_toggle_aria" aria-label="Abrir menu" aria-expanded="false">
@@ -329,29 +334,35 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
 
 <footer class="site-footer bean-pattern">
   <div class="container footer-grid">
-    <div class="footer-col">
-      <h4 data-i18n="footer_menu">Menu</h4>
-      <a href="#produtos" data-i18n="nav_produtos">Produtos</a>
-      <a href="#sobre" data-i18n="nav_sobre">Sobre</a>
-      <a href="#contato" data-i18n="nav_contato">Contato</a>
-    </div>
-    <div class="footer-col">
-      <h4 data-i18n="footer_ajuda">Ajuda</h4>
-      <a href="#contato" data-i18n="footer_falecom">Fale conosco</a>
-      <a href="trocas.html" data-i18n="footer_trocas">Trocas e devoluções</a>
-      <a href="rastreio.html" data-i18n="footer_rastrear">Rastrear pedido</a>
-      <a href="privacidade.html" data-i18n="footer_privacidade">Política de Privacidade</a>
-    </div>
     <div class="footer-col footer-col-wide">
       <img src="assets/logo-sograos-branco.png" alt="" class="footer-logo">
       <h4 data-i18n="footer_brand_title">Café Só Grãos</h4>
       <p data-i18n="footer_brand_text">Selecionamos, torramos e embalamos cada lote com cuidado — do produtor até a sua xícara, em pequenos lotes toda semana.</p>
     </div>
     <div class="footer-col">
+      <h4 data-i18n="footer_loja">Loja</h4>
+      <a href="#produtos" data-i18n="nav_produtos">Cafés</a>
+      <a href="trocas.html" data-i18n="footer_trocas">Trocas e devoluções</a>
+      <a href="rastreio.html" data-i18n="footer_rastrear">Rastrear pedido</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_saiba_mais">Saiba mais</h4>
+      <a href="qual-cafe-escolher.html" data-i18n="nav_qual_cafe">Qual café escolher</a>
+      <a href="nossa-origem.html" data-i18n="nav_nossa_origem">Nossa origem</a>
+      <a href="cafe-araraquara.html" data-i18n="nav_araraquara">Araraquara</a>
+      <a href="perguntas-frequentes.html" data-i18n="nav_perguntas">Perguntas frequentes</a>
+      <a href="sobre-cafe.html" data-i18n="nav_sobre_cafe">Sobre o café</a>
+      <a href="#contato" data-i18n="footer_falecom">Fale conosco</a>
+      <a href="privacidade.html" data-i18n="footer_privacidade">Política de Privacidade</a>
+    </div>
+    <div class="footer-col">
       <h4 data-i18n="footer_contato_title">Contato</h4>
       <a href="mailto:contato@cafesograos.com.br">contato@cafesograos.com.br</a>
       <a href="https://wa.me/5516997616459" target="_blank" rel="noopener noreferrer">(16) 99761-6459</a>
       <a href="https://instagram.com/cafesograos" target="_blank" rel="noopener noreferrer">@cafesograos</a>
+      <!-- [CONFIRMAR] endereço completo -- aguardando definição (Boa Esperança
+           do Sul/SP x Rua Padre Duarte 151, sala 123, Araraquara/SP) antes de
+           publicar aqui e no JSON-LD. -->
     </div>
   </div>
   <div class="container footer-bottom">
