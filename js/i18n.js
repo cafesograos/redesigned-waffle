@@ -8,7 +8,7 @@ const TRANSLATIONS = {
     nav_produtos: 'Cafés', nav_sobre: 'Sobre', nav_contato: 'Contato',
     nav_rastrear: 'Rastrear pedido', nav_whatsapp: 'Pedir no WhatsApp', cart_label: 'CARRINHO',
     nav_qual_cafe: 'Qual café escolher', nav_nossa_origem: 'Nossa origem', nav_araraquara: 'Araraquara',
-    nav_perguntas: 'Perguntas', nav_natal: 'Natal', nav_sobre_cafe: 'Sobre o café',
+    nav_perguntas: 'Perguntas', nav_sobre_cafe: 'Sobre o café',
     announce_bar: 'Primeira compra: Drip Coffee de brinde & 5% de cashback na próxima compra · Frete grátis acima de R$ 300 para SP',
 
     hero_eyebrow: 'Da nossa roça para sua mesa',
@@ -218,7 +218,7 @@ const TRANSLATIONS = {
   en: {
     nav_produtos: 'Coffees', nav_sobre: 'About', nav_contato: 'Contact',
     nav_qual_cafe: 'Which coffee to choose', nav_nossa_origem: 'Our origin', nav_araraquara: 'Araraquara',
-    nav_perguntas: 'FAQ', nav_natal: 'Christmas', nav_sobre_cafe: 'About coffee',
+    nav_perguntas: 'FAQ', nav_sobre_cafe: 'About coffee',
     nav_rastrear: 'Track order', nav_whatsapp: 'Order on WhatsApp', cart_label: 'CART',
     announce_bar: 'First purchase: free Drip Coffee & 5% cashback on your next order · Free shipping over R$ 300 for São Paulo state',
 
@@ -429,7 +429,7 @@ const TRANSLATIONS = {
   es: {
     nav_produtos: 'Cafés', nav_sobre: 'Nosotros', nav_contato: 'Contacto',
     nav_qual_cafe: 'Qué café elegir', nav_nossa_origem: 'Nuestro origen', nav_araraquara: 'Araraquara',
-    nav_perguntas: 'Preguntas', nav_natal: 'Navidad', nav_sobre_cafe: 'Sobre el café',
+    nav_perguntas: 'Preguntas', nav_sobre_cafe: 'Sobre el café',
     nav_rastrear: 'Rastrear pedido', nav_whatsapp: 'Pedir por WhatsApp', cart_label: 'CARRITO',
     announce_bar: 'Primera compra: Drip Coffee de regalo & 5% de cashback en la próxima compra · Envío gratis a partir de R$ 300 para SP',
 
@@ -640,7 +640,7 @@ const TRANSLATIONS = {
   fr: {
     nav_produtos: 'Cafés', nav_sobre: 'À propos', nav_contato: 'Contact',
     nav_qual_cafe: 'Quel café choisir', nav_nossa_origem: 'Notre origine', nav_araraquara: 'Araraquara',
-    nav_perguntas: 'Questions', nav_natal: 'Noël', nav_sobre_cafe: 'À propos du café',
+    nav_perguntas: 'Questions', nav_sobre_cafe: 'À propos du café',
     nav_rastrear: 'Suivre ma commande', nav_whatsapp: 'Commander sur WhatsApp', cart_label: 'PANIER',
     announce_bar: 'Premier achat : Drip Coffee offert & 5% de cashback sur la prochaine commande · Livraison gratuite dès R$ 300 pour l’État de São Paulo',
 
@@ -851,7 +851,7 @@ const TRANSLATIONS = {
   zh: {
     nav_produtos: '咖啡', nav_sobre: '关于我们', nav_contato: '联系方式',
     nav_qual_cafe: '如何选择咖啡', nav_nossa_origem: '我们的产地', nav_araraquara: 'Araraquara',
-    nav_perguntas: '常见问题', nav_natal: '圣诞节', nav_sobre_cafe: '咖啡知识',
+    nav_perguntas: '常见问题', nav_sobre_cafe: '咖啡知识',
     nav_rastrear: '查询订单', nav_whatsapp: '通过WhatsApp下单', cart_label: '购物车',
     announce_bar: '首次购买：赠送Drip Coffee & 下次购买返现5% · 圣保罗州满300雷亚尔包邮',
 
