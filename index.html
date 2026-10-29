@@ -113,14 +113,50 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
   <div class="container hero-inner">
     <div class="hero-text">
       <p class="eyebrow" data-i18n="hero_eyebrow">Da nossa roça para sua mesa</p>
+      <!-- [CONFIRMAR] linha de apoio "FAZENDA SÃO MARCOS · REGIÃO DE [CIDADE]/SP"
+           pedida no bloco 5 do protótipo -- depende da mesma definição de
+           endereço ainda em aberto no rodapé (Boa Esperança do Sul/SP x
+           Araraquara/SP). Não publicar até vir a decisão por escrito. -->
       <h1 data-i18n="hero_title">Café brasileiro de verdade: torrado toda semana, direto do produtor para sua xícara.</h1>
       <p class="hero-sub" data-i18n="hero_subtitle">Grãos selecionados com cuidado, em pequenos lotes. Peça online e receba fresquinho em casa.</p>
-      <a href="#produtos" class="btn btn-primary" data-i18n="hero_cta">Ver produtos</a>
-      <div class="hero-selos">
-        <span data-i18n="hero_badge1">Torra semanal</span>
-        <span data-i18n="hero_badge2">83+ pontos SCA</span>
-        <span data-i18n="hero_badge3">Entrega para todo o Brasil</span>
+      <div class="hero-ctas">
+        <a href="#produtos" class="btn btn-primary" data-i18n="hero_cta">Ver produtos</a>
+        <!-- Botão fica oculto até a página /qual-cafe-escolher existir (bloco "páginas de conteúdo"). -->
+        <a href="qual-cafe-escolher.html" class="btn btn-outline-white cta-oculta" data-i18n="hero_cta2">Qual café é o meu</a>
       </div>
+      <div class="hero-selos">
+        <span data-i18n="hero_badge1">Entrega para todo o Brasil</span>
+        <span data-i18n="hero_badge2">Torra da semana</span>
+        <span data-i18n="hero_badge3">Troca garantida</span>
+        <span data-i18n="hero_badge4">PIX ou cartão</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="comece-por-aqui">
+  <div class="container">
+    <h2 class="center" data-i18n="comece_title">Comece por aqui</h2>
+    <div class="comece-grid">
+      <!-- As 4 páginas de produto ainda não existem (vêm no bloco "páginas de
+           produto"); os links abaixo retornam 404 até lá, igual já acontece
+           com os links do cabeçalho/rodapé. -->
+      <a href="cafe-tradicional-500g.html" class="comece-card">
+        <span class="comece-card-produto" data-i18n="comece_card1_produto">Tradicional</span>
+        <strong data-i18n="comece_card1_title">Para o dia a dia</strong>
+      </a>
+      <a href="cafe-especial-500g.html" class="comece-card">
+        <span class="comece-card-produto" data-i18n="comece_card2_produto">Especial</span>
+        <strong data-i18n="comece_card2_title">Para sentir a diferença</strong>
+      </a>
+      <a href="drip-coffee.html" class="comece-card">
+        <span class="comece-card-produto" data-i18n="comece_card3_produto">Drip Coffee</span>
+        <strong data-i18n="comece_card3_title">Para levar na mochila</strong>
+      </a>
+      <a href="caixa-presente-drip-coffee.html" class="comece-card">
+        <span class="comece-card-produto" data-i18n="comece_card4_produto">Caixa de presente</span>
+        <strong data-i18n="comece_card4_title">Para presentear</strong>
+      </a>
     </div>
   </div>
 </section>
@@ -134,90 +170,6 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
       <button type="button" class="carrossel-seta carrossel-seta-prev" id="produtosPrev" aria-label="Anterior">‹</button>
       <div class="produtos-grid" id="produtosGrid"></div>
       <button type="button" class="carrossel-seta carrossel-seta-next" id="produtosNext" aria-label="Próximo">›</button>
-    </div>
-  </div>
-</section>
-
-<section class="origem">
-  <div class="container">
-    <p class="eyebrow center" data-i18n="origem_eyebrow">Orgulho do agro brasileiro</p>
-    <h2 class="center" data-i18n="origem_title">Da plantação até a sua xícara</h2>
-    <div class="origem-grid">
-      <figure>
-        <img src="assets/plantacao-real-cerejas.jpg" alt="Cerejas de café maduras na plantação" loading="lazy">
-        <figcaption data-i18n="origem_fig1">Plantação própria</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/graos-verdes-selecionados.jpg" alt="Grãos de café verdes selecionados antes da torra" loading="lazy">
-        <figcaption data-i18n="origem_fig2">Grãos 100% arábica, selecionados um a um</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/beneficiamento-real-torra.jpg" alt="Café sendo torrado e beneficiado" loading="lazy">
-        <figcaption data-i18n="origem_fig3">Beneficiamento cuidadoso, lote a lote</figcaption>
-      </figure>
-    </div>
-    <p class="origem-nota" data-i18n="origem_nota">Nossos grãos vêm do Sul de Minas — um dos berços do café especial no Brasil — e são torrados e moídos por nós, aqui em Araraquara/SP.</p>
-  </div>
-</section>
-
-<section class="destaques">
-  <div class="container">
-    <p class="destaques-statement" data-i18n="destaques_statement">Torra recente, 100% arábica, entrega garantida.</p>
-  </div>
-  <div class="container destaques-grid">
-    <div class="destaque"><strong data-i18n="destaque1_title">Torra recente</strong><span data-i18n="destaque1_desc">Torrado em pequenos lotes, toda semana</span></div>
-    <div class="destaque"><strong data-i18n="destaque2_title">Origem rastreada</strong><span data-i18n="destaque2_desc">Direto de produtores parceiros</span></div>
-    <div class="destaque"><strong data-i18n="destaque3_title">Entrega para todo o Brasil</strong><span data-i18n="destaque3_desc">Peça sem sair de casa</span></div>
-    <div class="destaque" data-i18n-title="sca_tooltip" title="Avaliado por cooperativa parceira: acima de 83 pontos na escala SCA (Specialty Coffee Association), o padrão internacional de café especial."><strong data-i18n="destaque4_title">Linha Especial 83+ SCA</strong><span data-i18n="destaque4_desc">Nossa torra de maior pontuação, avaliada oficialmente</span></div>
-  </div>
-</section>
-
-<section class="objecoes">
-  <div class="container">
-    <h2 class="center" data-i18n="objecoes_title">Por que confiar no Só Grãos</h2>
-    <div class="objecoes-grid">
-      <div class="objecao">
-        <strong data-i18n="objecao1_title">Rastreabilidade real</strong>
-        <span data-i18n="objecao1_desc">Direto de produtores parceiros do Sul de Minas, sem intermediário, até a sua xícara.</span>
-      </div>
-      <div class="objecao">
-        <strong data-i18n="objecao2_title">Consistência entre lotes</strong>
-        <span data-i18n="objecao2_desc">O resultado que você aprovou hoje é o mesmo que chega no seu próximo pedido.</span>
-      </div>
-      <div class="objecao">
-        <strong data-i18n="objecao3_title">Preço justo, torra a torra</strong>
-        <span data-i18n="objecao3_desc">Qualidade de verdade, sem economizar no grão — semana após semana.</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="linhas">
-  <div class="container">
-    <p class="eyebrow center" data-i18n="linhas_eyebrow">Guia rápido</p>
-    <h2 class="center" data-i18n="linhas_title">Tradicional ou Especial?</h2>
-    <p class="section-sub" data-i18n="linhas_subtitle">Duas linhas, cada uma pensada para um momento diferente.</p>
-    <div class="linhas-grid">
-      <div class="linha-card">
-        <span class="linha-badge" data-i18n="linha_trad_badge">Tradicional</span>
-        <h3 data-i18n="linha_trad_title">Para o dia a dia</h3>
-        <p data-i18n="linha_trad_desc">Uma mistura equilibrada de grãos com diferentes níveis de maturação. A torra mais forte padroniza o sabor e a cor — o resultado é um café encorpado e constante, 100% arábica.</p>
-        <div class="linha-perfil">
-          <span data-i18n="linha_suave">Suave</span>
-          <div class="linha-barra"><span style="width:80%"></span></div>
-          <span data-i18n="linha_intenso">Intenso</span>
-        </div>
-      </div>
-      <div class="linha-card">
-        <span class="linha-badge"><span data-i18n="linha_especial_badge">Especial</span> <em data-i18n-title="sca_tooltip" title="Avaliado por cooperativa parceira: acima de 83 pontos na escala SCA (Specialty Coffee Association), o padrão internacional de café especial.">83+ SCA</em></span>
-        <h3 data-i18n="linha_especial_title">Para quem quer o topo</h3>
-        <p data-i18n="linha_especial_desc">Avaliado numa escala internacional de pontuação (SCA), com nota acima de 80 — rastreável até a origem, com notas aromáticas complexas. Nosso café mais sofisticado.</p>
-        <div class="linha-perfil">
-          <span data-i18n="linha_suave">Suave</span>
-          <div class="linha-barra"><span style="width:35%"></span></div>
-          <span data-i18n="linha_intenso">Intenso</span>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -251,6 +203,96 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
         <button type="submit" class="btn btn-primary" data-i18n="av_submit">Enviar avaliação</button>
         <p class="avaliacao-status" id="avaliacaoStatus"></p>
       </form>
+    </div>
+  </div>
+</section>
+
+<section class="linhas">
+  <div class="container">
+    <p class="eyebrow center" data-i18n="linhas_eyebrow">Guia rápido</p>
+    <h2 class="center" data-i18n="linhas_title">Tradicional ou Especial?</h2>
+    <p class="section-sub" data-i18n="linhas_subtitle">Duas linhas, cada uma pensada para um momento diferente.</p>
+    <div class="linhas-grid">
+      <div class="linha-card">
+        <span class="linha-badge" data-i18n="linha_trad_badge">Tradicional</span>
+        <h3 data-i18n="linha_trad_title">Para o dia a dia</h3>
+        <p data-i18n="linha_trad_desc">Uma mistura equilibrada de grãos com diferentes níveis de maturação. A torra mais forte padroniza o sabor e a cor — o resultado é um café encorpado e constante, 100% arábica.</p>
+        <div class="linha-perfil">
+          <span data-i18n="linha_suave">Suave</span>
+          <div class="linha-barra"><span style="width:80%"></span></div>
+          <span data-i18n="linha_intenso">Intenso</span>
+        </div>
+      </div>
+      <div class="linha-card">
+        <span class="linha-badge"><span data-i18n="linha_especial_badge">Especial</span> <em data-i18n="sca_pontuacao_badge" data-i18n-title="sca_tooltip" title="Avaliado pela Coopercitrus: 84 pontos na escala SCA (Specialty Coffee Association), o padrão internacional de café especial.">84 pontos SCA</em></span>
+        <h3 data-i18n="linha_especial_title">Para quem quer o topo</h3>
+        <p data-i18n="linha_especial_desc">Avaliado numa escala internacional de pontuação (SCA), com nota acima de 80 — rastreável até a origem, com notas aromáticas complexas. Nosso café mais sofisticado.</p>
+        <div class="linha-perfil">
+          <span data-i18n="linha_suave">Suave</span>
+          <div class="linha-barra"><span style="width:35%"></span></div>
+          <span data-i18n="linha_intenso">Intenso</span>
+        </div>
+      </div>
+      <div class="linha-card linha-card-duvida">
+        <h3 data-i18n="linha_duvida_title">Ainda em dúvida?</h3>
+        <p data-i18n="linha_duvida_desc">Responda 3 perguntas rápidas e a gente indica o café certo pra você.</p>
+        <!-- Link fica normal (não oculto) e retorna 404 até /qual-cafe-escolher existir, igual aos demais links novos do cabeçalho/rodapé. -->
+        <a href="qual-cafe-escolher.html" class="btn btn-outline-white" data-i18n="linha_duvida_cta">Descobrir meu café</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="origem">
+  <div class="container">
+    <p class="eyebrow center" data-i18n="origem_eyebrow">Orgulho do agro brasileiro</p>
+    <h2 class="center" data-i18n="origem_title">Da plantação até a sua xícara</h2>
+    <div class="origem-grid">
+      <figure>
+        <img src="assets/plantacao-real-cerejas.jpg" alt="Cerejas de café maduras na plantação" loading="lazy">
+        <figcaption data-i18n="origem_fig1">Plantação própria e de produtores parceiros do Sul de Minas</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/graos-verdes-selecionados.jpg" alt="Grãos de café verdes selecionados antes da torra" loading="lazy">
+        <figcaption data-i18n="origem_fig2">Grãos 100% arábica, selecionados um a um</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/beneficiamento-real-torra.jpg" alt="Café sendo torrado e beneficiado" loading="lazy">
+        <figcaption data-i18n="origem_fig3">Beneficiamento cuidadoso, lote a lote</figcaption>
+      </figure>
+    </div>
+    <p class="origem-nota" data-i18n="origem_nota">Nossos grãos vêm do Sul de Minas — um dos berços do café especial no Brasil — e são torrados e moídos por nós, aqui em Araraquara/SP.</p>
+  </div>
+</section>
+
+<section class="destaques">
+  <div class="container">
+    <p class="destaques-statement" data-i18n="destaques_statement">Torra recente, 100% arábica, entrega garantida.</p>
+  </div>
+  <div class="container destaques-grid">
+    <div class="destaque"><strong data-i18n="destaque1_title">Torra recente</strong><span data-i18n="destaque1_desc">Torrado em pequenos lotes, toda semana</span></div>
+    <div class="destaque"><strong data-i18n="destaque2_title">Origem rastreada</strong><span data-i18n="destaque2_desc">Plantação própria e de produtores parceiros do Sul de Minas</span></div>
+    <div class="destaque"><strong data-i18n="destaque3_title">Entrega para todo o Brasil</strong><span data-i18n="destaque3_desc">Peça sem sair de casa</span></div>
+    <div class="destaque" data-i18n-title="sca_tooltip" title="Avaliado pela Coopercitrus: 84 pontos na escala SCA (Specialty Coffee Association), o padrão internacional de café especial."><strong data-i18n="destaque4_title">Linha Especial 84 pontos SCA</strong><span data-i18n="destaque4_desc">Nossa torra de maior pontuação, avaliada oficialmente</span></div>
+  </div>
+</section>
+
+<section class="objecoes">
+  <div class="container">
+    <h2 class="center" data-i18n="objecoes_title">Por que confiar no Só Grãos</h2>
+    <div class="objecoes-grid">
+      <div class="objecao">
+        <strong data-i18n="objecao1_title">Rastreabilidade real</strong>
+        <span data-i18n="objecao1_desc">Direto de produtores parceiros do Sul de Minas, sem intermediário, até a sua xícara.</span>
+      </div>
+      <div class="objecao">
+        <strong data-i18n="objecao2_title">Consistência entre lotes</strong>
+        <span data-i18n="objecao2_desc">O resultado que você aprovou hoje é o mesmo que chega no seu próximo pedido.</span>
+      </div>
+      <div class="objecao">
+        <strong data-i18n="objecao3_title">Preço justo, torra a torra</strong>
+        <span data-i18n="objecao3_desc">Qualidade de verdade, sem economizar no grão — semana após semana.</span>
+      </div>
     </div>
   </div>
 </section>
@@ -297,6 +339,11 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
       <p class="eyebrow" data-i18n="b2b_eyebrow">Venda corporativa</p>
       <p data-i18n="b2b_text">Da cafeteria ao escritório, seu café também fala sobre o seu negócio. Fornecemos em volume, com a mesma torra fresca e cuidado de sempre — para quem quer servir bem quem entra pela porta.</p>
       <a href="https://wa.me/5516997616459?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20parceria%20B2B%20com%20o%20Caf%C3%A9%20S%C3%B3%20Gr%C3%A3os." target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="b2b_cta">Fale sobre parceria B2B</a>
+      <!-- Espaço reservado pro Kit Escritório (item 5 do protótipo): oculto
+           por flag, sem preço nem composição definidos. Pra ativar, remova
+           o atributo "hidden" e preencha o conteúdo quando o cliente decidir
+           preço/composição. -->
+      <div class="kit-escritorio-placeholder" hidden data-flag="kit_escritorio"></div>
     </div>
   </div>
 </section>

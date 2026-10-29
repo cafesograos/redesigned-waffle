@@ -152,11 +152,42 @@ a { text-decoration: none; color: inherit; }
 /* Evita que o cabeçalho fixo esconda o topo da seção ao navegar pelos links do menu */
 #produtos, #sobre, #contato { scroll-margin-top: 160px; }
 .hero-sub { font-size: 17px; max-width: 480px; margin-bottom: 28px; color: rgba(255,255,255,.85); }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn-outline-white { background: none; border: 1px solid rgba(255,255,255,.5); color: #fff; }
+.btn-outline-white:hover { background: rgba(255,255,255,.1); }
+.cta-oculta { display: none; }
 .hero-selos {
   display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 24px;
   font-family: 'General Sans', sans-serif; font-size: 13px; font-weight: 700;
   color: rgba(255,255,255,.85);
 }
+
+/* Comece por aqui */
+.comece-por-aqui { padding: 56px 0; background: var(--white); }
+.comece-por-aqui h2 { margin-bottom: 28px; }
+.comece-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.comece-card {
+  display: block; background: #F7F5F4; border-radius: var(--radius);
+  border: 1px solid #ecdfc9; padding: 22px 18px; text-align: center;
+}
+.comece-card:hover { border-color: var(--laranja); }
+.comece-card-produto {
+  display: inline-block; font-size: 12px; font-weight: 700; color: var(--laranja);
+  text-transform: uppercase; letter-spacing: .02em; margin-bottom: 8px;
+}
+.comece-card strong { display: block; font-size: 15px; color: var(--expresso); }
+
+/* Cartão "Ainda em dúvida?" no fim do bloco Tradicional/Especial — ocupa a
+   largura toda do grid de 2 colunas, como uma faixa de fechamento.
+   Seletor composto (.linha-card.linha-card-duvida) pra garantir que vença
+   o fundo claro de ".linha-card", declarado mais abaixo no arquivo. */
+.linha-card.linha-card-duvida {
+  grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap; background: var(--expresso); border-color: var(--expresso);
+}
+.linha-card-duvida h3 { color: #fff; margin-bottom: 4px; }
+.linha-card.linha-card-duvida p { color: rgba(255,255,255,.75); margin-bottom: 0; }
+.linha-card-duvida .btn { flex-shrink: 0; }
 
 /* Origem (galeria) */
 .origem { padding: 64px 0 8px; }
@@ -616,6 +647,8 @@ a { text-decoration: none; color: inherit; }
   .hero-text h1 { font-size: 32px; }
   #produtos, #sobre, #contato { scroll-margin-top: 140px; }
   .destaques-grid, .linhas-grid { grid-template-columns: 1fr; }
+  .comece-grid { grid-template-columns: repeat(2, 1fr); }
+  .linha-card-duvida { flex-direction: column; align-items: flex-start; }
   .destaque { text-align: center; }
   .origem-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
