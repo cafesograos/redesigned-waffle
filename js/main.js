@@ -668,6 +668,26 @@ carregarCatalogo();
   }
 })();
 
+// Popup "Você é de Araraquara?" — abre ao clicar no selo do hero.
+(function popupAraraquaraInit() {
+  const chip = document.getElementById('araraquaraChip');
+  const overlay = document.getElementById('popupAraraquaraOverlay');
+  const closeBtn = document.getElementById('popupAraraquaraClose');
+  const comprarSiteBtn = document.getElementById('araraquaraComprarSite');
+  if (!chip || !overlay) return;
+
+  function abrir() { overlay.classList.add('open'); }
+  function fechar() { overlay.classList.remove('open'); }
+
+  chip.addEventListener('click', abrir);
+  closeBtn.addEventListener('click', fechar);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) fechar(); });
+  comprarSiteBtn.addEventListener('click', () => {
+    fechar();
+    document.getElementById('produtos').scrollIntoView({ behavior: 'smooth' });
+  });
+})();
+
 // Quando o idioma muda, redesenha tudo que foi montado dinamicamente em JS
 // (o data-i18n cuida sozinho do texto estático do HTML).
 window.onLanguageChange = function () {

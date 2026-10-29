@@ -18,6 +18,9 @@ const TRANSLATIONS = {
     hero_cta2: 'Qual café é o meu',
     hero_badge1: 'Entrega para todo o Brasil', hero_badge2: 'Torra da semana',
     hero_badge3: 'Troca garantida', hero_badge4: 'PIX ou cartão',
+    hero_araraquara_chip: '📍 Você é de Araraquara?',
+    araraquara_popup_texto: 'Frete grátis acima de R$100 em compras pra quem é de Araraquara/SP — pelo WhatsApp ou direto no site.',
+    araraquara_popup_whatsapp: 'Comprar pelo WhatsApp', araraquara_popup_site: 'Comprar no site',
 
     comece_title: 'Comece por aqui',
     comece_card1_title: 'Para o dia a dia', comece_card1_produto: 'Tradicional',
@@ -226,6 +229,9 @@ const TRANSLATIONS = {
     hero_cta2: 'Find my coffee',
     hero_badge1: 'Shipping all over Brazil', hero_badge2: 'Weekly roast',
     hero_badge3: 'Exchange guaranteed', hero_badge4: 'PIX or card',
+    hero_araraquara_chip: '📍 Are you from Araraquara?',
+    araraquara_popup_texto: 'Free shipping on orders above R$100 for customers in Araraquara, SP — via WhatsApp or straight on the site.',
+    araraquara_popup_whatsapp: 'Buy on WhatsApp', araraquara_popup_site: 'Buy on the site',
 
     comece_title: 'Start here',
     comece_card1_title: 'For every day', comece_card1_produto: 'Traditional',
@@ -434,6 +440,9 @@ const TRANSLATIONS = {
     hero_cta2: 'Encontrar mi café',
     hero_badge1: 'Envíos a todo Brasil', hero_badge2: 'Tueste semanal',
     hero_badge3: 'Cambio garantizado', hero_badge4: 'PIX o tarjeta',
+    hero_araraquara_chip: '📍 ¿Eres de Araraquara?',
+    araraquara_popup_texto: 'Envío gratis en compras superiores a R$100 para clientes de Araraquara, SP — por WhatsApp o directo en el sitio.',
+    araraquara_popup_whatsapp: 'Comprar por WhatsApp', araraquara_popup_site: 'Comprar en el sitio',
 
     comece_title: 'Empieza por aquí',
     comece_card1_title: 'Para el día a día', comece_card1_produto: 'Tradicional',
@@ -642,6 +651,9 @@ const TRANSLATIONS = {
     hero_cta2: 'Trouver mon café',
     hero_badge1: 'Livraison dans tout le Brésil', hero_badge2: 'Torréfaction de la semaine',
     hero_badge3: 'Échange garanti', hero_badge4: 'PIX ou carte',
+    hero_araraquara_chip: '📍 Vous êtes d’Araraquara ?',
+    araraquara_popup_texto: 'Livraison gratuite dès R$100 d’achat pour les clients d’Araraquara, SP — via WhatsApp ou directement sur le site.',
+    araraquara_popup_whatsapp: 'Acheter sur WhatsApp', araraquara_popup_site: 'Acheter sur le site',
 
     comece_title: 'Commencez ici',
     comece_card1_title: 'Pour tous les jours', comece_card1_produto: 'Traditionnel',
@@ -850,6 +862,9 @@ const TRANSLATIONS = {
     hero_cta2: '找到适合我的咖啡',
     hero_badge1: '全巴西配送', hero_badge2: '本周新鲜烘焙',
     hero_badge3: '保证换货', hero_badge4: 'PIX或银行卡',
+    hero_araraquara_chip: '📍 您是阿拉拉夸拉的客户吗？',
+    araraquara_popup_texto: '阿拉拉夸拉（圣保罗州）客户满100雷亚尔包邮——可通过WhatsApp或直接在网站购买。',
+    araraquara_popup_whatsapp: '通过WhatsApp购买', araraquara_popup_site: '在网站购买',
 
     comece_title: '从这里开始',
     comece_card1_title: '日常饮用', comece_card1_produto: '传统款',

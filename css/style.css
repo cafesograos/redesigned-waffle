@@ -276,6 +276,37 @@ a { text-decoration: none; color: inherit; }
 .avaliacao-estrelas button.active { color: var(--laranja); }
 .avaliacao-status { font-size: 13px; color: var(--text-soft); min-height: 18px; }
 
+/* Chip "Você é de Araraquara?" dentro dos selos do hero */
+.hero-selo-araraquara {
+  background: var(--expresso); color: #fff; border: 1px solid rgba(255,255,255,.35);
+  border-radius: 999px; padding: 6px 14px; cursor: pointer;
+  font-family: inherit; font-size: 13px; font-weight: 700; line-height: 1;
+}
+.hero-selo-araraquara:hover { background: #3a2a24; border-color: rgba(255,255,255,.6); }
+
+/* Popup "Você é de Araraquara?" (mesmo padrão do popup de cadastro, em tema escuro) */
+.popup-araraquara-overlay {
+  position: fixed; inset: 0; z-index: 150; background: rgba(33,23,20,.7);
+  display: none; align-items: center; justify-content: center; padding: 16px;
+}
+.popup-araraquara-overlay.open { display: flex; }
+.popup-araraquara {
+  position: relative; background: var(--expresso); border-radius: 16px; padding: 32px 24px 24px;
+  width: 100%; max-width: 380px; text-align: center; box-shadow: 0 12px 40px rgba(0,0,0,.25);
+}
+.popup-araraquara-close {
+  position: absolute; top: 12px; right: 12px; background: none; border: none;
+  font-size: 20px; color: rgba(255,255,255,.6); cursor: pointer; padding: 6px; line-height: 1;
+}
+.popup-araraquara h3 {
+  font-family: 'Tanker', sans-serif; font-weight: 400; font-size: 28px; color: #fff;
+  text-transform: uppercase; letter-spacing: .02em; margin: 0 0 10px;
+}
+.popup-araraquara p { font-size: 15px; color: rgba(255,255,255,.78); line-height: 1.5; margin: 0 0 22px; }
+.popup-araraquara-acoes { display: flex; flex-direction: column; gap: 10px; }
+.popup-araraquara-acoes .btn-outline { border-color: rgba(255,255,255,.5); color: #fff; }
+.popup-araraquara-acoes .btn-outline:hover { background: rgba(255,255,255,.1); }
+
 /* Textura de grãos (bean pattern) usada em seções escuras */
 .bean-pattern {
   background-color: var(--expresso);
