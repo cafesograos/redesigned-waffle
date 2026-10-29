@@ -604,6 +604,12 @@ a { text-decoration: none; color: inherit; }
   font-size: 15px; font-family: inherit;
 }
 .popup-cadastro-status { font-size: 13px; margin: 10px 0 0; color: var(--text-soft); }
+.popup-cadastro-frete {
+  display: none; font-size: 13px; font-weight: 700; color: var(--laranja-dark);
+  background: rgba(214,107,62,.12); border-radius: 8px; padding: 10px 12px;
+  text-align: left; line-height: 1.4;
+}
+.popup-cadastro-frete.show { display: block; }
 
 /* Lightbox (galeria do produto) */
 .lightbox {

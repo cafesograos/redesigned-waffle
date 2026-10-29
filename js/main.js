@@ -618,6 +618,8 @@ carregarCatalogo();
   const closeBtn = document.getElementById('popupCadastroClose');
   const form = document.getElementById('formPopupCadastro');
   const statusEl = document.getElementById('popupCadastroStatus');
+  const cepInput = document.getElementById('popupCep');
+  const freteEl = document.getElementById('popupCadastroFrete');
   if (!overlay || !form) return;
 
   const CADASTRADO_KEY = 'cafesograos-cadastro-popup';
@@ -629,10 +631,33 @@ carregarCatalogo();
   closeBtn.addEventListener('click', fechar);
   overlay.addEventListener('click', (e) => { if (e.target === overlay) fechar(); });
 
+  // Revela a condição de frete grátis da pessoa assim que ela termina de
+  // digitar o CEP (8 dígitos) — antes mesmo de enviar o formulário. Mesmas
+  // 3 faixas do servidor (ver freteGratisParaCep em server.js), só pra
+  // decidir qual mensagem mostrar aqui; o frete de verdade é sempre
+  // calculado no carrinho, nunca a partir disso.
+  if (cepInput && freteEl) {
+    cepInput.addEventListener('input', () => {
+      const digits = cepInput.value.replace(/\D/g, '');
+      if (digits.length < 8) {
+        freteEl.classList.remove('show');
+        return;
+      }
+      const prefixo = Number(digits.slice(0, 5));
+      let chave, valor;
+      if (prefixo >= 14800 && prefixo <= 14814) { chave = 'popup_frete_araraquara'; valor = 100; }
+      else if (prefixo >= 1000 && prefixo <= 19999) { chave = 'popup_frete_sp'; valor = 300; }
+      else { chave = 'popup_frete_brasil'; valor = 500; }
+      freteEl.textContent = t(chave, { valor });
+      freteEl.classList.add('show');
+    });
+  }
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const nome = document.getElementById('popupNome').value.trim();
     const telefone = document.getElementById('popupTelefone').value.trim();
+    const cep = cepInput ? cepInput.value.trim() : '';
 
     if (!nome || telefone.replace(/\D/g, '').length < 10) {
       statusEl.textContent = t('popup_cadastro_msg_preencha');
@@ -647,7 +672,7 @@ carregarCatalogo();
       const res = await fetch(`${API_BASE}/api/cadastro-popup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nome, telefone })
+        body: JSON.stringify({ nome, telefone, cep })
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Falha ao cadastrar');
