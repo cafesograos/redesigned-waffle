@@ -693,6 +693,70 @@ a { text-decoration: none; color: inherit; }
 .lightbox-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.35); }
 .lightbox-dot.active { background: var(--laranja); }
 
+/* Página de produto individual (ex.: cafe-especial-500g.html) */
+.pe-topo { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-bottom: 40px; }
+.pe-galeria-principal { border-radius: var(--radius); overflow: hidden; background: #F7F5F4; }
+.pe-galeria-principal img { width: 100%; display: block; cursor: zoom-in; aspect-ratio: 1; object-fit: cover; }
+.pe-galeria-miniaturas { display: flex; gap: 10px; margin-top: 10px; }
+.pe-galeria-miniaturas img { width: 64px; height: 64px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid transparent; }
+.pe-galeria-miniaturas img.ativa { border-color: var(--laranja); }
+
+.pe-selos { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.pe-selo { background: #F7F5F4; border-radius: 999px; padding: 5px 12px; font-size: 12px; font-weight: 700; color: var(--expresso); }
+
+.pe-avaliacao-resumo { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; color: var(--text-soft); font-size: 14px; }
+.pe-avaliacao-resumo .pe-estrelas { color: var(--laranja); letter-spacing: 1px; }
+
+.pe-frase { color: var(--text-soft); margin-bottom: 18px; }
+
+.pe-preco-linha { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+.pe-preco-original { font-size: 16px; color: #a89a92; text-decoration: line-through; }
+.pe-preco { font-size: 28px; font-weight: 700; color: var(--expresso); }
+.pe-desconto { background: var(--sale); color: #fff; font-size: 12px; font-weight: 700; padding: 3px 8px; border-radius: 6px; }
+
+.pe-seletor { margin-bottom: 22px; }
+.pe-seletor h3 { font-size: 14px; margin-bottom: 10px; }
+.pe-seletor-opcoes { display: flex; gap: 10px; }
+.pe-seletor-opcoes button {
+  background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 12px 20px;
+  font-weight: 700; cursor: pointer; color: var(--expresso); font-family: inherit;
+}
+.pe-seletor-opcoes button.ativo { border-color: var(--expresso); background: var(--expresso); color: #fff; }
+
+.pe-btn-comprar { width: 100%; padding: 16px; font-size: 16px; margin-bottom: 8px; }
+
+.pe-secao { padding: 40px 0; border-top: 1px solid #eee; }
+.pe-secao h2 { font-size: 22px; margin-bottom: 14px; }
+.pe-secao > p { color: var(--text-soft); line-height: 1.7; }
+
+.pe-ficha { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; margin-bottom: 24px; }
+.pe-ficha dt { font-size: 12px; text-transform: uppercase; letter-spacing: .03em; color: var(--text-soft); margin-bottom: 4px; }
+.pe-ficha dd { font-weight: 700; color: var(--expresso); }
+.pe-ficha dd.pe-confirmar { color: #B7791F; font-weight: 400; font-style: italic; }
+
+.pe-escala { margin-bottom: 14px; max-width: 420px; }
+.pe-escala-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; color: var(--text-soft); }
+.pe-escala-barra { height: 6px; border-radius: 999px; background: #e8dfd3; overflow: hidden; }
+.pe-escala-barra span { display: block; height: 100%; background: var(--laranja); border-radius: 999px; }
+
+.pe-rendimento { background: #F7F5F4; border-radius: var(--radius); padding: 20px; font-weight: 700; color: var(--expresso); }
+
+.pe-preparo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.pe-preparo-card { background: #F7F5F4; border-radius: var(--radius); padding: 18px; }
+.pe-preparo-card h4 { font-size: 14px; margin-bottom: 8px; }
+.pe-preparo-card p { font-size: 13px; color: var(--text-soft); line-height: 1.6; }
+
+.pe-entrega-cep { display: flex; gap: 10px; margin-bottom: 10px; }
+.pe-entrega-cep input { flex: 1; padding: 12px 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; font-family: inherit; }
+.pe-entrega-status { font-size: 14px; color: var(--text-soft); min-height: 20px; margin-bottom: 16px; }
+.pe-garantia { display: flex; gap: 10px; align-items: flex-start; color: var(--text-soft); font-size: 14px; line-height: 1.6; }
+
+.pe-avaliacao-card { background: #F7F5F4; border-radius: var(--radius); padding: 18px; margin-bottom: 12px; }
+.pe-avaliacao-card .pe-estrelas { color: var(--laranja); margin-bottom: 6px; display: block; letter-spacing: 1px; }
+.pe-avaliacao-card .pe-autor { font-weight: 700; font-size: 13px; color: var(--expresso); }
+.pe-avaliacao-card .pe-data { font-size: 12px; color: #a89a92; margin-left: 6px; }
+.pe-avaliacao-card p { font-size: 14px; color: var(--text-soft); margin-top: 6px; }
+
 @media (max-width: 800px) {
   /* Texto mais comprido que o botão de idioma/menu sobrando ao lado --
      reduz o tamanho só no mobile pra caber em 2 linhas em telas de 390px
@@ -766,4 +830,7 @@ a { text-decoration: none; color: inherit; }
   .whatsapp-float { width: 50px; height: 50px; right: 14px; bottom: 14px; }
   .whatsapp-float svg { width: 26px; height: 26px; }
   .rastreio-form { flex-direction: column; }
+  .pe-topo { grid-template-columns: 1fr; gap: 24px; }
+  .pe-ficha { grid-template-columns: 1fr; }
+  .pe-preparo-grid { grid-template-columns: 1fr; }
 }
