@@ -6,6 +6,26 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://www.cafesograos.com.br/cafe-especial-500g.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.cafesograos.com.br/cafe-tradicional-500g.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.cafesograos.com.br/drip-coffee.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.cafesograos.com.br/caixa-presente-drip-coffee.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.cafesograos.com.br/cafe-araraquara.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

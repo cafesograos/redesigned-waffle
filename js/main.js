@@ -2,6 +2,15 @@ const API_BASE = "https://cafesograos-backend-production.up.railway.app";
 
 let activeFilter = "todos";
 
+const PRODUTO_PAGINA = {
+  'cafe-tradicional-500-moido': 'cafe-tradicional-500g.html',
+  'cafe-especial-500-grao': 'cafe-especial-500g.html',
+  'cafe-especial-500-moido': 'cafe-especial-500g.html',
+  'drip-coffee-caixa-10': 'drip-coffee.html',
+  'drip-coffee-unidade': 'drip-coffee.html',
+  'caixa-drip-coffee-vazia': 'caixa-presente-drip-coffee.html'
+};
+
 // Único ponto de configuração da regra de frete grátis -- vem sempre de
 // GET /api/config (o mesmo FRETE_GRATIS que o backend usa pra valer o
 // frete de verdade no checkout), nunca digitado aqui. O valor que já está
@@ -123,6 +132,7 @@ function renderProducts() {
         <div class="produto-info">
           <h3>${nomeProduto(p)}</h3>
           <p>${descricaoProduto(p)}</p>
+          ${PRODUTO_PAGINA[p.id] ? `<a href="${PRODUTO_PAGINA[p.id]}" class="produto-ficha-link">${t('produto_ver_ficha')}</a>` : ''}
           <div class="produto-footer">
             <div class="produto-precos">
               <span class="produto-peso">${pesoHtml(p)}</span>

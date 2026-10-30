@@ -486,6 +486,16 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
   // 500g ÷ 10g = 50 xícaras) -- nunca um valor fixo digitado.
   const produtoEspecial = (typeof PRODUCTS !== 'undefined') ? PRODUCTS.find((p) => p.id === 'cafe-especial-500-grao') : null;
   if (produtoEspecial) {
+    if (window.fbq) {
+      fbq('track', 'ViewContent', {
+        content_ids: [produtoEspecial.id],
+        content_name: produtoEspecial.nome,
+        content_type: 'product',
+        num_items: 1,
+        currency: 'BRL',
+        value: produtoEspecial.preco
+      });
+    }
     const precoXicara = (produtoEspecial.preco / 50).toFixed(2).replace('.', ',');
     const atualizarRendimento = () => {
       document.getElementById('peRendimento').textContent = t('pe_rendimento_texto', { precoXicara });
