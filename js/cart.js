@@ -71,6 +71,7 @@ const Cart = {
         content_ids: [id],
         content_name: p.nome,
         content_type: 'product',
+        num_items: 1,
         currency: 'BRL',
         value: p.preco
       });

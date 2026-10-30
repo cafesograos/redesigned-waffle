@@ -477,6 +477,11 @@ a { text-decoration: none; color: inherit; }
   transition: transform .2s ease-out, box-shadow .2s ease-out, opacity .2s ease-out;
   will-change: transform;
 }
+/* O atributo "hidden" nativo vira display:none só na folha de estilo do
+   navegador (prioridade mais baixa que CSS de autor) -- sem esta regra, o
+   "display: flex" logo acima ganharia e o filtro de categoria pararia de
+   esconder os cards de verdade. */
+.produto-card[hidden] { display: none; }
 .carrossel-seta {
   position: absolute; top: 50%; transform: translateY(-50%); z-index: 20;
   width: 44px; height: 44px; border-radius: 50%; border: none;
@@ -507,6 +512,7 @@ a { text-decoration: none; color: inherit; }
 .produto-preco { font-weight: 700; color: var(--expresso); font-size: 17px; }
 .produto-preco-linha { display: flex; align-items: center; gap: 6px; }
 .produto-preco-original { font-size: 12px; color: #a89a92; text-decoration: line-through; }
+.produto-peso { font-size: 11px; color: var(--text-soft); text-transform: uppercase; letter-spacing: .02em; order: -1; }
 .produto-desconto {
   font-size: 11px; font-weight: 700; color: #fff; background: var(--sale);
   padding: 1px 6px; border-radius: 4px;
@@ -688,6 +694,10 @@ a { text-decoration: none; color: inherit; }
 .lightbox-dot.active { background: var(--laranja); }
 
 @media (max-width: 800px) {
+  /* Texto mais comprido que o botão de idioma/menu sobrando ao lado --
+     reduz o tamanho só no mobile pra caber em 2 linhas em telas de 390px
+     (ver tarefa 2 da auditoria de 29/10/2026). */
+  .announce-bar { font-size: 11px; padding: 8px 10px; letter-spacing: normal; line-height: 1.35; }
   .hero { padding: 56px 0; min-height: 320px; background-image: linear-gradient(rgba(33,23,20,.85), rgba(33,23,20,.85)), url('../assets/plantacao-real-hero-mobile.jpg'); }
   .hero-text { text-align: center; margin: 0 auto; }
   .hero-sub { margin-left: auto; margin-right: auto; }

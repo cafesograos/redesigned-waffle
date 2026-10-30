@@ -2,6 +2,34 @@ const API_BASE = "https://cafesograos-backend-production.up.railway.app";
 
 let activeFilter = "todos";
 
+// Único ponto de configuração da regra de frete grátis -- vem sempre de
+// GET /api/config (o mesmo FRETE_GRATIS que o backend usa pra valer o
+// frete de verdade no checkout), nunca digitado aqui. O valor que já está
+// escrito nas páginas HTML (barra do topo) é só o retrato do que valia no
+// momento da publicação -- se o JS não carregar, ele fica estático, mas
+// assim que carrega, passa a refletir a config ao vivo sozinho.
+let FRETE_GRATIS_CONFIG = null;
+const freteGratisConfigPronta = fetch(`${API_BASE}/api/config`)
+  .then((r) => r.json())
+  .then((data) => { FRETE_GRATIS_CONFIG = data.freteGratis; })
+  .catch((err) => console.warn('Não foi possível carregar a config de frete grátis:', err));
+
+function freteGratisMinimo(escopo) {
+  if (!FRETE_GRATIS_CONFIG) return null;
+  const faixa = FRETE_GRATIS_CONFIG.faixas.find((f) => f.escopo === escopo);
+  return faixa ? faixa.minimo : null;
+}
+
+// Barra do topo: "a partir de R$X" usa sempre a faixa mais barata (hoje,
+// Araraquara) -- se a config mudar, atualiza sozinha, sem editar HTML.
+function atualizarAnnounceBar() {
+  const bar = document.querySelector('.announce-bar');
+  if (!bar || !FRETE_GRATIS_CONFIG) return;
+  const menor = Math.min(...FRETE_GRATIS_CONFIG.faixas.map((f) => f.minimo));
+  bar.textContent = t('announce_bar', { valor: menor % 1 === 0 ? menor.toFixed(0) : menor.toFixed(2).replace('.', ',') });
+}
+freteGratisConfigPronta.then(atualizarAnnounceBar);
+
 // Nome/descrição do produto no idioma atual — cai pro português se a
 // tradução específica não existir (ex.: catálogo local desatualizado) ou se
 // i18n.js não tiver terminado de carregar a tempo (visto em produção: uma
@@ -49,28 +77,64 @@ function priceHtml(p) {
   return `<span class="produto-preco">R$ ${p.preco.toFixed(2).replace('.', ',')}</span>`;
 }
 
-// Renderiza a vitrine de produtos, respeitando o filtro ativo
+// Peso em texto (500 g, 1 kg) -- mesma unidade que os cards estáticos do
+// HTML já usam, pra não ficar nada diferente quando o JS reconstrói do zero.
+function pesoHtml(p) {
+  return p.pesoGramas >= 1000
+    ? `${(p.pesoGramas / 1000).toFixed(1).replace('.0', '').replace('.', ',')} kg`
+    : `${p.pesoGramas} g`;
+}
+
+// Renderiza a vitrine de produtos, respeitando o filtro ativo. Os produtos
+// já vêm escritos no HTML (ver index.html) pra aparecer com JavaScript
+// desativado -- em vez de recriar os cards do zero a cada chamada, isso
+// sincroniza texto/idioma nos cards que já existem e só mostra/esconde
+// conforme o filtro. Only reconstrói do zero se o HTML não tiver os cards
+// (fallback de segurança, ex.: página que inclua o grid vazio).
 function renderProducts() {
   const grid = document.getElementById('produtosGrid');
   if (!grid) return;
   const items = activeFilter === "todos"
     ? PRODUCTS
     : PRODUCTS.filter(p => p.categoria === activeFilter);
+  const idsVisiveis = new Set(items.map((p) => p.id));
 
-  grid.innerHTML = items.map(p => `
-    <div class="produto-card">
-      ${p.badge ? `<span class="produto-badge${p.badge.toUpperCase() === 'PROMOÇÃO' ? ' badge-sale' : ''}"${p.badge.includes('SCA') ? ` title="${t('sca_tooltip')}"` : ''}>${p.badge}</span>` : ''}
-      <div class="produto-img"${p.imgs ? ` data-gallery="${p.id}"` : ''}>${p.img ? `<img src="${p.img}" alt="${nomeProduto(p)}" loading="lazy">` : ''}</div>
-      <div class="produto-info">
-        <h3>${nomeProduto(p)}</h3>
-        <p>${descricaoProduto(p)}</p>
-        <div class="produto-footer">
-          <div class="produto-precos">${priceHtml(p)}</div>
-          <button class="btn btn-secondary" data-add="${p.id}">${t('add_button')}</button>
+  let algumCardExistente = false;
+  PRODUCTS.forEach((p) => {
+    const card = grid.querySelector(`[data-id="${p.id}"]`);
+    if (!card) return;
+    algumCardExistente = true;
+    card.hidden = !idsVisiveis.has(p.id);
+    const h3 = card.querySelector('h3');
+    const descEl = card.querySelector('p');
+    const btn = card.querySelector('[data-add]');
+    const img = card.querySelector('img');
+    if (h3) h3.textContent = nomeProduto(p);
+    if (descEl) descEl.textContent = descricaoProduto(p);
+    if (btn) btn.textContent = t('add_button');
+    if (img) img.alt = nomeProduto(p);
+  });
+
+  if (!algumCardExistente) {
+    grid.innerHTML = items.map((p) => `
+      <article class="produto-card" data-id="${p.id}" data-categoria="${p.categoria}">
+        ${p.badge ? `<span class="produto-badge${p.badge.toUpperCase() === 'PROMOÇÃO' ? ' badge-sale' : ''}"${p.badge.includes('SCA') ? ` title="${t('sca_tooltip')}"` : ''}>${p.badge}</span>` : ''}
+        <div class="produto-img"${p.imgs ? ` data-gallery="${p.id}"` : ''}>${p.img ? `<img src="${p.img}" alt="${nomeProduto(p)}" loading="lazy">` : ''}</div>
+        <div class="produto-info">
+          <h3>${nomeProduto(p)}</h3>
+          <p>${descricaoProduto(p)}</p>
+          <div class="produto-footer">
+            <div class="produto-precos">
+              <span class="produto-peso">${pesoHtml(p)}</span>
+              ${priceHtml(p)}
+            </div>
+            <button class="btn btn-secondary" data-add="${p.id}">${t('add_button')}</button>
+          </div>
         </div>
-      </div>
-    </div>
-  `).join('');
+      </article>
+    `).join('');
+  }
+
   grid.scrollLeft = 0;
   atualizarCoverflow();
 }
@@ -151,6 +215,7 @@ document.addEventListener('click', (e) => {
           content_ids: [product.id],
           content_name: product.nome,
           content_type: 'product',
+          num_items: 1,
           currency: 'BRL',
           value: product.preco
         });
@@ -392,6 +457,7 @@ document.getElementById('checkoutBtn').addEventListener('click', async () => {
     const lineItems = Cart.toLineItems();
     fbq('track', 'InitiateCheckout', {
       content_ids: lineItems.map((i) => i.id),
+      content_type: 'product',
       contents: lineItems.map((i) => ({ id: i.id, quantity: i.quantity })),
       currency: 'BRL',
       value: Cart.grandTotal(),
@@ -653,9 +719,10 @@ carregarCatalogo();
       }
       const prefixo = Number(digits.slice(0, 5));
       let chave, valor;
-      if (prefixo >= 14800 && prefixo <= 14814) { chave = 'popup_frete_araraquara'; valor = 100; }
-      else if (prefixo >= 1000 && prefixo <= 19999) { chave = 'popup_frete_sp'; valor = 300; }
-      else { chave = 'popup_frete_brasil'; valor = 500; }
+      if (prefixo >= 14800 && prefixo <= 14814) { chave = 'popup_frete_araraquara'; valor = freteGratisMinimo('araraquara-regiao'); }
+      else if (prefixo >= 1000 && prefixo <= 19999) { chave = 'popup_frete_sp'; valor = freteGratisMinimo('SP'); }
+      else { chave = 'popup_frete_brasil'; valor = freteGratisMinimo('BR'); }
+      if (valor == null) { freteEl.classList.remove('show'); return; } // config ainda não carregou
       freteEl.textContent = t(chave, { valor });
       freteEl.classList.add('show');
     });
@@ -728,6 +795,7 @@ window.onLanguageChange = function () {
   renderFilterPills();
   renderProducts();
   Cart.render();
+  atualizarAnnounceBar();
   if (typeof window.renderAvaliacoesNoIdioma === 'function') window.renderAvaliacoesNoIdioma();
 };
 

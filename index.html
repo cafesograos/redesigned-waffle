@@ -5,21 +5,21 @@
 <script src="https://browser.sentry-cdn.com/10.75.0/bundle.min.js" crossorigin="anonymous"></script>
 <script>Sentry.init({ dsn: "https://084a413fa37df209b12203d19a1018b6@o4512112881696768.ingest.us.sentry.io/4512113084727296" });</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Café Só Grãos — Café especial, direto da torra</title>
-<meta name="description" content="Café especial em grãos, torrado artesanalmente. Peça online e receba em casa.">
+<title>Café Só Grãos | Café 100% arábica da região de Araraquara</title>
+<meta name="description" content="Café 100% arábica do Sul de Minas, torrado toda semana na região de Araraquara/SP. Linhas Tradicional e Especial. Peça pelo site ou WhatsApp.">
 <link rel="canonical" href="https://www.cafesograos.com.br/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Café Só Grãos">
 <meta property="og:url" content="https://www.cafesograos.com.br/">
-<meta property="og:title" content="Café Só Grãos — Café especial, direto da torra">
-<meta property="og:description" content="Café brasileiro de verdade: torrado toda semana, direto do produtor para sua xícara. Peça online e receba fresquinho em casa.">
+<meta property="og:title" content="Café Só Grãos | Café 100% arábica da região de Araraquara">
+<meta property="og:description" content="Café 100% arábica do Sul de Minas, torrado toda semana na região de Araraquara/SP. Linhas Tradicional e Especial. Peça pelo site ou WhatsApp.">
 <meta property="og:image" content="https://www.cafesograos.com.br/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Café Só Grãos — Café especial, direto da torra">
-<meta name="twitter:description" content="Café brasileiro de verdade: torrado toda semana, direto do produtor para sua xícara.">
+<meta name="twitter:title" content="Café Só Grãos | Café 100% arábica da região de Araraquara">
+<meta name="twitter:description" content="Café 100% arábica do Sul de Minas, torrado toda semana na região de Araraquara/SP.">
 <meta name="twitter:image" content="https://www.cafesograos.com.br/assets/og-image.jpg">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="assets/icons/favicon-512.png" type="image/png">
@@ -106,7 +106,7 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
   <nav class="category-strip" id="categoryStrip" aria-label="Categorias de produtos"></nav>
 </header>
 
-<div class="announce-bar" data-i18n="announce_bar">Primeira compra: Drip Coffee de brinde & 5% de cashback na próxima compra · Frete grátis acima de R$ 300 para SP</div>
+<div class="announce-bar" data-i18n="announce_bar">Primeira compra: Drip Coffee de brinde & 5% de cashback · Frete grátis a partir de R$100, conforme a sua região</div>
 
 <section class="hero">
   <div class="container hero-inner">
@@ -120,8 +120,7 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
       <p class="hero-sub" data-i18n="hero_subtitle">Grãos selecionados com cuidado, em pequenos lotes. Peça online e receba fresquinho em casa.</p>
       <div class="hero-ctas">
         <a href="#produtos" class="btn btn-primary" data-i18n="hero_cta">Ver produtos</a>
-        <!-- Botão fica oculto até a página /qual-cafe-escolher existir (bloco "páginas de conteúdo"). -->
-        <a href="qual-cafe-escolher.html" class="btn btn-outline-white cta-oculta" data-i18n="hero_cta2">Qual café é o meu</a>
+        <a href="qual-cafe-escolher.html" class="btn btn-outline-white" data-i18n="hero_cta2">Qual café é o meu</a>
       </div>
       <div class="hero-selos">
         <span data-i18n="hero_badge1">Entrega para todo o Brasil</span>
@@ -138,22 +137,23 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
   <div class="container">
     <h2 class="center" data-i18n="comece_title">Comece por aqui</h2>
     <div class="comece-grid">
-      <!-- As 4 páginas de produto ainda não existem (vêm no bloco "páginas de
-           produto"); os links abaixo retornam 404 até lá, igual já acontece
-           com os links do cabeçalho/rodapé. -->
-      <a href="cafe-tradicional-500g.html" class="comece-card">
+      <!-- As 4 páginas de produto individuais ainda não existem (vêm no bloco
+           "páginas de produto", tarefa 12/13) -- até lá, os cards levam pra
+           vitrine (#produtos) com o filtro de categoria correspondente, em
+           vez de pra um link quebrado. -->
+      <a href="#produtos" data-filter="moido" class="comece-card">
         <span class="comece-card-produto" data-i18n="comece_card1_produto">Tradicional</span>
         <strong data-i18n="comece_card1_title">Para o dia a dia</strong>
       </a>
-      <a href="cafe-especial-500g.html" class="comece-card">
+      <a href="#produtos" class="comece-card">
         <span class="comece-card-produto" data-i18n="comece_card2_produto">Especial</span>
         <strong data-i18n="comece_card2_title">Para sentir a diferença</strong>
       </a>
-      <a href="drip-coffee.html" class="comece-card">
+      <a href="#produtos" data-filter="drip" class="comece-card">
         <span class="comece-card-produto" data-i18n="comece_card3_produto">Drip Coffee</span>
         <strong data-i18n="comece_card3_title">Para levar na mochila</strong>
       </a>
-      <a href="caixa-presente-drip-coffee.html" class="comece-card">
+      <a href="#produtos" data-filter="drip" class="comece-card">
         <span class="comece-card-produto" data-i18n="comece_card4_produto">Caixa de presente</span>
         <strong data-i18n="comece_card4_title">Para presentear</strong>
       </a>
@@ -168,7 +168,121 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
     <div class="filter-pills" id="filterPills"></div>
     <div class="produtos-carrossel">
       <button type="button" class="carrossel-seta carrossel-seta-prev" id="produtosPrev" aria-label="Anterior">‹</button>
-      <div class="produtos-grid" id="produtosGrid"></div>
+      <!-- Produtos escritos direto no HTML (não só montados por JS), pra
+           aparecer pra robô de busca e visitante com JavaScript desativado.
+           Dados batem com GET /api/produtos (fonte única de preço/peso) --
+           se o catálogo mudar lá, este bloco precisa ser atualizado junto
+           (não existe build step neste site pra gerar isso sozinho).
+           js/main.js lê estes cards em vez de recriá-los do zero; só troca
+           texto por idioma e mostra/esconde conforme o filtro. -->
+      <div class="produtos-grid" id="produtosGrid">
+        <article class="produto-card" data-id="cafe-tradicional-500-moido" data-categoria="moido">
+          <div class="produto-img"><img src="assets/produto-tradicional-500.jpg" alt="Café Tradicional 500g" loading="lazy"></div>
+          <div class="produto-info">
+            <h3>Café Tradicional 500g</h3>
+            <p>O parceiro do seu dia a dia: torra encorpada, para um café forte e constante, sem perder a qualidade. 100% arábica, moído. 500g.</p>
+            <div class="produto-footer">
+              <div class="produto-precos">
+                <span class="produto-peso">500 g</span>
+                <span class="produto-preco-linha">
+                  <span class="produto-preco-original">R$ 33,00</span>
+                  <span class="produto-desconto">-3%</span>
+                </span>
+                <span class="produto-preco">R$ 32,01</span>
+              </div>
+              <button class="btn btn-secondary" data-add="cafe-tradicional-500-moido">Adicionar</button>
+            </div>
+          </div>
+        </article>
+        <article class="produto-card" data-id="cafe-especial-500-grao" data-categoria="grao">
+          <span class="produto-badge" title="Avaliado pela Coopercitrus: 84 pontos na escala SCA (Specialty Coffee Association), o padrão internacional de café especial.">84 SCA</span>
+          <div class="produto-img" data-gallery="cafe-especial-500-grao"><img src="assets/produto-especial-500.jpg" alt="Café Especial 500g — Grãos" loading="lazy"></div>
+          <div class="produto-info">
+            <h3>Café Especial 500g — Grãos</h3>
+            <p>Nosso café mais sofisticado: 84 pontos na escala SCA, avaliado pela Coopercitrus. Aroma de caramelo, chocolate e nozes, com sabor de chocolate ao leite, caramelo e nozes — acidez média baixa, corpo médio alto e finalização média alta. 100% arábica, em grãos. 500g.</p>
+            <div class="produto-footer">
+              <div class="produto-precos">
+                <span class="produto-peso">500 g</span>
+                <span class="produto-preco-linha">
+                  <span class="produto-preco-original">R$ 60,00</span>
+                  <span class="produto-desconto">-8%</span>
+                </span>
+                <span class="produto-preco">R$ 55,00</span>
+              </div>
+              <button class="btn btn-secondary" data-add="cafe-especial-500-grao">Adicionar</button>
+            </div>
+          </div>
+        </article>
+        <article class="produto-card" data-id="cafe-especial-500-moido" data-categoria="moido">
+          <span class="produto-badge" title="Avaliado pela Coopercitrus: 84 pontos na escala SCA (Specialty Coffee Association), o padrão internacional de café especial.">84 SCA</span>
+          <div class="produto-img" data-gallery="cafe-especial-500-moido"><img src="assets/produto-especial-500.jpg" alt="Café Especial 500g — Moído" loading="lazy"></div>
+          <div class="produto-info">
+            <h3>Café Especial 500g — Moído</h3>
+            <p>Nosso café mais sofisticado: 84 pontos na escala SCA, avaliado pela Coopercitrus. Aroma de caramelo, chocolate e nozes, com sabor de chocolate ao leite, caramelo e nozes — acidez média baixa, corpo médio alto e finalização média alta. 100% arábica, moído. 500g.</p>
+            <div class="produto-footer">
+              <div class="produto-precos">
+                <span class="produto-peso">500 g</span>
+                <span class="produto-preco-linha">
+                  <span class="produto-preco-original">R$ 60,00</span>
+                  <span class="produto-desconto">-8%</span>
+                </span>
+                <span class="produto-preco">R$ 55,00</span>
+              </div>
+              <button class="btn btn-secondary" data-add="cafe-especial-500-moido">Adicionar</button>
+            </div>
+          </div>
+        </article>
+        <article class="produto-card" data-id="drip-coffee-caixa-10" data-categoria="drip">
+          <div class="produto-img" data-gallery="drip-coffee-caixa-10"><img src="assets/produto-drip-coffee.jpg" alt="Drip Coffee" loading="lazy"></div>
+          <div class="produto-info">
+            <h3>Drip Coffee</h3>
+            <p>Café coado sem complicação: a praticidade do sachê individual, sem abrir mão do sabor. 100% arábica. Caixa com 10 unidades.</p>
+            <div class="produto-footer">
+              <div class="produto-precos">
+                <span class="produto-peso">400 g</span>
+                <span class="produto-preco-linha">
+                  <span class="produto-preco-original">R$ 90,00</span>
+                  <span class="produto-desconto">-27%</span>
+                </span>
+                <span class="produto-preco">R$ 65,99</span>
+              </div>
+              <button class="btn btn-secondary" data-add="drip-coffee-caixa-10">Adicionar</button>
+            </div>
+          </div>
+        </article>
+        <article class="produto-card" data-id="caixa-drip-coffee-vazia" data-categoria="drip">
+          <div class="produto-img"><img src="assets/produto-drip-coffee.jpg" alt="Caixa do Drip Coffee (vazia)" loading="lazy"></div>
+          <div class="produto-info">
+            <h3>Caixa do Drip Coffee (vazia)</h3>
+            <p>Só a caixa organizadora do nosso Drip Coffee, vendida vazia — sem os sachês de café dentro. Pra quem já tem e quer repor ou só precisa dela pra guardar as coisas.</p>
+            <div class="produto-footer">
+              <div class="produto-precos">
+                <span class="produto-peso">50 g</span>
+                <span class="produto-preco">R$ 20,00</span>
+              </div>
+              <button class="btn btn-secondary" data-add="caixa-drip-coffee-vazia">Adicionar</button>
+            </div>
+          </div>
+        </article>
+        <article class="produto-card" data-id="drip-coffee-unidade" data-categoria="drip">
+          <div class="produto-img"><img src="assets/produto-drip-coffee.jpg" alt="Drip Coffee — Unidade" loading="lazy"></div>
+          <div class="produto-info">
+            <h3>Drip Coffee — Unidade</h3>
+            <p>Experimente antes de levar a caixa: 1 sachê individual de café coado, prático e saboroso. 100% arábica.</p>
+            <div class="produto-footer">
+              <div class="produto-precos">
+                <span class="produto-peso">30 g</span>
+                <span class="produto-preco-linha">
+                  <span class="produto-preco-original">R$ 8,00</span>
+                  <span class="produto-desconto">-25%</span>
+                </span>
+                <span class="produto-preco">R$ 6,00</span>
+              </div>
+              <button class="btn btn-secondary" data-add="drip-coffee-unidade">Adicionar</button>
+            </div>
+          </div>
+        </article>
+      </div>
       <button type="button" class="carrossel-seta carrossel-seta-next" id="produtosNext" aria-label="Próximo">›</button>
     </div>
   </div>

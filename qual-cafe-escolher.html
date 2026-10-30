@@ -317,7 +317,10 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
     const totalTradicional = Object.values(respostas).reduce((s, r) => s + r.tradicional, 0);
     const especialVence = totalEspecial > totalTradicional;
     const produtoId = especialVence ? 'cafe-especial-500-grao' : 'cafe-tradicional-500-moido';
-    const fichaUrl = especialVence ? 'cafe-especial-500g.html' : 'cafe-tradicional-500g.html';
+    // As páginas de ficha individual ainda não existem (bloco "páginas de
+    // produto") -- até lá, "ver ficha completa" também leva pra vitrine,
+    // igual aos cards "Comece por aqui" da home.
+    const fichaUrl = 'index.html#produtos';
     const tituloKey = especialVence ? 'qce_resultado_especial_title' : 'qce_resultado_trad_title';
     const descKey = especialVence ? 'qce_resultado_especial_desc' : 'qce_resultado_trad_desc';
 

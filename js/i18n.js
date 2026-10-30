@@ -9,7 +9,9 @@ const TRANSLATIONS = {
     nav_rastrear: 'Rastrear pedido', nav_whatsapp: 'Pedir no WhatsApp', cart_label: 'CARRINHO',
     nav_qual_cafe: 'Qual café escolher', nav_nossa_origem: 'Nossa origem', nav_araraquara: 'Araraquara',
     nav_perguntas: 'Perguntas', nav_sobre_cafe: 'Sobre o café',
-    announce_bar: 'Primeira compra: Drip Coffee de brinde & 5% de cashback na próxima compra · Frete grátis: R$100 em Araraquara, R$300 em SP, R$500 pro Brasil todo',
+    announce_bar: 'Primeira compra: Drip Coffee de brinde & 5% de cashback · Frete grátis a partir de R${valor}, conforme a sua região',
+    home_seo_title: 'Café Só Grãos | Café 100% arábica da região de Araraquara',
+    home_seo_description: 'Café 100% arábica do Sul de Minas, torrado toda semana na região de Araraquara/SP. Linhas Tradicional e Especial. Peça pelo site ou WhatsApp.',
 
     hero_eyebrow: 'Da nossa roça para sua mesa',
     hero_title: 'Café brasileiro de verdade: torrado toda semana, direto do produtor para sua xícara.',
@@ -300,7 +302,9 @@ const TRANSLATIONS = {
     nav_qual_cafe: 'Which coffee to choose', nav_nossa_origem: 'Our origin', nav_araraquara: 'Araraquara',
     nav_perguntas: 'FAQ', nav_sobre_cafe: 'About coffee',
     nav_rastrear: 'Track order', nav_whatsapp: 'Order on WhatsApp', cart_label: 'CART',
-    announce_bar: 'First purchase: free Drip Coffee & 5% cashback on your next order · Free shipping: R$100 in Araraquara, R$300 in São Paulo state, R$500 anywhere in Brazil',
+    announce_bar: 'First purchase: free Drip Coffee & 5% cashback · Free shipping from R${valor}, depending on your region',
+    home_seo_title: 'Café Só Grãos | 100% Arabica Coffee from the Araraquara Region',
+    home_seo_description: '100% arabica coffee from Sul de Minas, roasted every week in the Araraquara/SP region. Traditional and Specialty lines. Order on the site or WhatsApp.',
 
     hero_eyebrow: 'From our farm to your table',
     hero_title: 'Real Brazilian coffee: roasted every week, straight from the producer to your cup.',
@@ -591,7 +595,9 @@ const TRANSLATIONS = {
     nav_qual_cafe: 'Qué café elegir', nav_nossa_origem: 'Nuestro origen', nav_araraquara: 'Araraquara',
     nav_perguntas: 'Preguntas', nav_sobre_cafe: 'Sobre el café',
     nav_rastrear: 'Rastrear pedido', nav_whatsapp: 'Pedir por WhatsApp', cart_label: 'CARRITO',
-    announce_bar: 'Primera compra: Drip Coffee de regalo & 5% de cashback en la próxima compra · Envío gratis: R$100 en Araraquara, R$300 en SP, R$500 a todo Brasil',
+    announce_bar: 'Primera compra: Drip Coffee de regalo & 5% de cashback · Envío gratis desde R${valor}, según tu región',
+    home_seo_title: 'Café Só Grãos | Café 100% arábica de la región de Araraquara',
+    home_seo_description: 'Café 100% arábica del Sur de Minas, tostado cada semana en la región de Araraquara/SP. Líneas Tradicional y Especial. Pide por el sitio o WhatsApp.',
 
     hero_eyebrow: 'De nuestra finca a tu mesa',
     hero_title: 'Café brasileño de verdad: tostado cada semana, directo del productor a tu taza.',
@@ -882,7 +888,9 @@ const TRANSLATIONS = {
     nav_qual_cafe: 'Quel café choisir', nav_nossa_origem: 'Notre origine', nav_araraquara: 'Araraquara',
     nav_perguntas: 'Questions', nav_sobre_cafe: 'À propos du café',
     nav_rastrear: 'Suivre ma commande', nav_whatsapp: 'Commander sur WhatsApp', cart_label: 'PANIER',
-    announce_bar: 'Premier achat : Drip Coffee offert & 5% de cashback sur la prochaine commande · Livraison gratuite : R$100 à Araraquara, R$300 dans l’État de São Paulo, R$500 pour tout le Brésil',
+    announce_bar: 'Premier achat : Drip Coffee offert & 5% de cashback · Livraison gratuite dès R${valor}, selon votre région',
+    home_seo_title: 'Café Só Grãos | Café 100% arabica de la région d’Araraquara',
+    home_seo_description: 'Café 100% arabica du Sul de Minas, torréfié chaque semaine dans la région d’Araraquara/SP. Lignes Traditionnel et Spécial. Commandez sur le site ou WhatsApp.',
 
     hero_eyebrow: 'De notre plantation à votre table',
     hero_title: 'Du vrai café brésilien : torréfié chaque semaine, directement du producteur à votre tasse.',
@@ -1173,7 +1181,9 @@ const TRANSLATIONS = {
     nav_qual_cafe: '如何选择咖啡', nav_nossa_origem: '我们的产地', nav_araraquara: 'Araraquara',
     nav_perguntas: '常见问题', nav_sobre_cafe: '咖啡知识',
     nav_rastrear: '查询订单', nav_whatsapp: '通过WhatsApp下单', cart_label: '购物车',
-    announce_bar: '首次购买：赠送Drip Coffee & 下次购买返现5% · 包邮：阿拉拉夸拉满100雷亚尔，圣保罗州满300雷亚尔，全巴西满500雷亚尔',
+    announce_bar: '首次购买：赠送Drip Coffee & 返现5% · 包邮最低R${valor}起，视地区而定',
+    home_seo_title: 'Café Só Grãos | 来自阿拉拉夸拉地区的100%阿拉比卡咖啡',
+    home_seo_description: '100%阿拉比卡咖啡，产自米纳斯吉拉斯州南部，每周在阿拉拉夸拉（圣保罗州）地区烘焙。传统款与特级款。通过网站或WhatsApp下单。',
 
     hero_eyebrow: '从我们的农场到您的餐桌',
     hero_title: '真正的巴西咖啡：每周新鲜烘焙，直接从生产者送到您的杯中。',
@@ -1483,6 +1493,21 @@ function t(chave, vars) {
 function aplicarTraducoes(lang) {
   const dict = TRANSLATIONS[lang] || TRANSLATIONS[IDIOMA_PADRAO];
   document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+
+  // <title>/<meta description>/og: só na página principal (cada página de
+  // conteúdo já tem seu próprio título/descrição fixos em PT no HTML, que
+  // não devem ser sobrescritos aqui) -- troca junto com o idioma pra não
+  // ficar preso em PT quando o visitante muda pra outro idioma.
+  const ehHome = location.pathname === '/' || /\/index\.html$/.test(location.pathname);
+  if (ehHome && dict.home_seo_title) {
+    document.title = dict.home_seo_title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', dict.home_seo_description);
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', dict.home_seo_title);
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', dict.home_seo_description);
+  }
 
   document.querySelectorAll('[data-i18n]').forEach((el) => {
     const chave = el.getAttribute('data-i18n');
