@@ -123,10 +123,16 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
       <div class="qce-question" data-q="1">
         <h3 data-i18n="qce_q1_title">Como você prepara o café em casa?</h3>
         <div class="qce-opcoes">
-          <button type="button" class="qce-opcao" data-especial="1" data-tradicional="0" data-i18n="qce_q1_opt1">Coado</button>
-          <button type="button" class="qce-opcao" data-especial="1" data-tradicional="0" data-i18n="qce_q1_opt2">Prensa francesa</button>
-          <button type="button" class="qce-opcao" data-especial="1" data-tradicional="0" data-i18n="qce_q1_opt3">Espresso</button>
-          <button type="button" class="qce-opcao" data-especial="1" data-tradicional="0" data-i18n="qce_q1_opt4">Cafeteira italiana</button>
+          <!-- Coado funciona igual com pó médio -- trava direto no Tradicional.
+               Prensa francesa/espresso/cafeteira italiana pedem moagem grossa/
+               fina/extra-fina, cada uma diferente -- só existe moendo na hora,
+               ou seja, comprando em grãos. Essas 4 opções decidem o resultado
+               sozinhas, sem depender da pontuação de P2/P3 (ver data-forca no
+               JS). Só "não preparo" segue pela pontuação normal. -->
+          <button type="button" class="qce-opcao" data-especial="0" data-tradicional="0" data-forca="tradicional" data-i18n="qce_q1_opt1">Coado</button>
+          <button type="button" class="qce-opcao" data-especial="0" data-tradicional="0" data-forca="especial" data-i18n="qce_q1_opt2">Prensa francesa</button>
+          <button type="button" class="qce-opcao" data-especial="0" data-tradicional="0" data-forca="especial" data-i18n="qce_q1_opt3">Espresso</button>
+          <button type="button" class="qce-opcao" data-especial="0" data-tradicional="0" data-forca="especial" data-i18n="qce_q1_opt4">Cafeteira italiana</button>
           <button type="button" class="qce-opcao" data-especial="0" data-tradicional="2" data-i18n="qce_q1_opt5">Não preparo, quero prático</button>
         </div>
       </div>
@@ -311,21 +317,25 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
       btn.addEventListener('click', () => {
         q.querySelectorAll('.qce-opcao').forEach((b) => b.classList.remove('ativo'));
         btn.classList.add('ativo');
-        respostas[num] = { especial: Number(btn.dataset.especial), tradicional: Number(btn.dataset.tradicional) };
+        respostas[num] = { especial: Number(btn.dataset.especial), tradicional: Number(btn.dataset.tradicional), forca: btn.dataset.forca || null };
         btnVer.disabled = Object.values(respostas).some((r) => r === null);
       });
     });
   });
 
   btnVer.addEventListener('click', () => {
+    // Método de preparo (P1) decide sozinho na maioria dos casos: máquina
+    // (prensa francesa/espresso/cafeteira italiana) só funciona bem moendo
+    // na hora, ou seja, comprando em grãos -- não dá pra fazer com pó.
+    // Coado funciona igual com o moído, então trava no Tradicional. Só
+    // "não preparo" (sem máquina nem método fixo) segue pela pontuação
+    // normal de P2/P3.
+    const forca = Object.values(respostas).map((r) => r.forca).find((f) => f);
     const totalEspecial = Object.values(respostas).reduce((s, r) => s + r.especial, 0);
     const totalTradicional = Object.values(respostas).reduce((s, r) => s + r.tradicional, 0);
-    const especialVence = totalEspecial > totalTradicional;
+    const especialVence = forca ? forca === 'especial' : totalEspecial > totalTradicional;
     const produtoId = especialVence ? 'cafe-especial-500-grao' : 'cafe-tradicional-500-moido';
-    // As páginas de ficha individual ainda não existem (bloco "páginas de
-    // produto") -- até lá, "ver ficha completa" também leva pra vitrine,
-    // igual aos cards "Comece por aqui" da home.
-    const fichaUrl = 'index.html#produtos';
+    const fichaUrl = especialVence ? 'cafe-especial-500g.html?sku=cafe-especial-500-grao' : 'cafe-tradicional-500g.html';
     const tituloKey = especialVence ? 'qce_resultado_especial_title' : 'qce_resultado_trad_title';
     const descKey = especialVence ? 'qce_resultado_especial_desc' : 'qce_resultado_trad_desc';
 

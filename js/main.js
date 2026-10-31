@@ -57,8 +57,14 @@ function nomeCategoria(c) { return c[`nome${idiomaSufixo()}`] || c.nome; }
 function renderCategoryStrip() {
   const strip = document.getElementById('categoryStrip');
   if (!strip) return;
+  // Fora da home não existe vitrine pra filtrar (#produtosGrid não existe) —
+  // sem isso, clicar numa categoria em qualquer página de produto/conteúdo
+  // não fazia nada visível (o link só mudava a URL pro #produtos inexistente
+  // e o clique era interceptado por um listener que também não achava nada
+  // pra filtrar). Agora manda pra home já com a categoria certa na URL.
+  const estaNaHome = !!document.getElementById('produtosGrid');
   strip.innerHTML = CATEGORIES.map(c => `
-    <a href="#produtos" data-filter="${c.id}">${nomeCategoria(c)}</a>
+    <a href="${estaNaHome ? '#produtos' : `index.html?categoria=${c.id}#produtos`}" data-filter="${c.id}">${nomeCategoria(c)}</a>
   `).join('');
 }
 
@@ -132,7 +138,7 @@ function renderProducts() {
         <div class="produto-info">
           <h3>${nomeProduto(p)}</h3>
           <p>${descricaoProduto(p)}</p>
-          ${PRODUTO_PAGINA[p.id] ? `<a href="${PRODUTO_PAGINA[p.id]}" class="produto-ficha-link">${t('produto_ver_ficha')}</a>` : ''}
+          ${PRODUTO_PAGINA[p.id] ? `<a href="${PRODUTO_PAGINA[p.id]}?sku=${p.id}" class="produto-ficha-link">${t('produto_ver_ficha')}</a>` : ''}
           <div class="produto-footer">
             <div class="produto-precos">
               <span class="produto-peso">${pesoHtml(p)}</span>
@@ -511,6 +517,10 @@ async function carregarCatalogo() {
   } catch (err) {
     console.error('Não foi possível carregar o catálogo do servidor, usando catálogo local.', err);
   }
+  // Categoria vinda de outra página (ex.: index.html?categoria=drip#produtos,
+  // gerado por renderCategoryStrip) -- só aplica se for uma categoria real.
+  const categoriaUrl = new URLSearchParams(location.search).get('categoria');
+  if (categoriaUrl && CATEGORIES.some((c) => c.id === categoriaUrl)) activeFilter = categoriaUrl;
   renderCategoryStrip();
   renderFilterPills();
   renderProducts();
@@ -696,7 +706,12 @@ carregarCatalogo();
 // Popup de cadastro (nome + telefone) na entrada do site: quem se cadastra
 // aqui ganha 2 Drip Coffee de brinde (em vez de 1) na primeira compra. Só
 // marca como "já cadastrado" (nunca mais aparece) depois de um cadastro com
-// sucesso — fechar com o X só dispensa pra essa visita, reaparece na próxima.
+// sucesso. Fechar com o X (ou clicar fora) só dispensa pra essa visita,
+// reaparece na próxima — mas "essa visita" cruza várias páginas (cada
+// clique em um link recarrega a página do zero), então sem guardar isso em
+// algum lugar entre páginas ele reaparecia a cada navegação. sessionStorage
+// resolve: dura enquanto a aba ficar aberta, zera numa visita nova de
+// verdade (fechar a aba/reabrir o site).
 (function popupCadastroInit() {
   const overlay = document.getElementById('popupCadastroOverlay');
   const closeBtn = document.getElementById('popupCadastroClose');
@@ -707,6 +722,7 @@ carregarCatalogo();
   if (!overlay || !form) return;
 
   const CADASTRADO_KEY = 'cafesograos-cadastro-popup';
+  const JA_MOSTROU_SESSAO_KEY = 'cafesograos-popup-mostrou-sessao';
 
   function fechar() {
     overlay.classList.remove('open');
@@ -773,8 +789,14 @@ carregarCatalogo();
   });
 
   // Pequeno atraso pra não competir com o carregamento inicial da página.
-  if (!localStorage.getItem(CADASTRADO_KEY)) {
-    setTimeout(() => overlay.classList.add('open'), 1200);
+  // Marca "já mostrou nessa sessão" no instante que abre -- não só quando
+  // fecha -- pra nunca reaparecer de novo navegando pra outra página, nem
+  // que a pessoa saia sem interagir com o popup.
+  if (!localStorage.getItem(CADASTRADO_KEY) && !sessionStorage.getItem(JA_MOSTROU_SESSAO_KEY)) {
+    setTimeout(() => {
+      overlay.classList.add('open');
+      sessionStorage.setItem(JA_MOSTROU_SESSAO_KEY, '1');
+    }, 1200);
   }
 })();
 

@@ -250,11 +250,6 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
     </section>
 
     <section class="pe-secao">
-      <h2 data-i18n="pe_rendimento_title">Rendimento</h2>
-      <p class="pe-rendimento" id="peRendimento">500 g rendem cerca de 50 xícaras · R$ 1,10 por xícara</p>
-    </section>
-
-    <section class="pe-secao">
       <h2 data-i18n="sc_preparo_title">Como preparar por método</h2>
       <div class="pe-preparo-grid">
         <div class="pe-preparo-card">
@@ -265,15 +260,20 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
           <h4 data-i18n="sc_preparo_prensa_nome">Prensa francesa</h4>
           <p data-i18n="sc_preparo_prensa_texto">Moagem grossa. Mesma proporção do coado (10g para 150ml), água a cerca de 94°C. Deixe em infusão por 4 minutos antes de prensar devagar.</p>
         </div>
-        <div class="pe-preparo-card">
+        <!-- Espresso e cafeteira italiana pedem moagem fina/extra-fina, que só
+             existe moendo na hora -- não fazem sentido pra quem comprou o
+             moído (vem num ponto médio fixo, não dá pra ajustar). Por isso
+             esses 2 cards só aparecem com "Em grãos" selecionado acima. -->
+        <div class="pe-preparo-card" data-preparo-so-graos>
           <h4 data-i18n="sc_preparo_espresso_nome">Espresso</h4>
           <p data-i18n="sc_preparo_espresso_texto">Moagem fina. Cerca de 18-20g de pó para 36-40ml de bebida, extraídos em 25-30 segundos — ajuste a moagem até bater esse tempo.</p>
         </div>
-        <div class="pe-preparo-card">
+        <div class="pe-preparo-card" data-preparo-so-graos>
           <h4 data-i18n="sc_preparo_italiana_nome">Cafeteira italiana (moka)</h4>
           <p data-i18n="sc_preparo_italiana_texto">Moagem extra-fina (mas não tanto quanto espresso). Preencha o reservatório de água até a válvula e o filtro com café sem compactar, e leve em fogo baixo até começar a sair o café.</p>
         </div>
       </div>
+      <p class="checkout-note" id="preparoMoidoAviso" hidden style="text-align: left; margin-top: 10px;" data-i18n="pe_preparo_moido_aviso">O moído já vem num ponto médio, ideal pra coado e prensa francesa. Pra espresso ou cafeteira italiana, escolha a opção em grãos e moa na hora.</p>
     </section>
 
     <section class="pe-secao">
@@ -472,19 +472,35 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
   });
 
   // Seletor de moagem: só troca qual id vai pro carrinho -- preço é o
-  // mesmo pros dois SKUs (lido do catálogo real, nunca fixo aqui).
+  // mesmo pros dois SKUs (lido do catálogo real, nunca fixo aqui). Também
+  // esconde os métodos de preparo que exigem moagem fina (espresso, moka) —
+  // só fazem sentido pra quem vai moer na hora, não pra quem comprou moído.
   const btnComprar = document.getElementById('peBtnComprar');
-  document.querySelectorAll('#peSeletorMoagem button').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('#peSeletorMoagem button').forEach((b) => b.classList.remove('ativo'));
-      btn.classList.add('ativo');
-      btnComprar.dataset.add = btn.dataset.produtoId;
+  const cardsSoGraos = document.querySelectorAll('[data-preparo-so-graos]');
+  const avisoMoido = document.getElementById('preparoMoidoAviso');
+  function selecionarMoagem(produtoId) {
+    document.querySelectorAll('#peSeletorMoagem button').forEach((b) => {
+      b.classList.toggle('ativo', b.dataset.produtoId === produtoId);
     });
+    btnComprar.dataset.add = produtoId;
+    const ehGraos = produtoId.includes('grao');
+    cardsSoGraos.forEach((card) => { card.hidden = !ehGraos; });
+    if (avisoMoido) avisoMoido.hidden = ehGraos;
+  }
+  document.querySelectorAll('#peSeletorMoagem button').forEach((btn) => {
+    btn.addEventListener('click', () => selecionarMoagem(btn.dataset.produtoId));
   });
+
+  // Abre já na opção que a pessoa clicou na vitrine (?sku=... no link "Ver
+  // ficha completa") -- sem isso, quem clicava no Moído caía sempre no
+  // Grãos, que é o padrão.
+  const skuUrl = new URLSearchParams(location.search).get('sku');
+  const skuInicial = (skuUrl === 'cafe-especial-500-moido') ? skuUrl : 'cafe-especial-500-grao';
+  selecionarMoagem(skuInicial);
 
   // Rendimento calculado a partir do preço real do catálogo (10g por xícara,
   // 500g ÷ 10g = 50 xícaras) -- nunca um valor fixo digitado.
-  const produtoEspecial = (typeof PRODUCTS !== 'undefined') ? PRODUCTS.find((p) => p.id === 'cafe-especial-500-grao') : null;
+  const produtoEspecial = (typeof PRODUCTS !== 'undefined') ? PRODUCTS.find((p) => p.id === skuInicial) : null;
   if (produtoEspecial) {
     if (window.fbq) {
       fbq('track', 'ViewContent', {
@@ -496,15 +512,9 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
         value: produtoEspecial.preco
       });
     }
-    const precoXicara = (produtoEspecial.preco / 50).toFixed(2).replace('.', ',');
-    const atualizarRendimento = () => {
-      document.getElementById('peRendimento').textContent = t('pe_rendimento_texto', { precoXicara });
-    };
-    atualizarRendimento();
     const onLangChangeAnterior = window.onLanguageChange;
     window.onLanguageChange = function () {
       if (typeof onLangChangeAnterior === 'function') onLangChangeAnterior();
-      atualizarRendimento();
       const avResumo = document.querySelector('.pe-avaliacao-resumo span:last-child');
       if (avResumo) avResumo.textContent = t('pe_avaliacoes_contagem', { nota: '5,0', contagem: 3 });
     };

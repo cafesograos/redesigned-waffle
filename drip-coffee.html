@@ -229,11 +229,6 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
     </section>
 
     <section class="pe-secao">
-      <h2 data-i18n="pe_rendimento_title">Rendimento</h2>
-      <p class="pe-rendimento" id="peRendimento">1 sachê de 10g · R$ 6,00 por xícara</p>
-    </section>
-
-    <section class="pe-secao">
       <h2 data-i18n="pd_preparo_title">Como preparar</h2>
       <div class="pe-preparo-grid">
         <div class="pe-preparo-card"><p data-i18n="pd_preparo_p1">1. Abra o sachê e puxe as alças.</p></div>
@@ -432,8 +427,8 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
   });
 
   // Dados reais das 2 SKUs vendidas (vindos de /api/produtos), usados pra
-  // atualizar preço/desconto/rendimento/peso ao trocar a opção — cada opção
-  // sempre mostra o preço real da sua própria SKU, nunca um valor unificado.
+  // atualizar preço/desconto/peso ao trocar a opção — cada opção sempre
+  // mostra o preço real da sua própria SKU, nunca um valor unificado.
   const SKUS = {
     'drip-coffee-unidade': { preco: 6.00, precoOriginal: 8.00, pesoGramas: 30, qtd: 1, plural: '' },
     'drip-coffee-caixa-10': { preco: 65.99, precoOriginal: 90.00, pesoGramas: 400, qtd: 10, plural: 's' }
@@ -452,9 +447,6 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
     btnComprar.dataset.add = sku;
     seloMaisVendido.style.display = (sku === 'drip-coffee-unidade') ? 'inline-block' : 'none';
 
-    const precoXicara = (dados.preco / dados.qtd).toFixed(2).replace('.', ',');
-    document.getElementById('peRendimento').textContent = t('pd_rendimento_texto', { qtd: dados.qtd, plural: dados.plural, precoXicara });
-
     document.getElementById('peEntregaStatus').textContent = '';
     document.getElementById('peBtnFrete').dataset.peso = dados.pesoGramas;
     document.getElementById('peBtnFrete').dataset.preco = dados.preco;
@@ -468,17 +460,25 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
     });
   });
 
-  atualizarSku('drip-coffee-unidade');
+  // Abre já na opção que a pessoa clicou na vitrine (?sku=... no link "Ver
+  // ficha completa") -- sem isso, quem clicava na Caixa com 10 caía sempre
+  // na Unidade, que é o padrão.
+  const skuUrl = new URLSearchParams(location.search).get('sku');
+  const skuInicial = skuUrl && SKUS[skuUrl] ? skuUrl : 'drip-coffee-unidade';
+  document.querySelectorAll('#pdSeletor .pe-opcao').forEach((o) => {
+    o.classList.toggle('ativo', o.dataset.sku === skuInicial);
+  });
+  atualizarSku(skuInicial);
 
   if (window.fbq) {
-    const produtoDrip = (typeof PRODUCTS !== 'undefined') ? PRODUCTS.find((p) => p.id === 'drip-coffee-unidade') : null;
+    const produtoDrip = (typeof PRODUCTS !== 'undefined') ? PRODUCTS.find((p) => p.id === skuInicial) : null;
     fbq('track', 'ViewContent', {
-      content_ids: ['drip-coffee-unidade'],
-      content_name: produtoDrip ? produtoDrip.nome : 'Drip Coffee — Unidade',
+      content_ids: [skuInicial],
+      content_name: produtoDrip ? produtoDrip.nome : 'Drip Coffee',
       content_type: 'product',
       num_items: 1,
       currency: 'BRL',
-      value: SKUS['drip-coffee-unidade'].preco
+      value: SKUS[skuInicial].preco
     });
   }
 
