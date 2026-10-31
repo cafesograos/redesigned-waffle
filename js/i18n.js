@@ -95,6 +95,8 @@ const TRANSLATIONS = {
     pd_sem_gluten: 'Não contém glúten',
     pd_faq_q1: 'Preciso de cafeteira para preparar?',
     pd_faq_a1: 'Não! O Drip Coffee já vem com o próprio filtro dentro do sachê — é só encaixar no copo ou xícara e despejar água quente. Não precisa de cafeteira, coador nem filtro de papel.',
+    pd_faq_q2: 'Qual a validade e como devo guardar?',
+    pd_faq_a2: 'Guarde os sachês longe do sol e de temperatura elevada, em temperatura ambiente. Evite a geladeira. Pode deixar na própria caixa em que eles vêm, ou em qualquer lugar protegido desses elementos.',
     selo_mais_vendido: 'Mais vendido',
 
     pc_nome: 'Caixa do Drip Coffee (vazia)',
@@ -456,6 +458,8 @@ const TRANSLATIONS = {
     pd_sem_gluten: 'Gluten-free',
     pd_faq_q1: 'Do I need a coffee maker to prepare it?',
     pd_faq_a1: 'No! Drip Coffee comes with its own filter built into the sachet — just hook it onto a cup or mug and pour hot water. No coffee maker, filter holder, or paper filter needed.',
+    pd_faq_q2: 'What is the shelf life and how should I store it?',
+    pd_faq_a2: 'Keep the sachets away from sunlight and high heat, at room temperature. Avoid the fridge. You can leave them in the box they come in, or anywhere else protected from those things.',
     selo_mais_vendido: 'Best seller',
 
     pc_nome: 'Drip Coffee Box (empty)',
@@ -817,6 +821,8 @@ const TRANSLATIONS = {
     pd_sem_gluten: 'No contiene gluten',
     pd_faq_q1: '¿Necesito una cafetera para prepararlo?',
     pd_faq_a1: '¡No! El Drip Coffee ya viene con su propio filtro dentro del sobre — solo hay que engancharlo en el vaso o taza y verter agua caliente. No necesita cafetera, colador ni filtro de papel.',
+    pd_faq_q2: '¿Cuál es la validez y cómo debo guardarlo?',
+    pd_faq_a2: 'Guarda los sobres lejos del sol y del calor, a temperatura ambiente. Evita el refrigerador. Puedes dejarlos en la misma caja en la que vienen, o en cualquier lugar protegido de esos elementos.',
     selo_mais_vendido: 'Más vendido',
 
     pc_nome: 'Caja del Drip Coffee (vacía)',
@@ -1178,6 +1184,8 @@ const TRANSLATIONS = {
     pd_sem_gluten: 'Sans gluten',
     pd_faq_q1: 'Ai-je besoin d’une cafetière pour le préparer ?',
     pd_faq_a1: 'Non ! Le Drip Coffee est livré avec son propre filtre intégré au sachet — il suffit de l’accrocher sur une tasse et de verser de l’eau chaude. Pas besoin de cafetière, de porte-filtre ni de filtre en papier.',
+    pd_faq_q2: 'Quelle est la durée de conservation et comment le conserver ?',
+    pd_faq_a2: 'Conservez les sachets à l’abri du soleil et de la chaleur, à température ambiante. Évitez le réfrigérateur. Vous pouvez les laisser dans leur boîte d’origine, ou tout autre endroit protégé de ces éléments.',
     selo_mais_vendido: 'Meilleure vente',
 
     pc_nome: 'Boîte du Drip Coffee (vide)',
@@ -1539,6 +1547,8 @@ const TRANSLATIONS = {
     pd_sem_gluten: '不含麸质',
     pd_faq_q1: '冲泡需要咖啡机吗？',
     pd_faq_a1: '不需要！Drip Coffee 的挂耳包本身自带滤纸——只需挂在杯子上倒入热水即可。无需咖啡机、滤杯或滤纸。',
+    pd_faq_q2: '保质期多久？应该怎么保存？',
+    pd_faq_a2: '请将挂耳包存放在避光、避免高温的地方，常温保存即可。避免放入冰箱。可以直接放在原包装盒里，或任何能避开这些因素的地方。',
     selo_mais_vendido: '畅销款',
 
     pc_nome: 'Drip Coffee 收纳盒（空盒）',
