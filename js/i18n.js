@@ -116,7 +116,7 @@ const TRANSLATIONS = {
     pf_q6: 'Vocês atendem cafeterias, padarias e empresas?',
     pf_a6: 'Sim, fornecemos em volume pra cafeterias, padarias, empórios, escritórios e outros negócios. Chama a gente no WhatsApp pra combinar quantidade e condições.',
     pf_q7: 'Qual a validade e como devo guardar o café?',
-    pf_a7: 'Café torrado é mais saboroso fresco — o ideal é moer só na hora de preparar, já que moído ele perde aroma bem mais rápido que em grão. Guarde num recipiente bem fechado e opaco, em temperatura ambiente, ao abrigo de luz, calor e umidade. Evite a geladeira: ela não é realmente hermética, e a umidade e os cheiros de dentro dela prejudicam o sabor. Se não for consumir tão cedo, o freezer é uma opção melhor que a geladeira — só evite descongelar e congelar de novo várias vezes.',
+    pf_a7: 'Café torrado é mais saboroso fresco — o ideal é moer só na hora de preparar, já que moído ele perde aroma bem mais rápido que em grão. Guarde num recipiente fechado ou na própria embalagem, fechando-a bem para não entrar ar, em temperatura ambiente, longe de luz, calor e umidade. Evite a geladeira: ela tem bastante umidade, e esse contato pode fazer o café pegar o cheiro de outros alimentos e prejudicar o sabor. Se não for consumir tão cedo, o freezer é uma opção melhor que a geladeira — só evite descongelar e congelar de novo várias vezes.',
     pf_q8: 'Qual moagem escolher para a minha cafeteira?',
     pf_a8: 'Isso só vale pra quem compra o Especial em grãos e mói em casa — não oferecemos escolha de tipo de moagem na compra, só as 2 opções do catálogo (grãos ou moído). Moendo você mesmo, a regra é: moagem grossa pra prensa francesa, média pra coador/cafeteira de filtro, fina pra espresso e extra-fina pra cafeteira italiana (moka). Já o Tradicional vem sempre moído num ponto médio fixo, bom pra filtro/coador, e o Drip Coffee já vem pronto e moído dentro do sachê individual — nos dois não tem moagem pra escolher.',
 
@@ -477,7 +477,7 @@ const TRANSLATIONS = {
     pf_q6: 'Do you supply cafés, bakeries and businesses?',
     pf_a6: 'Yes, we supply in volume to cafés, bakeries, delis, offices and other businesses. Reach out on WhatsApp to work out quantity and terms.',
     pf_q7: 'What is the shelf life and how should I store the coffee?',
-    pf_a7: 'Roasted coffee tastes best fresh — ideally, grind it only right before brewing, since ground coffee loses aroma much faster than whole beans. Store it in a well-sealed, opaque container at room temperature, away from light, heat and moisture. Avoid the fridge: it is not truly airtight, and the moisture and smells inside it harm the flavor. If you will not use it soon, the freezer is a better option than the fridge — just avoid thawing and refreezing it repeatedly.',
+    pf_a7: 'Roasted coffee tastes best fresh — ideally, grind it only right before brewing, since ground coffee loses aroma much faster than whole beans. Store it in a closed container or in its own packaging, sealed well so no air gets in, at room temperature, away from light, heat and moisture. Avoid the fridge: it holds a lot of moisture, and that can make the coffee pick up smells from other food and lose flavor. If you will not use it soon, the freezer is a better option than the fridge — just avoid thawing and refreezing it repeatedly.',
     pf_q8: 'Which grind should I choose for my coffee maker?',
     pf_a8: 'This only applies if you buy the whole-bean Specialty and grind it at home — we do not offer a choice of grind type at purchase, just the 2 catalog options (whole bean or ground). Grinding it yourself, the rule is: coarse for a French press, medium for a filter/drip coffee maker, fine for espresso and extra-fine for a moka pot. Traditional always comes at a fixed medium grind, good for filter/drip, and Drip Coffee comes already ground inside its individual sachet — neither has a grind choice.',
 
@@ -838,7 +838,7 @@ const TRANSLATIONS = {
     pf_q6: '¿Atienden cafeterías, panaderías y empresas?',
     pf_a6: 'Sí, suministramos en volumen a cafeterías, panaderías, delicatessens, oficinas y otros negocios. Escríbenos por WhatsApp para acordar cantidad y condiciones.',
     pf_q7: '¿Cuál es la validez y cómo debo guardar el café?',
-    pf_a7: 'El café tostado sabe mejor fresco — lo ideal es molerlo justo antes de prepararlo, ya que molido pierde aroma mucho más rápido que en grano. Guárdalo en un recipiente bien cerrado y opaco, a temperatura ambiente, lejos de la luz, el calor y la humedad. Evita el refrigerador: no es realmente hermético, y la humedad y los olores de dentro dañan el sabor. Si no lo vas a consumir pronto, el congelador es mejor opción que el refrigerador — solo evita descongelarlo y volver a congelarlo varias veces.',
+    pf_a7: 'El café tostado sabe mejor fresco — lo ideal es molerlo justo antes de prepararlo, ya que molido pierde aroma mucho más rápido que en grano. Guárdalo en un recipiente cerrado o en su propio envase, cerrándolo bien para que no entre aire, a temperatura ambiente, lejos de la luz, el calor y la humedad. Evita el refrigerador: tiene bastante humedad, y eso puede hacer que el café tome el olor de otros alimentos y pierda sabor. Si no lo vas a consumir pronto, el congelador es mejor opción que el refrigerador — solo evita descongelarlo y volver a congelarlo varias veces.',
     pf_q8: '¿Qué molienda elegir para mi cafetera?',
     pf_a8: 'Esto solo vale para quien compra el Especial en grano y lo muele en casa — no ofrecemos elección de tipo de molienda en la compra, solo las 2 opciones del catálogo (grano o molido). Moliéndolo tú mismo, la regla es: molienda gruesa para prensa francesa, media para filtro/goteo, fina para espresso y extra fina para cafetera italiana (moka). El Tradicional siempre viene en un punto medio fijo, bueno para filtro/goteo, y el Drip Coffee ya viene molido dentro del sobre individual — en ninguno de los dos hay molienda para elegir.',
 
@@ -1199,7 +1199,7 @@ const TRANSLATIONS = {
     pf_q6: 'Fournissez-vous des cafés, boulangeries et entreprises ?',
     pf_a6: 'Oui, nous fournissons en volume des cafés, boulangeries, épiceries fines, bureaux et autres entreprises. Contactez-nous sur WhatsApp pour convenir de la quantité et des conditions.',
     pf_q7: 'Quelle est la durée de conservation et comment conserver le café ?',
-    pf_a7: 'Le café torréfié est meilleur frais — idéalement, moulez-le juste avant de le préparer, car moulu il perd son arôme bien plus vite qu’en grains. Conservez-le dans un récipient bien fermé et opaque, à température ambiante, à l’abri de la lumière, de la chaleur et de l’humidité. Évitez le réfrigérateur : il n’est pas vraiment hermétique, et l’humidité et les odeurs qu’il contient nuisent à la saveur. Si vous ne le consommez pas bientôt, le congélateur est une meilleure option que le réfrigérateur — évitez juste de le décongeler et recongeler plusieurs fois.',
+    pf_a7: 'Le café torréfié est meilleur frais — idéalement, moulez-le juste avant de le préparer, car moulu il perd son arôme bien plus vite qu’en grains. Conservez-le dans un récipient fermé ou dans son propre emballage, bien fermé pour empêcher l’air d’entrer, à température ambiante, loin de la lumière, de la chaleur et de l’humidité. Évitez le réfrigérateur : il contient beaucoup d’humidité, ce qui peut faire prendre au café l’odeur d’autres aliments et nuire à sa saveur. Si vous ne le consommez pas bientôt, le congélateur est une meilleure option que le réfrigérateur — évitez juste de le décongeler et recongeler plusieurs fois.',
     pf_q8: 'Quelle mouture choisir pour ma cafetière ?',
     pf_a8: 'Cela ne vaut que pour qui achète le Spécial en grains et le moud chez soi — nous n’offrons pas de choix de mouture à l’achat, juste les 2 options du catalogue (grains ou moulu). En le moulant vous-même, la règle est : mouture grossière pour la presse française, moyenne pour le filtre, fine pour l’espresso et extra-fine pour la cafetière italienne (moka). Le Traditionnel est toujours à une mouture moyenne fixe, bonne pour le filtre, et le Drip Coffee arrive déjà moulu dans son sachet individuel — aucun des deux n’a de mouture à choisir.',
 
@@ -1560,7 +1560,7 @@ const TRANSLATIONS = {
     pf_q6: '你们为咖啡馆、面包店和企业供货吗？',
     pf_a6: '是的，我们为咖啡馆、面包店、熟食店、办公室和其他企业提供批量供货。请通过WhatsApp联系我们商定数量和条件。',
     pf_q7: '咖啡的保质期是多久？应该如何保存？',
-    pf_a7: '烘焙咖啡新鲜时风味最佳——最好现磨现煮，因为研磨后的咖啡香气流失速度远快于咖啡豆。请将咖啡存放在密封良好的不透光容器中，置于室温下，避光、避热、防潮。避免放入冰箱：冰箱并非真正密封，其中的湿气和异味会损害风味。如果短期内不会喝完，冷冻比冷藏更合适——只是要避免反复解冻再冷冻。',
+    pf_a7: '烘焙咖啡新鲜时风味最佳——最好现磨现煮，因为研磨后的咖啡香气流失速度远快于咖啡豆。请将咖啡存放在密封容器中，或直接用原包装密封好、不让空气进入，置于室温下，远离光线、高温和潮气。避免放入冰箱：冰箱湿气较重，容易让咖啡沾染其他食物的气味，损害风味。如果短期内不会喝完，冷冻比冷藏更合适——只是要避免反复解冻再冷冻。',
     pf_q8: '我的咖啡机应该选择什么研磨度？',
     pf_a8: '这只适用于购买特级款咖啡豆、自己在家研磨的情况——购买时我们不提供研磨度选择，只有目录里的2个选项（咖啡豆或研磨）。自己研磨时的规律是：法压壶用粗研磨，滤泡式咖啡机用中度研磨，意式浓缩用细研磨，摩卡壶用特细研磨。传统款始终是固定的中度研磨，适合滤泡式；Drip Coffee则已经在独立挂耳包内研磨好了——这两款都没有研磨度可选。',
 
