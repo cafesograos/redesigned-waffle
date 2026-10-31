@@ -353,7 +353,7 @@ const TRANSLATIONS = {
     status_enviado: '— enviado', status_preparando: '— preparando envio',
 
     resultado_sucesso_eyebrow: 'Pedido confirmado', resultado_sucesso_title: 'Pagamento aprovado!',
-    resultado_sucesso_texto: 'Obrigado pelo pedido! Pode ficar tranquilo(a): seu pedido é de verdade e seu café será despachado em até 1 dia útil. Você já vai receber um e-mail confirmando os detalhes, e assim que despacharmos, mandamos outro com o código de rastreio.',
+    resultado_sucesso_texto: 'Obrigado pelo seu pedido! Já recebemos tudo certinho por aqui e seu café já está sendo separado com carinho. Em até 1 dia útil ele sai pra você, e assim que despacharmos, te mandamos o código de rastreio por e-mail. Pode ficar tranquilo(a) — daqui a pouco esse café tá na sua xícara.',
     resultado_resumo_title: 'Resumo do pedido', resultado_total: 'Total',
     resultado_btn_loja: 'Voltar à loja', resultado_btn_whatsapp: 'Falar no WhatsApp',
 
@@ -716,7 +716,7 @@ const TRANSLATIONS = {
     status_enviado: '— shipped', status_preparando: '— preparing shipment',
 
     resultado_sucesso_eyebrow: 'Order confirmed', resultado_sucesso_title: 'Payment approved!',
-    resultado_sucesso_texto: 'Thanks for your order! You can rest assured: your order is real and your coffee will be dispatched within 1 business day. You will receive an email confirming the details shortly, and as soon as we ship it, we will send another one with the tracking code.',
+    resultado_sucesso_texto: 'Thank you for your order! We have got it all here, and your coffee is already being carefully packed. It will ship within 1 business day, and as soon as it does, we will send you the tracking code by email. Sit back and relax — that coffee will be in your cup before you know it.',
     resultado_resumo_title: 'Order summary', resultado_total: 'Total',
     resultado_btn_loja: 'Back to store', resultado_btn_whatsapp: 'Chat on WhatsApp',
 
@@ -1079,7 +1079,7 @@ const TRANSLATIONS = {
     status_enviado: '— enviado', status_preparando: '— preparando envío',
 
     resultado_sucesso_eyebrow: 'Pedido confirmado', resultado_sucesso_title: '¡Pago aprobado!',
-    resultado_sucesso_texto: '¡Gracias por tu pedido! Puedes quedarte tranquilo(a): tu pedido es real y tu café será despachado en hasta 1 día hábil. En breve recibirás un correo confirmando los detalles, y en cuanto lo despachemos, te enviaremos otro con el código de rastreo.',
+    resultado_sucesso_texto: '¡Gracias por tu pedido! Ya lo recibimos todo por aquí y tu café ya está siendo preparado con cariño. En hasta 1 día hábil sale para ti, y en cuanto lo despachemos, te mandamos el código de rastreo por correo. Quédate tranquilo(a) — pronto ese café estará en tu taza.',
     resultado_resumo_title: 'Resumen del pedido', resultado_total: 'Total',
     resultado_btn_loja: 'Volver a la tienda', resultado_btn_whatsapp: 'Hablar por WhatsApp',
 
@@ -1442,7 +1442,7 @@ const TRANSLATIONS = {
     status_enviado: '— expédiée', status_preparando: '— préparation de l’envoi',
 
     resultado_sucesso_eyebrow: 'Commande confirmée', resultado_sucesso_title: 'Paiement approuvé !',
-    resultado_sucesso_texto: 'Merci pour votre commande ! Vous pouvez être tranquille : votre commande est bien réelle et votre café sera expédié sous 1 jour ouvrable. Vous allez recevoir un e-mail confirmant les détails, et dès l’expédition, nous vous en enverrons un autre avec le code de suivi.',
+    resultado_sucesso_texto: 'Merci pour votre commande ! Nous l’avons bien reçue et votre café est déjà en train d’être préparé avec soin. Il part sous 1 jour ouvrable, et dès l’expédition, nous vous envoyons le code de suivi par e-mail. Détendez-vous — ce café sera bientôt dans votre tasse.',
     resultado_resumo_title: 'Résumé de la commande', resultado_total: 'Total',
     resultado_btn_loja: 'Retour à la boutique', resultado_btn_whatsapp: 'Discuter sur WhatsApp',
 
@@ -1805,7 +1805,7 @@ const TRANSLATIONS = {
     status_enviado: '— 已发货', status_preparando: '— 备货中',
 
     resultado_sucesso_eyebrow: '订单已确认', resultado_sucesso_title: '付款成功！',
-    resultado_sucesso_texto: '感谢您的订购！请放心，您的订单真实有效，咖啡将在1个工作日内发出。您将很快收到一封确认订单详情的邮件，发货后我们还会发送带有物流跟踪码的邮件。',
+    resultado_sucesso_texto: '感谢您的订购！我们已经收到您的订单，咖啡正在被用心打包中。将在1个工作日内发货，发货后我们会通过邮件发送物流跟踪码给您。请放心——这杯咖啡很快就会到您手中。',
     resultado_resumo_title: '订单摘要', resultado_total: '总计',
     resultado_btn_loja: '返回商店', resultado_btn_whatsapp: '通过WhatsApp联系',
 
