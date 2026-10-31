@@ -148,7 +148,7 @@ const TRANSLATIONS = {
     no_terra_title: 'A terra',
     no_terra_texto: 'Uma parte importante dos nossos cafés vem do Sul de Minas, região reconhecida por suas condições favoráveis ao cultivo — altitude e clima que ajudam numa maturação mais uniforme dos frutos. O restante vem de produtores parceiros de outras regiões do Brasil, sempre buscando cafés que estejam de acordo com o que acreditamos.',
     no_torra_title: 'A torra',
-    no_torra_texto: 'Torramos em pequenos lotes, toda semana, aqui na região de Araraquara/SP — nunca um estoque parado por meses.',
+    no_torra_texto: 'Torramos em pequenos lotes, toda semana, aqui na região de Araraquara/SP — sempre uma torra fresca.',
 
     sc_eyebrow: 'Sobre o café', sc_title: 'Glossário e como preparar',
     sc_subtitle: 'Os termos que você vê no site e nas nossas embalagens, explicados em linguagem de gente — e um guia rápido de preparo por método.',
@@ -511,7 +511,7 @@ const TRANSLATIONS = {
     no_terra_title: 'The land',
     no_terra_texto: 'A significant part of our coffee comes from Sul de Minas, a region known for its favorable growing conditions — altitude and climate that help the fruit ripen more evenly. The rest comes from partner producers in other regions of Brazil, always looking for coffees that match what we believe in.',
     no_torra_title: 'The roast',
-    no_torra_texto: 'We roast in small batches, every week, right here in the Araraquara/SP region — never a stock sitting around for months.',
+    no_torra_texto: 'We roast in small batches, every week, right here in the Araraquara/SP region — always a fresh roast.',
 
     sc_eyebrow: 'About coffee', sc_title: 'Glossary and how to brew',
     sc_subtitle: 'The terms you see on our site and packaging, explained in plain language — plus a quick brewing guide by method.',
@@ -874,7 +874,7 @@ const TRANSLATIONS = {
     no_terra_title: 'La tierra',
     no_terra_texto: 'Una parte importante de nuestro café viene del Sur de Minas, región reconocida por sus condiciones favorables para el cultivo — altitud y clima que ayudan a una maduración más uniforme de los frutos. El resto viene de productores asociados de otras regiones de Brasil, siempre buscando cafés que estén de acuerdo con lo que creemos.',
     no_torra_title: 'El tueste',
-    no_torra_texto: 'Tostamos en pequeños lotes, cada semana, aquí mismo en la región de Araraquara/SP — nunca un stock parado por meses.',
+    no_torra_texto: 'Tostamos en pequeños lotes, cada semana, aquí mismo en la región de Araraquara/SP — siempre un tueste fresco.',
 
     sc_eyebrow: 'Sobre el café', sc_title: 'Glosario y cómo preparar',
     sc_subtitle: 'Los términos que ves en nuestro sitio y en los empaques, explicados en lenguaje sencillo — más una guía rápida de preparación por método.',
@@ -1237,7 +1237,7 @@ const TRANSLATIONS = {
     no_terra_title: 'La terre',
     no_terra_texto: 'Une part importante de notre café vient du Sul de Minas, région reconnue pour ses conditions favorables à la culture — altitude et climat qui aident à une maturation plus uniforme des fruits. Le reste vient de producteurs partenaires d’autres régions du Brésil, toujours à la recherche de cafés en accord avec ce en quoi nous croyons.',
     no_torra_title: 'La torréfaction',
-    no_torra_texto: 'Nous torréfions en petits lots, chaque semaine, ici même dans la région d’Araraquara/SP — jamais un stock qui dort pendant des mois.',
+    no_torra_texto: 'Nous torréfions en petits lots, chaque semaine, ici même dans la région d’Araraquara/SP — toujours une torréfaction fraîche.',
 
     sc_eyebrow: 'À propos du café', sc_title: 'Glossaire et comment préparer',
     sc_subtitle: 'Les termes que vous voyez sur notre site et nos emballages, expliqués simplement — avec un guide rapide de préparation par méthode.',
@@ -1600,7 +1600,7 @@ const TRANSLATIONS = {
     no_terra_title: '土地',
     no_terra_texto: '我们很大一部分咖啡来自米纳斯吉拉斯州南部，该地区以适宜种植的条件而闻名——海拔和气候有助于果实更均匀地成熟。其余部分来自巴西其他地区的合作生产者，我们始终在寻找符合我们理念的咖啡。',
     no_torra_title: '烘焙',
-    no_torra_texto: '我们每周在阿拉拉夸拉（圣保罗州）本地小批量烘焙——从不让库存积压数月。',
+    no_torra_texto: '我们每周在阿拉拉夸拉（圣保罗州）本地小批量烘焙——始终新鲜烘焙。',
 
     sc_eyebrow: '关于咖啡', sc_title: '术语表与冲泡指南',
     sc_subtitle: '您在我们网站和包装上看到的术语，用通俗易懂的语言解释——还附有按冲泡方式分类的快速指南。',
