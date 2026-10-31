@@ -498,8 +498,6 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
   const skuInicial = (skuUrl === 'cafe-especial-500-moido') ? skuUrl : 'cafe-especial-500-grao';
   selecionarMoagem(skuInicial);
 
-  // Rendimento calculado a partir do preço real do catálogo (10g por xícara,
-  // 500g ÷ 10g = 50 xícaras) -- nunca um valor fixo digitado.
   const produtoEspecial = (typeof PRODUCTS !== 'undefined') ? PRODUCTS.find((p) => p.id === skuInicial) : null;
   if (produtoEspecial) {
     if (window.fbq) {
