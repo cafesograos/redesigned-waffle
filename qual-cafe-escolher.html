@@ -123,13 +123,16 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
       <div class="qce-question" data-q="1">
         <h3 data-i18n="qce_q1_title">Como você prepara o café em casa?</h3>
         <div class="qce-opcoes">
-          <!-- Coado funciona igual com pó médio -- trava direto no Tradicional.
-               Prensa francesa/espresso/cafeteira italiana pedem moagem grossa/
-               fina/extra-fina, cada uma diferente -- só existe moendo na hora,
-               ou seja, comprando em grãos. Essas 4 opções decidem o resultado
-               sozinhas, sem depender da pontuação de P2/P3 (ver data-forca no
-               JS). Só "não preparo" segue pela pontuação normal. -->
-          <button type="button" class="qce-opcao" data-especial="0" data-tradicional="0" data-forca="tradicional" data-i18n="qce_q1_opt1">Coado</button>
+          <!-- Coado funciona igual bem com o Tradicional moído ou com o
+               Especial (puro/moído na hora) -- não é uma questão técnica, é
+               gosto (o Tradicional é mais forte, o Especial mais equilibrado
+               e limpo), então segue pela pontuação normal de P2/P3, igual
+               "não preparo". Já prensa francesa/espresso/cafeteira italiana
+               pedem moagem grossa/fina/extra-fina, cada uma diferente -- só
+               existe moendo na hora, ou seja, comprando em grãos. Essas 3
+               decidem o resultado sozinhas, sem depender de P2/P3 (ver
+               data-forca no JS). -->
+          <button type="button" class="qce-opcao" data-especial="0" data-tradicional="0" data-i18n="qce_q1_opt1">Coado</button>
           <button type="button" class="qce-opcao" data-especial="0" data-tradicional="0" data-forca="especial" data-i18n="qce_q1_opt2">Prensa francesa</button>
           <button type="button" class="qce-opcao" data-especial="0" data-tradicional="0" data-forca="especial" data-i18n="qce_q1_opt3">Espresso</button>
           <button type="button" class="qce-opcao" data-especial="0" data-tradicional="0" data-forca="especial" data-i18n="qce_q1_opt4">Cafeteira italiana</button>
