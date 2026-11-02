@@ -25,7 +25,7 @@ const TRANSLATIONS = {
     araraquara_popup_whatsapp: 'Comprar pelo WhatsApp',
 
     araraquara_page_eyebrow: 'Araraquara e região',
-    araraquara_page_title: 'Frete grátis para quem é de Araraquara, a partir de R$100',
+    araraquara_page_title: 'Café em Araraquara e região',
     araraquara_page_subtitle: 'Pela proximidade, Araraquara tem a condição de frete grátis mais generosa do site — compre pelo WhatsApp ou direto por aqui.',
     araraquara_page_cta_site: 'Ver produtos no site',
     araraquara_area_title: 'Área atendida',
@@ -400,7 +400,7 @@ const TRANSLATIONS = {
     araraquara_popup_whatsapp: 'Buy on WhatsApp',
 
     araraquara_page_eyebrow: 'Araraquara and region',
-    araraquara_page_title: 'Free shipping for Araraquara, from R$100',
+    araraquara_page_title: 'Coffee in Araraquara and the region',
     araraquara_page_subtitle: 'Being close by, Araraquara gets the most generous free-shipping condition on the site — buy on WhatsApp or right here.',
     araraquara_page_cta_site: 'View products on the site',
     araraquara_area_title: 'Delivery area',
@@ -772,7 +772,7 @@ const TRANSLATIONS = {
     araraquara_popup_whatsapp: 'Comprar por WhatsApp',
 
     araraquara_page_eyebrow: 'Araraquara y región',
-    araraquara_page_title: 'Envío gratis para Araraquara, a partir de R$100',
+    araraquara_page_title: 'Café en Araraquara y la región',
     araraquara_page_subtitle: 'Por la cercanía, Araraquara tiene la condición de envío gratis más generosa del sitio — compra por WhatsApp o directo aquí.',
     araraquara_page_cta_site: 'Ver productos en el sitio',
     araraquara_area_title: 'Área atendida',
@@ -1144,7 +1144,7 @@ const TRANSLATIONS = {
     araraquara_popup_whatsapp: 'Acheter sur WhatsApp',
 
     araraquara_page_eyebrow: 'Araraquara et région',
-    araraquara_page_title: 'Livraison gratuite pour Araraquara, dès R$100',
+    araraquara_page_title: 'Café à Araraquara et dans la région',
     araraquara_page_subtitle: 'Grâce à la proximité, Araraquara bénéficie de la condition de livraison gratuite la plus généreuse du site — achetez sur WhatsApp ou directement ici.',
     araraquara_page_cta_site: 'Voir les produits sur le site',
     araraquara_area_title: 'Zone desservie',
@@ -1516,7 +1516,7 @@ const TRANSLATIONS = {
     araraquara_popup_whatsapp: '通过WhatsApp购买',
 
     araraquara_page_eyebrow: '阿拉拉夸拉及周边地区',
-    araraquara_page_title: '阿拉拉夸拉满R$100包邮',
+    araraquara_page_title: '阿拉拉夸拉及周边地区的咖啡',
     araraquara_page_subtitle: '得益于地理位置相近，阿拉拉夸拉享有本站最优惠的包邮条件——可通过WhatsApp购买，也可直接在本站下单。',
     araraquara_page_cta_site: '在网站查看产品',
     araraquara_area_title: '配送范围',
