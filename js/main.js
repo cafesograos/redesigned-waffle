@@ -191,10 +191,18 @@ function atualizarCoverflow() {
   grid.addEventListener('scroll', atualizarCoverflow, { passive: true });
   window.addEventListener('resize', atualizarCoverflow);
 
+  // scrollBy(..., { behavior: 'smooth' }) nunca completa quando combinado com
+  // scroll-snap-type: mandatory neste carrossel (confirmado: a animação é
+  // cancelada e o scroll volta pro início, até sem nenhum listener de scroll
+  // no meio do caminho — incompatibilidade do próprio motor de renderização
+  // com smooth-scroll + snap mandatory, não um bug do nosso código). Scroll
+  // instantâneo (scrollLeft direto) sempre pousa certinho no próximo ponto
+  // de snap, então é isso que o botão usa -- perde o deslizar suave, mas
+  // funciona de verdade em vez de ficar travado sempre na primeira carta.
   function mover(direcao) {
     const card = grid.querySelector('.produto-card');
     const largura = card ? card.getBoundingClientRect().width + 20 : 280; // card + gap
-    grid.scrollBy({ left: direcao * largura, behavior: 'smooth' });
+    grid.scrollLeft += direcao * largura;
   }
   btnPrev?.addEventListener('click', () => mover(-1));
   btnNext?.addEventListener('click', () => mover(1));
