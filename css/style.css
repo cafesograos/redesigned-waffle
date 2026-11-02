@@ -336,6 +336,14 @@ a { text-decoration: none; color: inherit; }
 .b2b-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
 .b2b-headline h2 { color: #fff; font-size: 32px; }
 .b2b-texto p:not(.eyebrow) { margin: 14px 0 22px; color: rgba(255,255,255,.8); }
+.kit-escritorio-card {
+  margin-top: 24px; max-width: 420px; padding: 20px;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.25); border-radius: var(--radius);
+}
+.kit-escritorio-card .linha-badge { background: rgba(255,255,255,.15); margin-bottom: 10px; }
+.kit-escritorio-card h3 { color: #fff; font-size: 17px; margin-bottom: 8px; }
+.kit-escritorio-card p { color: rgba(255,255,255,.8); font-size: 14px; line-height: 1.6; margin: 0; }
+.kit-escritorio-confirmar { font-style: italic; opacity: .85; font-size: 12px; margin-top: 8px !important; }
 
 /* Páginas de resultado do pagamento (sucesso/falha/pendente) */
 .resultado { padding: 90px 0 70px; min-height: 55vh; display: flex; align-items: center; }

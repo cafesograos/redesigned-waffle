@@ -243,6 +243,9 @@ const TRANSLATIONS = {
     b2b_title: 'Tenha um café especial para seus clientes', b2b_eyebrow: 'Venda corporativa',
     b2b_text: 'Da cafeteria ao escritório, seu café também fala sobre o seu negócio. Fornecemos em volume, com a mesma torra fresca e cuidado de sempre — para quem quer servir bem quem entra pela porta.',
     b2b_cta: 'Fale sobre parceria B2B',
+    kit_escritorio_badge: 'Para empresas', kit_escritorio_title: 'Kit Escritório',
+    kit_escritorio_desc: 'Um kit pensado para manter café fresco sempre à mão no escritório, com reposição recorrente.',
+    kit_escritorio_preco: 'Preço e composição: a confirmar',
 
     contato_title: 'Fale conosco', contato_text: 'Dúvidas sobre pedidos, atacado ou parcerias? Envie uma mensagem.',
 
@@ -608,6 +611,9 @@ const TRANSLATIONS = {
     b2b_title: 'Offer your customers a specialty coffee', b2b_eyebrow: 'Corporate sales',
     b2b_text: 'From the coffee shop to the office, your coffee also speaks about your business. We supply in volume, with the same fresh roast and care as always — for those who want to treat everyone who walks through the door well.',
     b2b_cta: 'Ask about a B2B partnership',
+    kit_escritorio_badge: 'For businesses', kit_escritorio_title: 'Office Kit',
+    kit_escritorio_desc: 'A kit designed to keep fresh coffee always on hand at the office, with recurring restocking.',
+    kit_escritorio_preco: 'Price and contents: to be confirmed',
 
     contato_title: 'Get in touch', contato_text: 'Questions about orders, wholesale or partnerships? Send us a message.',
 
@@ -973,6 +979,9 @@ const TRANSLATIONS = {
     b2b_title: 'Ofrece un café especial a tus clientes', b2b_eyebrow: 'Venta corporativa',
     b2b_text: 'De la cafetería a la oficina, tu café también habla de tu negocio. Suministramos en volumen, con el mismo tueste fresco y cuidado de siempre — para quien quiere atender bien a quien entra por la puerta.',
     b2b_cta: 'Hablar sobre alianza B2B',
+    kit_escritorio_badge: 'Para empresas', kit_escritorio_title: 'Kit Oficina',
+    kit_escritorio_desc: 'Un kit pensado para tener café fresco siempre a mano en la oficina, con reposición recurrente.',
+    kit_escritorio_preco: 'Precio y composición: a confirmar',
 
     contato_title: 'Hablemos', contato_text: '¿Dudas sobre pedidos, mayoreo o alianzas? Envía un mensaje.',
 
@@ -1338,6 +1347,9 @@ const TRANSLATIONS = {
     b2b_title: 'Offrez un café spécial à vos clients', b2b_eyebrow: 'Vente aux entreprises',
     b2b_text: 'Du café à la maison ou au bureau, votre café parle aussi de votre entreprise. Nous fournissons en volume, avec la même torréfaction fraîche et le même soin que toujours — pour ceux qui veulent bien accueillir qui franchit leur porte.',
     b2b_cta: 'Parlez-nous d’un partenariat B2B',
+    kit_escritorio_badge: 'Pour les entreprises', kit_escritorio_title: 'Kit Bureau',
+    kit_escritorio_desc: 'Un kit pensé pour avoir toujours du café frais à portée de main au bureau, avec un réapprovisionnement récurrent.',
+    kit_escritorio_preco: 'Prix et composition : à confirmer',
 
     contato_title: 'Contactez-nous', contato_text: 'Des questions sur les commandes, la vente en gros ou les partenariats ? Envoyez-nous un message.',
 
@@ -1703,6 +1715,9 @@ const TRANSLATIONS = {
     b2b_title: '为您的客户准备一杯特别的咖啡', b2b_eyebrow: '企业采购',
     b2b_text: '从咖啡馆到办公室，您提供的咖啡也代表着您的生意。我们提供批量供货，始终保持同样新鲜的烘焙和用心——献给想要好好款待每一位客人的您。',
     b2b_cta: '咨询企业合作',
+    kit_escritorio_badge: '企业专属', kit_escritorio_title: '办公室套装',
+    kit_escritorio_desc: '专为办公室设计的套装，让新鲜咖啡随时在手，并支持定期补货。',
+    kit_escritorio_preco: '价格与内容：待确认',
 
     contato_title: '联系我们', contato_text: '关于订单、批发或合作有疑问？给我们留言吧。',
 

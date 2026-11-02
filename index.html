@@ -466,11 +466,20 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
       <p class="eyebrow" data-i18n="b2b_eyebrow">Venda corporativa</p>
       <p data-i18n="b2b_text">Da cafeteria ao escritório, seu café também fala sobre o seu negócio. Fornecemos em volume, com a mesma torra fresca e cuidado de sempre — para quem quer servir bem quem entra pela porta.</p>
       <a href="https://wa.me/5516997616459?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20parceria%20B2B%20com%20o%20Caf%C3%A9%20S%C3%B3%20Gr%C3%A3os." target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="b2b_cta">Fale sobre parceria B2B</a>
-      <!-- Espaço reservado pro Kit Escritório (item 5 do protótipo): oculto
-           por flag, sem preço nem composição definidos. Pra ativar, remova
-           o atributo "hidden" e preencha o conteúdo quando o cliente decidir
-           preço/composição. -->
-      <div class="kit-escritorio-placeholder" hidden data-flag="kit_escritorio"></div>
+      <!-- Kit Escritório: oculto por flag, sem preço nem composição
+           definidos (dado que só o dono do negócio tem -- não inventado
+           aqui). Pra ativar, remova o atributo "hidden" e troque
+           kit_escritorio_preco pelo preço/composição reais quando o
+           cliente decidir. -->
+      <div class="kit-escritorio-placeholder" hidden data-flag="kit_escritorio">
+        <div class="kit-escritorio-card">
+          <span class="linha-badge" data-i18n="kit_escritorio_badge">Para empresas</span>
+          <h3 data-i18n="kit_escritorio_title">Kit Escritório</h3>
+          <p data-i18n="kit_escritorio_desc">Um kit pensado para manter café fresco sempre à mão no escritório, com reposição recorrente.</p>
+          <!-- [CONFIRMAR] preço e composição do Kit Escritório -->
+          <p class="kit-escritorio-confirmar" data-i18n="kit_escritorio_preco">Preço e composição: a confirmar</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
