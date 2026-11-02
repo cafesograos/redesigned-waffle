@@ -114,11 +114,12 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
 </header>
 
 <section class="politica">
-  <div class="container politica-inner">
+  <div class="container politica-inner qce-politica-inner">
     <p class="eyebrow" data-i18n="qce_eyebrow">Qual café escolher</p>
     <h1 data-i18n="qce_title">Qual café é o seu?</h1>
     <p data-i18n="qce_subtitle">Responda 3 perguntas rápidas e a gente te mostra qual linha combina mais com você.</p>
 
+    <div class="qce-layout">
     <div id="qceQuiz">
       <div class="qce-question" data-q="1">
         <h3 data-i18n="qce_q1_title">Como você prepara o café em casa?</h3>
@@ -156,6 +157,12 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
         </div>
       </div>
       <button type="button" class="btn btn-primary" id="qceVerResultado" disabled data-i18n="qce_btn_ver_resultado">Ver minha recomendação</button>
+    </div>
+
+    <aside class="qce-comparativo">
+      <h3 data-i18n="qce_comparativo_title">Tradicional ou Especial: comparativo honesto</h3>
+      <p data-i18n="qce_comparativo_text">Se você bebe café com leite, bem forte ou várias vezes ao dia, o Tradicional já entrega o que você precisa, com ótimo custo-benefício. O Especial compensa quando você bebe puro e quer perceber mais nuance de sabor — nesse caso, a diferença de preço se justifica pela experiência. Nenhuma das duas opções é "melhor" de verdade: é sobre o que combina com o seu momento.</p>
+    </aside>
     </div>
 
     <div id="qceResultado" class="qce-resultado" hidden>
@@ -309,6 +316,7 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
   const resultadoEl = document.getElementById('qceResultado');
   const resultadoConteudoEl = document.getElementById('qceResultadoConteudo');
   const btnRefazer = document.getElementById('qceRefazer');
+  const comparativoEl = document.querySelector('.qce-comparativo');
 
   document.querySelectorAll('.qce-question').forEach((q) => {
     const num = q.dataset.q;
@@ -369,6 +377,7 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
     });
 
     quizEl.hidden = true;
+    comparativoEl.hidden = true;
     resultadoEl.hidden = false;
     resultadoEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
@@ -379,6 +388,7 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
     btnVer.disabled = true;
     resultadoEl.hidden = true;
     quizEl.hidden = false;
+    comparativoEl.hidden = false;
   });
 })();
 </script>

@@ -372,7 +372,10 @@ a { text-decoration: none; color: inherit; }
 .faq-item[open] summary::after { content: '−'; }
 .faq-item p { color: var(--text-soft); line-height: 1.7; margin-top: 12px; }
 
-/* Quiz "Qual café escolher" */
+/* Quiz "Qual café escolher" -- página mais larga que as outras de
+   .politica-inner (640px) pra caber o comparativo ao lado das perguntas. */
+.politica-inner.qce-politica-inner { max-width: 880px; }
+.qce-layout { display: grid; grid-template-columns: 1.6fr 1fr; gap: 32px; align-items: start; margin-top: 8px; }
 .qce-question { margin: 28px 0; }
 .qce-question h3 { font-size: 16px; margin-bottom: 12px; }
 .qce-opcoes { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -751,6 +754,7 @@ a { text-decoration: none; color: inherit; }
   .announce-bar { font-size: 11px; padding: 8px 10px; letter-spacing: normal; line-height: 1.35; }
   .qce-resultado-card { flex-direction: column; }
   .qce-resultado-img { flex-basis: auto; width: 140px; height: 140px; margin: 0 auto; }
+  .qce-layout { grid-template-columns: 1fr; }
   .hero { padding: 56px 0; min-height: 320px; background-image: linear-gradient(rgba(33,23,20,.85), rgba(33,23,20,.85)), url('../assets/plantacao-real-hero-mobile.jpg'); }
   .hero-text { text-align: center; margin: 0 auto; }
   .hero-sub { margin-left: auto; margin-right: auto; }
