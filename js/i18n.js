@@ -180,13 +180,16 @@ const TRANSLATIONS = {
     comece_card4_title: 'Para presentear', comece_card4_produto: 'Caixa de presente',
 
     origem_eyebrow: 'Orgulho do agro brasileiro', origem_title: 'Da plantação até a sua xícara',
-    origem_fig1: 'Plantação própria e de produtores parceiros do Sul de Minas', origem_fig2: 'Grãos 100% arábica, selecionados um a um',
+    // [CONFIRMAR] origem_fig1/destaque2_desc usam a versão que afirma menos
+    // (parte Sul de Minas, parte produtores parceiros) até o dono confirmar
+    // se há plantação própria -- troca de uma linha quando ele responder.
+    origem_fig1: 'Parte do Sul de Minas, parte de produtores parceiros', origem_fig2: 'Grãos 100% arábica, selecionados um a um',
     origem_fig3: 'Beneficiamento cuidadoso, lote a lote',
     origem_nota: 'Nossos grãos vêm do Sul de Minas — um dos berços do café especial no Brasil — e são torrados e moídos por nós, aqui em Araraquara/SP.',
 
     destaques_statement: 'Torra recente, 100% arábica, entrega garantida.',
     destaque1_title: 'Torra recente', destaque1_desc: 'Torrado em pequenos lotes, toda semana',
-    destaque2_title: 'Origem rastreada', destaque2_desc: 'Plantação própria e de produtores parceiros do Sul de Minas',
+    destaque2_title: 'Origem rastreada', destaque2_desc: 'Parte do Sul de Minas, parte de produtores parceiros',
     destaque3_title: 'Entrega para todo o Brasil', destaque3_desc: 'Peça sem sair de casa',
     destaque4_title: 'Linha Especial 84 pontos SCA', destaque4_desc: 'Nossa torra de maior pontuação, avaliada oficialmente',
     sca_pontuacao_badge: '84 pontos SCA',
@@ -552,13 +555,13 @@ const TRANSLATIONS = {
     comece_card4_title: 'To gift', comece_card4_produto: 'Gift box',
 
     origem_eyebrow: 'Proud of Brazilian agriculture', origem_title: 'From the plantation to your cup',
-    origem_fig1: 'Our own farm and partner producers in Sul de Minas', origem_fig2: '100% arabica beans, hand-picked one by one',
+    origem_fig1: 'Partly from Sul de Minas, partly from partner producers', origem_fig2: '100% arabica beans, hand-picked one by one',
     origem_fig3: 'Careful processing, batch by batch',
     origem_nota: 'Our beans come from Sul de Minas — one of the birthplaces of specialty coffee in Brazil — and are roasted and ground by us, here in Araraquara, São Paulo.',
 
     destaques_statement: 'Fresh roast, 100% arabica, guaranteed delivery.',
     destaque1_title: 'Fresh roast', destaque1_desc: 'Roasted in small batches, every week',
-    destaque2_title: 'Traceable origin', destaque2_desc: 'Our own farm and partner producers in Sul de Minas',
+    destaque2_title: 'Traceable origin', destaque2_desc: 'Partly from Sul de Minas, partly from partner producers',
     destaque3_title: 'Shipping all over Brazil', destaque3_desc: 'Order without leaving home',
     destaque4_title: 'Specialty line 84 SCA points', destaque4_desc: 'Our highest-rated roast, officially evaluated',
     sca_pontuacao_badge: '84 SCA points',
@@ -924,13 +927,13 @@ const TRANSLATIONS = {
     comece_card4_title: 'Para regalar', comece_card4_produto: 'Caja de regalo',
 
     origem_eyebrow: 'Orgullo del agro brasileño', origem_title: 'De la plantación a tu taza',
-    origem_fig1: 'Plantación propia y productores asociados del Sur de Minas', origem_fig2: 'Granos 100% arábica, seleccionados uno a uno',
+    origem_fig1: 'Parte del Sur de Minas, parte de productores asociados', origem_fig2: 'Granos 100% arábica, seleccionados uno a uno',
     origem_fig3: 'Beneficiado cuidadoso, lote a lote',
     origem_nota: 'Nuestros granos vienen del Sur de Minas — una de las cunas del café especial en Brasil — y los tostamos y molemos nosotros mismos, aquí en Araraquara/SP.',
 
     destaques_statement: 'Tueste reciente, 100% arábica, entrega garantizada.',
     destaque1_title: 'Tueste reciente', destaque1_desc: 'Tostado en lotes pequeños, cada semana',
-    destaque2_title: 'Origen rastreable', destaque2_desc: 'Plantación propia y productores asociados del Sur de Minas',
+    destaque2_title: 'Origen rastreable', destaque2_desc: 'Parte del Sur de Minas, parte de productores asociados',
     destaque3_title: 'Envíos a todo Brasil', destaque3_desc: 'Pide sin salir de casa',
     destaque4_title: 'Línea Especial 84 puntos SCA', destaque4_desc: 'Nuestro tueste de mayor puntuación, evaluado oficialmente',
     sca_pontuacao_badge: '84 puntos SCA',
@@ -1296,13 +1299,13 @@ const TRANSLATIONS = {
     comece_card4_title: 'Pour offrir', comece_card4_produto: 'Coffret cadeau',
 
     origem_eyebrow: 'Fierté de l’agriculture brésilienne', origem_title: 'De la plantation à votre tasse',
-    origem_fig1: 'Notre propre plantation et des producteurs partenaires du Sul de Minas', origem_fig2: 'Grains 100% arabica, sélectionnés un par un',
+    origem_fig1: 'En partie du Sul de Minas, en partie de producteurs partenaires', origem_fig2: 'Grains 100% arabica, sélectionnés un par un',
     origem_fig3: 'Traitement soigné, lot par lot',
     origem_nota: 'Nos grains viennent du Sul de Minas — l’un des berceaux du café spécial au Brésil — et sont torréfiés et moulus par nous, ici à Araraquara/SP.',
 
     destaques_statement: 'Torréfaction récente, 100% arabica, livraison garantie.',
     destaque1_title: 'Torréfaction récente', destaque1_desc: 'Torréfié en petits lots, chaque semaine',
-    destaque2_title: 'Origine traçable', destaque2_desc: 'Notre propre plantation et des producteurs partenaires du Sul de Minas',
+    destaque2_title: 'Origine traçable', destaque2_desc: 'En partie du Sul de Minas, en partie de producteurs partenaires',
     destaque3_title: 'Livraison dans tout le Brésil', destaque3_desc: 'Commandez sans sortir de chez vous',
     destaque4_title: 'Ligne Spéciale 84 points SCA', destaque4_desc: 'Notre torréfaction la mieux notée, évaluée officiellement',
     sca_pontuacao_badge: '84 points SCA',
@@ -1668,13 +1671,13 @@ const TRANSLATIONS = {
     comece_card4_title: '送礼之选', comece_card4_produto: '礼盒装',
 
     origem_eyebrow: '巴西农业的骄傲', origem_title: '从种植园到您的杯中',
-    origem_fig1: '自有种植园及米纳斯吉拉斯州南部合作生产者', origem_fig2: '100%阿拉比卡豆，逐粒精选',
+    origem_fig1: '部分来自米纳斯吉拉斯州南部，部分来自合作生产者', origem_fig2: '100%阿拉比卡豆，逐粒精选',
     origem_fig3: '细致加工，分批处理',
     origem_nota: '我们的咖啡豆来自米纳斯吉拉斯州南部——巴西精品咖啡的发源地之一——由我们自己在阿拉拉夸拉（圣保罗州）烘焙研磨。',
 
     destaques_statement: '新鲜烘焙，100%阿拉比卡，保证送达。',
     destaque1_title: '新鲜烘焙', destaque1_desc: '每周小批量烘焙',
-    destaque2_title: '产地可追溯', destaque2_desc: '自有种植园及米纳斯吉拉斯州南部合作生产者',
+    destaque2_title: '产地可追溯', destaque2_desc: '部分来自米纳斯吉拉斯州南部，部分来自合作生产者',
     destaque3_title: '全巴西配送', destaque3_desc: '足不出户即可下单',
     destaque4_title: '特级系列 SCA 84分', destaque4_desc: '我们评分最高的烘焙，经官方评定',
     sca_pontuacao_badge: 'SCA 84分',

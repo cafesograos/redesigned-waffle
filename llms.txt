@@ -1,8 +1,10 @@
 # Café Só Grãos
 
-> Marca de café 100% arábica da região de Araraquara/SP. Grãos do Sul de
-> Minas, de plantação própria e de produtores parceiros, torrados em
-> pequenos lotes toda semana em [CONFIRMAR cidade da torrefação].
+> Marca de café 100% arábica da região de Araraquara/SP. Parte dos grãos
+> vem do Sul de Minas, parte de produtores parceiros de outras regiões do
+> Brasil [CONFIRMAR: usa a versão que afirma menos até o dono confirmar se
+> há plantação própria]. Torrados em pequenos lotes toda semana em
+> [CONFIRMAR cidade da torrefação].
 
 ## Linhas
 - Tradicional: café do dia a dia, torra mais encorpada, 100% arábica. Moído, 500 g.
