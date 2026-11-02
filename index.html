@@ -170,7 +170,6 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
     <p class="section-sub" data-i18n="produtos_subtitle">Grãos selecionados, torras variadas — do suave ao intenso.</p>
     <div class="filter-pills" id="filterPills"></div>
     <div class="produtos-carrossel">
-      <button type="button" class="carrossel-seta carrossel-seta-prev" id="produtosPrev" aria-label="Anterior">‹</button>
       <!-- Produtos escritos direto no HTML (não só montados por JS), pra
            aparecer pra robô de busca e visitante com JavaScript desativado.
            Dados batem com GET /api/produtos (fonte única de preço/peso) --
@@ -266,6 +265,10 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
             <div class="produto-footer">
               <div class="produto-precos">
                 <span class="produto-peso">50 g</span>
+                <span class="produto-preco-linha" aria-hidden="true" style="visibility:hidden">
+                  <span class="produto-preco-original">R$ 0,00</span>
+                  <span class="produto-desconto">-0%</span>
+                </span>
                 <span class="produto-preco">R$ 20,00</span>
               </div>
               <button class="btn btn-secondary" data-add="caixa-drip-coffee-vazia">Adicionar</button>
@@ -292,7 +295,6 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
           </div>
         </article>
       </div>
-      <button type="button" class="carrossel-seta carrossel-seta-next" id="produtosNext" aria-label="Próximo">›</button>
     </div>
   </div>
 </section>
