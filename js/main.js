@@ -39,6 +39,17 @@ function atualizarAnnounceBar() {
 }
 freteGratisConfigPronta.then(atualizarAnnounceBar);
 
+// Subtítulo da página de Araraquara: mesma ideia da barra do topo, mas com
+// o valor da faixa "araraquara-regiao" -- muda sozinho se a config mudar,
+// nunca precisa editar o HTML.
+function atualizarAraraquaraSubtitle() {
+  const el = document.querySelector('[data-i18n="araraquara_page_subtitle"]');
+  const valor = freteGratisMinimo('araraquara-regiao');
+  if (!el || valor === null) return;
+  el.textContent = t('araraquara_page_subtitle', { valor: valor % 1 === 0 ? valor.toFixed(0) : valor.toFixed(2).replace('.', ',') });
+}
+freteGratisConfigPronta.then(atualizarAraraquaraSubtitle);
+
 // Nome/descrição do produto no idioma atual — cai pro português se a
 // tradução específica não existir (ex.: catálogo local desatualizado) ou se
 // i18n.js não tiver terminado de carregar a tempo (visto em produção: uma
@@ -766,6 +777,7 @@ window.onLanguageChange = function () {
   renderProducts();
   Cart.render();
   atualizarAnnounceBar();
+  atualizarAraraquaraSubtitle();
   if (typeof window.renderAvaliacoesNoIdioma === 'function') window.renderAvaliacoesNoIdioma();
 };
 
