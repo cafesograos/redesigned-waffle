@@ -117,7 +117,7 @@ function renderProducts() {
   if (!grid) return;
   const items = activeFilter === "todos"
     ? PRODUCTS
-    : PRODUCTS.filter(p => p.categoria === activeFilter);
+    : PRODUCTS.filter(p => (p.categorias || []).includes(activeFilter));
   const idsVisiveis = new Set(items.map((p) => p.id));
 
   let algumCardExistente = false;
@@ -138,7 +138,7 @@ function renderProducts() {
 
   if (!algumCardExistente) {
     grid.innerHTML = items.map((p) => `
-      <article class="produto-card" data-id="${p.id}" data-categoria="${p.categoria}">
+      <article class="produto-card" data-id="${p.id}" data-categoria="${(p.categorias || []).join(' ')}">
         ${p.badge ? `<span class="produto-badge${p.badge.toUpperCase() === 'PROMOÇÃO' ? ' badge-sale' : ''}"${p.badge.includes('SCA') ? ` title="${t('sca_tooltip')}"` : ''}>${p.badge}</span>` : ''}
         <div class="produto-img"${p.imgs ? ` data-gallery="${p.id}"` : ''}>${p.img ? `<img src="${p.img}" alt="${nomeProduto(p)}" loading="lazy">` : ''}</div>
         <div class="produto-info">
