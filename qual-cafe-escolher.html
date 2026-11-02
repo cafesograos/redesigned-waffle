@@ -338,13 +338,30 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
     const tituloKey = especialVence ? 'qce_resultado_especial_title' : 'qce_resultado_trad_title';
     const descKey = especialVence ? 'qce_resultado_especial_desc' : 'qce_resultado_trad_desc';
 
+    // Foto e preço vêm sempre do catálogo (PRODUCTS, carregado por
+    // carregarCatalogo() em main.js) -- nunca escritos aqui -- pra não
+    // ficar desatualizado se o preço mudar.
+    const produto = PRODUCTS.find((p) => p.id === produtoId);
+    const dripUnidade = PRODUCTS.find((p) => p.id === 'drip-coffee-unidade');
+    const precoDripFormatado = `R$ ${dripUnidade.preco.toFixed(2).replace('.', ',')}`;
+
     resultadoConteudoEl.innerHTML = `
-      <h2>${t(tituloKey)}</h2>
-      <p>${t(descKey)}</p>
-      <div class="qce-resultado-acoes">
-        <button type="button" class="btn btn-primary" id="qceComprar">${t('qce_cta_comprar')}</button>
-        <a href="${fichaUrl}" class="btn btn-outline">${t('qce_cta_ficha')}</a>
+      <div class="qce-resultado-card">
+        <div class="qce-resultado-img">${produto.img ? `<img src="${produto.img}" alt="${nomeProduto(produto)}" loading="lazy">` : ''}</div>
+        <div class="qce-resultado-info">
+          <h2>${t(tituloKey)}</h2>
+          <p>${t(descKey)}</p>
+          <div class="produto-precos">
+            <span class="produto-peso">${pesoHtml(produto)}</span>
+            ${priceHtml(produto)}
+          </div>
+          <div class="qce-resultado-acoes">
+            <button type="button" class="btn btn-primary" id="qceComprar">${t('qce_cta_comprar')}</button>
+            <a href="${fichaUrl}" class="btn btn-outline">${t('qce_cta_ficha')}</a>
+          </div>
+        </div>
       </div>
+      <p class="qce-resultado-duvida">${t('qce_resultado_duvida', { preco: precoDripFormatado })}</p>
     `;
     document.getElementById('qceComprar').addEventListener('click', () => {
       Cart.add(produtoId);

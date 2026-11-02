@@ -385,9 +385,21 @@ a { text-decoration: none; color: inherit; }
 .qce-opcao.ativo { background: var(--expresso); border-color: var(--expresso); color: #fff; }
 #qceVerResultado { margin-top: 12px; }
 #qceVerResultado:disabled { opacity: .5; cursor: not-allowed; }
-.qce-resultado h2 { font-size: 26px; margin: 10px 0 10px; }
-.qce-resultado > p { color: var(--text-soft); margin-bottom: 20px; }
-.qce-resultado-acoes { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 36px; }
+.qce-resultado-card {
+  display: flex; gap: 24px; background: #F7F5F4; border: 1px solid #ecdfc9;
+  border-radius: var(--radius); padding: 20px; margin-bottom: 16px;
+}
+.qce-resultado-img {
+  flex: 0 0 160px; height: 160px; display: flex; align-items: center; justify-content: center;
+  background: #fff; border-radius: var(--radius); overflow: hidden; padding: 12px;
+}
+.qce-resultado-img img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+.qce-resultado-info { flex: 1; min-width: 0; }
+.qce-resultado-info h2 { font-size: 22px; margin: 0 0 8px; }
+.qce-resultado-info > p { color: var(--text-soft); margin-bottom: 14px; line-height: 1.6; }
+.qce-resultado-info .produto-precos { margin-bottom: 16px; }
+.qce-resultado-acoes { display: flex; gap: 12px; flex-wrap: wrap; }
+.qce-resultado-duvida { font-size: 13px; color: var(--text-soft); margin-bottom: 36px; }
 .qce-comparativo { background: #F7F5F4; border-radius: var(--radius); padding: 22px; margin-bottom: 24px; }
 .qce-comparativo h3 { font-size: 16px; margin-bottom: 10px; }
 .qce-comparativo p { color: var(--text-soft); line-height: 1.7; margin: 0; }
@@ -737,6 +749,8 @@ a { text-decoration: none; color: inherit; }
      reduz o tamanho só no mobile pra caber em 2 linhas em telas de 390px
      (ver tarefa 2 da auditoria de 29/10/2026). */
   .announce-bar { font-size: 11px; padding: 8px 10px; letter-spacing: normal; line-height: 1.35; }
+  .qce-resultado-card { flex-direction: column; }
+  .qce-resultado-img { flex-basis: auto; width: 140px; height: 140px; margin: 0 auto; }
   .hero { padding: 56px 0; min-height: 320px; background-image: linear-gradient(rgba(33,23,20,.85), rgba(33,23,20,.85)), url('../assets/plantacao-real-hero-mobile.jpg'); }
   .hero-text { text-align: center; margin: 0 auto; }
   .hero-sub { margin-left: auto; margin-right: auto; }
