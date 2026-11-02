@@ -436,6 +436,7 @@ a { text-decoration: none; color: inherit; }
 .linha-card h3 { font-size: 17px; margin-bottom: 8px; }
 .linha-card p { font-size: 14px; color: var(--text-soft); line-height: 1.6; margin-bottom: 18px; }
 .linha-perfil { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-soft); }
+.linha-cta { margin-top: 18px; font-size: 13px; padding: 10px 20px; }
 .linha-barra { flex: 1; height: 6px; border-radius: 999px; background: #e8dfd3; overflow: hidden; }
 .linha-barra span { display: block; height: 100%; background: var(--laranja); border-radius: 999px; }
 
