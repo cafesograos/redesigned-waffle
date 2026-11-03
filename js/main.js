@@ -371,7 +371,7 @@ document.getElementById('btnCalcularFrete').addEventListener('click', async () =
     };
 
     document.getElementById('inEndereco').value = endereco.logradouro || '';
-    document.getElementById('inBairroCidade').value = `${endereco.bairro} — ${endereco.localidade}/${endereco.uf}`;
+    document.getElementById('inBairroCidade').value = `${endereco.bairro}, ${endereco.localidade}/${endereco.uf}`;
     document.getElementById('enderecoFields').hidden = false;
     const freteTexto = frete.valor === 0 ? t('msg_frete_gratis') : 'R$ ' + frete.valor.toFixed(2).replace('.', ',');
     statusEl.textContent = t('msg_frete_resultado', { frete: freteTexto, prazo: frete.prazoDias });

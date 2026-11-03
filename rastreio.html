@@ -5,7 +5,7 @@
 <script src="https://browser.sentry-cdn.com/10.75.0/bundle.min.js" crossorigin="anonymous"></script>
 <script>Sentry.init({ dsn: "https://084a413fa37df209b12203d19a1018b6@o4512112881696768.ingest.us.sentry.io/4512113084727296" });</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rastrear pedido — Café Só Grãos</title>
+<title>Rastrear pedido: Café Só Grãos</title>
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="assets/icons/favicon-512.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
@@ -111,7 +111,7 @@ document.getElementById('formRastreio').addEventListener('submit', async (e) => 
     statusEl.textContent = '';
     let titulo = t('status_' + pedido.status) || pedido.status;
     if (pedido.status === 'approved') {
-      titulo += pedido.tracking_code ? ' ' + t('status_enviado') : ' ' + t('status_preparando');
+      titulo += pedido.tracking_code ? t('status_enviado') : t('status_preparando');
     }
     document.getElementById('resumoStatusTitulo').textContent = titulo;
 
