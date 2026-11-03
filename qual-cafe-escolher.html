@@ -315,6 +315,7 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
   const resultadoConteudoEl = document.getElementById('qceResultadoConteudo');
   const btnRefazer = document.getElementById('qceRefazer');
   const comparativoEl = document.querySelector('.qce-comparativo');
+  let ultimoResultado = null; // guarda o café recomendado pra poder redesenhar o card se o idioma mudar depois de já mostrar o resultado
 
   document.querySelectorAll('.qce-question').forEach((q) => {
     const num = q.dataset.q;
@@ -328,21 +329,11 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
     });
   });
 
-  btnVer.addEventListener('click', () => {
-    // Método de preparo (P1) decide sozinho na maioria dos casos: máquina
-    // (prensa francesa/espresso/cafeteira italiana) só funciona bem moendo
-    // na hora, ou seja, comprando em grãos -- não dá pra fazer com pó.
-    // Coado funciona igual com o moído, então trava no Tradicional. Só
-    // "não preparo" (sem máquina nem método fixo) segue pela pontuação
-    // normal de P2/P3.
-    const forca = Object.values(respostas).map((r) => r.forca).find((f) => f);
-    const totalEspecial = Object.values(respostas).reduce((s, r) => s + r.especial, 0);
-    const totalTradicional = Object.values(respostas).reduce((s, r) => s + r.tradicional, 0);
-    const especialVence = forca ? forca === 'especial' : totalEspecial > totalTradicional;
-    const produtoId = especialVence ? 'cafe-especial-500-grao' : 'cafe-tradicional-500-moido';
-    const fichaUrl = especialVence ? 'cafe-especial-500g.html?sku=cafe-especial-500-grao' : 'cafe-tradicional-500g.html';
-    const tituloKey = especialVence ? 'qce_resultado_especial_title' : 'qce_resultado_trad_title';
-    const descKey = especialVence ? 'qce_resultado_especial_desc' : 'qce_resultado_trad_desc';
+  // Redesenha o card do resultado no idioma atual -- chamada tanto ao
+  // terminar o quiz quanto de novo se o visitante trocar o idioma depois
+  // (o innerHTML não tem data-i18n, então não se atualiza sozinho).
+  function renderizarResultado() {
+    const { produtoId, fichaUrl, tituloKey, descKey } = ultimoResultado;
 
     // Foto e preço vêm sempre do catálogo (PRODUCTS, carregado por
     // carregarCatalogo() em main.js) -- nunca escritos aqui -- pra não
@@ -373,6 +364,27 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
       Cart.add(produtoId);
       openCart();
     });
+  }
+
+  btnVer.addEventListener('click', () => {
+    // Método de preparo (P1) decide sozinho na maioria dos casos: máquina
+    // (prensa francesa/espresso/cafeteira italiana) só funciona bem moendo
+    // na hora, ou seja, comprando em grãos -- não dá pra fazer com pó.
+    // Coado funciona igual com o moído, então trava no Tradicional. Só
+    // "não preparo" (sem máquina nem método fixo) segue pela pontuação
+    // normal de P2/P3.
+    const forca = Object.values(respostas).map((r) => r.forca).find((f) => f);
+    const totalEspecial = Object.values(respostas).reduce((s, r) => s + r.especial, 0);
+    const totalTradicional = Object.values(respostas).reduce((s, r) => s + r.tradicional, 0);
+    const especialVence = forca ? forca === 'especial' : totalEspecial > totalTradicional;
+
+    ultimoResultado = {
+      produtoId: especialVence ? 'cafe-especial-500-grao' : 'cafe-tradicional-500-moido',
+      fichaUrl: especialVence ? 'cafe-especial-500g.html?sku=cafe-especial-500-grao' : 'cafe-tradicional-500g.html',
+      tituloKey: especialVence ? 'qce_resultado_especial_title' : 'qce_resultado_trad_title',
+      descKey: especialVence ? 'qce_resultado_especial_desc' : 'qce_resultado_trad_desc'
+    };
+    renderizarResultado();
 
     quizEl.hidden = true;
     comparativoEl.hidden = true;
@@ -388,6 +400,15 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
     quizEl.hidden = false;
     comparativoEl.hidden = false;
   });
+
+  // window.onLanguageChange (definida em main.js) já redesenha produtos,
+  // tiras de categoria etc. -- estende pra também redesenhar o card do
+  // resultado do quiz, se um já estiver visível na tela.
+  const onLanguageChangeAnterior = window.onLanguageChange;
+  window.onLanguageChange = function (lang) {
+    if (typeof onLanguageChangeAnterior === 'function') onLanguageChangeAnterior(lang);
+    if (ultimoResultado && !resultadoEl.hidden) renderizarResultado();
+  };
 })();
 </script>
 </body>
