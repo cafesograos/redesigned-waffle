@@ -407,6 +407,7 @@ document.getElementById('checkoutBtn').addEventListener('click', async () => {
   const email = document.getElementById('inEmail').value.trim();
   const telefone = document.getElementById('inTelefone').value.trim();
   const cpf = document.getElementById('inCpf').value.replace(/\D/g, '');
+  const cnpj = document.getElementById('inCnpj').value.replace(/\D/g, '');
   const numero = document.getElementById('inNumero').value.trim();
   const complemento = document.getElementById('inComplemento').value.trim();
 
@@ -459,7 +460,7 @@ document.getElementById('checkoutBtn').addEventListener('click', async () => {
       body: JSON.stringify({
         items: Cart.toLineItems(),
         frete: Cart.frete.valor,
-        cliente: { nome, email, telefone, cpf },
+        cliente: { nome, email, telefone, cpf, cnpj },
         entrega: { ...Cart.entrega, numero, complemento }
       })
     });
