@@ -2,6 +2,11 @@
 // se a pessoa atualizar a página ou voltar depois. Frete e dados de entrega não
 // são salvos, pois precisam ser recalculados/conferidos a cada visita.
 const CART_STORAGE_KEY = 'cafesograos-carrinho';
+// Mesmo teto por item que o backend aplica em /api/create-preference
+// (Math.min(50, ...) em server.js) — sem isso, o carrinho deixava somar
+// qualquer quantidade e mostrava um subtotal que o servidor nunca cobraria
+// de verdade, porque cortava em silêncio na hora de gerar o pagamento.
+const CART_MAX_QTY = 50;
 
 const Cart = {
   items: {}, // { productId: qty }
@@ -53,7 +58,7 @@ const Cart = {
   },
 
   add(id) {
-    this.items[id] = (this.items[id] || 0) + 1;
+    this.items[id] = Math.min(CART_MAX_QTY, (this.items[id] || 0) + 1);
     this.frete = null;
     this.save();
     this.render();
@@ -86,7 +91,7 @@ const Cart = {
   },
 
   setQty(id, qty) {
-    qty = Math.max(0, parseInt(qty) || 0);
+    qty = Math.min(CART_MAX_QTY, Math.max(0, parseInt(qty) || 0));
     this.frete = null;
     if (qty === 0) { this.remove(id); return; }
     this.items[id] = qty;
@@ -152,7 +157,7 @@ const Cart = {
           <div class="cart-item-qty">
             <button class="qty-btn" data-action="dec" data-id="${id}">−</button>
             <span>${qty}</span>
-            <button class="qty-btn" data-action="inc" data-id="${id}">+</button>
+            <button class="qty-btn" data-action="inc" data-id="${id}"${qty >= CART_MAX_QTY ? ' disabled title="Quantidade máxima por item: 50"' : ''}>+</button>
           </div>
         `;
         itemsEl.appendChild(row);
