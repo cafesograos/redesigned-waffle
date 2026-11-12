@@ -123,6 +123,27 @@ function pesoHtml(p) {
 // sincroniza texto/idioma nos cards que já existem e só mostra/esconde
 // conforme o filtro. Only reconstrói do zero se o HTML não tiver os cards
 // (fallback de segurança, ex.: página que inclua o grid vazio).
+function montarCardProdutoHtml(p) {
+  return `
+    <article class="produto-card" data-id="${p.id}" data-categoria="${(p.categorias || []).join(' ')}">
+      ${p.badge ? `<span class="produto-badge${p.badge.toUpperCase() === 'PROMOÇÃO' ? ' badge-sale' : ''}"${p.badge.includes('SCA') ? ` title="${t('sca_tooltip')}"` : ''}>${p.badge}</span>` : ''}
+      <div class="produto-img"${p.imgs ? ` data-gallery="${p.id}"` : ''}>${p.img ? `<img src="${p.img}" alt="${nomeProduto(p)}" loading="lazy">` : ''}</div>
+      <div class="produto-info">
+        <h3>${nomeProduto(p)}</h3>
+        <p>${descricaoProduto(p)}</p>
+        ${PRODUTO_PAGINA[p.id] ? `<a href="${PRODUTO_PAGINA[p.id]}?sku=${p.id}" class="produto-ficha-link">${t('produto_ver_ficha')}</a>` : ''}
+        <div class="produto-footer">
+          <div class="produto-precos">
+            <span class="produto-peso">${pesoHtml(p)}</span>
+            ${priceHtml(p)}
+          </div>
+          <button class="btn btn-secondary" data-add="${p.id}">${t('add_button')}</button>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
 function renderProducts() {
   const grid = document.getElementById('produtosGrid');
   if (!grid) return;
@@ -130,12 +151,24 @@ function renderProducts() {
     ? PRODUCTS
     : PRODUCTS.filter(p => (p.categorias || []).includes(activeFilter));
   const idsVisiveis = new Set(items.map((p) => p.id));
+  const idsCatalogoAtual = new Set(PRODUCTS.map((p) => p.id));
 
-  let algumCardExistente = false;
+  // Tira card de produto que não existe mais no catálogo atual (ex: id
+  // trocado, item removido) — senão ficava um card fantasma pra sempre.
+  grid.querySelectorAll('[data-id]').forEach((card) => {
+    if (!idsCatalogoAtual.has(card.dataset.id)) card.remove();
+  });
+
   PRODUCTS.forEach((p) => {
-    const card = grid.querySelector(`[data-id="${p.id}"]`);
-    if (!card) return;
-    algumCardExistente = true;
+    let card = grid.querySelector(`[data-id="${p.id}"]`);
+    if (!card) {
+      // Produto que ainda não tem card no DOM (acabou de entrar no
+      // catálogo, ex: carregarCatalogo() trocou PRODUCTS pelo retorno da
+      // API) — sem isso, qualquer produto novo nunca aparecia no site,
+      // só a API confirmava que ele existia.
+      grid.insertAdjacentHTML('beforeend', montarCardProdutoHtml(p));
+      card = grid.querySelector(`[data-id="${p.id}"]`);
+    }
     card.hidden = !idsVisiveis.has(p.id);
     const h3 = card.querySelector('h3');
     const descEl = card.querySelector('p');
@@ -146,27 +179,6 @@ function renderProducts() {
     if (btn) btn.textContent = t('add_button');
     if (img) img.alt = nomeProduto(p);
   });
-
-  if (!algumCardExistente) {
-    grid.innerHTML = items.map((p) => `
-      <article class="produto-card" data-id="${p.id}" data-categoria="${(p.categorias || []).join(' ')}">
-        ${p.badge ? `<span class="produto-badge${p.badge.toUpperCase() === 'PROMOÇÃO' ? ' badge-sale' : ''}"${p.badge.includes('SCA') ? ` title="${t('sca_tooltip')}"` : ''}>${p.badge}</span>` : ''}
-        <div class="produto-img"${p.imgs ? ` data-gallery="${p.id}"` : ''}>${p.img ? `<img src="${p.img}" alt="${nomeProduto(p)}" loading="lazy">` : ''}</div>
-        <div class="produto-info">
-          <h3>${nomeProduto(p)}</h3>
-          <p>${descricaoProduto(p)}</p>
-          ${PRODUTO_PAGINA[p.id] ? `<a href="${PRODUTO_PAGINA[p.id]}?sku=${p.id}" class="produto-ficha-link">${t('produto_ver_ficha')}</a>` : ''}
-          <div class="produto-footer">
-            <div class="produto-precos">
-              <span class="produto-peso">${pesoHtml(p)}</span>
-              ${priceHtml(p)}
-            </div>
-            <button class="btn btn-secondary" data-add="${p.id}">${t('add_button')}</button>
-          </div>
-        </div>
-      </article>
-    `).join('');
-  }
 }
 
 document.addEventListener('click', (e) => {
