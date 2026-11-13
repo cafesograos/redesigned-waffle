@@ -66,7 +66,7 @@ function nomeCategoria(c) { return c[`nome${idiomaSufixo()}`] || c.nome; }
 
 // Tira de categorias no topo (estilo "mega menu" da Baggio): cada categoria
 // que tem produto vira um dropdown listando os produtos dela direto (ex:
-// "Acessórios" mostra "Copo Térmico" e "Caixa de presente" sem precisar
+// "Acessórios" mostra "Copo" e "Caixa de presente" sem precisar
 // passar pelo filtro da vitrine primeiro) -- clicar num produto do dropdown
 // já leva direto pra ele (ver handler de clique mais abaixo).
 function renderCategoryStrip() {
@@ -263,7 +263,7 @@ document.addEventListener('click', (e) => {
     activeFilter = filterEl.dataset.filter;
     renderFilterPills();
     renderProducts();
-    // Link de produto específico do dropdown (ex: "Copo Térmico 350ml"
+    // Link de produto específico do dropdown (ex: "Copo 350ml"
     // dentro de "Acessórios") -- já estando na home, rola até o card em vez
     // de deixar o navegador pular sem transição (e sem o destaque visual).
     if (filterEl.dataset.produto && document.getElementById('produtosGrid')) {
