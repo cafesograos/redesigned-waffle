@@ -123,21 +123,35 @@ function pesoHtml(p) {
 // sincroniza texto/idioma nos cards que já existem e só mostra/esconde
 // conforme o filtro. Only reconstrói do zero se o HTML não tiver os cards
 // (fallback de segurança, ex.: página que inclua o grid vazio).
+// Escapa dado antes de entrar em template HTML — hoje PRODUCTS só vem de
+// products.js (editado só pelo dono) ou da API do servidor, nunca de input
+// de cliente, mas o resto do sistema sempre escapa saída mesmo assim (ver
+// escapeHtml no backend), então faz o mesmo aqui por consistência e defesa
+// em profundidade (ex: se o catálogo um dia aceitar cadastro por formulário).
+function escapeHtml(valor) {
+  return String(valor ?? '').replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
+
 function montarCardProdutoHtml(p) {
+  const nome = escapeHtml(nomeProduto(p));
+  const descricao = escapeHtml(descricaoProduto(p));
+  const id = escapeHtml(p.id);
   return `
-    <article class="produto-card" data-id="${p.id}" data-categoria="${(p.categorias || []).join(' ')}">
-      ${p.badge ? `<span class="produto-badge${p.badge.toUpperCase() === 'PROMOÇÃO' ? ' badge-sale' : ''}"${p.badge.includes('SCA') ? ` title="${t('sca_tooltip')}"` : ''}>${p.badge}</span>` : ''}
-      <div class="produto-img"${p.imgs ? ` data-gallery="${p.id}"` : ''}>${p.img ? `<img src="${p.img}" alt="${nomeProduto(p)}" loading="lazy">` : ''}</div>
+    <article class="produto-card" data-id="${id}" data-categoria="${escapeHtml((p.categorias || []).join(' '))}">
+      ${p.badge ? `<span class="produto-badge${p.badge.toUpperCase() === 'PROMOÇÃO' ? ' badge-sale' : ''}"${p.badge.includes('SCA') ? ` title="${escapeHtml(t('sca_tooltip'))}"` : ''}>${escapeHtml(p.badge)}</span>` : ''}
+      <div class="produto-img"${p.imgs ? ` data-gallery="${id}"` : ''}>${p.img ? `<img src="${escapeHtml(p.img)}" alt="${nome}" loading="lazy">` : ''}</div>
       <div class="produto-info">
-        <h3>${nomeProduto(p)}</h3>
-        <p>${descricaoProduto(p)}</p>
-        ${PRODUTO_PAGINA[p.id] ? `<a href="${PRODUTO_PAGINA[p.id]}?sku=${p.id}" class="produto-ficha-link">${t('produto_ver_ficha')}</a>` : ''}
+        <h3>${nome}</h3>
+        <p>${descricao}</p>
+        ${PRODUTO_PAGINA[p.id] ? `<a href="${escapeHtml(PRODUTO_PAGINA[p.id])}?sku=${id}" class="produto-ficha-link">${escapeHtml(t('produto_ver_ficha'))}</a>` : ''}
         <div class="produto-footer">
           <div class="produto-precos">
             <span class="produto-peso">${pesoHtml(p)}</span>
             ${priceHtml(p)}
           </div>
-          <button class="btn btn-secondary" data-add="${p.id}">${t('add_button')}</button>
+          <button class="btn btn-secondary" data-add="${id}">${escapeHtml(t('add_button'))}</button>
         </div>
       </div>
     </article>
