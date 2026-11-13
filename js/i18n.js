@@ -181,7 +181,7 @@ const TRANSLATIONS = {
     comece_card1_title: 'Para o dia a dia', comece_card1_produto: 'Tradicional',
     comece_card2_title: 'Para sentir a diferença', comece_card2_produto: 'Especial',
     comece_card3_title: 'Para levar na mochila', comece_card3_produto: 'Drip Coffee',
-    comece_card4_title: 'Para presentear', comece_card4_produto: 'Caixa de presente',
+    comece_card4_title: 'Para presentear', comece_card4_produto: 'Acessórios',
 
     origem_eyebrow: 'Orgulho do agro brasileiro', origem_title: 'Da plantação até a sua xícara',
     // [CONFIRMAR] origem_fig1/destaque2_desc usam a versão que afirma menos
@@ -561,7 +561,7 @@ const TRANSLATIONS = {
     comece_card1_title: 'For every day', comece_card1_produto: 'Traditional',
     comece_card2_title: 'To taste the difference', comece_card2_produto: 'Specialty',
     comece_card3_title: 'To take in your bag', comece_card3_produto: 'Drip Coffee',
-    comece_card4_title: 'To gift', comece_card4_produto: 'Gift box',
+    comece_card4_title: 'To gift', comece_card4_produto: 'Accessories',
 
     origem_eyebrow: 'Proud of Brazilian agriculture', origem_title: 'From the plantation to your cup',
     origem_fig1: 'Partly from Sul de Minas, partly from partner producers', origem_fig2: '100% arabica beans, hand-picked one by one',
@@ -938,7 +938,7 @@ const TRANSLATIONS = {
     comece_card1_title: 'Para el día a día', comece_card1_produto: 'Tradicional',
     comece_card2_title: 'Para sentir la diferencia', comece_card2_produto: 'Especial',
     comece_card3_title: 'Para llevar en la mochila', comece_card3_produto: 'Drip Coffee',
-    comece_card4_title: 'Para regalar', comece_card4_produto: 'Caja de regalo',
+    comece_card4_title: 'Para regalar', comece_card4_produto: 'Accesorios',
 
     origem_eyebrow: 'Orgullo del agro brasileño', origem_title: 'De la plantación a tu taza',
     origem_fig1: 'Parte del Sur de Minas, parte de productores asociados', origem_fig2: 'Granos 100% arábica, seleccionados uno a uno',
@@ -1315,7 +1315,7 @@ const TRANSLATIONS = {
     comece_card1_title: 'Pour tous les jours', comece_card1_produto: 'Traditionnel',
     comece_card2_title: 'Pour sentir la différence', comece_card2_produto: 'Spécial',
     comece_card3_title: 'À emporter', comece_card3_produto: 'Drip Coffee',
-    comece_card4_title: 'Pour offrir', comece_card4_produto: 'Coffret cadeau',
+    comece_card4_title: 'Pour offrir', comece_card4_produto: 'Accessoires',
 
     origem_eyebrow: 'Fierté de l’agriculture brésilienne', origem_title: 'De la plantation à votre tasse',
     origem_fig1: 'En partie du Sul de Minas, en partie de producteurs partenaires', origem_fig2: 'Grains 100% arabica, sélectionnés un par un',
@@ -1692,7 +1692,7 @@ const TRANSLATIONS = {
     comece_card1_title: '日常饮用', comece_card1_produto: '传统款',
     comece_card2_title: '感受不同', comece_card2_produto: '特级款',
     comece_card3_title: '随身携带', comece_card3_produto: 'Drip Coffee',
-    comece_card4_title: '送礼之选', comece_card4_produto: '礼盒装',
+    comece_card4_title: '送礼之选', comece_card4_produto: '配件',
 
     origem_eyebrow: '巴西农业的骄傲', origem_title: '从种植园到您的杯中',
     origem_fig1: '部分来自米纳斯吉拉斯州南部，部分来自合作生产者', origem_fig2: '100%阿拉比卡豆，逐粒精选',
