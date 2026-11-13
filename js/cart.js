@@ -146,18 +146,24 @@ const Cart = {
         const p = PRODUCTS.find(p => p.id === id);
         if (!p) return;
         const nome = typeof nomeProduto === 'function' ? nomeProduto(p) : p.nome;
+        // Mesmo escape usado nos cards da vitrine (ver escapeHtml em main.js)
+        // -- hoje o catálogo não vem de input de cliente, mas o carrinho é a
+        // única tela que ainda montava esse HTML sem escapar nada.
+        const esc = typeof escapeHtml === 'function' ? escapeHtml : (s) => String(s ?? '');
+        const nomeEsc = esc(nome);
+        const idEsc = esc(id);
         const row = document.createElement('div');
         row.className = 'cart-item';
         row.innerHTML = `
-          <div class="cart-item-thumb">${p.img ? `<img src="${p.img}" alt="${nome}">` : ''}</div>
+          <div class="cart-item-thumb">${p.img ? `<img src="${esc(p.img)}" alt="${nomeEsc}">` : ''}</div>
           <div class="cart-item-info">
-            <strong>${nome}</strong>
+            <strong>${nomeEsc}</strong>
             <span>R$ ${p.preco.toFixed(2).replace('.', ',')}</span>
           </div>
           <div class="cart-item-qty">
-            <button class="qty-btn" data-action="dec" data-id="${id}">−</button>
+            <button class="qty-btn" data-action="dec" data-id="${idEsc}">−</button>
             <span>${qty}</span>
-            <button class="qty-btn" data-action="inc" data-id="${id}"${qty >= CART_MAX_QTY ? ' disabled title="Quantidade máxima por item: 50"' : ''}>+</button>
+            <button class="qty-btn" data-action="inc" data-id="${idEsc}"${qty >= CART_MAX_QTY ? ' disabled title="Quantidade máxima por item: 50"' : ''}>+</button>
           </div>
         `;
         itemsEl.appendChild(row);

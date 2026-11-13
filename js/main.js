@@ -316,7 +316,8 @@ const Lightbox = (() => {
   function open(imgs, alt) {
     images = imgs;
     index = 0;
-    track.innerHTML = images.map(src => `<div class="lightbox-slide"><img src="${src}" alt="${alt}"></div>`).join('');
+    const altEsc = escapeHtml(alt);
+    track.innerHTML = images.map(src => `<div class="lightbox-slide"><img src="${escapeHtml(src)}" alt="${altEsc}"></div>`).join('');
     dotsEl.innerHTML = images.map((_, i) => `<span class="lightbox-dot"></span>`).join('');
     dotsEl.style.display = images.length > 1 ? 'flex' : 'none';
     el.classList.add('open');
@@ -593,6 +594,12 @@ async function carregarCatalogo() {
   }
   Cart.render();
   injetarSchemaProdutos();
+  // Avisa páginas de ficha de produto (ex.: drip-coffee.html) que o catálogo
+  // real acabou de chegar da API -- sem isso, uma página que lê preço/peso
+  // direto de PRODUCTS no carregamento mostraria o valor do catálogo de
+  // emergência (js/products.js, só atualizado de vez em quando) até a
+  // pessoa trocar de idioma ou interagir com algo que re-renderize.
+  if (typeof window.onCatalogLoaded === 'function') window.onCatalogLoaded();
 }
 
 // Dados estruturados (Schema.org) pros produtos, pra buscadores poderem

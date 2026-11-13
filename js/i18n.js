@@ -1908,7 +1908,11 @@ function t(chave, vars) {
   const dict = TRANSLATIONS[idiomaAtual()] || TRANSLATIONS[IDIOMA_PADRAO];
   let texto = dict[chave] ?? TRANSLATIONS[IDIOMA_PADRAO][chave] ?? chave;
   if (vars) {
-    Object.keys(vars).forEach((k) => { texto = texto.replace(`{${k}}`, vars[k]); });
+    // split/join em vez de .replace(): troca TODAS as ocorrências da
+    // variável (replace só troca a primeira) e também evita o efeito
+    // colateral de $&/$1/etc. quando o valor da variável contém "$"
+    // (acontece direto aqui, ex.: { frete: 'R$ 32,01' }).
+    Object.keys(vars).forEach((k) => { texto = texto.split(`{${k}}`).join(vars[k]); });
   }
   return texto;
 }

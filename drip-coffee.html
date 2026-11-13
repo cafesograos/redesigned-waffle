@@ -425,20 +425,21 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
     });
   });
 
-  // Dados reais das 2 SKUs vendidas (vindos de /api/produtos), usados pra
-  // atualizar preço/desconto/peso ao trocar a opção — cada opção sempre
-  // mostra o preço real da sua própria SKU, nunca um valor unificado.
-  const SKUS = {
-    'drip-coffee-unidade': { preco: 6.00, precoOriginal: 8.00, pesoGramas: 30, qtd: 1, plural: '' },
-    'drip-coffee-caixa-10': { preco: 65.99, precoOriginal: 90.00, pesoGramas: 400, qtd: 10, plural: 's' }
-  };
+  // As 2 SKUs vendidas aqui — lido sempre de PRODUCTS (catálogo real, ver
+  // main.js), nunca de um preço fixo neste arquivo. Antes isso era um objeto
+  // local com preço/desconto digitados à mão (comentário dizia "vindo de
+  // /api/produtos", mas não vinha) — se o preço mudasse no catálogo, essa
+  // página continuava mostrando o valor antigo pro cliente até alguém
+  // lembrar de editar este HTML também.
+  const SKUS_VALIDOS = ['drip-coffee-unidade', 'drip-coffee-caixa-10'];
 
   const fmt = (n) => 'R$ ' + n.toFixed(2).replace('.', ',');
   const btnComprar = document.getElementById('peBtnComprar');
   const seloMaisVendido = document.getElementById('pdSeloMaisVendido');
 
   function atualizarSku(sku) {
-    const dados = SKUS[sku];
+    const dados = (typeof PRODUCTS !== 'undefined') ? PRODUCTS.find((p) => p.id === sku) : null;
+    if (!dados) return;
     document.getElementById('pdPrecoOriginal').textContent = fmt(dados.precoOriginal);
     document.getElementById('pdPreco').textContent = fmt(dados.preco);
     const desconto = Math.round((1 - dados.preco / dados.precoOriginal) * 100);
@@ -463,7 +464,7 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
   // ficha completa") -- sem isso, quem clicava na Caixa com 10 caía sempre
   // na Unidade, que é o padrão.
   const skuUrl = new URLSearchParams(location.search).get('sku');
-  const skuInicial = skuUrl && SKUS[skuUrl] ? skuUrl : 'drip-coffee-unidade';
+  const skuInicial = skuUrl && SKUS_VALIDOS.includes(skuUrl) ? skuUrl : 'drip-coffee-unidade';
   document.querySelectorAll('#pdSeletor .pe-opcao').forEach((o) => {
     o.classList.toggle('ativo', o.dataset.sku === skuInicial);
   });
@@ -477,13 +478,22 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
       content_type: 'product',
       num_items: 1,
       currency: 'BRL',
-      value: SKUS[skuInicial].preco
+      value: produtoDrip ? produtoDrip.preco : 6.00
     });
   }
 
   const onLangChangeAnterior = window.onLanguageChange;
   window.onLanguageChange = function () {
     if (typeof onLangChangeAnterior === 'function') onLangChangeAnterior();
+    const skuAtivo = document.querySelector('#pdSeletor .pe-opcao.ativo').dataset.sku;
+    atualizarSku(skuAtivo);
+  };
+  // Catálogo real acabou de chegar da API (ver onCatalogLoaded em main.js) --
+  // reatualiza com o preço de verdade, caso a tela tenha nascido com o
+  // catálogo de emergência (js/products.js).
+  const onCatalogLoadedAnterior = window.onCatalogLoaded;
+  window.onCatalogLoaded = function () {
+    if (typeof onCatalogLoadedAnterior === 'function') onCatalogLoadedAnterior();
     const skuAtivo = document.querySelector('#pdSeletor .pe-opcao.ativo').dataset.sku;
     atualizarSku(skuAtivo);
   };
