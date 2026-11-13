@@ -64,7 +64,11 @@ function nomeProduto(p) { return p[`nome${idiomaSufixo()}`] || p.nome; }
 function descricaoProduto(p) { return p[`descricao${idiomaSufixo()}`] || p.descricao; }
 function nomeCategoria(c) { return c[`nome${idiomaSufixo()}`] || c.nome; }
 
-// Tira de categorias no topo (estilo vitrine)
+// Tira de categorias no topo (estilo "mega menu" da Baggio): cada categoria
+// que tem produto vira um dropdown listando os produtos dela direto (ex:
+// "Acessórios" mostra "Copo Térmico" e "Caixa de presente" sem precisar
+// passar pelo filtro da vitrine primeiro) -- clicar num produto do dropdown
+// já leva direto pra ele (ver handler de clique mais abaixo).
 function renderCategoryStrip() {
   const strip = document.getElementById('categoryStrip');
   if (!strip) return;
@@ -74,9 +78,34 @@ function renderCategoryStrip() {
   // e o clique era interceptado por um listener que também não achava nada
   // pra filtrar). Agora manda pra home já com a categoria certa na URL.
   const estaNaHome = !!document.getElementById('produtosGrid');
-  strip.innerHTML = CATEGORIES.map(c => `
-    <a href="${estaNaHome ? '#produtos' : `index.html?categoria=${c.id}#produtos`}" data-filter="${c.id}">${nomeCategoria(c)}</a>
-  `).join('');
+  const destino = (categoriaId, produtoId) => {
+    const hash = produtoId ? `#produto-${encodeURIComponent(produtoId)}` : '#produtos';
+    return estaNaHome ? hash : `index.html?categoria=${categoriaId}${hash}`;
+  };
+  strip.innerHTML = CATEGORIES.map((c) => {
+    const produtosDaCategoria = PRODUCTS.filter((p) => (p.categorias || []).includes(c.id));
+    return `
+      <div class="category-item${produtosDaCategoria.length ? ' has-dropdown' : ''}">
+        <a href="${destino(c.id)}" data-filter="${c.id}" class="category-trigger">${nomeCategoria(c)}</a>
+        ${produtosDaCategoria.length ? `
+          <div class="category-dropdown">
+            ${produtosDaCategoria.map((p) => `<a href="${destino(c.id, p.id)}" data-filter="${c.id}" data-produto="${escapeHtml(p.id)}">${escapeHtml(nomeProduto(p))}</a>`).join('')}
+          </div>
+        ` : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+// Rola até o card e pisca um destaque nele -- usado tanto por quem chega de
+// outra página (index.html?categoria=X#produto-Y) quanto por quem clica no
+// dropdown já estando na home (ver handler de clique mais abaixo).
+function destacarProduto(produtoId) {
+  const card = document.getElementById(`produto-${produtoId}`);
+  if (!card) return;
+  card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  card.classList.add('produto-destacado');
+  setTimeout(() => card.classList.remove('produto-destacado'), 2500);
 }
 
 // Pastilhas de filtro acima da grade de produtos
@@ -139,7 +168,7 @@ function montarCardProdutoHtml(p) {
   const descricao = escapeHtml(descricaoProduto(p));
   const id = escapeHtml(p.id);
   return `
-    <article class="produto-card" data-id="${id}" data-categoria="${escapeHtml((p.categorias || []).join(' '))}">
+    <article class="produto-card" id="produto-${id}" data-id="${id}" data-categoria="${escapeHtml((p.categorias || []).join(' '))}">
       ${p.badge ? `<span class="produto-badge${p.badge.toUpperCase() === 'PROMOÇÃO' ? ' badge-sale' : ''}"${p.badge.includes('SCA') ? ` title="${escapeHtml(t('sca_tooltip'))}"` : ''}>${escapeHtml(p.badge)}</span>` : ''}
       <div class="produto-img"${p.imgs ? ` data-gallery="${id}"` : ''}>${p.img ? `<img src="${escapeHtml(p.img)}" alt="${nome}" loading="lazy">` : ''}</div>
       <div class="produto-info">
@@ -184,6 +213,10 @@ function renderProducts() {
       card = grid.querySelector(`[data-id="${p.id}"]`);
     }
     card.hidden = !idsVisiveis.has(p.id);
+    // Card estático já escrito no HTML (ver comentário acima de produtosGrid)
+    // não nasce com esse id -- sem isso, o menu de categorias não acha o
+    // card pra rolar/destacar quando o produto já existia antes do JS entrar.
+    if (!card.id) card.id = `produto-${p.id}`;
     const h3 = card.querySelector('h3');
     const descEl = card.querySelector('p');
     const btn = card.querySelector('[data-add]');
@@ -196,17 +229,47 @@ function renderProducts() {
 }
 
 document.addEventListener('click', (e) => {
+  // Fecha qualquer dropdown de categoria aberto que não seja o que acabou de
+  // ser clicado -- sem isso, num toque (sem hover) o menu ficava aberto pra
+  // sempre depois de abrir, mesmo clicando em outro lugar da página.
+  const itemClicado = e.target.closest('.category-item');
+  document.querySelectorAll('.category-item.open').forEach((item) => {
+    if (item !== itemClicado) item.classList.remove('open');
+  });
+
   const addBtn = e.target.closest('[data-add]');
   if (addBtn) {
     Cart.add(addBtn.dataset.add);
     openCart();
     return;
   }
+  // Gatilho do mega menu (ex: "Acessórios ▾") -- em tela sem hover (celular)
+  // o primeiro toque só abre a lista de produtos da categoria embaixo, não
+  // navega ainda; só um segundo toque no mesmo link (já aberto) navega de
+  // verdade. Em tela com mouse o hover já mostra o dropdown, então o clique
+  // sempre navega direto (comportamento de link normal).
+  const trigger = e.target.closest('.category-trigger');
+  if (trigger) {
+    const item = trigger.closest('.category-item');
+    const temHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (item && item.classList.contains('has-dropdown') && !temHover && !item.classList.contains('open')) {
+      e.preventDefault();
+      item.classList.add('open');
+      return;
+    }
+  }
   const filterEl = e.target.closest('[data-filter]');
   if (filterEl) {
     activeFilter = filterEl.dataset.filter;
     renderFilterPills();
     renderProducts();
+    // Link de produto específico do dropdown (ex: "Copo Térmico 350ml"
+    // dentro de "Acessórios") -- já estando na home, rola até o card em vez
+    // de deixar o navegador pular sem transição (e sem o destaque visual).
+    if (filterEl.dataset.produto && document.getElementById('produtosGrid')) {
+      e.preventDefault();
+      destacarProduto(filterEl.dataset.produto);
+    }
     return;
   }
   const galleryEl = e.target.closest('[data-gallery]');
@@ -520,6 +583,14 @@ async function carregarCatalogo() {
   renderCategoryStrip();
   renderFilterPills();
   renderProducts();
+  // Produto específico vindo de outra página pelo menu de categorias (ex.:
+  // index.html?categoria=acessorios#produto-copo-termico-350) -- o navegador
+  // só tenta pular sozinho pra esse #hash uma vez, antes do card existir no
+  // DOM (ele só é criado/revelado pelo renderProducts() logo acima), então
+  // sem isso o link nunca rolava até o produto certo.
+  if (location.hash.startsWith('#produto-')) {
+    destacarProduto(decodeURIComponent(location.hash.slice('#produto-'.length)));
+  }
   Cart.render();
   injetarSchemaProdutos();
 }
