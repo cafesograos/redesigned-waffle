@@ -497,7 +497,7 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
   const skuInicial = (skuUrl === 'cafe-especial-500-moido') ? skuUrl : 'cafe-especial-500-grao';
   selecionarMoagem(skuInicial);
 
-  const produtoEspecial = (typeof PRODUCTS !== 'undefined') ? PRODUCTS.find((p) => p.id === skuInicial) : null;
+  let produtoEspecial = (typeof PRODUCTS !== 'undefined') ? PRODUCTS.find((p) => p.id === skuInicial) : null;
   if (produtoEspecial) {
     if (window.fbq) {
       fbq('track', 'ViewContent', {
@@ -518,6 +518,14 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
     const avResumoInicial = document.querySelector('.pe-avaliacao-resumo span:last-child');
     if (avResumoInicial) avResumoInicial.textContent = t('pe_avaliacoes_contagem', { nota: '5,0', contagem: 3 });
   }
+  // Catálogo real acabou de chegar da API (ver onCatalogLoaded em main.js) --
+  // reatualiza produtoEspecial com o preço/peso de verdade, caso a tela
+  // tenha nascido com o catálogo de emergência (js/products.js).
+  const onCatalogLoadedAnterior = window.onCatalogLoaded;
+  window.onCatalogLoaded = function () {
+    if (typeof onCatalogLoadedAnterior === 'function') onCatalogLoadedAnterior();
+    produtoEspecial = PRODUCTS.find((p) => p.id === skuInicial) || produtoEspecial;
+  };
 
   // Calculadora de frete embutida na página -- mesma API do carrinho
   // (/api/calcular-frete), só que pedindo o peso de 1 unidade deste produto.

@@ -303,8 +303,18 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
 
 <script>
 (function () {
+  // Preço/peso sempre lidos de PRODUCTS (catálogo real, ver main.js), nunca
+  // fixos neste arquivo -- se o preço/peso mudar no catálogo, essa página
+  // não pode continuar mostrando o valor antigo. onCatalogLoaded reatualiza
+  // caso a tela tenha nascido com o catálogo de emergência (js/products.js).
+  let produtoCaixa = (typeof PRODUCTS !== 'undefined') ? PRODUCTS.find((p) => p.id === 'caixa-drip-coffee-vazia') : null;
+  const onCatalogLoadedAnterior = window.onCatalogLoaded;
+  window.onCatalogLoaded = function () {
+    if (typeof onCatalogLoadedAnterior === 'function') onCatalogLoadedAnterior();
+    produtoCaixa = PRODUCTS.find((p) => p.id === 'caixa-drip-coffee-vazia') || produtoCaixa;
+  };
+
   if (window.fbq) {
-    const produtoCaixa = (typeof PRODUCTS !== 'undefined') ? PRODUCTS.find((p) => p.id === 'caixa-drip-coffee-vazia') : null;
     fbq('track', 'ViewContent', {
       content_ids: ['caixa-drip-coffee-vazia'],
       content_name: produtoCaixa ? produtoCaixa.nome : 'Caixa do Drip Coffee (vazia)',
@@ -322,10 +332,12 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
     if (cep.length !== 8) { statusEl.textContent = t('msg_cep_invalido'); return; }
     statusEl.textContent = t('msg_calculando_frete');
     try {
+      const pesoKg = produtoCaixa ? (produtoCaixa.pesoGramas / 1000) : 0.05;
+      const subtotal = produtoCaixa ? produtoCaixa.preco : 20.00;
       const freteRes = await fetch(`${API_BASE}/api/calcular-frete`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cep, pesoKg: 0.05, subtotal: 20.00 })
+        body: JSON.stringify({ cep, pesoKg, subtotal })
       });
       if (!freteRes.ok) throw new Error('Não foi possível calcular o frete.');
       const frete = await freteRes.json();

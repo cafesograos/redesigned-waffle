@@ -428,7 +428,7 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
     });
   });
 
-  const produtoTradicional = (typeof PRODUCTS !== 'undefined') ? PRODUCTS.find((p) => p.id === 'cafe-tradicional-500-moido') : null;
+  let produtoTradicional = (typeof PRODUCTS !== 'undefined') ? PRODUCTS.find((p) => p.id === 'cafe-tradicional-500-moido') : null;
   if (produtoTradicional) {
     if (window.fbq) {
       fbq('track', 'ViewContent', {
@@ -441,6 +441,14 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
       });
     }
   }
+  // Catálogo real acabou de chegar da API (ver onCatalogLoaded em main.js) --
+  // reatualiza produtoTradicional com o preço/peso de verdade, caso a tela
+  // tenha nascido com o catálogo de emergência (js/products.js).
+  const onCatalogLoadedAnterior = window.onCatalogLoaded;
+  window.onCatalogLoaded = function () {
+    if (typeof onCatalogLoadedAnterior === 'function') onCatalogLoadedAnterior();
+    produtoTradicional = PRODUCTS.find((p) => p.id === 'cafe-tradicional-500-moido') || produtoTradicional;
+  };
 
   document.getElementById('peBtnFrete').addEventListener('click', async () => {
     const cepInput = document.getElementById('peCep');
