@@ -281,6 +281,7 @@ const TRANSLATIONS = {
     popup_cadastro_msg_enviando: 'Enviando...',
     popup_cadastro_msg_sucesso: 'Cadastro feito! Na sua primeira compra, você ganha 2 Drip Coffee de brinde.',
     popup_cadastro_msg_erro: 'Não foi possível salvar seu cadastro agora. Tente novamente em instantes.',
+    popup_cadastro_consentimento: 'Ao se cadastrar, você concorda em receber mensagens no WhatsApp sobre seu pedido e nossas novidades, e pode cancelar quando quiser. Veja nossa',
 
     footer_menu: 'Menu', footer_ajuda: 'Ajuda', footer_falecom: 'Fale conosco',
     footer_loja: 'Loja', footer_saiba_mais: 'Saiba mais',
@@ -658,6 +659,7 @@ const TRANSLATIONS = {
     popup_cadastro_msg_enviando: 'Sending...',
     popup_cadastro_msg_sucesso: 'All set! On your first purchase, you will get 2 free Drip Coffee.',
     popup_cadastro_msg_erro: 'We could not save your sign-up right now. Please try again shortly.',
+    popup_cadastro_consentimento: 'By signing up, you agree to receive WhatsApp messages about your order and our updates, and can opt out anytime. See our',
 
     footer_menu: 'Menu', footer_ajuda: 'Help', footer_falecom: 'Get in touch',
     footer_loja: 'Shop', footer_saiba_mais: 'Learn more',
@@ -1035,6 +1037,7 @@ const TRANSLATIONS = {
     popup_cadastro_msg_enviando: 'Enviando...',
     popup_cadastro_msg_sucesso: '¡Listo! En tu primera compra, ganarás 2 Drip Coffee de regalo.',
     popup_cadastro_msg_erro: 'No pudimos guardar tu registro ahora. Intenta de nuevo en unos instantes.',
+    popup_cadastro_consentimento: 'Al registrarte, aceptas recibir mensajes de WhatsApp sobre tu pedido y nuestras novedades, y puedes darte de baja cuando quieras. Consulta nuestra',
 
     footer_menu: 'Menú', footer_ajuda: 'Ayuda', footer_falecom: 'Hablemos',
     footer_loja: 'Tienda', footer_saiba_mais: 'Saber más',
@@ -1412,6 +1415,7 @@ const TRANSLATIONS = {
     popup_cadastro_msg_enviando: 'Envoi...',
     popup_cadastro_msg_sucesso: 'C\'est fait ! Lors de votre premier achat, vous recevrez 2 Drip Coffee offerts.',
     popup_cadastro_msg_erro: 'Impossible d’enregistrer votre inscription pour le moment. Réessayez dans un instant.',
+    popup_cadastro_consentimento: 'En vous inscrivant, vous acceptez de recevoir des messages WhatsApp concernant votre commande et nos actualités, et vous pouvez vous désinscrire à tout moment. Consultez notre',
 
     footer_menu: 'Menu', footer_ajuda: 'Aide', footer_falecom: 'Contactez-nous',
     footer_loja: 'Boutique', footer_saiba_mais: 'En savoir plus',
@@ -1789,6 +1793,7 @@ const TRANSLATIONS = {
     popup_cadastro_msg_enviando: '发送中...',
     popup_cadastro_msg_sucesso: '登记成功！首次购买时您将获得2份Drip Coffee赠品。',
     popup_cadastro_msg_erro: '暂时无法保存您的登记信息，请稍后再试。',
+    popup_cadastro_consentimento: '登记即表示您同意通过WhatsApp接收关于您订单和我们最新消息的消息，您可以随时取消订阅。请查看我们的',
 
     footer_menu: '菜单', footer_ajuda: '帮助', footer_falecom: '联系我们',
     footer_loja: '商店', footer_saiba_mais: '了解更多',
