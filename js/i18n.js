@@ -288,7 +288,7 @@ const TRANSLATIONS = {
     footer_trocas: 'Trocas e devoluções', footer_rastrear: 'Rastrear pedido',
     footer_brand_title: 'Café Só Grãos',
     footer_brand_text: 'Selecionamos, torramos e embalamos cada lote com cuidado, do produtor até a sua xícara, em pequenos lotes toda semana.',
-    footer_contato_title: 'Contato', footer_rights: 'Todos os direitos reservados.',
+    footer_contato_title: 'Contato', footer_rights: 'Todos os direitos reservados.', footer_cnpj: 'CNPJ: 68.975.236/0001-87',
     footer_payment_note: 'Pagamento processado com segurança pela InfinitePay',
 
     cart_title: 'Seu carrinho', cart_close_aria: 'Fechar carrinho', cart_empty: 'Seu carrinho está vazio.',
@@ -667,7 +667,7 @@ const TRANSLATIONS = {
     footer_trocas: 'Exchanges & returns', footer_rastrear: 'Track order',
     footer_brand_title: 'Café Só Grãos',
     footer_brand_text: 'We select, roast and pack every batch with care, from the producer to your cup, in small weekly batches.',
-    footer_contato_title: 'Contact', footer_rights: 'All rights reserved.',
+    footer_contato_title: 'Contact', footer_rights: 'All rights reserved.', footer_cnpj: 'CNPJ: 68.975.236/0001-87',
     footer_payment_note: 'Payment securely processed by InfinitePay',
 
     cart_title: 'Your cart', cart_close_aria: 'Close cart', cart_empty: 'Your cart is empty.',
@@ -1046,7 +1046,7 @@ const TRANSLATIONS = {
     footer_trocas: 'Cambios y devoluciones', footer_rastrear: 'Rastrear pedido',
     footer_brand_title: 'Café Só Grãos',
     footer_brand_text: 'Seleccionamos, tostamos y empacamos cada lote con cuidado, del productor a tu taza, en lotes pequeños cada semana.',
-    footer_contato_title: 'Contacto', footer_rights: 'Todos los derechos reservados.',
+    footer_contato_title: 'Contacto', footer_rights: 'Todos los derechos reservados.', footer_cnpj: 'CNPJ: 68.975.236/0001-87',
     footer_payment_note: 'Pago procesado de forma segura por InfinitePay',
 
     cart_title: 'Tu carrito', cart_close_aria: 'Cerrar carrito', cart_empty: 'Tu carrito está vacío.',
@@ -1425,7 +1425,7 @@ const TRANSLATIONS = {
     footer_trocas: 'Échanges et retours', footer_rastrear: 'Suivre ma commande',
     footer_brand_title: 'Café Só Grãos',
     footer_brand_text: 'Nous sélectionnons, torréfions et emballons chaque lot avec soin, du producteur à votre tasse, en petits lots chaque semaine.',
-    footer_contato_title: 'Contact', footer_rights: 'Tous droits réservés.',
+    footer_contato_title: 'Contact', footer_rights: 'Tous droits réservés.', footer_cnpj: 'CNPJ : 68.975.236/0001-87',
     footer_payment_note: 'Paiement traité en toute sécurité par InfinitePay',
 
     cart_title: 'Votre panier', cart_close_aria: 'Fermer le panier', cart_empty: 'Votre panier est vide.',
@@ -1804,7 +1804,7 @@ const TRANSLATIONS = {
     footer_trocas: '换货与退货', footer_rastrear: '查询订单',
     footer_brand_title: 'Café Só Grãos',
     footer_brand_text: '我们用心挑选、烘焙并包装每一批咖啡，从生产者到您的杯中，每周小批量用心制作。',
-    footer_contato_title: '联系方式', footer_rights: '版权所有。',
+    footer_contato_title: '联系方式', footer_rights: '版权所有。', footer_cnpj: 'CNPJ：68.975.236/0001-87',
     footer_payment_note: '付款由 InfinitePay 安全处理',
 
     cart_title: '您的购物车', cart_close_aria: '关闭购物车', cart_empty: '您的购物车是空的。',
