@@ -53,6 +53,35 @@ a { text-decoration: none; color: inherit; }
   font-size: 15px; font-weight: 700; padding: 10px 16px; letter-spacing: .01em;
 }
 
+/* Banner Black Friday (home, 27-30/11/2026) -- liga/desliga sozinho via JS
+   (atualizarBannerBlackFriday em js/main.js), nunca editado direto no HTML. */
+.banner-black { background: var(--expresso); color: #fff; padding: 36px 16px; }
+.banner-black[hidden] { display: none; }
+.banner-black-inner { text-align: center; max-width: 640px; }
+.banner-black-tag {
+  color: var(--laranja); font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  font-size: 13px; margin: 0 0 8px;
+}
+.banner-black-titulo {
+  color: #fff; font-size: 34px; line-height: 1.1; margin: 0 0 10px;
+}
+.banner-black-texto { color: #EBE3DD; font-size: 16px; margin: 0 0 18px; }
+.banner-black-countdown {
+  display: flex; justify-content: center; gap: 10px; margin: 0 0 22px; flex-wrap: wrap;
+}
+.banner-black-countdown .unidade {
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18);
+  border-radius: 10px; padding: 8px 14px; min-width: 64px;
+}
+.banner-black-countdown .unidade strong {
+  display: block; font-family: 'Tanker', sans-serif; font-size: 24px; color: var(--laranja);
+}
+.banner-black-countdown .unidade span { display: block; font-size: 11px; color: #cfc6c0; text-transform: uppercase; }
+.banner-black-cta { display: inline-block; }
+@media (max-width: 640px) {
+  .banner-black-titulo { font-size: 26px; }
+}
+
 /* Header */
 .site-header {
   position: sticky; top: 0; z-index: 50;

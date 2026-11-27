@@ -114,6 +114,20 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
 
 <div class="announce-bar" data-i18n="announce_bar">Primeira compra: Drip Coffee de brinde & 5% de cashback · Frete grátis a partir de R$100, conforme a sua região</div>
 
+<!-- Banner Black Friday (27-30/11/2026, manual do Gustavo) -- só em
+     português, só nesta página. Ligado/desligado sozinho por JS
+     (atualizarBannerBlackFriday em main.js) conforme o horário; ?teste-black=1
+     na URL força mostrar fora do horário real, só pra conferir o visual. -->
+<section id="bannerBlackFriday" class="banner-black" hidden>
+  <div class="container banner-black-inner">
+    <p class="banner-black-tag">🔥 BLACK FRIDAY · CAFÉ SÓ GRÃOS</p>
+    <h2 id="bannerBlackTitulo" class="banner-black-titulo">Copo de brinde + frete grátis</h2>
+    <p id="bannerBlackTexto" class="banner-black-texto"></p>
+    <div id="bannerBlackCountdown" class="banner-black-countdown" aria-live="polite"></div>
+    <a href="#produtos" class="btn btn-primary banner-black-cta">Ver ofertas</a>
+  </div>
+</section>
+
 <section class="hero">
   <div class="container hero-inner">
     <div class="hero-text">

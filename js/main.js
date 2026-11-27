@@ -23,9 +23,22 @@ let FRETE_GRATIS_CONFIG = null;
 // o front só espelha. Datas com fuso -03:00 explícito, então Date.parse()
 // acerta sozinho não importa o fuso do navegador de quem acessa.
 let BLACK_FRIDAY_CONFIG = null;
+// Recalcula a fase a partir dos horários (nunca usa o campo "fase" cru do
+// fetch, que fica parado no que valia no momento em que a página carregou)
+// -- sem isso, quem deixasse a aba aberta atravessando a virada de 00h não
+// veria a oferta começar/acabar sozinha, só atualizando se recarregasse a
+// página. Mesma lógica de blackFridayFase() em server.js.
+function blackFridayFase() {
+  if (!BLACK_FRIDAY_CONFIG) return 'antes';
+  const agora = Date.now();
+  if (agora < Date.parse(BLACK_FRIDAY_CONFIG.inicio)) return 'antes';
+  if (agora <= Date.parse(BLACK_FRIDAY_CONFIG.fimNormal)) return 'ativo';
+  if (agora <= Date.parse(BLACK_FRIDAY_CONFIG.fimProrrogacao)) return 'prorrogacao';
+  return 'depois';
+}
 function blackFridayAtiva() {
-  if (!BLACK_FRIDAY_CONFIG) return false;
-  return BLACK_FRIDAY_CONFIG.fase === 'ativo' || BLACK_FRIDAY_CONFIG.fase === 'prorrogacao';
+  const fase = blackFridayFase();
+  return fase === 'ativo' || fase === 'prorrogacao';
 }
 const freteGratisConfigPronta = fetch(`${API_BASE}/api/config`)
   .then((r) => r.json())
@@ -45,11 +58,85 @@ function freteGratisMinimo(escopo) {
 // Araraquara) -- se a config mudar, atualiza sozinha, sem editar HTML.
 function atualizarAnnounceBar() {
   const bar = document.querySelector('.announce-bar');
-  if (!bar || !FRETE_GRATIS_CONFIG) return;
+  if (!bar) return;
+  // Durante a Black, a barra do topo troca pra mensagem da promoção (só em
+  // português, pedido do dono) em vez do aviso de frete grátis normal.
+  if (blackFridayAtiva()) {
+    const minimoCopo = BLACK_FRIDAY_CONFIG.minimoCopo.toFixed(0);
+    const minimoFrete = BLACK_FRIDAY_CONFIG.minimoFrete.toFixed(0);
+    bar.textContent = `🔥 BLACK FRIDAY: copo de brinde a partir de R$${minimoCopo} e frete grátis a partir de R$${minimoFrete} — só até domingo!`;
+    return;
+  }
+  if (!FRETE_GRATIS_CONFIG) return;
   const menor = Math.min(...FRETE_GRATIS_CONFIG.faixas.map((f) => f.minimo));
   bar.textContent = t('announce_bar', { valor: menor % 1 === 0 ? menor.toFixed(0) : menor.toFixed(2).replace('.', ',') });
 }
 freteGratisConfigPronta.then(atualizarAnnounceBar);
+// Reavalia a cada minuto -- cobre quem deixa a aba aberta bem na virada do
+// início/fim da promoção (00h de sexta, fim de domingo/prorrogação),
+// atualizando a barra, o carrinho e o banner sozinhos, sem precisar
+// recarregar a página.
+setInterval(() => {
+  atualizarAnnounceBar();
+  if (typeof Cart !== 'undefined') Cart.render();
+}, 60000);
+
+// Banner Black Friday (só existe na home) -- liga/desliga e atualiza a
+// contagem regressiva sozinho, nunca precisa editar o HTML na mão.
+// ?teste-black=1 na URL força mostrar o banner fora do horário real, só pra
+// conferir o visual (nunca muda preço/frete/brinde -- isso é sempre decidido
+// pelo servidor, nunca por esse parâmetro de teste).
+function formatarContagemBlack(ms) {
+  if (ms < 0) ms = 0;
+  const segTotal = Math.floor(ms / 1000);
+  const dias = Math.floor(segTotal / 86400);
+  const horas = Math.floor((segTotal % 86400) / 3600);
+  const min = Math.floor((segTotal % 3600) / 60);
+  const seg = segTotal % 60;
+  const partes = [];
+  if (dias > 0) partes.push({ valor: dias, rotulo: dias === 1 ? 'dia' : 'dias' });
+  partes.push({ valor: horas, rotulo: 'h' });
+  partes.push({ valor: min, rotulo: 'min' });
+  partes.push({ valor: seg, rotulo: 'seg' });
+  return partes.map((p) => `<div class="unidade"><strong>${String(p.valor).padStart(2, '0')}</strong><span>${p.rotulo}</span></div>`).join('');
+}
+function atualizarBannerBlackFriday() {
+  const secao = document.getElementById('bannerBlackFriday');
+  if (!secao || !BLACK_FRIDAY_CONFIG) return;
+  const testeBlack = new URLSearchParams(location.search).get('teste-black') === '1';
+  let fase = blackFridayFase();
+  if (testeBlack && fase === 'antes') fase = 'ativo'; // só pra ver o visual antes da hora chegar
+  if (fase === 'depois' && !testeBlack) {
+    secao.hidden = true;
+    return;
+  }
+  secao.hidden = false;
+  const tituloEl = document.getElementById('bannerBlackTitulo');
+  const textoEl = document.getElementById('bannerBlackTexto');
+  const countdownEl = document.getElementById('bannerBlackCountdown');
+  const minimoCopo = BLACK_FRIDAY_CONFIG.minimoCopo.toFixed(0);
+  const minimoFrete = BLACK_FRIDAY_CONFIG.minimoFrete.toFixed(0);
+  let alvo;
+  if (fase === 'antes') {
+    tituloEl.textContent = 'A Black Friday está chegando';
+    textoEl.textContent = `A partir de sexta: copo de brinde a partir de R$${minimoCopo} e frete grátis a partir de R$${minimoFrete}.`;
+    alvo = Date.parse(BLACK_FRIDAY_CONFIG.inicio);
+  } else if (fase === 'prorrogacao') {
+    tituloEl.textContent = 'Últimas horas da Black Friday!';
+    textoEl.textContent = `Copo de brinde a partir de R$${minimoCopo} e frete grátis a partir de R$${minimoFrete} — só até acabar a prorrogação.`;
+    alvo = Date.parse(BLACK_FRIDAY_CONFIG.fimProrrogacao);
+  } else {
+    tituloEl.textContent = 'Copo de brinde + frete grátis';
+    textoEl.textContent = `Copo de brinde a partir de R$${minimoCopo} e frete grátis a partir de R$${minimoFrete} — só até domingo!`;
+    alvo = Date.parse(BLACK_FRIDAY_CONFIG.fimNormal);
+  }
+  countdownEl.innerHTML = formatarContagemBlack(alvo - Date.now());
+}
+freteGratisConfigPronta.then(() => {
+  if (!document.getElementById('bannerBlackFriday')) return; // só existe na home
+  atualizarBannerBlackFriday();
+  setInterval(atualizarBannerBlackFriday, 1000);
+});
 
 // Subtítulo da página de Araraquara: mesma ideia da barra do topo, mas com
 // o valor da faixa "araraquara-regiao" -- muda sozinho se a config mudar,
@@ -989,8 +1076,16 @@ carregarCatalogo();
   // que a pessoa saia sem interagir com o popup.
   if (!localStorage.getItem(CADASTRADO_KEY) && !sessionStorage.getItem(JA_MOSTROU_SESSAO_KEY)) {
     setTimeout(() => {
-      overlay.classList.add('open');
-      sessionStorage.setItem(JA_MOSTROU_SESSAO_KEY, '1');
+      // Esse popup oferece o brinde de boas-vindas (Drip Coffee + cashback),
+      // que fica pausado durante a Black pra não confundir com o copo/frete
+      // grátis da promoção (decisão do dono, 26/11/2026) -- espera a config
+      // da Black chegar antes de decidir (ela já começou a carregar lá em
+      // cima, então aqui isso quase nunca significa esperar de verdade).
+      freteGratisConfigPronta.then(() => {
+        if (blackFridayAtiva()) return;
+        overlay.classList.add('open');
+        sessionStorage.setItem(JA_MOSTROU_SESSAO_KEY, '1');
+      });
     }, 1200);
   }
 })();
