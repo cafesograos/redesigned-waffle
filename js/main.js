@@ -67,6 +67,18 @@ function freteGratisMinimo(escopo) {
   return faixa ? faixa.minimo : null;
 }
 
+// Frase única explicando as 3 faixas da Black, usada na barra do topo e no
+// banner -- escrita pra deixar claro que copo e frete são faixas SEPARADAS
+// (R$170-300 só tem frete, sem copo) e que os dois juntos só valem a partir
+// de R$300. A versão anterior ("copo a partir de R$150 e frete a partir de
+// R$170") lia como se os dois valessem juntos desde R$150/170, o que não é
+// verdade -- gerou reclamação de confusão.
+function textoBeneficiosBlack() {
+  const minimoCopo = BLACK_FRIDAY_CONFIG.minimoCopo.toFixed(0);
+  const minimoFrete = BLACK_FRIDAY_CONFIG.minimoFrete.toFixed(0);
+  return `Acima de R$${minimoCopo}: copo de brinde. Acima de R$${minimoFrete}: frete grátis. Acima de R$300: copo + frete grátis juntos!`;
+}
+
 // Barra do topo: "a partir de R$X" usa sempre a faixa mais barata (hoje,
 // Araraquara) -- se a config mudar, atualiza sozinha, sem editar HTML.
 function atualizarAnnounceBar() {
@@ -75,9 +87,7 @@ function atualizarAnnounceBar() {
   // Durante a Black, a barra do topo troca pra mensagem da promoção (só em
   // português, pedido do dono) em vez do aviso de frete grátis normal.
   if (blackFridayAtiva()) {
-    const minimoCopo = BLACK_FRIDAY_CONFIG.minimoCopo.toFixed(0);
-    const minimoFrete = BLACK_FRIDAY_CONFIG.minimoFrete.toFixed(0);
-    bar.textContent = `🔥 BLACK FRIDAY: copo de brinde a partir de R$${minimoCopo} e frete grátis a partir de R$${minimoFrete} — só até domingo!`;
+    bar.textContent = `🔥 BLACK FRIDAY: ${textoBeneficiosBlack()}`;
     return;
   }
   if (!FRETE_GRATIS_CONFIG) return;
@@ -128,20 +138,18 @@ function atualizarBannerBlackFriday() {
   const tituloEl = document.getElementById('bannerBlackTitulo');
   const textoEl = document.getElementById('bannerBlackTexto');
   const countdownEl = document.getElementById('bannerBlackCountdown');
-  const minimoCopo = BLACK_FRIDAY_CONFIG.minimoCopo.toFixed(0);
-  const minimoFrete = BLACK_FRIDAY_CONFIG.minimoFrete.toFixed(0);
   let alvo;
   if (fase === 'antes') {
     tituloEl.textContent = 'A Black Friday está chegando';
-    textoEl.textContent = `A partir de sexta: copo de brinde a partir de R$${minimoCopo} e frete grátis a partir de R$${minimoFrete}.`;
+    textoEl.textContent = `A partir de sexta: ${textoBeneficiosBlack()}`;
     alvo = Date.parse(BLACK_FRIDAY_CONFIG.inicio);
   } else if (fase === 'prorrogacao') {
     tituloEl.textContent = 'Últimas horas da Black Friday!';
-    textoEl.textContent = `Copo de brinde a partir de R$${minimoCopo} e frete grátis a partir de R$${minimoFrete} — só até acabar a prorrogação.`;
+    textoEl.textContent = `${textoBeneficiosBlack()} Só até acabar a prorrogação.`;
     alvo = Date.parse(BLACK_FRIDAY_CONFIG.fimProrrogacao);
   } else {
     tituloEl.textContent = 'Copo de brinde + frete grátis';
-    textoEl.textContent = `Copo de brinde a partir de R$${minimoCopo} e frete grátis a partir de R$${minimoFrete} — só até domingo!`;
+    textoEl.textContent = `${textoBeneficiosBlack()} Só até domingo!`;
     alvo = Date.parse(BLACK_FRIDAY_CONFIG.fimNormal);
   }
   countdownEl.innerHTML = formatarContagemBlack(alvo - Date.now());
