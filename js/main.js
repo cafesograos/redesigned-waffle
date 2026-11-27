@@ -40,6 +40,19 @@ function blackFridayAtiva() {
   const fase = blackFridayFase();
   return fase === 'ativo' || fase === 'prorrogacao';
 }
+// Mesma regra de blackFridayBeneficios (server.js) / Cart.beneficiosBlackFriday
+// (cart.js), mas pra um valor solto -- usada na vitrine pra mostrar, no
+// próprio card de um kit, se o preço dele sozinho já destrava o copo/frete
+// da Black (sem depender do resto do carrinho).
+function blackFridayBeneficiosPara(subtotal) {
+  if (!blackFridayAtiva() || !BLACK_FRIDAY_CONFIG) return null;
+  const valor = Number((Number(subtotal) || 0).toFixed(2));
+  const { minimoCopo, minimoFrete } = BLACK_FRIDAY_CONFIG;
+  return {
+    copo: (valor >= minimoCopo && valor < minimoFrete) || valor >= 300,
+    freteGratis: valor >= minimoFrete
+  };
+}
 const freteGratisConfigPronta = fetch(`${API_BASE}/api/config`)
   .then((r) => r.json())
   .then((data) => {
@@ -79,6 +92,7 @@ freteGratisConfigPronta.then(atualizarAnnounceBar);
 setInterval(() => {
   atualizarAnnounceBar();
   if (typeof Cart !== 'undefined') Cart.render();
+  if (typeof renderProducts === 'function') renderProducts();
 }, 60000);
 
 // Banner Black Friday (só existe na home) -- liga/desliga e atualiza a
@@ -152,6 +166,10 @@ freteGratisConfigPronta.then(atualizarAraraquaraSubtitle);
 // normal entre o fetch e a primeira renderização), redesenha pra mostrar
 // a faixa/brinde da Black Friday sem precisar a pessoa mexer no carrinho.
 freteGratisConfigPronta.then(() => { if (typeof Cart !== 'undefined') Cart.render(); });
+// Mesma corrida de novo: se a vitrine já tiver sido desenhada antes dessa
+// config chegar, redesenha pra aplicar badge/ordem dos combos da Black sem
+// esperar o próximo minuto do setInterval acima.
+freteGratisConfigPronta.then(() => { if (typeof renderProducts === 'function') renderProducts(); });
 
 // Nome/descrição do produto no idioma atual — cai pro português se a
 // tradução específica não existir (ex.: catálogo local desatualizado) ou se
@@ -273,11 +291,13 @@ function montarCardProdutoHtml(p) {
   return `
     <article class="produto-card" id="produto-${id}" data-id="${id}" data-categoria="${escapeHtml((p.categorias || []).join(' '))}">
       ${p.badge ? `<span class="produto-badge${p.badge.toUpperCase() === 'PROMOÇÃO' ? ' badge-sale' : ''}"${p.badge.includes('SCA') ? ` title="${escapeHtml(t('sca_tooltip'))}"` : ''}>${escapeHtml(p.badge)}</span>` : ''}
+      <span class="produto-badge-black" hidden>Black</span>
       <div class="produto-img"${p.imgs ? ` data-gallery="${id}"` : ''}>${p.img ? `<img src="${escapeHtml(p.img)}" alt="${nome}" loading="lazy">` : ''}</div>
       <div class="produto-info">
         <h3>${nome}</h3>
         <p>${descricao}</p>
         ${PRODUTO_PAGINA[p.id] ? `<a href="${escapeHtml(PRODUTO_PAGINA[p.id])}?sku=${id}" class="produto-ficha-link">${escapeHtml(t('produto_ver_ficha'))}</a>` : ''}
+        <p class="produto-kit-black-info" hidden></p>
         <div class="produto-footer">
           <div class="produto-precos">
             <span class="produto-peso">${pesoHtml(p)}</span>
@@ -328,6 +348,37 @@ function renderProducts() {
     if (descEl) descEl.textContent = descricaoProduto(p);
     if (btn) btn.textContent = t('add_button');
     if (img) img.alt = nomeProduto(p);
+
+    // Combo da Black: só os 4 combos que já existem (badge "Combo" no
+    // catálogo), não todo item de "kits" -- pedido do dono, não inventar
+    // combo novo. Reavaliado toda vez que renderProducts() roda de novo
+    // (troca de idioma, atualização por minuto da Black), então liga/desliga
+    // sozinho junto com o resto da promoção.
+    const ehComboBlack = p.badge === 'Combo';
+    const badgeBlackEl = card.querySelector('.produto-badge-black');
+    const kitInfoEl = card.querySelector('.produto-kit-black-info');
+    const beneficio = ehComboBlack ? blackFridayBeneficiosPara(p.preco) : null;
+    if (beneficio) {
+      card.style.order = '-1'; // sobe pro topo da vitrine (grid: order funciona igual flex)
+      if (badgeBlackEl) badgeBlackEl.hidden = false;
+      if (kitInfoEl) {
+        kitInfoEl.hidden = false;
+        if (beneficio.copo && beneficio.freteGratis) {
+          kitInfoEl.textContent = '🎉 Esse kit sozinho já garante o copo de brinde + frete grátis!';
+        } else if (beneficio.freteGratis) {
+          kitInfoEl.textContent = '🚚 Esse kit sozinho já garante o frete grátis!';
+        } else if (beneficio.copo) {
+          kitInfoEl.textContent = '🎁 Esse kit sozinho já garante o copo de brinde!';
+        } else {
+          const falta = Math.max(0, BLACK_FRIDAY_CONFIG.minimoCopo - p.preco).toFixed(2).replace('.', ',');
+          kitInfoEl.textContent = `Faltam R$ ${falta} pra esse kit garantir o copo de brinde`;
+        }
+      }
+    } else {
+      card.style.order = '';
+      if (badgeBlackEl) badgeBlackEl.hidden = true;
+      if (kitInfoEl) kitInfoEl.hidden = true;
+    }
   });
 }
 

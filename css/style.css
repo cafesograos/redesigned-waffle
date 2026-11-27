@@ -547,6 +547,16 @@ a { text-decoration: none; color: inherit; }
   text-transform: uppercase; letter-spacing: .03em; padding: 4px 10px; border-radius: 999px;
 }
 .produto-badge.badge-sale { background: var(--sale); color: #fff; }
+/* Combo da Black (ver renderProducts em js/main.js) -- fica do lado oposto
+   do badge normal (Combo/Kit/84 SCA) pra nunca sobrepor os dois. */
+.produto-badge-black {
+  position: absolute; top: 12px; right: 12px; z-index: 2;
+  background: var(--expresso); color: var(--laranja); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .03em; padding: 4px 10px; border-radius: 999px;
+}
+.produto-badge-black[hidden] { display: none; }
+.produto-kit-black-info { font-size: 12px; font-weight: 700; color: var(--laranja-dark); margin: 0 0 10px; }
+.produto-kit-black-info[hidden] { display: none; }
 .produto-img {
   height: 200px; display: flex; align-items: center; justify-content: center;
   font-size: 64px; background: #F7F5F4; padding: 14px;
