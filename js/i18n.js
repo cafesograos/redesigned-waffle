@@ -298,7 +298,7 @@ const TRANSLATIONS = {
     cart_ph_cpf: 'CPF',
     cart_ph_cnpj: 'CNPJ (opcional, se quiser nota fiscal)',
     cart_subtotal: 'Subtotal', cart_frete: 'Frete', cart_total: 'Total', cart_frete_gratis: 'Grátis',
-    cart_checkout_btn: 'Finalizar compra', cart_checkout_note: 'Pagamento processado com segurança pela InfinitePay.',
+    cart_checkout_btn: 'Finalizar compra', cart_checkout_note: 'Pagamento processado com segurança pela InfinitePay — Pix ou cartão.',
     cart_open_aria: 'Abrir carrinho',
 
     lightbox_close: 'Fechar', lightbox_prev: 'Imagem anterior', lightbox_next: 'Próxima imagem',

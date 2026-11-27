@@ -123,6 +123,22 @@ const Cart = {
     return Math.min(100, (this.totalValue() / this.limiteFreteGratis) * 100);
   },
 
+  // Espelha blackFridayBeneficios() do backend (server.js) -- mesma regra
+  // aprovada: copo sozinho de R$150 a R$170, frete grátis sozinho de R$170
+  // a R$300, os dois só a partir de R$300 (o 300 é fixo nos dois lados, não
+  // vem de /api/config porque o backend também não manda esse valor —
+  // só minimoCopo/minimoFrete). Só é cosmético: quem decide de verdade o
+  // que entra no pedido é o backend em /api/create-preference.
+  beneficiosBlackFriday() {
+    if (typeof blackFridayAtiva !== 'function' || !blackFridayAtiva() || !BLACK_FRIDAY_CONFIG) return null;
+    const valor = Number(this.totalValue().toFixed(2));
+    const { minimoCopo, minimoFrete } = BLACK_FRIDAY_CONFIG;
+    return {
+      copo: (valor >= minimoCopo && valor < minimoFrete) || valor >= 300,
+      freteGratis: valor >= minimoFrete
+    };
+  },
+
   toLineItems() {
     return Object.entries(this.items)
       .map(([id, qty]) => {
@@ -135,6 +151,7 @@ const Cart = {
   render() {
     const count = this.totalItems();
     document.getElementById('cartCount').textContent = `(${count})`;
+    const black = this.beneficiosBlackFriday();
 
     const itemsEl = document.getElementById('cartItems');
     itemsEl.innerHTML = '';
@@ -168,21 +185,64 @@ const Cart = {
         `;
         itemsEl.appendChild(row);
       });
+
+      // Copo de brinde Black Friday -- só exibição; o backend quem decide
+      // de verdade o que entra no pedido em /api/create-preference.
+      if (black && black.copo) {
+        const giftRow = document.createElement('div');
+        giftRow.className = 'cart-item cart-item-brinde';
+        giftRow.innerHTML = `
+          <div class="cart-item-thumb"></div>
+          <div class="cart-item-info">
+            <strong>Copo Café Só Grãos 350ml</strong>
+            <span>🎁 Brinde Black Friday — R$ 0,00</span>
+          </div>
+        `;
+        itemsEl.appendChild(giftRow);
+      }
     }
 
     const progressoEl = document.getElementById('cartFreteProgresso');
     if (progressoEl) {
-      const falta = this.faltaParaFreteGratis();
-      if (count === 0 || falta === null) {
+      if (count === 0) {
         progressoEl.hidden = true;
-      } else {
+      } else if (black) {
         progressoEl.hidden = false;
-        const liberado = falta <= 0;
-        document.getElementById('cartFreteProgressoTexto').textContent = liberado
-          ? t('cart_frete_liberado')
-          : t('cart_frete_faltam', { valor: 'R$ ' + falta.toFixed(2).replace('.', ',') });
-        document.getElementById('cartFreteProgressoFill').style.width = this.progressoFreteGratis() + '%';
-        progressoEl.classList.toggle('liberado', liberado);
+        const valor = this.totalValue();
+        const { minimoCopo, minimoFrete } = BLACK_FRIDAY_CONFIG;
+        let texto, pct;
+        if (black.copo && black.freteGratis) {
+          texto = '🎉 Copo de brinde + frete grátis garantidos!';
+          pct = 100;
+        } else if (black.freteGratis) {
+          const faltaCopo = Math.max(0, 300 - valor);
+          texto = `Frete grátis garantido! Faltam R$ ${faltaCopo.toFixed(2).replace('.', ',')} para o copo de brinde também`;
+          pct = Math.min(100, (valor / 300) * 100);
+        } else if (black.copo) {
+          const faltaFrete = Math.max(0, minimoFrete - valor);
+          texto = `Copo de brinde garantido! Faltam R$ ${faltaFrete.toFixed(2).replace('.', ',')} para o frete grátis`;
+          pct = Math.min(100, (valor / minimoFrete) * 100);
+        } else {
+          const faltaCopo = Math.max(0, minimoCopo - valor);
+          texto = `Faltam R$ ${faltaCopo.toFixed(2).replace('.', ',')} para ganhar o copo Café Só Grãos de brinde`;
+          pct = Math.min(100, (valor / minimoCopo) * 100);
+        }
+        document.getElementById('cartFreteProgressoTexto').textContent = texto;
+        document.getElementById('cartFreteProgressoFill').style.width = pct + '%';
+        progressoEl.classList.toggle('liberado', black.freteGratis);
+      } else {
+        const falta = this.faltaParaFreteGratis();
+        if (falta === null) {
+          progressoEl.hidden = true;
+        } else {
+          progressoEl.hidden = false;
+          const liberado = falta <= 0;
+          document.getElementById('cartFreteProgressoTexto').textContent = liberado
+            ? t('cart_frete_liberado')
+            : t('cart_frete_faltam', { valor: 'R$ ' + falta.toFixed(2).replace('.', ',') });
+          document.getElementById('cartFreteProgressoFill').style.width = this.progressoFreteGratis() + '%';
+          progressoEl.classList.toggle('liberado', liberado);
+        }
       }
     }
 
@@ -202,7 +262,19 @@ const Cart = {
     // zerava (precisa recalcular pro peso novo) mas nada na tela avisava —
     // o botão só ficava com uma cor um pouco mais clara, fácil de não notar
     // que estava bloqueado.
-    document.getElementById('cartAvisoFrete').hidden = count === 0 || !!this.frete;
+    // Esse aviso também é reaproveitado por mostrarErroCheckout() (main.js)
+    // pra erro de campo (CPF/nome/etc.) -- enquanto ele estiver no ar
+    // (erroCheckoutAtivo), este render() não deve tocar nele por nenhum
+    // motivo (troca de idioma, config da Black chegando atrasada etc.),
+    // senão o erro desaparece sem o problema real ter sido corrigido.
+    if (typeof erroCheckoutAtivo === 'undefined' || !erroCheckoutAtivo) {
+      const avisoFreteEl = document.getElementById('cartAvisoFrete');
+      avisoFreteEl.hidden = count === 0 || !!this.frete;
+      // Se o frete virar null de novo (item mudou, precisa recalcular),
+      // esse é sempre o motivo de verdade agora -- o texto tem que voltar a
+      // ser o da falta de frete, não um erro de campo antigo que ficou.
+      if (!avisoFreteEl.hidden) avisoFreteEl.textContent = t('msg_calcule_frete_antes');
+    }
   }
 };
 

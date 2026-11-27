@@ -18,9 +18,21 @@ const PRODUTO_PAGINA = {
 // momento da publicação -- se o JS não carregar, ele fica estático, mas
 // assim que carrega, passa a refletir a config ao vivo sozinho.
 let FRETE_GRATIS_CONFIG = null;
+// Black Friday 27-30/11/2026 (manual do Gustavo, 26/11/2026) -- mesma ideia
+// do frete grátis acima: só o backend sabe os horários/valores de verdade,
+// o front só espelha. Datas com fuso -03:00 explícito, então Date.parse()
+// acerta sozinho não importa o fuso do navegador de quem acessa.
+let BLACK_FRIDAY_CONFIG = null;
+function blackFridayAtiva() {
+  if (!BLACK_FRIDAY_CONFIG) return false;
+  return BLACK_FRIDAY_CONFIG.fase === 'ativo' || BLACK_FRIDAY_CONFIG.fase === 'prorrogacao';
+}
 const freteGratisConfigPronta = fetch(`${API_BASE}/api/config`)
   .then((r) => r.json())
-  .then((data) => { FRETE_GRATIS_CONFIG = data.freteGratis; })
+  .then((data) => {
+    FRETE_GRATIS_CONFIG = data.freteGratis;
+    BLACK_FRIDAY_CONFIG = data.blackFriday || null;
+  })
   .catch((err) => console.warn('Não foi possível carregar a config de frete grátis:', err));
 
 function freteGratisMinimo(escopo) {
@@ -49,6 +61,10 @@ function atualizarAraraquaraSubtitle() {
   el.textContent = t('araraquara_page_subtitle', { valor: valor % 1 === 0 ? valor.toFixed(0) : valor.toFixed(2).replace('.', ',') });
 }
 freteGratisConfigPronta.then(atualizarAraraquaraSubtitle);
+// Se o carrinho já tinha sido desenhado antes dessa config chegar (corrida
+// normal entre o fetch e a primeira renderização), redesenha pra mostrar
+// a faixa/brinde da Black Friday sem precisar a pessoa mexer no carrinho.
+freteGratisConfigPronta.then(() => { if (typeof Cart !== 'undefined') Cart.render(); });
 
 // Nome/descrição do produto no idioma atual — cai pro português se a
 // tradução específica não existir (ex.: catálogo local desatualizado) ou se
@@ -419,8 +435,22 @@ document.getElementById('cartToggle').addEventListener('click', openCart);
 document.getElementById('cartClose').addEventListener('click', closeCart);
 document.getElementById('cartOverlay').addEventListener('click', closeCart);
 
+// CNPJ fica escondido até a pessoa pedir -- é opcional (só quem quer nota de
+// empresa preenche) e, visível direto, só poluía o formulário pra maioria.
+document.getElementById('btnMostrarCnpj').addEventListener('click', () => {
+  const campo = document.getElementById('inCnpj');
+  campo.hidden = false;
+  document.getElementById('btnMostrarCnpj').hidden = true;
+  campo.focus();
+});
+
 // Busca o CEP no ViaCEP e calcula o frete no nosso backend (Melhor Envio).
-document.getElementById('btnCalcularFrete').addEventListener('click', async () => {
+// Roda tanto no clique do botão (mantido pra quem preferir) quanto sozinho
+// assim que o CEP completa 8 dígitos (Black Friday: carrinho/checkout não
+// deve exigir clique extra pra avançar -- ver manual do Gustavo).
+let freteEmAndamento = false;
+async function calcularFreteCep() {
+  if (freteEmAndamento) return;
   const cepInput = document.getElementById('inCep');
   const statusEl = document.getElementById('entregaStatus');
   const cep = cepInput.value.replace(/\D/g, '');
@@ -430,6 +460,7 @@ document.getElementById('btnCalcularFrete').addEventListener('click', async () =
     return;
   }
 
+  freteEmAndamento = true;
   statusEl.textContent = t('msg_calculando_frete');
   Cart.frete = null;
 
@@ -466,11 +497,74 @@ document.getElementById('btnCalcularFrete').addEventListener('click', async () =
     const freteTexto = frete.valor === 0 ? t('msg_frete_gratis') : 'R$ ' + frete.valor.toFixed(2).replace('.', ',');
     statusEl.textContent = t('msg_frete_resultado', { frete: freteTexto, prazo: frete.prazoDias });
 
+    atualizarOpcaoRetiradaAraraquara(cep);
+    aplicarRetiradaNoFrete();
     Cart.render();
   } catch (err) {
     console.error(err);
     statusEl.textContent = t('msg_frete_erro');
+  } finally {
+    freteEmAndamento = false;
   }
+}
+document.getElementById('btnCalcularFrete').addEventListener('click', calcularFreteCep);
+document.getElementById('inCep').addEventListener('input', (e) => {
+  const digitos = e.target.value.replace(/\D/g, '');
+  if (digitos.length === 8) calcularFreteCep();
+});
+
+// Araraquara (CEP 14800-14814, mesma faixa usada no backend pro frete
+// regional) continua com entrega normal no próximo dia útil -- o dono pediu
+// explicitamente pra NÃO prometer "entrega hoje" (isso era sugestão do
+// manual do Gustavo, não decisão dele). Em vez disso, mostra a opção extra
+// de retirar no endereço da loja pra quem preferir.
+function cepEhAraraquaraFront(cep) {
+  const digitos = String(cep || '').replace(/\D/g, '');
+  if (digitos.length < 5) return false;
+  const prefixo = Number(digitos.slice(0, 5));
+  return prefixo >= 14800 && prefixo <= 14814;
+}
+function atualizarOpcaoRetiradaAraraquara(cep) {
+  const containerEl = document.getElementById('cartRetiradaAraraquara');
+  const checkboxEl = document.getElementById('inRetiradaAraraquara');
+  if (!containerEl || !checkboxEl) return;
+  const eAraraquara = cepEhAraraquaraFront(cep);
+  containerEl.hidden = !eAraraquara;
+  // Saiu de Araraquara (ex.: trocou o CEP) -- desmarca sem restaurar nenhum
+  // valor guardado: o frete que acabou de ser cotado pro CEP novo (atribuído
+  // em Cart.frete ANTES desta função ser chamada, ver calcularFreteCep) já
+  // é o valor real certo, então o que estava guardado de Araraquara teria
+  // que ser jogado fora mesmo, nunca reaplicado por cima do valor novo.
+  if (!eAraraquara) {
+    checkboxEl.checked = false;
+    Cart.freteTransportadora = null;
+  }
+}
+// Marcar "retirar na loja" zera o frete exibido (o que será cobrado de
+// verdade também, já validado de novo no backend) sem precisar recalcular
+// nada no Melhor Envio; desmarcar devolve o valor real que já tinha sido
+// cotado, sem precisar chamar a API de frete outra vez. Chamada tanto pelo
+// clique na caixinha quanto de novo a cada recálculo de frete (o peso pode
+// ter mudado desde a última vez que a caixinha foi marcada).
+function aplicarRetiradaNoFrete() {
+  const checkboxEl = document.getElementById('inRetiradaAraraquara');
+  if (!checkboxEl || !Cart.frete) return;
+  if (checkboxEl.checked) {
+    // Só reguarda o valor real se o frete atual não for o próprio zero que
+    // a gente aplicou -- senão, marcar duas vezes sem desmarcar perderia o
+    // valor real debaixo do zero já aplicado antes.
+    if (Cart.frete.valor !== 0 || Cart.freteTransportadora == null) {
+      Cart.freteTransportadora = Cart.frete.valor;
+    }
+    Cart.frete = { ...Cart.frete, valor: 0 };
+  } else if (Cart.freteTransportadora != null) {
+    Cart.frete = { ...Cart.frete, valor: Cart.freteTransportadora };
+    Cart.freteTransportadora = null;
+  }
+}
+document.getElementById('inRetiradaAraraquara').addEventListener('change', () => {
+  aplicarRetiradaNoFrete();
+  Cart.render();
 });
 
 // Validação padrão de CPF (dígitos verificadores) — recusa também sequências
@@ -490,6 +584,30 @@ function cpfValido(cpf) {
   return resto === parseInt(cpf[10], 10);
 }
 
+// Erro de checkout: usa a mesma nota que já avisava "calcule o frete antes"
+// (existe em todas as páginas que têm carrinho) em vez de alert(), que trava
+// a tela inteira -- reclamação explícita do manual da Black. Foca o campo
+// problemático pra pessoa já saber onde corrigir. A flag erroCheckoutAtivo
+// avisa Cart.render() (cart.js) pra não pisar nesse aviso enquanto ele
+// estiver no ar -- sem ela, qualquer render() disparado por outro motivo
+// (troca de idioma, chegada tardia da config da Black) apagava o erro de
+// campo sem o problema ter sido corrigido.
+let erroCheckoutAtivo = false;
+function mostrarErroCheckout(msg, focusId) {
+  erroCheckoutAtivo = true;
+  const avisoEl = document.getElementById('cartAvisoFrete');
+  avisoEl.textContent = msg;
+  avisoEl.hidden = false;
+  if (focusId) document.getElementById(focusId)?.focus();
+}
+function esconderErroCheckout() {
+  erroCheckoutAtivo = false;
+  const avisoEl = document.getElementById('cartAvisoFrete');
+  // Só esconde se não for o aviso padrão de "calcule o frete" (esse quem
+  // controla é Cart.render(), que sabe se o frete já foi calculado ou não).
+  if (Cart.frete) avisoEl.hidden = true;
+}
+
 document.getElementById('checkoutBtn').addEventListener('click', async () => {
   const btn = document.getElementById('checkoutBtn');
 
@@ -500,27 +618,30 @@ document.getElementById('checkoutBtn').addEventListener('click', async () => {
   const cnpj = document.getElementById('inCnpj').value.replace(/\D/g, '');
   const numero = document.getElementById('inNumero').value.trim();
   const complemento = document.getElementById('inComplemento').value.trim();
+  const retiradaCheckbox = document.getElementById('inRetiradaAraraquara');
+  const retirada = !!(retiradaCheckbox && retiradaCheckbox.checked);
 
   if (!Cart.frete) {
-    alert(t('msg_calcule_frete_antes'));
+    mostrarErroCheckout(t('msg_calcule_frete_antes'), 'inCep');
     return;
   }
-  if (!nome || !email || !cpf || !numero) {
-    alert(t('msg_preencha_dados'));
-    return;
-  }
+  if (!nome) { mostrarErroCheckout(t('msg_preencha_dados'), 'inNome'); return; }
+  if (!email) { mostrarErroCheckout(t('msg_preencha_dados'), 'inEmail'); return; }
+  if (!cpf) { mostrarErroCheckout(t('msg_preencha_dados'), 'inCpf'); return; }
+  if (!numero) { mostrarErroCheckout(t('msg_preencha_dados'), 'inNumero'); return; }
   // O type="email" do navegador aceita endereço sem ponto no domínio (ex.:
   // "nome@hotmailcom") — já vazou pedido aprovado com e-mail assim, cujo
   // envio (confirmação + rastreio) falhou silenciosamente pro cliente nunca
   // saber. Essa checagem extra exige pelo menos um ponto depois do @.
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    alert(t('msg_email_invalido'));
+    mostrarErroCheckout(t('msg_email_invalido'), 'inEmail');
     return;
   }
   if (!cpfValido(cpf)) {
-    alert(t('msg_cpf_invalido'));
+    mostrarErroCheckout(t('msg_cpf_invalido'), 'inCpf');
     return;
   }
+  esconderErroCheckout();
 
   if (window.gtag) {
     gtag('event', 'begin_checkout', {
@@ -551,7 +672,7 @@ document.getElementById('checkoutBtn').addEventListener('click', async () => {
         items: Cart.toLineItems(),
         frete: Cart.frete.valor,
         cliente: { nome, email, telefone, cpf, cnpj },
-        entrega: { ...Cart.entrega, numero, complemento }
+        entrega: { ...Cart.entrega, numero, complemento, retirada }
       })
     });
     if (!res.ok) throw new Error('Falha ao criar pagamento');

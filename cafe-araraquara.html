@@ -226,7 +226,12 @@ src="https://www.facebook.com/tr?id=1812177366630929&ev=PageView&noscript=1"
         <input type="email" id="inEmail" data-i18n-placeholder="cart_ph_email" placeholder="E-mail">
         <input type="tel" id="inTelefone" data-i18n-placeholder="cart_ph_telefone" placeholder="Telefone / WhatsApp">
         <input type="text" id="inCpf" data-i18n-placeholder="cart_ph_cpf" placeholder="CPF" inputmode="numeric" maxlength="14">
-        <input type="text" id="inCnpj" data-i18n-placeholder="cart_ph_cnpj" placeholder="CNPJ (opcional, se quiser nota fiscal)" inputmode="numeric" maxlength="18">
+        <label class="cart-retirada-araraquara" id="cartRetiradaAraraquara" hidden>
+          <input type="checkbox" id="inRetiradaAraraquara">
+          Prefiro retirar no nosso endereço em Araraquara (sem custo de frete)
+        </label>
+        <button type="button" class="cart-cnpj-toggle" id="btnMostrarCnpj">Precisa de nota com CNPJ?</button>
+        <input type="text" id="inCnpj" data-i18n-placeholder="cart_ph_cnpj" placeholder="CNPJ (opcional, se quiser nota fiscal)" inputmode="numeric" maxlength="18" hidden>
       </div>
     </div>
   </div>

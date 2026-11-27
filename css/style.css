@@ -657,6 +657,23 @@ a { text-decoration: none; color: inherit; }
 .cart-entrega input:read-only { background: #F7F5F4; color: var(--text-soft); }
 #btnCalcularFrete { white-space: nowrap; padding: 10px 14px; font-size: 13px; }
 .entrega-status { font-size: 13px; color: var(--text-soft); margin-bottom: 4px; }
+.cart-cnpj-toggle {
+  background: none; border: none; padding: 0; margin-bottom: 8px;
+  font-size: 13px; color: var(--text-soft); text-decoration: underline; cursor: pointer;
+}
+.cart-retirada-araraquara {
+  display: flex; align-items: flex-start; gap: 8px; font-size: 13px;
+  color: var(--expresso); background: #F7F5F4; border-radius: 8px;
+  padding: 10px 12px; margin-bottom: 8px; cursor: pointer;
+}
+/* Sem isso, o display:flex acima ganha do display:none do atributo hidden
+   (regra do autor sempre vence a do user-agent, independente de ordem ou
+   especificidade) -- a caixa de retirada ficava visível pra qualquer CEP,
+   não só Araraquara. */
+.cart-retirada-araraquara[hidden] { display: none; }
+.cart-retirada-araraquara input { width: auto; margin: 2px 0 0; flex-shrink: 0; }
+.cart-item-brinde .cart-item-info strong { color: var(--laranja-dark); }
+.cart-item-brinde .cart-item-info span { color: var(--laranja-dark); font-weight: 700; }
 
 /* Popup de cadastro (nome + telefone) na entrada do site */
 .popup-cadastro-overlay {
