@@ -101,6 +101,7 @@ freteGratisConfigPronta.then(atualizarAnnounceBar);
 // recarregar a página.
 setInterval(() => {
   atualizarAnnounceBar();
+  atualizarAraraquaraSubtitle();
   if (typeof Cart !== 'undefined') Cart.render();
   if (typeof renderProducts === 'function') renderProducts();
 }, 60000);
@@ -162,11 +163,19 @@ freteGratisConfigPronta.then(() => {
 
 // Subtítulo da página de Araraquara: mesma ideia da barra do topo, mas com
 // o valor da faixa "araraquara-regiao" -- muda sozinho se a config mudar,
-// nunca precisa editar o HTML.
+// nunca precisa editar o HTML. Durante a Black, a faixa normal de Araraquara
+// (R$100) deixa de valer (vira R$170 nacional, igual o resto do Brasil) --
+// sem esse desvio, a frase continuava dizendo "a partir de R$100" e "a
+// condição mais generosa do site", que fica falso durante a promoção.
 function atualizarAraraquaraSubtitle() {
   const el = document.querySelector('[data-i18n="araraquara_page_subtitle"]');
+  if (!el) return;
+  if (blackFridayAtiva()) {
+    el.textContent = 'Durante a Black Friday, o frete grátis é de R$170 pra todo o Brasil — mas quem é de Araraquara pode retirar no nosso endereço sem pagar frete nenhum, não importa o valor da compra.';
+    return;
+  }
   const valor = freteGratisMinimo('araraquara-regiao');
-  if (!el || valor === null) return;
+  if (valor === null) return;
   el.textContent = t('araraquara_page_subtitle', { valor: valor % 1 === 0 ? valor.toFixed(0) : valor.toFixed(2).replace('.', ',') });
 }
 freteGratisConfigPronta.then(atualizarAraraquaraSubtitle);
@@ -624,6 +633,14 @@ async function calcularFreteCep() {
     const frete = await freteRes.json();
 
     Cart.frete = frete;
+    // Zera o valor guardado de "retirada" toda vez que uma cotação nova e de
+    // verdade chega -- sem isso, se o carrinho crescesse até o frete ficar
+    // genuinamente grátis (sem ser por causa da retirada) enquanto a
+    // caixinha ainda estivesse marcada, aplicarRetiradaNoFrete() abaixo não
+    // teria como saber que o valor antigo guardado (de antes do carrinho
+    // crescer) ficou obsoleto, e esse valor pago errado reaparecia na tela
+    // se a pessoa desmarcasse a retirada depois.
+    Cart.freteTransportadora = null;
     // Guardado à parte de Cart.frete (que vira null a cada item adicionado/
     // removido, pois o peso muda) — o limite de frete grátis só depende do
     // CEP, não do peso, então continua valendo pra barra de progresso
@@ -696,10 +713,12 @@ function aplicarRetiradaNoFrete() {
   const checkboxEl = document.getElementById('inRetiradaAraraquara');
   if (!checkboxEl || !Cart.frete) return;
   if (checkboxEl.checked) {
-    // Só reguarda o valor real se o frete atual não for o próprio zero que
-    // a gente aplicou -- senão, marcar duas vezes sem desmarcar perderia o
-    // valor real debaixo do zero já aplicado antes.
-    if (Cart.frete.valor !== 0 || Cart.freteTransportadora == null) {
+    // Só guarda o valor real se ainda não tiver um guardado -- calcularFreteCep()
+    // sempre zera Cart.freteTransportadora quando chega uma cotação nova de
+    // verdade, então null aqui significa "isto é o valor real, ainda não
+    // zerado por retirada nenhuma". Sem essa checagem, marcar duas vezes
+    // seguidas sem desmarcar perderia o valor real debaixo do zero já aplicado.
+    if (Cart.freteTransportadora == null) {
       Cart.freteTransportadora = Cart.frete.valor;
     }
     Cart.frete = { ...Cart.frete, valor: 0 };
